@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--注释是这样的，不会被显示出来-->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>server</title>
+	</head>
+	<body>
+		<!-- html 中的空格是会被转义的, 所以显示的和写的是不一样的 -->
+		<!-- 代码写了很多空格, 显示的时候就只有一个 -->
+		很         好普通版
+        <h1>很好 h1 版</h1>
+        <h2>很好 h2 版</h2>
+        <h3>很好 h3 版</h3>
+		<!--只是演示GET和POST方法传输数据-->
+		<form action="/add" method="get">
+			<textarea name="message" rows="8" cols="40"></textarea>
+			<br>
+			<input name="author">
+			<button type="submit">GET submit</button>
+		</form>
+		<form action="/post" method="post">
+			<input name="message">
+			<br>
+			<input name="author">
+			<button type="submit">POST submit</button>
+		</form>
+	</body>
+</html>
