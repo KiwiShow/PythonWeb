@@ -151,6 +151,7 @@ def test_parsed_url():
         e = 'parsed_url ERROR, ({})  ({})  ({})'.format(url, u, expected)
         assert u == expected, e
 
+
 def test_parsed_response():
     """
     侧与是否能正确解析响应
@@ -179,6 +180,7 @@ def test_get():
     # 这里就直接调用了 get 如果出错就会挂, 测试得比较简单
     for u in urls:
         get(u)
+
 
 def test():
     test_parsed_url()

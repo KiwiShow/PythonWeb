@@ -26,9 +26,9 @@ while True:
 
     buf = b''
     while True:
-        l = connection.recv(1024)
-        buf += l
-        if len(l) < 1024:
+        cache = connection.recv(1024)
+        buf += cache
+        if len(cache) < 1024:
             break
     request = buf.decode('utf-8')
     print('客户端ip and request: {}\n{}'.format(address, request))
