@@ -8,13 +8,17 @@ class User(Model):
         self.username = form.get('username', '')
         self.password = form.get('password', '')
         self.id = form.get('id', None)
+        self.note = form.get('note', '')
 
     def validate_login(self):
-        us = User.all()
-        for u in us:
-            if self.username == u.username and self.password == u.password:
-                return True
-        return False
+        # us = User.all()
+        # for u in us:
+        #     if self.username == u.username and self.password == u.password:
+        #         return True
+        # return False
+        # 更加简洁
+        user = User.find_by(username=self.username)
+        return user is not None and user.password == self.password
 
     def validate_register(self):
         # 简单验证用户名或者密码长度必须大于2

@@ -16,7 +16,6 @@ def save(data, path):
     with open(path, 'w+', encoding='utf-8') as f:
         # log('save', path, s, data)
         f.write(s)
-        log('写入成功')
 
 
 def load(path):
@@ -76,26 +75,25 @@ class Model(object):
     @classmethod
     def find_by(cls, **kwargs):
         all = cls.all()
-        key = ''
-        value = ''
+        k, v = '', ''
         # 其实也只能找到一个
-        for k, v in kwargs.items():
-            key, value = k, v
+        for key, value in kwargs.items():
+            k, v = key, value
         for one in all:
-            if value == one.__dict__[key]:
+            if v == one.__dict__[k]:
                 return one
         return None
 
     @classmethod
     def find_all(cls, **kwargs):
         all = cls.all()
-        key = ''
-        value = ''
-        for k, v in kwargs.items():
-            key, value = k, v
+        k, v = '', ''
+        for key, value in kwargs.items():
+            k, v = key, value
         result = []
         for one in all:
-            if value == one.__dict__[key]:
+            # getattr(m, k) === v
+            if v == one.__dict__[k]:
                 result.append(one)
         # 若一个都没找到，那么返回[]
         return result

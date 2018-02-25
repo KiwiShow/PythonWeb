@@ -11,37 +11,74 @@ from routes import route_dict
 
 # 定义一个 class 用于保存请求的数据
 class Request(object):
-    def __init__(self):
-        self.raw_data = ''
-        self.method = 'GET'
-        self.path = ''
+    def __init__(self, request_data):
+        r = request_data
+        self.raw_data = r
+        log('from __init__ --> Request log: ', r)
+        self.method = r.split()[0]
+        self.path = r.split()[1]
+        self.body = r.split('\r\n\r\n', 1)[1]
+
         self.query = {}
-        self.body = ''
         self.headers = {}  # 按照作业加的
+        self.cookies = {}
+
+        path, query = self.parsed_path()
+        self.path = path
+        self.query = query
+
+        self.add_headers()
+        self.add_cookies()
+        log('from __init__ --> Request: path and query: ', path, query)
+
+    def add_cookies(self):
+        cookies = self.headers.get('Cookie', '')
+        kvs = cookies.split('; ')
+        log('from add_cookies --> cookie: ', kvs)
+        for kv in kvs:
+            if '=' in kv:
+                k, v = kv.split('=')
+                self.cookies[k] = v
+
+    # 由parsed_header(raw_data)进化而来
+    def add_headers(self):
+        r = self.raw_data
+        # 把 header 拿出来
+        header = r.split('\r\n\r\n', 1)[0]
+        lines = header.split('\r\n')[1:]
+        # lines = header.split('\r\n')
+        for line in lines:
+            # log("error line", line)
+            k, v = line.split(': ', 1)
+            self.headers[k] = v
+
+    # 由parsed_path(path)进化而来
+    def parsed_path(self):
+        path = self.path
+        index = path.find('?')
+        if index == -1:
+            return path, {}
+        else:
+            path, query_string = path.split('?', 1)
+            args = query_string.split('&')
+            query = {}
+            for arg in args:
+                k, v = arg.split('=')
+                query[k] = v
+            return path, query
 
     def form(self):
         # 不解码加号
         body = urllib.parse.unquote(self.body)
-        print('raw form', self.body)
+        print('from form --> form', self.body)
         # print('parsed body', body)
         args = body.split('&')
         f = {}
         for arg in args:
             k, v = arg.split('=')
             f[k] = v
-        print('form()', f)
+        print('from form --> form(): ', f)
         return f
-
-
-# 定义一个parsed_header函数，以字典的形式保存了 HTTP 请求中的 header 区域的所有内容
-def parsed_header(raw_data):
-    header_part = raw_data.split('\r\n\r\n', 1)[0]
-    lines = header_part.split('\r\n')
-    headers = {}
-    for line in lines[1:]:
-        k, v = line.split(': ')
-        headers[k] = v
-    return headers
 
 
 def error(request, code=404):
@@ -57,30 +94,8 @@ def error(request, code=404):
     return e.get(code, b'')
 
 
-def parsed_path(path):
-    index = path.find('?')
-    if index == -1:
-        return path, {}
-    else:
-        path, query_string = path.split('?', 1)
-        args = query_string.split('&')
-        query = {}
-        for arg in args:
-            k, v = arg.split('=')
-            query[k] = v
-        return path, query
-
-
 def response_for_path(request):
     path = request.path
-    path, query = parsed_path(path)
-    request.path = path
-    request.query = query
-    log('path and query', path, query)
-    """
-    根据 path 调用相应的处理函数
-    没有处理的 path 会返回 404
-    """
     r = {
         '/static': route_static,
     }
@@ -98,15 +113,10 @@ def process_request(connection):
     if len(r.split()) < 2:
         return
     # 设置 request 的 method
-    request = Request()
-    request.raw_data = r
+    request = Request(r)
     # chrome会发空请求，下面2行代码可以看出
     # log('r =====>', r)
     # log('r.split()=====>', r.split())
-    request.method = r.split()[0]
-    request.path = r.split()[1]
-    # 把 body 放入 request 中
-    request.body = r.split('\r\n\r\n', 1)[1]
     # 用 response_for_path 函数来得到 path 对应的响应内容
     response = response_for_path(request)
     # 把响应发送给客户端
@@ -121,8 +131,10 @@ def run(host='', port=3000):
     """
     # 初始化 socket 套路
     # 使用 with 可以保证程序中断的时候正确关闭 socket 释放占用的端口
-    log('start at', '{}:{}'.format(host, port))
+    log('from run --> start at', '{}:{}'.format(host, port))
     with socket.socket() as s:
+        # 使用 下面这句 可以保证程序重启后使用原有端口, 原因忽略
+        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         s.bind((host, port))
         s.listen(5)
         # 无限循环来处理请求
@@ -136,6 +148,6 @@ if __name__ == '__main__':
     # 生成配置并且运行程序
     config = dict(
         host='',
-        port=2000,
+        port=3000,
     )
     run(**config)

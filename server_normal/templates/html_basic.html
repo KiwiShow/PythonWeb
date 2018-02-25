@@ -14,16 +14,14 @@
         <h3>很好 h3 版</h3>
         <!-- form 是用来给服务器传递数据的 tag -->
         <form action="/messages" method="post">
-            <input name="author">
-            <br>
-            <input name="message">
+            <textarea name="author" rows="8" cols="40"></textarea>
+            <textarea name="message" rows="8" cols="40"></textarea>
             <!-- button type=submit 才可以提交表单 -->
             <button type="submit">POST 提交</button>
         </form>
         <form action="/messages" method="get">
-            <input name="author">
-            <br>
-            <input name="message">
+            <textarea name="author" rows="8" cols="40"></textarea>
+            <textarea name="message" rows="8" cols="40"></textarea>
             <button type="submit">GET 提交</button>
         </form>
         <div>
