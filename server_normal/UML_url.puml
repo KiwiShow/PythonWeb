@@ -1,0 +1,164 @@
+@startuml
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+@enduml
+
+
+@startuml
+graph graphname {
+  a -- b -- c;
+  b -- d;
+}
+@enduml
+
+@startuml
+digraph graphname {
+  a -> b -> c;
+  b -> d;
+}
+@enduml
+
+@startuml
+graph graphname {
+  // label属性可以改变节点的显示名称
+  a [label="Foo"];
+  // 节点形状被改变了
+  b [shape=box, style="filled", color="black", fillcolor="chartreuse"];
+  // a-b边和b-c边有相同的属性
+  a -- b -- c [color=blue];
+  b -- d [style=dotted];
+}
+@enduml
+
+@startuml
+graph graphname {
+  rankdir=LR; // 图形从左到右
+  a -- b;
+  b -- c;
+  b -- d;
+  d -- a;
+}
+@enduml
+
+@startuml
+digraph finite_state_machine {
+    rankdir=LR;
+    size="8,5"
+    node [shape = doublecircle]; LR_0 LR_3 LR_4 LR_8;
+    node [shape = circle];
+    LR_0 -> LR_2 [ label = "SS(B)" ];
+    LR_0 -> LR_1 [ label = "SS(S)" ];
+    LR_1 -> LR_3 [ label = "S($end)" ];
+    LR_2 -> LR_6 [ label = "SS(b)" ];
+    LR_2 -> LR_5 [ label = "SS(a)" ];
+    LR_2 -> LR_4 [ label = "S(A)" ];
+    LR_5 -> LR_7 [ label = "S(b)" ];
+    LR_5 -> LR_5 [ label = "S(a)" ];
+    LR_6 -> LR_6 [ label = "S(b)" ];
+    LR_6 -> LR_5 [ label = "S(a)" ];
+    LR_7 -> LR_8 [ label = "S(b)" ];
+    LR_7 -> LR_5 [ label = "S(a)" ];
+    LR_8 -> LR_6 [ label = "S(b)" ];
+    LR_8 -> LR_5 [ label = "S(a)" ];
+}
+@enduml
+
+@startuml
+participant Atlantis
+box "Australia Continent" #LightBlue
+    participant nginx
+    boundary "Australia (nginx module)" as Australia
+end box
+participant Britain
+participant Cuba
+
+Atlantis -> nginx: POST /api/lazarus
+activate nginx
+
+nginx -> Australia: execute australia in call chain
+activate Australia
+
+Australia -> Australia: sanity check and do stuffs
+Australia -> nginx: {"status": "ok"}
+
+nginx -> Atlantis: 200 {"status": "ok"}
+deactivate nginx
+
+activate Australia #DarkSalmon
+Australia -> Britain: send australia data
+activate Britain
+
+Britain -> Australia: << ok >>
+deactivate Australia
+
+deactivate Australia
+
+Britain -> Britain: store australia data into FIFO queue
+activate Cuba
+
+activate Britain #DarkSalmon
+Cuba -> Britain: retrieve data
+Britain -> Cuba: send data
+
+Cuba<-->Britain: **repeat**
+
+Cuba -> Britain: retrieve data
+Britain -> Cuba: send data
+deactivate Britain
+@enduml
+
+@startuml
+title Servlet Container
+
+(*) --> "ClickServlet.handleRequest()"
+--> "new Page"
+
+if "Page.onSecurityCheck" then
+  ->[true] "Page.onInit()"
+
+  if "isForward?" then
+   ->[no] "Process controls"
+
+   if "continue processing?" then
+     -->[yes] ===RENDERING===
+   else
+     -->[no] ===REDIRECT_CHECK===
+   endif
+
+  else
+   -->[yes] ===RENDERING===
+  endif
+
+  if "is Post?" then
+    -->[yes] "Page.onPost()"
+    --> "Page.onRender()" as render
+    --> ===REDIRECT_CHECK===
+  else
+    -->[no] "Page.onGet()"
+    --> render
+  endif
+
+else
+  -->[false] ===REDIRECT_CHECK===
+endif
+
+if "Do redirect?" then
+ ->[yes] "redirect request"
+ --> ==BEFORE_DESTROY===
+else
+ if "Do Forward?" then
+  -left->[yes] "Forward request"
+  --> ==BEFORE_DESTROY===
+ else
+  -right->[no] "Render page template"
+  --> ==BEFORE_DESTROY===
+ endif
+endif
+
+--> "Page.onDestroy()"
+-->(*)
+
+@enduml
