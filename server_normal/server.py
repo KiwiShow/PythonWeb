@@ -8,6 +8,47 @@ from utils import log
 from routes import route_static
 from routes import route_dict
 
+# server.py的整理思路
+#     建立host和端口
+#     监听请求
+#     接受请求
+#         分解请求信息
+#             method
+#             path
+#             query
+#             body
+#         保存请求
+#             临时保存，用完就丢
+#     处理请求
+#         获取路由字典
+#             path和响应函数的映射字典
+#         根据请求的path和字典处理请求并获得返回页面
+#             routes
+#                 主页
+#                     返回页面
+#                 登录
+#                     处理post请求
+#                         对比post数据和用户数据
+#                         返回登录结果
+#                     返回页面
+#                 注册
+#                     处理post请求
+#                         对比post数据和注册规则
+#                         保存合法的注册信息
+#                             保存到User.txt
+#                         返回注册结果
+#                     返回页面
+#                 留言板
+#                     处理post请求
+#                         将post的数据加入留言列表
+#                     返回页面
+#                         包含留言列表
+#                 静态资源（图片）
+#                     根据query的内容返回对应的资源
+#         返回响应内容
+#     发送响应内容
+#     关闭请求连接
+
 
 # 定义一个 class 用于保存请求的数据
 class Request(object):
@@ -18,9 +59,11 @@ class Request(object):
         self.method = r.split()[0]
         self.path = r.split()[1]
         self.body = r.split('\r\n\r\n', 1)[1]
+        # 常用的str函数， split  strip  [:] join
+        # get hand dirty 意思是不要看到好代码了，就自己不想写了，一定要把自己的想法提出来，慢慢提高
 
         self.query = {}
-        self.headers = {}  # 按照作业加的
+        self.headers = {}
         self.cookies = {}
 
         path, query = self.parsed_path()
@@ -104,10 +147,19 @@ def response_for_path(request):
     return response(request)
 
 
+# 增加一个接收request的缓存函数
+def request_cache(connection):
+    buf = b''
+    while True:
+        cache = connection.recv(1024)
+        buf += cache
+        if len(cache) < 1024:
+            break
+    return buf.decode('utf-8')
+
+
 def process_request(connection):
-    r = connection.recv(1024)
-    r = r.decode('utf-8')
-    # log('ip and request, {}\n{}'.format(address, request))
+    r = request_cache(connection)
     # 因为 chrome 会发送空请求导致 split 得到空 list
     # 所以这里判断一下防止程序崩溃
     if len(r.split()) < 2:

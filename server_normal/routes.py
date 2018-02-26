@@ -75,7 +75,7 @@ def route_login(request):
         result = '请POST登录'
     body = template('login.html')
     body = body.replace('{{result}}', result)
-    # 第一次输入用户名密码并提交{{username}}并不会改变，第一次提交cookie中还没有user字段而current_user需要根据这个判断
+    # 第一次输入用户名密码并提交{{username}}并不会改变，第一次提交cookie中还没有user字段而current_user需要根据这个判断 TODO
     body = body.replace('{{username}}', username)
     header = response_with_headers(headers)
     r = header + '\r\n' + body

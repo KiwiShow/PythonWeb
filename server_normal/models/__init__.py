@@ -12,6 +12,8 @@ def save(data, path):
     # json 是一个序列化/反序列化list/dict 的库
     # indent 是缩进
     # ensure_ascii=False 用于保存中文
+    # dumps: 对象 --> 列表 --> 字符串
+    # dumps的参数data是列表的格式，所以dumps负责列表 --> 字符串这一段，而对象 --> 列表由l = [m.__dict__ for m in models]负责。
     s = json.dumps(data, indent=2, ensure_ascii=False)
     with open(path, 'w+', encoding='utf-8') as f:
         # log('save', path, s, data)
@@ -26,6 +28,8 @@ def load(path):
     with open(path, 'r', encoding='utf-8') as f:
         s = f.read()
         # log('load', s)
+        # loads: 相反，字符串 --> 列表 --> 对象。
+        # loads的参数是字符串的格式，所以loads负责字符串 --> 列表这一段，而 列表 --> 对象由ms = [cls.new(m) for m in models]负责。
         return json.loads(s)
 
 
@@ -72,6 +76,7 @@ class Model(object):
     但是现在这个方法只有一个参数
     """
 
+    # Model.find_by(a=b, c=d) => Model.find_by(c=d)
     @classmethod
     def find_by(cls, **kwargs):
         all = cls.all()
