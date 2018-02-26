@@ -3,24 +3,14 @@
     "username": "aaa",
     "password": "111",
     "id": 1,
-    "note": ""
+    "note": "sdfdf",
+    "role": 10
   },
   {
     "username": "bbb",
     "password": "222",
     "id": 2,
-    "note": ""
-  },
-  {
-    "username": "bbb",
-    "password": "222",
-    "id": 3,
-    "note": ""
-  },
-  {
-    "username": "ccc",
-    "password": "333",
-    "id": 4,
-    "note": "waefrsg"
+    "note": "dsfdf",
+    "role": 10
   }
 ]

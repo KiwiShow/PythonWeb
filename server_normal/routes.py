@@ -23,13 +23,14 @@ def template(name):
         return f.read()
 
 
-# 获取当前的user，若session里面没有，返回游客
+# 获取当前的user实例
 def current_user(request):
-    session_id = request.cookies.get('user', '')
+    session_id = request.cookies.get('sid', '')
     log("from current_user --> session id : ", session_id)
     log("from current_user --> session dict: ", session)
-    username = session.get(session_id, '游客')
-    return username
+    user_id = session.get(session_id, -1)
+    u = User.find_by(id=user_id)
+    return u
 
 
 def route_index(request):
@@ -39,15 +40,19 @@ def route_index(request):
     header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n'
     body = template('index.html')
     # 增加用户识别功能，并在主页显示名字
-    username = current_user(request)
-    body = body.replace('{{username}}', username)
+    user = current_user(request)
+    log('routes_index ----> check current_user 返回值的type: ', user)
+    if user is not None:
+        body = body.replace('{{username}}', user.username)
+    else:
+        body = body.replace('{{username}}', '游客')
     r = header + '\r\n' + body
     return r.encode(encoding='utf-8')
 
 
-# 增加一个函数集中处理headers的拼接
-def response_with_headers(headers):
-    header = 'HTTP/1.1 200 OK\r\n'
+# 增加一个函数集中处理headers的拼接,增强版本
+def response_with_headers(headers, code=200):
+    header = 'HTTP/1.1 {} OK\r\n'.format(code)
     header += ''.join(['{}: {}\r\n'.format(k, v)
                        for k, v in headers.items()])
     return header
@@ -58,16 +63,21 @@ def route_login(request):
         'Content-Type': 'text/html',
     }
     log('from route_login --> cookies: ', request.cookies)
-    username = current_user(request)
+    # 由cookie得到的用户实例,可能为None
+    u = current_user(request)
+    # 若有手动输入账号密码且用POST
+    # 2个 if 解决 有没有  和 对不对 的问题。
     if request.method == 'POST':
         form = request.form()
+        # 创建一个新的用户实例
         u = User.new(form)
         if u.validate_login():
             # 设置session_id
             session_id = random_str()
             log("from route_login --> session_id: ", session_id)
-            session[session_id] = u.username
-            headers['Set-Cookie'] = 'user={}'.format(session_id)
+            u = User.find_by(username=u.username)
+            session[session_id] = u.id
+            headers['Set-Cookie'] = 'sid={}'.format(session_id)
             result = '登录成功'
         else:
             result = '用户名或者密码错误'
@@ -75,8 +85,11 @@ def route_login(request):
         result = '请POST登录'
     body = template('login.html')
     body = body.replace('{{result}}', result)
-    # 第一次输入用户名密码并提交{{username}}并不会改变，第一次提交cookie中还没有user字段而current_user需要根据这个判断 TODO
-    body = body.replace('{{username}}', username)
+    # 第一次输入用户名密码并提交{{username}}并不会改变，第一次提交cookie中还没有user字段而current_user需要根据这个判断
+    #但是可以替换，如下代码所示
+    body = body.replace('{{username}}', '游客')
+    if u is not None:
+        body = body.replace('游客', u.username)
     header = response_with_headers(headers)
     r = header + '\r\n' + body
     return r.encode(encoding='utf-8')

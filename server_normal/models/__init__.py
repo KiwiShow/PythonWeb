@@ -103,7 +103,22 @@ class Model(object):
         # 若一个都没找到，那么返回[]
         return result
 
-    def check_id(self, models):  # 此处为作业3-5
+    @classmethod
+    def remove(cls, id): # id 必须是int
+        ms = cls.all()
+        index = -1
+        for i, m in enumerate(ms):
+            if m.id == id:
+                index = i
+                break
+        if index > -1:
+            del ms[index]
+        # 为什么有以下语句，因为save的参数需要dict或者元素是dict的list
+        l = [m.__dict__ for m in ms]
+        path = cls.db_path()
+        save(l, path)
+
+    def check_id(self, models):
         if self.id is None:
             if len(models) > 0:
                 self.id = models[-1].id + 1

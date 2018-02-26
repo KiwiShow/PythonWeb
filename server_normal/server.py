@@ -7,6 +7,7 @@ from utils import log
 
 from routes import route_static
 from routes import route_dict
+from routes_todo import route_dict as routes_todo
 
 # server.py的整理思路
 #     建立host和端口
@@ -143,6 +144,7 @@ def response_for_path(request):
         '/static': route_static,
     }
     r.update(route_dict)
+    r.update(routes_todo)
     response = r.get(path, error)
     return response(request)
 
