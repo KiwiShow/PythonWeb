@@ -1,4 +1,4 @@
-from utils import log, change_time, redirect, response_with_headers, template
+from utils import log, redirect, response_with_headers, template
 from models.todo import Todo
 from models.user import User
 from routes import current_user  # 不放在utils中放在routes中是因为一些变量只在routes.py中定义
@@ -25,16 +25,7 @@ def index(request):
     u = current_user(request)
     # todo_list = To_do.all()
     todo_list = Todo.find_all(user_id=u.id)
-    todo_html = ''.join(['<h3>{} : {} created@{} updated@{} '
-                         '<a href="/todo/edit?id={}">编辑</a> <a href="/todo/delete?id={}">删除</a>'.
-                        format(t.id,
-                               t.title,
-                               change_time(t.created_time),
-                               change_time(t.updated_time),
-                               t.id,
-                               t.id) for t in todo_list])
-    body = template('todo_index.html')
-    body = body.replace('{{todos}}', todo_html)
+    body = template('todo_index.html', todos=todo_list)
     header = response_with_headers(headers)
     r = header + '\r\n' + body
     return r.encode(encoding='utf-8')
@@ -61,9 +52,7 @@ def edit(request):
     # 权限验证: 非授权用户不能更改
     if u.id != t.user_id:
         return redirect('/todo')
-    body = template('todo_edit.html')
-    body = body.replace('{{todo_id}}', str(t.id))  # t.id是int，所以一定要str
-    body = body.replace('{{todo_title}}', t.title)
+    body = template('todo_edit.html', t=t)
     header = response_with_headers(headers)
     r = header + '\r\n' + body
     return r.encode(encoding='utf-8')
@@ -79,7 +68,8 @@ def update(request):
         return redirect('/todo')
     t.title = form.get('title')
     # update时间
-    t.updated_time = int(time.time())
+    tm = int(time.time())
+    t.updated_time = t.change_time(tm)
     t.save()
     return redirect('/todo')
 
@@ -103,12 +93,7 @@ def admin(request):
     # 设定用户id=1是管理员进行权限验证
     if u.id != 1:
         return redirect('/login')
-    else:
-        user_list = u.all()
-        user_html = ''.join(['<h3>id: {} username:{} password:{}</h3>'.format(t.id, t.username, t.password)
-                             for t in user_list])
-    body = template('admin.html')
-    body = body.replace('{{users}}', user_html)
+    body = template('admin.html', users=u.all())
     header = response_with_headers(headers)
     r = header + '\r\n' + body
     return r.encode(encoding='utf-8')

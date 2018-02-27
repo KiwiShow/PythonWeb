@@ -1,5 +1,5 @@
 from models import Model
-
+from .todo import Todo
 
 # 继承了 Model
 # 所以可以直接 save load
@@ -24,3 +24,11 @@ class User(Model):
     def validate_register(self):
         # 简单验证用户名或者密码长度必须大于2
         return len(self.username) > 2 and len(self.password) > 2
+
+    # 增加一个获取该user全部todo的函数
+    def todos(self):
+        ts =[]
+        for t in Todo.all():
+            if t.user_id == self.id:
+                ts.append(t)
+        return ts

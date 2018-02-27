@@ -1,7 +1,7 @@
 from jinja2 import Environment, FileSystemLoader
 import os.path
-import time
 import random
+import time
 from datetime import datetime
 
 
@@ -17,14 +17,6 @@ def log(*args, **kwargs):
     with open('log.txt', 'a', encoding='utf-8') as f:
         # 不要用f=open() 和 f.close() 的组合，容易忘写 f.close()
         print(dt, *args, **kwargs, file=f)
-
-
-# 可以用datetime模块试试
-def change_time(t):
-    format = '%Y/%m/%d %H:%M:%S'
-    value = time.localtime(t)
-    dt = time.strftime(format, value)
-    return dt
 
 
 def random_str():

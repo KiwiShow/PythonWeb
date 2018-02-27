@@ -3,8 +3,6 @@ from models.message import Message
 from models.user import User
 
 
-# 这个函数用来保存所有的 messages
-message_list = []
 session = {}
 
 
@@ -22,14 +20,12 @@ def route_index(request):
     """
     主页的处理函数, 返回主页的响应
     """
-    body = template('index.html')
+    body = template('index.html', username='游客')
     # 增加用户识别功能，并在主页显示名字
     user = current_user(request)
     log('routes_index ----> check current_user 返回值的type: ', user)
     if user is not None:
-        body = body.replace('{{username}}', user.username)
-    else:
-        body = body.replace('{{username}}', '游客')
+        body = template('index.html', username=user.username)
     return http_response(body)
 
 
@@ -58,11 +54,9 @@ def route_login(request):
             result = '用户名或者密码错误'
     else:
         result = '请POST登录'
-    body = template('login.html')
-    body = body.replace('{{result}}', result)
+    body = template('login.html', result=result, username='游客')
     # 第一次输入用户名密码并提交{{username}}并不会改变，第一次提交cookie中还没有user字段而current_user需要根据这个判断
     #但是可以替换，如下代码所示
-    body = body.replace('{{username}}', '游客')
     if u is not None:
         body = body.replace('游客', u.username)
     header = response_with_headers(headers)
@@ -88,8 +82,7 @@ def route_register(request):
             result = '用户名或者密码长度必须大于2'
     else:
         result = '请POST注册'
-    body = template('register.html')
-    body = body.replace('{{result}}', result)
+    body = template('register.html', result=result)
     return http_response(body)
 
 
@@ -110,18 +103,16 @@ def route_message(request):
         # log('msg: str   ', str(msg))
         # log('msg: ', msg)
         log('post', form)
-        message_list.append(msg)
         # 应该在这里保存 message_list
-    body = template('html_basic.html')
     # 列表推倒
     # 注意str(m)
-    msgs = '<br>'.join([str(m) for m in message_list])
+    msgs = '<br>'.join([str(m) for m in Message.all()])
     # 上面的列表推倒相当于下面的功能
     # messages = []
     # for m in message_list:
     #     messages.append(str(m))
     # msgs = '<br>'.join(messages)
-    body = body.replace('{{messages}}', msgs)
+    body = template('html_basic.html', messages=msgs)
     return http_response(body)
 
 
@@ -139,20 +130,20 @@ def route_static(request):
 
 def route_profile(request):
     u = current_user(request)
-    if u == '游客':
+    if u is None:
         header = 'HTTP/1.1 302 Temporarily Moved\r\nContent-Type: text/html\r\n' \
                  'Location: http://localhost:3000/login\r\n'
-        body = template('login.html')
+        body = template('login.html', username='游客')
         r = header + '\r\n' + body
         return r.encode(encoding='utf-8')
     else:
-        uname = User.find_by(username=u)
         header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n'
+        # 页面全靠自己拼，template用不了
         body = '<h1>id:{} ' \
                'username: {} ' \
-               'note: {}</h1>'.format(uname.id,
-                                      uname.username,
-                                      uname.note)
+               'note: {}</h1>'.format(u.id,
+                                      u.username,
+                                      u.note)
         r = header + '\r\n' + body
         return r.encode(encoding='utf-8')
 

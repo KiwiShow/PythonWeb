@@ -13,6 +13,10 @@
 		<br>
 		<button type="submit">更新</button>
     </form>
-    <div>{{users}}</div>
+    {% for u in users %}
+        <div class="user-cell">
+            <h3>id: {{ u.id }} username: {{ u.username }} password: {{ u.password }}</h3>
+        </div>
+    {% endfor %}
 </body>
 </html>
