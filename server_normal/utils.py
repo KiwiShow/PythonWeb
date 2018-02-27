@@ -1,3 +1,5 @@
+from jinja2 import Environment, FileSystemLoader
+import os.path
 import time
 import random
 from datetime import datetime
@@ -34,6 +36,12 @@ def random_str():
     return s
 
 
+def http_response(body):
+    header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n'
+    r = header + '\r\n' + body
+    return r.encode(encoding='utf-8')
+
+
 # 增加一个函数集中处理headers的拼接,增强版本
 def response_with_headers(headers, code=200):
     header = 'HTTP/1.1 {} OK\r\n'.format(code)
@@ -50,7 +58,12 @@ def redirect(url):
     return r.encode('utf-8')
 
 
-def template(name):
-    path = 'templates/' + name
-    with open(path, 'r', encoding='utf-8') as f:
-        return f.read()
+# jinja模板增强
+path = '{}/templates/'.format(os.path.dirname(__file__))
+loader = FileSystemLoader(path)
+env = Environment(loader=loader)
+
+
+def template(path, **kwargs):
+    t = env.get_template(path)
+    return t.render(**kwargs)

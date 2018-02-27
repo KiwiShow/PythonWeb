@@ -72,3 +72,200 @@ username=aaa&password=111
 2018/02/27 17:37:30 from current_user --> session id :  gk4lg2455s5rl55k
 2018/02/27 17:37:30 from current_user --> session dict:  {}
 2018/02/27 17:37:30 from route_login --> session_id:  e42e4le2jrg255s4
+2018/02/27 19:24:30 from run --> start at :3000
+2018/02/27 19:25:00 from __init__ --> Request log:  GET / HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e42e4le2jrg255s4
+
+
+2018/02/27 19:25:00 from add_cookies --> cookie:  ['sid=e42e4le2jrg255s4']
+2018/02/27 19:25:00 from __init__ --> Request: path and query:  / {}
+2018/02/27 19:28:28 from run --> start at :3000
+2018/02/27 19:28:35 from __init__ --> Request log:  GET / HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e42e4le2jrg255s4
+
+
+2018/02/27 19:28:35 from add_cookies --> cookie:  ['sid=e42e4le2jrg255s4']
+2018/02/27 19:28:35 from __init__ --> Request: path and query:  / {}
+2018/02/27 19:28:46 from __init__ --> Request log:  GET / HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e42e4le2jrg255s4
+
+
+2018/02/27 19:28:46 from add_cookies --> cookie:  ['sid=e42e4le2jrg255s4']
+2018/02/27 19:28:46 from __init__ --> Request: path and query:  / {}
+2018/02/27 19:44:39 from run --> start at :3000
+2018/02/27 19:44:43 from __init__ --> Request log:  GET / HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e42e4le2jrg255s4
+
+
+2018/02/27 19:44:43 from add_cookies --> cookie:  ['sid=e42e4le2jrg255s4']
+2018/02/27 19:44:43 from __init__ --> Request: path and query:  / {}
+2018/02/27 19:45:59 from run --> start at :3000
+2018/02/27 19:46:00 from __init__ --> Request log:  GET / HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e42e4le2jrg255s4
+
+
+2018/02/27 19:46:00 from add_cookies --> cookie:  ['sid=e42e4le2jrg255s4']
+2018/02/27 19:46:00 from __init__ --> Request: path and query:  / {}
+2018/02/27 19:46:04 from __init__ --> Request log:  GET / HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e42e4le2jrg255s4
+
+
+2018/02/27 19:46:04 from add_cookies --> cookie:  ['sid=e42e4le2jrg255s4']
+2018/02/27 19:46:04 from __init__ --> Request: path and query:  / {}
+2018/02/27 19:47:28 from run --> start at :3000
+2018/02/27 19:47:29 from __init__ --> Request log:  GET / HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e42e4le2jrg255s4
+
+
+2018/02/27 19:47:29 from add_cookies --> cookie:  ['sid=e42e4le2jrg255s4']
+2018/02/27 19:47:29 from __init__ --> Request: path and query:  / {}
+2018/02/27 19:47:34 from __init__ --> Request log:  POST /add HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 12
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e42e4le2jrg255s4
+
+title=retret
+2018/02/27 19:47:34 from add_cookies --> cookie:  ['sid=e42e4le2jrg255s4']
+2018/02/27 19:47:34 from __init__ --> Request: path and query:  /add {}
+2018/02/27 19:47:34 from form --> form title=retret
+2018/02/27 19:47:34 from form --> form():  {'title': 'retret'}
+2018/02/27 19:47:34 from __init__ --> Request log:  GET / HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e42e4le2jrg255s4
+
+
+2018/02/27 19:47:34 from add_cookies --> cookie:  ['sid=e42e4le2jrg255s4']
+2018/02/27 19:47:34 from __init__ --> Request: path and query:  / {}
+2018/02/27 19:47:50 from __init__ --> Request log:  POST /add HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 12
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e42e4le2jrg255s4
+
+title=retret
+2018/02/27 19:47:50 from add_cookies --> cookie:  ['sid=e42e4le2jrg255s4']
+2018/02/27 19:47:50 from __init__ --> Request: path and query:  /add {}
+2018/02/27 19:47:50 from form --> form title=retret
+2018/02/27 19:47:50 from form --> form():  {'title': 'retret'}
+2018/02/27 19:47:52 from __init__ --> Request log:  POST /add HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 12
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e42e4le2jrg255s4
+
+title=retret
+2018/02/27 19:47:52 from add_cookies --> cookie:  ['sid=e42e4le2jrg255s4']
+2018/02/27 19:47:52 from __init__ --> Request: path and query:  /add {}
+2018/02/27 19:47:52 from form --> form title=retret
+2018/02/27 19:47:52 from form --> form():  {'title': 'retret'}
+2018/02/27 19:47:52 from __init__ --> Request log:  POST /add HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 12
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e42e4le2jrg255s4
+
+title=retret
+2018/02/27 19:47:52 from add_cookies --> cookie:  ['sid=e42e4le2jrg255s4']
+2018/02/27 19:47:52 from __init__ --> Request: path and query:  /add {}
+2018/02/27 19:47:52 from form --> form title=retret
+2018/02/27 19:47:52 from form --> form():  {'title': 'retret'}

@@ -1,4 +1,4 @@
-from utils import log, random_str, response_with_headers, template
+from utils import log, random_str, http_response, response_with_headers, template
 from models.message import Message
 from models.user import User
 
@@ -22,7 +22,6 @@ def route_index(request):
     """
     主页的处理函数, 返回主页的响应
     """
-    header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n'
     body = template('index.html')
     # 增加用户识别功能，并在主页显示名字
     user = current_user(request)
@@ -31,8 +30,7 @@ def route_index(request):
         body = body.replace('{{username}}', user.username)
     else:
         body = body.replace('{{username}}', '游客')
-    r = header + '\r\n' + body
-    return r.encode(encoding='utf-8')
+    return http_response(body)
 
 
 def route_login(request):
@@ -80,7 +78,6 @@ def route_register(request):
 
     username=gwgw&password=123
     """
-    header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n'
     if request.method == 'POST':
         form = request.form()
         u = User.new(form)
@@ -93,8 +90,7 @@ def route_register(request):
         result = '请POST注册'
     body = template('register.html')
     body = body.replace('{{result}}', result)
-    r = header + '\r\n' + body
-    return r.encode(encoding='utf-8')
+    return http_response(body)
 
 
 def route_message(request):
@@ -116,7 +112,6 @@ def route_message(request):
         log('post', form)
         message_list.append(msg)
         # 应该在这里保存 message_list
-    header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n'
     body = template('html_basic.html')
     # 列表推倒
     # 注意str(m)
@@ -127,8 +122,7 @@ def route_message(request):
     #     messages.append(str(m))
     # msgs = '<br>'.join(messages)
     body = body.replace('{{messages}}', msgs)
-    r = header + '\r\n' + body
-    return r.encode(encoding='utf-8')
+    return http_response(body)
 
 
 def route_static(request):

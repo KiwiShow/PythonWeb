@@ -3,7 +3,7 @@ import time
 
 
 class Todo(Model):
-    def __init__(self, form):
+    def __init__(self, form, user_id=-1):
         self.id = form.get('id', None)
         self.title = form.get('title', '')
         # 增加 user_id 字段来和 User 类关联
@@ -13,3 +13,9 @@ class Todo(Model):
         if self.created_time is None:
             self.created_time = int(time.time())
             self.updated_time = self.created_time
+
+    @classmethod
+    def new(cls, form, user_id=-1):
+        t = cls(form,user_id)
+        t.save()
+        return t
