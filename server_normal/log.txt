@@ -3338,3 +3338,46 @@ Cookie: sid=g42g3r52232gk5g4
 2018/02/27 21:55:04 from current_user --> session dict:  {'g42g3r52232gk5g4': 1}
 2018/02/27 21:55:04 from current_user --> session id :  g42g3r52232gk5g4
 2018/02/27 21:55:04 from current_user --> session dict:  {'g42g3r52232gk5g4': 1}
+2018/02/27 22:24:04 from __init__ --> Request log:  POST /todo/add HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 19
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/todo
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=g42g3r52232gk5g4
+
+title=uygibhnjibiug
+2018/02/27 22:24:04 from add_cookies --> cookie:  ['sid=g42g3r52232gk5g4']
+2018/02/27 22:24:04 from __init__ --> Request: path and query:  /todo/add {}
+2018/02/27 22:24:04 from current_user --> session id :  g42g3r52232gk5g4
+2018/02/27 22:24:04 from current_user --> session dict:  {'g42g3r52232gk5g4': 1}
+2018/02/27 22:24:04 from current_user --> session id :  g42g3r52232gk5g4
+2018/02/27 22:24:04 from current_user --> session dict:  {'g42g3r52232gk5g4': 1}
+2018/02/27 22:24:04 from form --> form title=uygibhnjibiug
+2018/02/27 22:24:04 from form --> form():  {'title': 'uygibhnjibiug'}
+2018/02/27 22:24:04 from __init__ --> Request log:  GET /todo HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/todo
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=g42g3r52232gk5g4
+
+
+2018/02/27 22:24:04 from add_cookies --> cookie:  ['sid=g42g3r52232gk5g4']
+2018/02/27 22:24:04 from __init__ --> Request: path and query:  /todo {}
+2018/02/27 22:24:04 from current_user --> session id :  g42g3r52232gk5g4
+2018/02/27 22:24:04 from current_user --> session dict:  {'g42g3r52232gk5g4': 1}
+2018/02/27 22:24:04 from current_user --> session id :  g42g3r52232gk5g4
+2018/02/27 22:24:04 from current_user --> session dict:  {'g42g3r52232gk5g4': 1}
