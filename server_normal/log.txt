@@ -33,3 +33,42 @@ Cookie: sid=gk4lg2455s5rl55k
 2018/02/27 11:03:03 from route_login --> cookies:  {'sid': 'gk4lg2455s5rl55k'}
 2018/02/27 11:03:03 from current_user --> session id :  gk4lg2455s5rl55k
 2018/02/27 11:03:03 from current_user --> session dict:  {}
+2018/02/27 17:37:09 from run --> start at :3000
+2018/02/27 17:37:22 from __init__ --> Request log:  GET /login HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=gk4lg2455s5rl55k
+
+
+2018/02/27 17:37:22 from add_cookies --> cookie:  ['sid=gk4lg2455s5rl55k']
+2018/02/27 17:37:22 from __init__ --> Request: path and query:  /login {}
+2018/02/27 17:37:22 from route_login --> cookies:  {'sid': 'gk4lg2455s5rl55k'}
+2018/02/27 17:37:22 from current_user --> session id :  gk4lg2455s5rl55k
+2018/02/27 17:37:22 from current_user --> session dict:  {}
+2018/02/27 17:37:30 from __init__ --> Request log:  POST /login HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 25
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/login
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=gk4lg2455s5rl55k
+
+username=aaa&password=111
+2018/02/27 17:37:30 from add_cookies --> cookie:  ['sid=gk4lg2455s5rl55k']
+2018/02/27 17:37:30 from __init__ --> Request: path and query:  /login {}
+2018/02/27 17:37:30 from route_login --> cookies:  {'sid': 'gk4lg2455s5rl55k'}
+2018/02/27 17:37:30 from current_user --> session id :  gk4lg2455s5rl55k
+2018/02/27 17:37:30 from current_user --> session dict:  {}
+2018/02/27 17:37:30 from route_login --> session_id:  e42e4le2jrg255s4

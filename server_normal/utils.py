@@ -1,4 +1,5 @@
 import time
+import random
 from datetime import datetime
 
 
@@ -22,3 +23,34 @@ def change_time(t):
     value = time.localtime(t)
     dt = time.strftime(format, value)
     return dt
+
+
+def random_str():
+    seed = 'bdjsdlkgjsklgelgjelgjsegker234252542342525g'
+    s = ''
+    for i in range(16):
+        random_index = random.randint(0, len(seed) - 2) # 其实减去1就可以
+        s += seed[random_index]
+    return s
+
+
+# 增加一个函数集中处理headers的拼接,增强版本
+def response_with_headers(headers, code=200):
+    header = 'HTTP/1.1 {} OK\r\n'.format(code)
+    header += ''.join(['{}: {}\r\n'.format(k, v)
+                       for k, v in headers.items()])
+    return header
+
+
+def redirect(url):
+    headers = {
+        'Location': url,
+    }
+    r = response_with_headers(headers, 302) + '\r\n'
+    return r.encode('utf-8')
+
+
+def template(name):
+    path = 'templates/' + name
+    with open(path, 'r', encoding='utf-8') as f:
+        return f.read()

@@ -1,7 +1,7 @@
 import socket
 import urllib.parse
-# TODO 了解thread（在python3中改名为_thread）,threading 和 queue模块 和 multiprocessing模块(for CPU密集型任务) 和 logging 模块
 import _thread
+# TODO 了解thread（在python3中改名为_thread）,threading 和 queue模块 和 multiprocessing模块(for CPU密集型任务) 和 logging 模块
 
 from utils import log
 
@@ -114,14 +114,14 @@ class Request(object):
     def form(self):
         # 不解码加号
         body = urllib.parse.unquote(self.body)
-        print('from form --> form', self.body)
+        log('from form --> form', self.body)
         # print('parsed body', body)
         args = body.split('&')
         f = {}
         for arg in args:
             k, v = arg.split('=')
             f[k] = v
-        print('from form --> form(): ', f)
+        log('from form --> form(): ', f)
         return f
 
 

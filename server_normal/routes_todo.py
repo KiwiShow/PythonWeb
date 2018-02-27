@@ -1,7 +1,7 @@
-from utils import log, change_time
+from utils import log, change_time, redirect, response_with_headers, template
 from models.todo import Todo
-from routes import current_user, template, response_with_headers
 from models.user import User
+from routes import current_user  # 不放在utils中放在routes中是因为一些变量只在routes.py中定义
 import time
 
 
@@ -15,14 +15,6 @@ def login_required(route_function):
         else:
             return route_function(request)
     return f
-
-
-def redirect(url):
-    headers = {
-        'Location': url,
-    }
-    r = response_with_headers(headers, 302) + '\r\n'
-    return r.encode('utf-8')
 
 
 def index(request):

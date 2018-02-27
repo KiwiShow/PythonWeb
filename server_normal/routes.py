@@ -1,29 +1,14 @@
-from utils import log
+from utils import log, random_str, response_with_headers, template
 from models.message import Message
 from models.user import User
 
-import random
 
 # 这个函数用来保存所有的 messages
 message_list = []
 session = {}
 
 
-def random_str():
-    seed = 'bdjsdlkgjsklgelgjelgjsegker234252542342525g'
-    s = ''
-    for i in range(16):
-        random_index = random.randint(0, len(seed) - 2) # 其实减去1就可以
-        s += seed[random_index]
-    return s
-
-def template(name):
-    path = 'templates/' + name
-    with open(path, 'r', encoding='utf-8') as f:
-        return f.read()
-
-
-# 获取当前的user实例
+# 获取当前的user实例,
 def current_user(request):
     session_id = request.cookies.get('sid', '')
     log("from current_user --> session id : ", session_id)
@@ -48,14 +33,6 @@ def route_index(request):
         body = body.replace('{{username}}', '游客')
     r = header + '\r\n' + body
     return r.encode(encoding='utf-8')
-
-
-# 增加一个函数集中处理headers的拼接,增强版本
-def response_with_headers(headers, code=200):
-    header = 'HTTP/1.1 {} OK\r\n'.format(code)
-    header += ''.join(['{}: {}\r\n'.format(k, v)
-                       for k, v in headers.items()])
-    return header
 
 
 def route_login(request):
@@ -142,7 +119,7 @@ def route_message(request):
     header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n'
     body = template('html_basic.html')
     # 列表推倒
-    # 注意str(m) TODO
+    # 注意str(m)
     msgs = '<br>'.join([str(m) for m in message_list])
     # 上面的列表推倒相当于下面的功能
     # messages = []
