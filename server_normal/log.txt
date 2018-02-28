@@ -8062,3 +8062,438 @@ Cookie: sid=3ksgk5es25e2e42g
 2018/02/28 22:00:01 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
 2018/02/28 22:00:01 from current_user --> session id :  3ksgk5es25e2e42g
 2018/02/28 22:00:01 from current_user --> session dict:  {'3ksgk5es25e2e42g': 1, '25jk2skrjrlk42s3': 2}
+2018/02/28 22:08:41 from __init__ --> Request log:  GET /admin/users HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=3ksgk5es25e2e42g
+
+
+2018/02/28 22:08:41 from add_cookies --> cookie:  ['sid=3ksgk5es25e2e42g']
+2018/02/28 22:08:41 from __init__ --> Request: path and query:  /admin/users {}
+2018/02/28 22:08:41 from current_user --> session id :  3ksgk5es25e2e42g
+2018/02/28 22:08:41 from current_user --> session dict:  {'3ksgk5es25e2e42g': 1, '25jk2skrjrlk42s3': 2}
+2018/02/28 22:08:41 from current_user --> session id :  3ksgk5es25e2e42g
+2018/02/28 22:08:41 from current_user --> session dict:  {'3ksgk5es25e2e42g': 1, '25jk2skrjrlk42s3': 2}
+2018/02/28 22:08:58 from __init__ --> Request log:  POST /admin/user/update HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 17
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/admin/users
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=3ksgk5es25e2e42g
+
+id=2&password=111
+2018/02/28 22:08:58 from add_cookies --> cookie:  ['sid=3ksgk5es25e2e42g']
+2018/02/28 22:08:58 from __init__ --> Request: path and query:  /admin/user/update {}
+2018/02/28 22:08:58 from current_user --> session id :  3ksgk5es25e2e42g
+2018/02/28 22:08:58 from current_user --> session dict:  {'3ksgk5es25e2e42g': 1, '25jk2skrjrlk42s3': 2}
+2018/02/28 22:08:58 from current_user --> session id :  3ksgk5es25e2e42g
+2018/02/28 22:08:58 from current_user --> session dict:  {'3ksgk5es25e2e42g': 1, '25jk2skrjrlk42s3': 2}
+2018/02/28 22:08:58 from form --> form id=2&password=111
+2018/02/28 22:08:58 from form --> form():  {'id': '2', 'password': '111'}
+2018/02/28 22:08:58 from __init__ --> Request log:  GET /admin/users HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/admin/users
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=3ksgk5es25e2e42g
+
+
+2018/02/28 22:08:58 from add_cookies --> cookie:  ['sid=3ksgk5es25e2e42g']
+2018/02/28 22:08:58 from __init__ --> Request: path and query:  /admin/users {}
+2018/02/28 22:08:58 from current_user --> session id :  3ksgk5es25e2e42g
+2018/02/28 22:08:58 from current_user --> session dict:  {'3ksgk5es25e2e42g': 1, '25jk2skrjrlk42s3': 2}
+2018/02/28 22:08:58 from current_user --> session id :  3ksgk5es25e2e42g
+2018/02/28 22:08:58 from current_user --> session dict:  {'3ksgk5es25e2e42g': 1, '25jk2skrjrlk42s3': 2}
+2018/02/28 22:10:59 from __init__ --> Request log:  GET /static HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=3ksgk5es25e2e42g
+
+
+2018/02/28 22:10:59 from add_cookies --> cookie:  ['sid=3ksgk5es25e2e42g']
+2018/02/28 22:10:59 from __init__ --> Request: path and query:  /static {}
+2018/02/28 22:13:41 from run --> start at :3000
+2018/02/28 22:13:50 from __init__ --> Request log:  GET / HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=3ksgk5es25e2e42g
+
+
+2018/02/28 22:13:50 from add_cookies --> cookie:  ['sid=3ksgk5es25e2e42g']
+2018/02/28 22:13:50 from __init__ --> Request: path and query:  / {}
+2018/02/28 22:13:50 from current_user --> session id :  3ksgk5es25e2e42g
+2018/02/28 22:13:50 from current_user --> session dict:  {}
+2018/02/28 22:13:50 routes_index ----> check current_user 返回值的type:  None
+2018/02/28 22:13:50 from __init__ --> Request log:  GET /static?file=doge.gif HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: image/webp,image/apng,image/*,*/*;q=0.8
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=3ksgk5es25e2e42g
+
+
+2018/02/28 22:13:50 from add_cookies --> cookie:  ['sid=3ksgk5es25e2e42g']
+2018/02/28 22:13:50 from __init__ --> Request: path and query:  /static {'file': 'doge.gif'}
+2018/02/28 22:13:50 from __init__ --> Request log:  GET /static?file=doge1.jpg HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: image/webp,image/apng,image/*,*/*;q=0.8
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=3ksgk5es25e2e42g
+
+
+2018/02/28 22:13:50 from add_cookies --> cookie:  ['sid=3ksgk5es25e2e42g']
+2018/02/28 22:13:50 from __init__ --> Request: path and query:  /static {'file': 'doge1.jpg'}
+2018/02/28 22:13:50 from __init__ --> Request log:  GET /static?file=doge2.gif HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: image/webp,image/apng,image/*,*/*;q=0.8
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=3ksgk5es25e2e42g
+
+
+2018/02/28 22:13:50 from add_cookies --> cookie:  ['sid=3ksgk5es25e2e42g']
+2018/02/28 22:13:50 from __init__ --> Request: path and query:  /static {'file': 'doge2.gif'}
+2018/02/28 22:13:52 from __init__ --> Request log:  GET /login HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=3ksgk5es25e2e42g
+
+
+2018/02/28 22:13:52 from add_cookies --> cookie:  ['sid=3ksgk5es25e2e42g']
+2018/02/28 22:13:52 from __init__ --> Request: path and query:  /login {}
+2018/02/28 22:13:52 from route_login --> cookies:  {'sid': '3ksgk5es25e2e42g'}
+2018/02/28 22:13:52 from current_user --> session id :  3ksgk5es25e2e42g
+2018/02/28 22:13:52 from current_user --> session dict:  {}
+2018/02/28 22:14:00 from __init__ --> Request log:  POST /login HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 25
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/login
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=3ksgk5es25e2e42g
+
+username=aaa&password=111
+2018/02/28 22:14:00 from add_cookies --> cookie:  ['sid=3ksgk5es25e2e42g']
+2018/02/28 22:14:00 from __init__ --> Request: path and query:  /login {}
+2018/02/28 22:14:00 from route_login --> cookies:  {'sid': '3ksgk5es25e2e42g'}
+2018/02/28 22:14:00 from current_user --> session id :  3ksgk5es25e2e42g
+2018/02/28 22:14:00 from current_user --> session dict:  {}
+2018/02/28 22:14:00 from form --> form username=aaa&password=111
+2018/02/28 22:14:00 from form --> form():  {'username': 'aaa', 'password': '111'}
+2018/02/28 22:14:00 from route_login --> session_id:  45kjedl5rsg45g5e
+2018/02/28 22:14:10 from __init__ --> Request log:  GET /admin/users HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=45kjedl5rsg45g5e
+
+
+2018/02/28 22:14:10 from add_cookies --> cookie:  ['sid=45kjedl5rsg45g5e']
+2018/02/28 22:14:10 from __init__ --> Request: path and query:  /admin/users {}
+2018/02/28 22:14:10 from current_user --> session id :  45kjedl5rsg45g5e
+2018/02/28 22:14:10 from current_user --> session dict:  {'45kjedl5rsg45g5e': 1}
+2018/02/28 22:14:10 from current_user --> session id :  45kjedl5rsg45g5e
+2018/02/28 22:14:10 from current_user --> session dict:  {'45kjedl5rsg45g5e': 1}
+2018/02/28 22:14:18 from __init__ --> Request log:  POST /admin/user/update HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 17
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/admin/users
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=45kjedl5rsg45g5e
+
+id=2&password=111
+2018/02/28 22:14:18 from add_cookies --> cookie:  ['sid=45kjedl5rsg45g5e']
+2018/02/28 22:14:18 from __init__ --> Request: path and query:  /admin/user/update {}
+2018/02/28 22:14:18 from current_user --> session id :  45kjedl5rsg45g5e
+2018/02/28 22:14:18 from current_user --> session dict:  {'45kjedl5rsg45g5e': 1}
+2018/02/28 22:14:18 from current_user --> session id :  45kjedl5rsg45g5e
+2018/02/28 22:14:18 from current_user --> session dict:  {'45kjedl5rsg45g5e': 1}
+2018/02/28 22:14:18 from form --> form id=2&password=111
+2018/02/28 22:14:18 from form --> form():  {'id': '2', 'password': '111'}
+2018/02/28 22:14:21 from __init__ --> Request log:  POST /admin/user/update HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 17
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/admin/users
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=45kjedl5rsg45g5e
+
+id=2&password=111
+2018/02/28 22:14:21 from add_cookies --> cookie:  ['sid=45kjedl5rsg45g5e']
+2018/02/28 22:14:21 from __init__ --> Request: path and query:  /admin/user/update {}
+2018/02/28 22:14:21 from current_user --> session id :  45kjedl5rsg45g5e
+2018/02/28 22:14:21 from current_user --> session dict:  {'45kjedl5rsg45g5e': 1}
+2018/02/28 22:14:21 from current_user --> session id :  45kjedl5rsg45g5e
+2018/02/28 22:14:21 from current_user --> session dict:  {'45kjedl5rsg45g5e': 1}
+2018/02/28 22:14:21 from form --> form id=2&password=111
+2018/02/28 22:14:21 from form --> form():  {'id': '2', 'password': '111'}
+2018/02/28 22:16:09 from run --> start at :3000
+2018/02/28 22:16:14 from __init__ --> Request log:  GET / HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=45kjedl5rsg45g5e
+
+
+2018/02/28 22:16:14 from add_cookies --> cookie:  ['sid=45kjedl5rsg45g5e']
+2018/02/28 22:16:14 from __init__ --> Request: path and query:  / {}
+2018/02/28 22:16:14 from current_user --> session id :  45kjedl5rsg45g5e
+2018/02/28 22:16:14 from current_user --> session dict:  {}
+2018/02/28 22:16:14 routes_index ----> check current_user 返回值的type:  None
+2018/02/28 22:16:14 from __init__ --> Request log:  GET /static?file=doge.gif HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: image/webp,image/apng,image/*,*/*;q=0.8
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=45kjedl5rsg45g5e
+
+
+2018/02/28 22:16:14 from add_cookies --> cookie:  ['sid=45kjedl5rsg45g5e']
+2018/02/28 22:16:14 from __init__ --> Request: path and query:  /static {'file': 'doge.gif'}
+2018/02/28 22:16:14 from __init__ --> Request log:  GET /static?file=doge1.jpg HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: image/webp,image/apng,image/*,*/*;q=0.8
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=45kjedl5rsg45g5e
+
+
+2018/02/28 22:16:14 from add_cookies --> cookie:  ['sid=45kjedl5rsg45g5e']
+2018/02/28 22:16:14 from __init__ --> Request: path and query:  /static {'file': 'doge1.jpg'}
+2018/02/28 22:16:14 from __init__ --> Request log:  GET /static?file=doge2.gif HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: image/webp,image/apng,image/*,*/*;q=0.8
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=45kjedl5rsg45g5e
+
+
+2018/02/28 22:16:14 from add_cookies --> cookie:  ['sid=45kjedl5rsg45g5e']
+2018/02/28 22:16:14 from __init__ --> Request: path and query:  /static {'file': 'doge2.gif'}
+2018/02/28 22:16:15 from __init__ --> Request log:  GET /login HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=45kjedl5rsg45g5e
+
+
+2018/02/28 22:16:15 from add_cookies --> cookie:  ['sid=45kjedl5rsg45g5e']
+2018/02/28 22:16:15 from __init__ --> Request: path and query:  /login {}
+2018/02/28 22:16:15 from route_login --> cookies:  {'sid': '45kjedl5rsg45g5e'}
+2018/02/28 22:16:15 from current_user --> session id :  45kjedl5rsg45g5e
+2018/02/28 22:16:15 from current_user --> session dict:  {}
+2018/02/28 22:16:18 from __init__ --> Request log:  POST /login HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 25
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/login
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=45kjedl5rsg45g5e
+
+username=aaa&password=111
+2018/02/28 22:16:18 from add_cookies --> cookie:  ['sid=45kjedl5rsg45g5e']
+2018/02/28 22:16:18 from __init__ --> Request: path and query:  /login {}
+2018/02/28 22:16:18 from route_login --> cookies:  {'sid': '45kjedl5rsg45g5e'}
+2018/02/28 22:16:18 from current_user --> session id :  45kjedl5rsg45g5e
+2018/02/28 22:16:18 from current_user --> session dict:  {}
+2018/02/28 22:16:18 from form --> form username=aaa&password=111
+2018/02/28 22:16:18 from form --> form():  {'username': 'aaa', 'password': '111'}
+2018/02/28 22:16:18 from route_login --> session_id:  resd244sls4bblgb
+2018/02/28 22:16:24 from __init__ --> Request log:  GET /admin/users HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=resd244sls4bblgb
+
+
+2018/02/28 22:16:24 from add_cookies --> cookie:  ['sid=resd244sls4bblgb']
+2018/02/28 22:16:24 from __init__ --> Request: path and query:  /admin/users {}
+2018/02/28 22:16:24 from current_user --> session id :  resd244sls4bblgb
+2018/02/28 22:16:24 from current_user --> session dict:  {'resd244sls4bblgb': 1}
+2018/02/28 22:16:24 from current_user --> session id :  resd244sls4bblgb
+2018/02/28 22:16:24 from current_user --> session dict:  {'resd244sls4bblgb': 1}
+2018/02/28 22:16:40 from __init__ --> Request log:  POST /admin/user/update HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 17
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/admin/users
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=resd244sls4bblgb
+
+id=2&password=111
+2018/02/28 22:16:40 from add_cookies --> cookie:  ['sid=resd244sls4bblgb']
+2018/02/28 22:16:40 from __init__ --> Request: path and query:  /admin/user/update {}
+2018/02/28 22:16:40 from current_user --> session id :  resd244sls4bblgb
+2018/02/28 22:16:40 from current_user --> session dict:  {'resd244sls4bblgb': 1}
+2018/02/28 22:16:40 from current_user --> session id :  resd244sls4bblgb
+2018/02/28 22:16:40 from current_user --> session dict:  {'resd244sls4bblgb': 1}
+2018/02/28 22:16:40 from form --> form id=2&password=111
+2018/02/28 22:16:40 from form --> form():  {'id': '2', 'password': '111'}
+2018/02/28 22:16:40 from __init__ --> Request log:  GET /admin/users HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/admin/users
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=resd244sls4bblgb
+
+
+2018/02/28 22:16:40 from add_cookies --> cookie:  ['sid=resd244sls4bblgb']
+2018/02/28 22:16:40 from __init__ --> Request: path and query:  /admin/users {}
+2018/02/28 22:16:40 from current_user --> session id :  resd244sls4bblgb
+2018/02/28 22:16:40 from current_user --> session dict:  {'resd244sls4bblgb': 1}
+2018/02/28 22:16:40 from current_user --> session id :  resd244sls4bblgb
+2018/02/28 22:16:40 from current_user --> session dict:  {'resd244sls4bblgb': 1}
+2018/02/28 22:19:03 from __init__ --> Request log:  POST /admin/user/update HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 17
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/admin/users
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=resd244sls4bblgb
+
+id=2&password=222
+2018/02/28 22:19:03 from add_cookies --> cookie:  ['sid=resd244sls4bblgb']
+2018/02/28 22:19:03 from __init__ --> Request: path and query:  /admin/user/update {}
+2018/02/28 22:19:03 from current_user --> session id :  resd244sls4bblgb
+2018/02/28 22:19:03 from current_user --> session dict:  {'resd244sls4bblgb': 1}
+2018/02/28 22:19:03 from current_user --> session id :  resd244sls4bblgb
+2018/02/28 22:19:03 from current_user --> session dict:  {'resd244sls4bblgb': 1}
+2018/02/28 22:19:03 from form --> form id=2&password=222
+2018/02/28 22:19:03 from form --> form():  {'id': '2', 'password': '222'}
+2018/02/28 22:19:03 from __init__ --> Request log:  GET /admin/users HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.170 Safari/537.36 Vivaldi/1.95.1077.50
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/admin/users
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=resd244sls4bblgb
+
+
+2018/02/28 22:19:03 from add_cookies --> cookie:  ['sid=resd244sls4bblgb']
+2018/02/28 22:19:03 from __init__ --> Request: path and query:  /admin/users {}
+2018/02/28 22:19:03 from current_user --> session id :  resd244sls4bblgb
+2018/02/28 22:19:03 from current_user --> session dict:  {'resd244sls4bblgb': 1}
+2018/02/28 22:19:03 from current_user --> session id :  resd244sls4bblgb
+2018/02/28 22:19:03 from current_user --> session dict:  {'resd244sls4bblgb': 1}

@@ -109,7 +109,7 @@ def admin_update(request):
     user_id = int(form.get('id', -1))
     user_password = form.get('password', '')
     user = User.find_by(id=user_id)
-    user.password = user_password
+    user.password = user.salted_password(user_password)
     user.save()
     return redirect('/admin/users')
 
