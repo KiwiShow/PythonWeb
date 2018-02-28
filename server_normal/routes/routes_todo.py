@@ -1,7 +1,8 @@
-from utils import log, redirect, response_with_headers, template
+from utils import log, template
+from routes import redirect, response_with_headers
 from models.todo import Todo
 from models.user import User
-from routes import current_user  # 不放在utils中放在routes中是因为一些变量只在routes.py中定义
+from routes.routes_user import current_user  # 不放在utils中放在routes中是因为一些变量只在routes.py中定义
 import time
 
 
@@ -114,7 +115,7 @@ def admin_update(request):
 
 
 route_dict = {
-    '/todo': login_required(index),
+    '/todo/index': login_required(index),
     '/todo/add': login_required(add),
     '/todo/edit': login_required(edit),
     '/todo/update': login_required(update),

@@ -1,13 +1,16 @@
 import socket
-import urllib.parse
 import _thread
 # TODO 了解thread（在python3中改名为_thread）,threading 和 queue模块 和 multiprocessing模块(for CPU密集型任务) 和 logging 模块
 
 from utils import log
+from request import Request
 
-from routes import route_static
-from routes import route_dict
-from routes_todo import route_dict as routes_todo
+from routes import error
+from routes.routes_static import route_static
+from routes.routes_todo import route_dict as todo_routes
+from routes.routes_user import route_dict as user_routes
+from routes.routes_tweet import route_dict as tweet_routes
+
 
 # server.py的整理思路
 #     建立host和端口
@@ -51,100 +54,8 @@ from routes_todo import route_dict as routes_todo
 #     关闭请求连接
 
 
-# 定义一个 class 用于保存请求的数据
-class Request(object):
-    def __init__(self, request_data):
-        r = request_data
-        self.raw_data = r
-        log('from __init__ --> Request log: ', r)
-        self.method = r.split()[0]
-        self.path = r.split()[1]
-        self.body = r.split('\r\n\r\n', 1)[1]
-        # 常用的str函数， split  strip  [:] join
-        # get hand dirty 意思是不要看到好代码了，就自己不想写了，一定要把自己的想法提出来，慢慢提高
-
-        self.query = {}
-        self.headers = {}
-        self.cookies = {}
-
-        path, query = self.parsed_path()
-        self.path = path
-        self.query = query
-
-        self.add_headers()
-        self.add_cookies()
-        log('from __init__ --> Request: path and query: ', path, query)
-
-    def add_cookies(self):
-        cookies = self.headers.get('Cookie', '')
-        kvs = cookies.split('; ')
-        log('from add_cookies --> cookie: ', kvs)
-        for kv in kvs:
-            if '=' in kv:
-                k, v = kv.split('=')
-                self.cookies[k] = v
-
-    # 由parsed_header(raw_data)进化而来
-    def add_headers(self):
-        r = self.raw_data
-        # 把 header 拿出来
-        header = r.split('\r\n\r\n', 1)[0]
-        lines = header.split('\r\n')[1:]
-        # lines = header.split('\r\n')
-        for line in lines:
-            # log("error line", line)
-            k, v = line.split(': ', 1)
-            self.headers[k] = v
-
-    # 由parsed_path(path)进化而来
-    def parsed_path(self):
-        path = self.path
-        index = path.find('?')
-        if index == -1:
-            return path, {}
-        else:
-            path, query_string = path.split('?', 1)
-            args = query_string.split('&')
-            query = {}
-            for arg in args:
-                k, v = arg.split('=')
-                query[k] = v
-            return path, query
-
-    def form(self):
-        # 不解码加号
-        body = urllib.parse.unquote(self.body)
-        log('from form --> form', self.body)
-        # print('parsed body', body)
-        args = body.split('&')
-        f = {}
-        for arg in args:
-            k, v = arg.split('=')
-            f[k] = v
-        log('from form --> form(): ', f)
-        return f
-
-
-def error(request, code=404):
-    """
-    根据 code 返回不同的错误响应
-    目前只有 404
-    """
-    # 不要用数字来作为字典的 key
-    # 但是在 HTTP 协议中 code 都是数字似乎更方便所以打破了这个原则
-    e = {
-        404: b'HTTP/1.1 404 NOT FOUND\r\n\r\n<h1>NOT FOUND</h1>',
-    }
-    return e.get(code, b'')
-
-
-def response_for_path(request):
+def response_for_path(request, r):
     path = request.path
-    r = {
-        '/static': route_static,
-    }
-    r.update(route_dict)
-    r.update(routes_todo)
     response = r.get(path, error)
     return response(request)
 
@@ -160,7 +71,7 @@ def request_cache(connection):
     return buf.decode('utf-8')
 
 
-def process_request(connection):
+def process_request(connection, r_d):
     r = request_cache(connection)
     # 因为 chrome 会发送空请求导致 split 得到空 list
     # 所以这里判断一下防止程序崩溃
@@ -172,7 +83,7 @@ def process_request(connection):
     # log('r =====>', r)
     # log('r.split()=====>', r.split())
     # 用 response_for_path 函数来得到 path 对应的响应内容
-    response = response_for_path(request)
+    response = response_for_path(request, r_d)
     # 把响应发送给客户端
     connection.sendall(response)
     # 处理完请求, 关闭连接
@@ -187,6 +98,13 @@ def run(host='', port=3000):
     # 使用 with 可以保证程序中断的时候正确关闭 socket 释放占用的端口
     log('from run --> start at', '{}:{}'.format(host, port))
     with socket.socket() as s:
+        # 字典放在这里在多线程的时候就不会重复构造了
+        r_d = {
+            '/static': route_static,
+        }
+        r_d.update(user_routes)
+        r_d.update(todo_routes)
+        r_d.update(tweet_routes)
         # 使用 下面这句 可以保证程序重启后使用原有端口, 原因忽略
         s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         s.bind((host, port))
@@ -195,7 +113,7 @@ def run(host='', port=3000):
         while True:
             connection, address = s.accept()
             # 第二个参数类型必须是 tuple
-            _thread.start_new_thread(process_request, (connection,))
+            _thread.start_new_thread(process_request, (connection, r_d))
 
 
 if __name__ == '__main__':

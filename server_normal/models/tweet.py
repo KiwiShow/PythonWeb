@@ -1,4 +1,5 @@
 from models import Model
+from models.user import User
 from models.comment import Comment
 
 
@@ -9,7 +10,13 @@ class Tweet(Model):
         self.user_id = form.get('user_id', user_id)
 
     def comments(self):
-        return [c for c in Comment.all() if c.tweet_id == self.id]
+        # return [c for c in Comment.all() if c.tweet_id == self.id]
+        return Comment.find_all(tweet_id=self.id)
+
+    def user(self):
+        u = User.find_by(id=self.user_id)
+        return u
+
 
 # 不可在此文件中测试，因为路径的问题不能找到Tweet.txt和Comment.txt
 # 需在与models平级的文件中测试

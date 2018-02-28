@@ -1,4 +1,5 @@
-from utils import log, random_str, http_response, response_with_headers, template
+from utils import log, template
+from routes import http_response, random_str, response_with_headers
 from models.message import Message
 from models.user import User
 
@@ -114,18 +115,6 @@ def route_message(request):
     # msgs = '<br>'.join(messages)
     body = template('html_basic.html', messages=msgs)
     return http_response(body)
-
-
-def route_static(request):
-    """
-    静态资源的处理函数, 读取图片并生成响应返回
-    """
-    filename = request.query.get('file', 'doge.gif')
-    path = 'static/' + filename
-    with open(path, 'rb') as f:
-        header = b'HTTP/1.1 200 OK\r\nContent-Type: image/gif\r\n'
-        r = header + b'\r\n' + f.read()
-        return r
 
 
 def route_profile(request):

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tweet index</title>
+</head>
+<body>
+    <h1>{{ user.username }}的Tweet</h1>
+    <br>
+    <a href="/tweet/new">写新推特</a>
+
+    {% for t in tweets %}
+    <p>
+        {{ t.content }} from User<<---{{ user.username}}
+        <a href="/tweet/delete?id={{ t.id }}">delete</a>
+        <a href="/tweet/edit?id={{ t.id }}">edit</a>
+        {% for c in t.comments() %}
+        <div class="comment">
+            {{ c.user().username }} : {{ c.content }}
+        <a href="/comment/delete?id={{ c.id }}">delete</a>
+        </div>
+        {% endfor %}
+        <form action="/comment/add" method="post">
+            <input type="hidden" name="tweet_id" value="{{ t.id }}">
+            <input name="content">
+            <br>
+            <button type="submit">添加评论</button>
+        </form>
+    </p>
+    {% endfor %}
+</body>
+</html>
