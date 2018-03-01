@@ -57,7 +57,7 @@ def route_login(request):
         result = '请POST登录'
     body = template('login.html', result=result, username='游客')
     # 第一次输入用户名密码并提交{{username}}并不会改变，第一次提交cookie中还没有user字段而current_user需要根据这个判断
-    #但是可以替换，如下代码所示
+    # 但是可以替换，如下代码所示
     if u is not None:
         body = body.replace('游客', u.username)
     header = response_with_headers(headers)
@@ -120,7 +120,8 @@ def route_message(request):
 def route_profile(request):
     u = current_user(request)
     if u is None:
-        header = 'HTTP/1.1 302 Temporarily Moved\r\nContent-Type: text/html\r\n' \
+        header = 'HTTP/1.1 302 Temporarily Moved\r\n' \
+                 'Content-Type: text/html\r\n' \
                  'Location: http://localhost:3000/login\r\n'
         body = template('login.html', username='游客')
         r = header + '\r\n' + body
