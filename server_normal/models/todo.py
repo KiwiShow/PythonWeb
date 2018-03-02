@@ -1,8 +1,8 @@
-from models.to_be_mongo import Monmodel
+from models.to_be_mongo import MonModel
 import time
 
 
-class Todo(Monmodel):
+class Todo(MonModel):
     """
     __fields__ = [
     '_id',
