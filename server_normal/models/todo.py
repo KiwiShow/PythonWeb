@@ -12,7 +12,7 @@ class Todo(MonModel):
     ('created_time', int, 0),
     ('updated_time', int, 0),
     """
-    __fields__ = Monmodel.__fields__ + [
+    __fields__ = MonModel.__fields__ + [
         ('title', str, ''),
         ('user_id', int, ''),
         ('completed', bool, False),

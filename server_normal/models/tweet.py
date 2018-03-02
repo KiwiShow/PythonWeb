@@ -1,9 +1,9 @@
-from models.to_be_mongo import Monmodel
+from models.to_be_mongo import MonModel
 from models.user import User
 from models.comment import Comment
 
 
-class Tweet(Monmodel):
+class Tweet(MonModel):
     """
     __fields__ = [
     '_id',
@@ -13,7 +13,7 @@ class Tweet(Monmodel):
     ('created_time', int, 0),
     ('updated_time', int, 0),
     """
-    __fields__ = Monmodel.__fields__ + [
+    __fields__ = MonModel.__fields__ + [
         ('content', str, ''),
         ('user_id', int, -1),
     ]

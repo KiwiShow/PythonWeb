@@ -1,7 +1,7 @@
-from models.to_be_mongo import MonMondel
+from models.to_be_mongo import MonModel
 
 
-class Message(MonMondel):
+class Message(MonModel):
     """
     __fields__ = [
     '_id',
@@ -11,7 +11,7 @@ class Message(MonMondel):
     ('created_time', int, 0),
     ('updated_time', int, 0),
     """
-    __fields__ = MonMondel.__fields__ + [
+    __fields__ = MonModel.__fields__ + [
         ('author', str, ''),
         ('message', str, ''),
     ]

@@ -1,9 +1,9 @@
-from models.to_be_mongo import Monmodel
+from models.to_be_mongo import MonModel
 from .todo import Todo
 import hashlib
 
 
-class User(Monmodel):
+class User(MonModel):
     """
     __fields__ = [
     '_id',
@@ -13,7 +13,7 @@ class User(Monmodel):
     ('created_time', int, 0),
     ('updated_time', int, 0),
     """
-    __fields__ = Monmodel.__fields__ + [
+    __fields__ = MonModel.__fields__ + [
         ('username', str, ''),
         ('password', str, ''),
         ('note', str, ''),
