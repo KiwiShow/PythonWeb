@@ -1,17 +1,32 @@
-from models import Model
+from models.to_be_mongo import Monmodel
 from .todo import Todo
 import hashlib
 
-# 继承了 Model
-# 所以可以直接 save load
-class User(Model):
-    def __init__(self, form):
-        self.username = form.get('username', '')
-        self.password = form.get('password', '')
-        self.id = form.get('id', None)
-        self.note = form.get('note', '')
-        self.role = int(form.get('role', 10))
 
+class User(Monmodel):
+    """
+    __fields__ = [
+    '_id',
+    ('id', int, -1),
+    ('type', str, ''),
+    ('deleted', bool, False),
+    ('created_time', int, 0),
+    ('updated_time', int, 0),
+    """
+    __fields__ = Monmodel.__fields__ + [
+        ('username', str, ''),
+        ('password', str, ''),
+        ('note', str, ''),
+        ('role', int, 10),
+    ]
+
+    # def __init__(self, form):
+    #     self.username = form.get('username', '')
+    #     self.password = form.get('password', '')
+    #     self.id = form.get('id', None)
+    #     self.note = form.get('note', '')
+    #     self.role = int(form.get('role', 10))
+    @classmethod
     def salted_password(self, password, salt='less_is_more!'):
         def sha256(str):
             return hashlib.sha256(str.encode('utf-8')).hexdigest()
@@ -25,30 +40,34 @@ class User(Model):
         s = hashlib.sha3_256(p)
         return s.hexdigest()
 
-    def validate_login(self):
+    @classmethod
+    def validate_login(cls, form):
         # us = User.all()
         # for u in us:
         #     if self.username == u.username and self.password == u.password:
         #         return True
         # return False
         # 更加简洁
-        user = User.find_by(username=self.username)
-        return user is not None and user.password == self.salted_password(self.password)
+        user = User.find_by(username=form.get('username'))
+        return user is not None and user.password == User.salted_password(form.get('password'))
 
-    def validate_register(self):
+    @classmethod
+    def validate_register(cls, form):
         # 简单验证用户名或者密码长度必须大于2
-        if len(self.username) > 2 and len(self.password) > 2:
-            self.password = self.salted_password(self.password)  # 加盐
-            if User.find_by(username=self.username) is None:
-                self.save()
-                return True
+        username = form.get('username', '')
+        password = form.get('password', '')
+        if User.find_by(username=username) is None and len(username) > 2 and len(password) > 2:
+            u = User.new(form, password=User.salted_password(password))
+            # u.password = u.salted_password(password)  # 加盐
+
+            return True
         return False
 
 
-    # 增加一个获取该user全部todo的函数
+    # 增加一个获取该user全部todo的函数 todo
     def todos(self):
         ts =[]
         for t in Todo.all():
-            if t.user_id == self.id:
+            if t.user_id == self.json()['id']:
                 ts.append(t)
         return ts
