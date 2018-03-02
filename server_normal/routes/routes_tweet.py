@@ -30,7 +30,8 @@ def delete(request):
     u = current_user(request)
     tweet_id = int(request.query.get('id'))
     t = Tweet.find(tweet_id)
-    t.remove(tweet_id)
+    if u.id == t.user_id:
+        t.remove(tweet_id)
     # redirect有必要加query吗
     return redirect('/tweet/index?user_id={}'.format(u.id))
 
@@ -89,7 +90,8 @@ def comment_delete(request):
     comment_id = request.query.get('id', -1)
     comment_id = int(comment_id)
     c = Comment.find(comment_id)
-    c.remove(comment_id)
+    if u.id == c.user_id:
+        c.remove(comment_id)
     return redirect('/tweet/index?user_id={}'.format(u.id))
 
 

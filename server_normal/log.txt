@@ -17907,3 +17907,1911 @@ Cookie: sid=see242klk42l5lsd
 2018/03/02 21:40:32 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
 2018/03/02 21:40:32 from current_user --> session id :  see242klk42l5lsd
 2018/03/02 21:40:32 from current_user --> session dict:  {'see242klk42l5lsd': 1, 's2j2s52d454g2l3d': 3}
+2018/03/02 21:53:45 from run --> start at :3000
+2018/03/02 21:53:49 from __init__ --> Request log:  GET /login HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Cookie: sid=s2j2s52d454g2l3d
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 21:53:49 from add_cookies --> cookie:  ['sid=s2j2s52d454g2l3d']
+2018/03/02 21:53:49 from __init__ --> Request: path and query:  /login {}
+2018/03/02 21:53:49 from route_login --> cookies:  {'sid': 's2j2s52d454g2l3d'}
+2018/03/02 21:53:49 from current_user --> session id :  s2j2s52d454g2l3d
+2018/03/02 21:53:49 from current_user --> session dict:  {}
+2018/03/02 21:53:51 from __init__ --> Request log:  GET /login HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=see242klk42l5lsd
+
+
+2018/03/02 21:53:51 from add_cookies --> cookie:  ['sid=see242klk42l5lsd']
+2018/03/02 21:53:51 from __init__ --> Request: path and query:  /login {}
+2018/03/02 21:53:51 from route_login --> cookies:  {'sid': 'see242klk42l5lsd'}
+2018/03/02 21:53:51 from current_user --> session id :  see242klk42l5lsd
+2018/03/02 21:53:51 from current_user --> session dict:  {}
+2018/03/02 21:53:56 from __init__ --> Request log:  POST /login HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 25
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/login
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=see242klk42l5lsd
+
+username=aaa&password=111
+2018/03/02 21:53:56 from add_cookies --> cookie:  ['sid=see242klk42l5lsd']
+2018/03/02 21:53:56 from __init__ --> Request: path and query:  /login {}
+2018/03/02 21:53:56 from route_login --> cookies:  {'sid': 'see242klk42l5lsd'}
+2018/03/02 21:53:56 from current_user --> session id :  see242klk42l5lsd
+2018/03/02 21:53:56 from current_user --> session dict:  {}
+2018/03/02 21:53:56 from form --> form username=aaa&password=111
+2018/03/02 21:53:56 from form --> form():  {'username': 'aaa', 'password': '111'}
+2018/03/02 21:53:56 from route_login --> session_id:  2edds2lkle5rljge
+2018/03/02 21:54:03 from __init__ --> Request log:  POST /login HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/login
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 25
+Cookie: sid=s2j2s52d454g2l3d
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+username=bbb&password=222
+2018/03/02 21:54:03 from add_cookies --> cookie:  ['sid=s2j2s52d454g2l3d']
+2018/03/02 21:54:03 from __init__ --> Request: path and query:  /login {}
+2018/03/02 21:54:03 from route_login --> cookies:  {'sid': 's2j2s52d454g2l3d'}
+2018/03/02 21:54:03 from current_user --> session id :  s2j2s52d454g2l3d
+2018/03/02 21:54:03 from current_user --> session dict:  {'2edds2lkle5rljge': 1}
+2018/03/02 21:54:03 from form --> form username=bbb&password=222
+2018/03/02 21:54:03 from form --> form():  {'username': 'bbb', 'password': '222'}
+2018/03/02 21:54:03 from route_login --> session_id:  l5rk5gebgjgg4sse
+2018/03/02 21:54:20 from __init__ --> Request log:  GET /tweet/index HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 21:54:20 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:54:20 from __init__ --> Request: path and query:  /tweet/index {}
+2018/03/02 21:54:20 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:54:20 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:20 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:54:20 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:27 from __init__ --> Request log:  GET /tweet/index HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 21:54:27 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:54:27 from __init__ --> Request: path and query:  /tweet/index {}
+2018/03/02 21:54:27 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:27 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:27 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:27 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:32 from __init__ --> Request log:  GET /tweet/new HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 21:54:32 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:54:32 from __init__ --> Request: path and query:  /tweet/new {}
+2018/03/02 21:54:32 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:32 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:34 from __init__ --> Request log:  POST /tweet/add HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 14
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/new
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+content=sdfsdf
+2018/03/02 21:54:34 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:54:34 from __init__ --> Request: path and query:  /tweet/add {}
+2018/03/02 21:54:34 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:34 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:34 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:34 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:34 from form --> form content=sdfsdf
+2018/03/02 21:54:34 from form --> form():  {'content': 'sdfsdf'}
+2018/03/02 21:54:34 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/new
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 21:54:34 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:54:34 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 21:54:34 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:34 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:37 from __init__ --> Request log:  GET /tweet/edit?id=9 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 21:54:37 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:54:37 from __init__ --> Request: path and query:  /tweet/edit {'id': '9'}
+2018/03/02 21:54:37 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:37 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:39 from __init__ --> Request log:  POST /tweet/update HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 32
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/edit?id=9
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+id=9&content=kjbkjbksadfsdfsadfd
+2018/03/02 21:54:39 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:54:39 from __init__ --> Request: path and query:  /tweet/update {}
+2018/03/02 21:54:39 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:39 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:39 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:39 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:39 from form --> form id=9&content=kjbkjbksadfsdfsadfd
+2018/03/02 21:54:39 from form --> form():  {'id': '9', 'content': 'kjbkjbksadfsdfsadfd'}
+2018/03/02 21:54:39 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/edit?id=9
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 21:54:39 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:54:39 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 21:54:39 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:39 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:42 from __init__ --> Request log:  GET /tweet/delete?id=9 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 21:54:42 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:54:42 from __init__ --> Request: path and query:  /tweet/delete {'id': '9'}
+2018/03/02 21:54:42 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:42 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:42 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:42 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:42 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 21:54:42 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:54:42 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 21:54:42 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:42 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:45 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 28
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+tweet_id=12&content=sadfsdaf
+2018/03/02 21:54:45 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:54:45 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 21:54:45 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:45 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:45 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:45 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:45 from form --> form tweet_id=12&content=sadfsdaf
+2018/03/02 21:54:45 from form --> form():  {'tweet_id': '12', 'content': 'sadfsdaf'}
+2018/03/02 21:54:45 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 21:54:45 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:54:45 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 21:54:45 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:45 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:47 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 28
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+tweet_id=12&content=sadfasdf
+2018/03/02 21:54:47 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:54:47 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 21:54:47 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:47 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:47 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:47 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:47 from form --> form tweet_id=12&content=sadfasdf
+2018/03/02 21:54:47 from form --> form():  {'tweet_id': '12', 'content': 'sadfasdf'}
+2018/03/02 21:54:47 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 21:54:47 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:54:47 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 21:54:47 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:54:47 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:51 from __init__ --> Request log:  GET /tweet/new HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 21:54:51 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:54:51 from __init__ --> Request: path and query:  /tweet/new {}
+2018/03/02 21:54:51 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:54:51 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:59 from __init__ --> Request log:  POST /tweet/add HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/new
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 22
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+content=asdfsdafsadfaf
+2018/03/02 21:54:59 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:54:59 from __init__ --> Request: path and query:  /tweet/add {}
+2018/03/02 21:54:59 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:54:59 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:59 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:54:59 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:54:59 from form --> form content=asdfsdafsadfaf
+2018/03/02 21:54:59 from form --> form():  {'content': 'asdfsdafsadfaf'}
+2018/03/02 21:54:59 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/new
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 21:54:59 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:54:59 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 21:54:59 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:54:59 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:01 from __init__ --> Request log:  GET /tweet/edit?id=10 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=3
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 21:55:01 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:55:01 from __init__ --> Request: path and query:  /tweet/edit {'id': '10'}
+2018/03/02 21:55:01 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:01 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:03 from __init__ --> Request log:  POST /tweet/update HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/edit?id=10
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 28
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+id=10&content=sadfsdfsdfsadf
+2018/03/02 21:55:03 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:55:03 from __init__ --> Request: path and query:  /tweet/update {}
+2018/03/02 21:55:03 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:03 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:03 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:03 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:03 from form --> form id=10&content=sadfsdfsdfsadf
+2018/03/02 21:55:03 from form --> form():  {'id': '10', 'content': 'sadfsdfsdfsadf'}
+2018/03/02 21:55:03 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/edit?id=10
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 21:55:03 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:55:03 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 21:55:03 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:03 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:07 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=3
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 34
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+tweet_id=10&content=sadfsdfsdfsadf
+2018/03/02 21:55:07 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:55:07 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 21:55:07 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:07 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:07 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:07 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:07 from form --> form tweet_id=10&content=sadfsdfsdfsadf
+2018/03/02 21:55:07 from form --> form():  {'tweet_id': '10', 'content': 'sadfsdfsdfsadf'}
+2018/03/02 21:55:07 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=3
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 21:55:07 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:55:07 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 21:55:07 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:07 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:09 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=3
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 35
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+tweet_id=10&content=asdfsadfsdafsaf
+2018/03/02 21:55:09 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:55:09 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 21:55:09 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:09 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:09 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:09 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:09 from form --> form tweet_id=10&content=asdfsadfsdafsaf
+2018/03/02 21:55:09 from form --> form():  {'tweet_id': '10', 'content': 'asdfsadfsdafsaf'}
+2018/03/02 21:55:09 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=3
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 21:55:09 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:55:09 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 21:55:09 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:09 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:12 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=3
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 34
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+tweet_id=13&content=asdfasdfasdfaf
+2018/03/02 21:55:12 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:55:12 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 21:55:12 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:12 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:12 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:12 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:12 from form --> form tweet_id=13&content=asdfasdfasdfaf
+2018/03/02 21:55:12 from form --> form():  {'tweet_id': '13', 'content': 'asdfasdfasdfaf'}
+2018/03/02 21:55:12 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=3
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 21:55:12 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:55:12 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 21:55:12 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:12 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:14 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=3
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 32
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+tweet_id=13&content=asdfsadfsdaf
+2018/03/02 21:55:14 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:55:14 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 21:55:14 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:14 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:14 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:14 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:14 from form --> form tweet_id=13&content=asdfsadfsdaf
+2018/03/02 21:55:14 from form --> form():  {'tweet_id': '13', 'content': 'asdfsadfsdaf'}
+2018/03/02 21:55:14 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=3
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 21:55:14 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:55:14 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 21:55:14 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:14 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:19 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=3
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 21:55:19 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:55:19 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 21:55:19 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:19 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:20 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 21:55:20 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:55:20 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 21:55:20 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:55:20 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:28 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 21:55:28 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:55:28 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 21:55:28 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:55:28 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:33 from __init__ --> Request log:  GET /comment/delete?id=31 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 21:55:33 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:55:33 from __init__ --> Request: path and query:  /comment/delete {'id': '31'}
+2018/03/02 21:55:33 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:55:33 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:33 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:55:33 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:33 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 21:55:33 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 21:55:33 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 21:55:33 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 21:55:33 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 21:55:36 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=3
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 21:55:36 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 21:55:36 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 21:55:36 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 21:55:36 from current_user --> session dict:  {'2edds2lkle5rljge': 1, 'l5rk5gebgjgg4sse': 3}
+2018/03/02 22:00:05 from run --> start at :3000
+2018/03/02 22:00:07 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=3
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 22:00:07 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 22:00:07 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:00:07 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 22:00:07 from current_user --> session dict:  {}
+2018/03/02 22:00:07 from route_todo --> 非登录用户 redirect 到/login
+2018/03/02 22:00:07 from __init__ --> Request log:  GET /login HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=3
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 22:00:07 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 22:00:07 from __init__ --> Request: path and query:  /login {}
+2018/03/02 22:00:07 from route_login --> cookies:  {'sid': 'l5rk5gebgjgg4sse'}
+2018/03/02 22:00:07 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 22:00:07 from current_user --> session dict:  {}
+2018/03/02 22:00:11 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 22:00:11 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 22:00:11 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:00:11 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 22:00:11 from current_user --> session dict:  {}
+2018/03/02 22:00:11 from route_todo --> 非登录用户 redirect 到/login
+2018/03/02 22:00:11 from __init__ --> Request log:  GET /login HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+
+2018/03/02 22:00:11 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 22:00:11 from __init__ --> Request: path and query:  /login {}
+2018/03/02 22:00:11 from route_login --> cookies:  {'sid': '2edds2lkle5rljge'}
+2018/03/02 22:00:11 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 22:00:11 from current_user --> session dict:  {}
+2018/03/02 22:00:19 from __init__ --> Request log:  POST /login HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 25
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/login
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=2edds2lkle5rljge
+
+username=aaa&password=111
+2018/03/02 22:00:19 from add_cookies --> cookie:  ['sid=2edds2lkle5rljge']
+2018/03/02 22:00:19 from __init__ --> Request: path and query:  /login {}
+2018/03/02 22:00:19 from route_login --> cookies:  {'sid': '2edds2lkle5rljge'}
+2018/03/02 22:00:19 from current_user --> session id :  2edds2lkle5rljge
+2018/03/02 22:00:19 from current_user --> session dict:  {}
+2018/03/02 22:00:19 from form --> form username=aaa&password=111
+2018/03/02 22:00:19 from form --> form():  {'username': 'aaa', 'password': '111'}
+2018/03/02 22:00:19 from route_login --> session_id:  e542gg52e2seejjk
+2018/03/02 22:00:23 from __init__ --> Request log:  POST /login HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/login
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 25
+Cookie: sid=l5rk5gebgjgg4sse
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+username=bbb&password=222
+2018/03/02 22:00:23 from add_cookies --> cookie:  ['sid=l5rk5gebgjgg4sse']
+2018/03/02 22:00:23 from __init__ --> Request: path and query:  /login {}
+2018/03/02 22:00:23 from route_login --> cookies:  {'sid': 'l5rk5gebgjgg4sse'}
+2018/03/02 22:00:23 from current_user --> session id :  l5rk5gebgjgg4sse
+2018/03/02 22:00:23 from current_user --> session dict:  {'e542gg52e2seejjk': 1}
+2018/03/02 22:00:23 from form --> form username=bbb&password=222
+2018/03/02 22:00:23 from form --> form():  {'username': 'bbb', 'password': '222'}
+2018/03/02 22:00:23 from route_login --> session_id:  g2ggk22re2egr255
+2018/03/02 22:00:29 from __init__ --> Request log:  GET /tweet/index HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 22:00:29 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:00:29 from __init__ --> Request: path and query:  /tweet/index {}
+2018/03/02 22:00:29 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:00:29 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:29 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:00:29 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:39 from __init__ --> Request log:  GET /tweet/index HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:00:39 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:00:39 from __init__ --> Request: path and query:  /tweet/index {}
+2018/03/02 22:00:39 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:00:39 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:39 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:00:39 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:43 from __init__ --> Request log:  GET /tweet/new HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:00:43 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:00:43 from __init__ --> Request: path and query:  /tweet/new {}
+2018/03/02 22:00:43 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:00:43 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:45 from __init__ --> Request log:  POST /tweet/add HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 17
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/new
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+content=asfsadfaf
+2018/03/02 22:00:45 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:00:45 from __init__ --> Request: path and query:  /tweet/add {}
+2018/03/02 22:00:45 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:00:45 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:45 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:00:45 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:45 from form --> form content=asfsadfaf
+2018/03/02 22:00:45 from form --> form():  {'content': 'asfsadfaf'}
+2018/03/02 22:00:45 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/new
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:00:45 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:00:45 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:00:45 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:00:45 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:48 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 27
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+tweet_id=14&content=sdafsad
+2018/03/02 22:00:48 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:00:48 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 22:00:48 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:00:48 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:48 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:00:48 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:48 from form --> form tweet_id=14&content=sdafsad
+2018/03/02 22:00:48 from form --> form():  {'tweet_id': '14', 'content': 'sdafsad'}
+2018/03/02 22:00:48 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:00:48 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:00:48 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:00:48 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:00:48 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:50 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 28
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+tweet_id=14&content=asdfasdf
+2018/03/02 22:00:50 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:00:50 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 22:00:50 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:00:50 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:50 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:00:50 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:50 from form --> form tweet_id=14&content=asdfasdf
+2018/03/02 22:00:50 from form --> form():  {'tweet_id': '14', 'content': 'asdfasdf'}
+2018/03/02 22:00:50 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:00:50 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:00:50 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:00:50 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:00:50 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:54 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 28
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+tweet_id=10&content=asdfsadf
+2018/03/02 22:00:54 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:00:54 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 22:00:54 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:00:54 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:54 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:00:54 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:00:54 from form --> form tweet_id=10&content=asdfsadf
+2018/03/02 22:00:54 from form --> form():  {'tweet_id': '10', 'content': 'asdfsadf'}
+2018/03/02 22:00:54 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 22:00:54 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:00:54 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:00:54 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:00:54 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:02 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:01:02 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:02 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:02 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:02 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:05 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 28
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+tweet_id=10&content=asdfsadf
+2018/03/02 22:01:05 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:05 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 22:01:05 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:05 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:05 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:05 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:05 from form --> form tweet_id=10&content=asdfsadf
+2018/03/02 22:01:05 from form --> form():  {'tweet_id': '10', 'content': 'asdfsadf'}
+2018/03/02 22:01:05 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:01:05 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:05 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:05 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:05 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:07 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 20
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+tweet_id=13&content=
+2018/03/02 22:01:07 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:07 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 22:01:07 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:07 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:07 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:07 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:07 from form --> form tweet_id=13&content=
+2018/03/02 22:01:07 from form --> form():  {'tweet_id': '13', 'content': ''}
+2018/03/02 22:01:07 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:01:07 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:07 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:07 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:07 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:10 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 28
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+tweet_id=13&content=asdfsadf
+2018/03/02 22:01:10 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:10 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 22:01:10 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:10 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:10 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:10 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:10 from form --> form tweet_id=13&content=asdfsadf
+2018/03/02 22:01:10 from form --> form():  {'tweet_id': '13', 'content': 'asdfsadf'}
+2018/03/02 22:01:10 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:01:10 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:10 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:10 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:10 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:11 from __init__ --> Request log:  GET /comment/delete?id=38 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:01:11 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:11 from __init__ --> Request: path and query:  /comment/delete {'id': '38'}
+2018/03/02 22:01:11 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:11 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:11 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:11 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:11 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:01:11 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:11 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:01:11 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:11 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:16 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:01:16 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:16 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:16 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:16 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:21 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 22:01:21 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:01:21 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:21 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:01:21 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:33 from __init__ --> Request log:  GET /comment/delete?id=36 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:01:33 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:33 from __init__ --> Request: path and query:  /comment/delete {'id': '36'}
+2018/03/02 22:01:33 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:33 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:33 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:33 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:33 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=3
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:01:33 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:33 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:01:33 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:33 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:35 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 22:01:35 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:01:35 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:35 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:01:35 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:39 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 22:01:39 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:01:39 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:39 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:01:39 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:41 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 22:01:41 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:01:41 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:41 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:01:41 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:43 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 22:01:43 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:01:43 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:43 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:01:43 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:44 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 22:01:44 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:01:44 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:44 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:01:44 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:45 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 22:01:45 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:01:45 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:45 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:01:45 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:47 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 22:01:47 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:01:47 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:47 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:01:47 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:48 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 22:01:48 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:01:48 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:48 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:01:48 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:49 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 22:01:49 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:01:49 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:49 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:01:49 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:51 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 22:01:51 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:01:51 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:01:51 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:01:51 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:54 from __init__ --> Request log:  GET /comment/delete?id=35 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:01:54 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:54 from __init__ --> Request: path and query:  /comment/delete {'id': '35'}
+2018/03/02 22:01:54 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:54 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:54 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:54 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:54 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:01:54 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:54 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:01:54 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:54 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:01:57 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:01:58 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:01:58 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:01:58 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:01:58 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:02 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 22:02:02 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:02:02 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:02:02 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:02 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:08 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 34
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+tweet_id=12&content=sadfsdfsdfsadf
+2018/03/02 22:02:08 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:02:08 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 22:02:08 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:08 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:08 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:08 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:08 from form --> form tweet_id=12&content=sadfsdfsdfsadf
+2018/03/02 22:02:08 from form --> form():  {'tweet_id': '12', 'content': 'sadfsdfsdfsadf'}
+2018/03/02 22:02:08 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=1
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 22:02:08 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:02:08 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:02:08 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:08 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:09 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:02:09 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:02:09 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:02:09 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:02:09 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:11 from __init__ --> Request log:  GET /comment/delete?id=40 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:02:11 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:02:11 from __init__ --> Request: path and query:  /comment/delete {'id': '40'}
+2018/03/02 22:02:11 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:02:11 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:11 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:02:11 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:11 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:02:11 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:02:11 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:02:11 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:02:11 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:12 from __init__ --> Request log:  GET /comment/delete?id=40 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:02:12 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:02:12 from __init__ --> Request: path and query:  /comment/delete {'id': '40'}
+2018/03/02 22:02:12 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:02:12 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:12 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:02:12 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:12 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:02:12 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:02:12 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:02:12 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:02:12 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:12 from __init__ --> Request log:  GET /comment/delete?id=40 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:02:13 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:02:13 from __init__ --> Request: path and query:  /comment/delete {'id': '40'}
+2018/03/02 22:02:13 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:02:13 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:13 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:02:13 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:13 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:02:13 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:02:13 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:02:13 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:02:13 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:17 from __init__ --> Request log:  GET /comment/delete?id=40 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=1
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 22:02:17 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:02:17 from __init__ --> Request: path and query:  /comment/delete {'id': '40'}
+2018/03/02 22:02:17 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:17 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:17 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:17 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:17 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=1
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 22:02:17 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:02:17 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:02:17 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:17 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:19 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:02:19 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:02:19 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:02:19 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:02:19 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:26 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 22:02:26 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:02:26 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:02:26 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:26 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:30 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 29
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+tweet_id=12&content=sdafsadfs
+2018/03/02 22:02:30 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:02:30 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 22:02:30 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:30 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:30 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:30 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:30 from form --> form tweet_id=12&content=sdafsadfs
+2018/03/02 22:02:30 from form --> form():  {'tweet_id': '12', 'content': 'sdafsadfs'}
+2018/03/02 22:02:30 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=1
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 22:02:30 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:02:30 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:02:30 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:30 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:33 from __init__ --> Request log:  POST /comment/add HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 28
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+tweet_id=12&content=sadfsadf
+2018/03/02 22:02:33 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:02:33 from __init__ --> Request: path and query:  /comment/add {}
+2018/03/02 22:02:33 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:33 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:33 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:33 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:33 from form --> form tweet_id=12&content=sadfsadf
+2018/03/02 22:02:33 from form --> form():  {'tweet_id': '12', 'content': 'sadfsadf'}
+2018/03/02 22:02:33 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=1
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 22:02:33 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:02:33 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:02:33 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:33 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:35 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:02:35 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:02:35 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:02:35 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:02:35 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:39 from __init__ --> Request log:  GET /comment/delete?id=28 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=1
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 22:02:39 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:02:39 from __init__ --> Request: path and query:  /comment/delete {'id': '28'}
+2018/03/02 22:02:39 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:39 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:39 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:39 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:39 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=1
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+
+2018/03/02 22:02:39 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:02:39 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:02:39 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:39 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:41 from __init__ --> Request log:  GET /tweet/index?user_id=3 HTTP/1.1
+Host: localhost:3000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://localhost:3000/tweet/index?user_id=1
+Cookie: sid=g2ggk22re2egr255
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+2018/03/02 22:02:41 from add_cookies --> cookie:  ['sid=g2ggk22re2egr255']
+2018/03/02 22:02:41 from __init__ --> Request: path and query:  /tweet/index {'user_id': '3'}
+2018/03/02 22:02:41 from current_user --> session id :  g2ggk22re2egr255
+2018/03/02 22:02:41 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:42 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:02:42 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:02:42 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:02:42 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:02:42 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
+2018/03/02 22:02:43 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: sid=e542gg52e2seejjk
+
+
+2018/03/02 22:02:43 from add_cookies --> cookie:  ['sid=e542gg52e2seejjk']
+2018/03/02 22:02:43 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/02 22:02:43 from current_user --> session id :  e542gg52e2seejjk
+2018/03/02 22:02:43 from current_user --> session dict:  {'e542gg52e2seejjk': 1, 'g2ggk22re2egr255': 3}
