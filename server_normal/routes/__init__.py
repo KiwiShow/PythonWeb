@@ -5,7 +5,7 @@ def random_str():
     seed = 'bdjsdlkgjsklgelgjelgjsegker234252542342525g'
     s = ''
     for i in range(16):
-        random_index = random.randint(0, len(seed) - 2) # 其实减去1就可以
+        random_index = random.randint(0, len(seed) - 2)  # 其实减去1就可以
         s += seed[random_index]
     return s
 

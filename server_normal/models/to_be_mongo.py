@@ -43,13 +43,14 @@ class MonModel(object):
         ('created_time', int, 0),
         ('updated_time', int, 0),
     ]
+
     @classmethod
     def new(cls, form=None, **kwargs):  # new完已经保存了一次
         name = cls.__name__
         m = cls()
         fields = cls.__fields__.copy()
         fields.remove('_id')
-        if form  is None:
+        if form is None:
             form = {}
         for f in fields:
             k, t, v = f
@@ -128,7 +129,7 @@ class MonModel(object):
         values = {
             'deleted': True
         }
-        mon.web[name].update_one(query, {"$set":values})
+        mon.web[name].update_one(query, {"$set": values})
 
     def save(self):
         name = self.__class__.__name__
@@ -158,6 +159,7 @@ class MonModel(object):
         properties = ['{}: ({})'.format(k, v) for k, v in self.__dict__.items()]
         s = '\n'.join(properties)
         return '< {}\n{} >\n'.format(classname, s)
+
     # todo 暂时不用
     def data_count(self, cls):
         """
@@ -173,10 +175,6 @@ class MonModel(object):
         }
         count = mongua.db[name]._find(query).count()
         return count
-
-
-
-
 
 # # Model 是用于存储数据的基类
 # class Model(object):

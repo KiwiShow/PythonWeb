@@ -3,7 +3,6 @@ from routes import http_response, random_str, response_with_headers
 from models.message import Message
 from models.user import User
 
-
 session = {}
 
 

@@ -108,7 +108,7 @@ class Model(object):
         return cls.find_by(id=id)
 
     @classmethod
-    def remove(cls, id): # id 必须是int
+    def remove(cls, id):  # id 必须是int
         ms = cls.all()
         index = -1
         for i, m in enumerate(ms):

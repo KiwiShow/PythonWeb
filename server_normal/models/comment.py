@@ -30,10 +30,6 @@ class Comment(MonModel):
         # return u.json()['username']
         return u
 
-    # def tweet(self):
-    #     t = models.tweet.Tweet.find_by(id=self.json()['tweet_id'])
-    #     return t
-
     def tweet(self):
         t = models.tweet.Tweet.find_by(id=self.tweet_id)
         return t

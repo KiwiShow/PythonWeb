@@ -62,6 +62,7 @@ def edit(request):
                     tweet_content=t.content)
     return http_response(body)
 
+
 def update(request):
     u = current_user(request)
     form = request.form()

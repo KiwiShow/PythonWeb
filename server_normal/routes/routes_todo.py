@@ -16,6 +16,7 @@ def login_required(route_function):
             return redirect('/login')
         else:
             return route_function(request)
+
     return f
 
 

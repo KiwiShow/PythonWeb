@@ -34,7 +34,6 @@ class Tweet(MonModel):
         u = User.find_by(id=self.user_id)
         return u
 
-
 # class Tweet(Model):
 #     def __init__(self, form, user_id=-1):
 #         self.id = form.get('id', None)

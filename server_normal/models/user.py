@@ -30,6 +30,7 @@ class User(MonModel):
     def salted_password(self, password, salt='less_is_more!'):
         def sha256(str):
             return hashlib.sha256(str.encode('utf-8')).hexdigest()
+
         hash1 = sha256(password)
         hash2 = sha256(hash1 + salt)
         return hash2
@@ -63,10 +64,9 @@ class User(MonModel):
             return True
         return False
 
-
     # 增加一个获取该user全部todo的函数 todo
     def todos(self):
-        ts =[]
+        ts = []
         for t in Todo.all():
             if t.user_id == self.json()['id']:
                 ts.append(t)
