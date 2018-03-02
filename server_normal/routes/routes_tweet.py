@@ -21,7 +21,7 @@ def index(request):
     if user is None:
         return redirect('/login')
     else:
-        tweets = Tweet.find_all(user_id=user.id)
+        tweets = Tweet.find_all(user_id=user.id, deleted=False)
         body = template('tweet_index.html', tweets=tweets, user=user)
         return http_response(body)
 
@@ -43,9 +43,9 @@ def new(request):
 def add(request):
     u = current_user(request)
     form = request.form()
-    t = Tweet(form)
-    t.user_id = u.id
-    t.save()
+    t = Tweet.new(form, user_id=u.id)
+    # t.user_id = u.id
+    # t.save()
     # redirect有必要加query吗
     return redirect('/tweet/index?user_id={}'.format(u.id))
 
@@ -78,8 +78,8 @@ def update(request):
 def comment_add(request):
     user = current_user(request)
     form = request.form()
-    c = Comment(form, user_id=user.id)
-    c.save()
+    c = Comment.new(form, user_id=user.id)
+    # c.save()
     uid = c.tweet().user().id
     return redirect('/tweet/index?user_id={}'.format(uid))
 

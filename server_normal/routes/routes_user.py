@@ -42,12 +42,11 @@ def route_login(request):
     if request.method == 'POST':
         form = request.form()
         # 创建一个新的用户实例
-        u = User.new(form)
-        if u.validate_login():
+        if User.validate_login(form):
             # 设置session_id
             session_id = random_str()
             log("from route_login --> session_id: ", session_id)
-            u = User.find_by(username=u.username)
+            u = User.find_by(username=form.get('username'))
             session[session_id] = u.id
             headers['Set-Cookie'] = 'sid={}'.format(session_id)
             result = '登录成功'
@@ -75,12 +74,12 @@ def route_register(request):
     """
     if request.method == 'POST':
         form = request.form()
-        u = User.new(form)
-        if u.validate_register():
-            u.save()
+        # 这里既然有了form就不需要new了，如果new，会使id多加一次
+        # 不需要new之后，validate_register需要编成类方法
+        if User.validate_register(form):
             result = '注册成功<br> <pre>{}</pre>'.format(User.all())
         else:
-            result = '用户名或者密码长度必须大于2'
+            result = '用户名或者密码长度必须大于2或者用户名已注册'
     else:
         result = '请POST注册'
     body = template('register.html', result=result)
@@ -99,7 +98,6 @@ def route_message(request):
         # msg 和 message_list是2个不同的东西
         # msg是Message类的一个实例,msg.save()会将数据存入txt中
         # message_list是临时定义的空列表，其中元素是msg实例，每次启动会清零
-        msg.save()
         # log('msg: type  ', type(msg))
         # log('msg: str   ', str(msg))
         # log('msg: ', msg)

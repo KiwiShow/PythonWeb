@@ -1,5 +1,6 @@
 from utils import log, template
 from routes import redirect, response_with_headers
+from models.to_be_mongo import change_time
 from models.todo import Todo
 from models.user import User
 from routes.routes_user import current_user  # 不放在utils中放在routes中是因为一些变量只在routes.py中定义
@@ -25,7 +26,7 @@ def index(request):
     # 以下代码 是选择 加载所有的todo 还是 某个用户专属的todo
     u = current_user(request)
     # todo_list = To_do.all()
-    todo_list = Todo.find_all(user_id=u.id)
+    todo_list = Todo.find_all(user_id=u.id, deleted=False)  # 如果删除就不现实出来
     body = template('todo_index.html', todos=todo_list)
     header = response_with_headers(headers)
     r = header + '\r\n' + body
@@ -36,11 +37,11 @@ def add(request):
     u = current_user(request)
     if request.method == 'POST':
         form = request.form()
-        t = Todo.new(form)
+        t = Todo.new(form, user_id=u.id)
         # 进行权限绑定
-        t.user_id = u.id
-        t.save()
-    return redirect('/todo')
+        # t.user_id = u.id
+        # t.save()
+    return redirect('/todo/index')
 
 
 def edit(request):
@@ -52,7 +53,7 @@ def edit(request):
     u = current_user(request)
     # 权限验证: 非授权用户不能更改
     if u.id != t.user_id:
-        return redirect('/todo')
+        return redirect('/todo/index')
     body = template('todo_edit.html', t=t)
     header = response_with_headers(headers)
     r = header + '\r\n' + body
@@ -70,9 +71,9 @@ def update(request):
     t.title = form.get('title')
     # update时间
     tm = int(time.time())
-    t.updated_time = t.change_time(tm)
+    t.updated_time = change_time(tm)
     t.save()
-    return redirect('/todo')
+    return redirect('/todo/index')
 
 
 def delete(request):
@@ -81,9 +82,9 @@ def delete(request):
     # 权限验证: 非授权用户不能更改
     u = current_user(request)
     if u.id != t.user_id:
-        return redirect('/todo')
+        return redirect('/login')
     Todo.remove(todo_id)
-    return redirect('/todo')
+    return redirect('/todo/index')
 
 
 def admin(request):
