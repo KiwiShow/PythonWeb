@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+    <body>
+    <div class="login-form">
+        <input id="id-input-username" type="text" value="kiwi">
+        <br>
+        <input id="id-input-password" type="password" value="123">
+        <br>
+        <button id="id-button-login">login</button>
+    </div>
+<script>"use strict";
+
+    var log = function () {
+        console.log.apply(console, arguments)
+    }
+
+    log('code start!')
+
+
+    // 1 不要用全局变量，因为服务器端做负载均衡的时候容易出错。
+    // g = 1  // 全局变量
+    var a = 1
+    var b = 'gua'
+
+    var greeting = function () {
+        console.log('hello')
+    }
+    greeting()
+
+    var test = function (a, b, c) {
+       console.log(a, b, c)
+    }
+    test(1, 2, 3, 4)  // 1 2 3
+    test(1, 2)  // 1 2 undefined
+
+    var arr = [1, 2, 3]
+    arr.push(4)
+    log('array push: ', arr)
+    log('2 in array index is: ', arr.indexOf(2))
+    log('length: ', arr.length)
+
+
+    // js 的字典就是对象
+    // 并且可以省略 key 的引号
+    var obj = {
+        'key': 'value',
+        name: 'kiwi',
+    }
+    log(obj)
+    log('object key: ', obj.key, obj['name'], obj.kiwi)
+
+    // 查找元素使用 document.querySelector() 函数
+    // document 是整个文档(包含了 html), 可以理解为 html 的父节点
+    // 这个函数的参数是一个选择器(和 CSS 选择器一样)
+    // 选择器语法和 CSS 选择器一样, 现在只用 3 个基础选择器
+    // 元素选择器
+    var body = document.querySelector('body')
+    var form = document.querySelector('.login-form')
+    var loginButton = document.querySelector('#id-button-login')
+    log(body, form, loginButton)
+
+
+    // 操作元素的默认属性
+    var user = document.querySelector('#id-input-username')
+    var userValue = user.value
+    log('user value: ', userValue)
+    log('没有的属性: ', user.kiwi)
+    // 设置特定属性值
+    user.value = 'set value'
+
+    // 操作元素(创建, 删除, 修改)
+    // 修改
+    // 用 insertAdjacentHTML 给一个元素添加子元素
+    // 这里我们给 .login-form 添加一个 h1 标签
+    form.insertAdjacentHTML('beforeend', '<h1 class="kiwi-h1">hello</h1>')
+
+    // 删除元素
+    var pwd = document.querySelector('#id-input-password')
+    pwd.remove()
+
+    // 3, 添加事件, 使用 addEventListener 函数, 它有两个参数
+    // 第一个是事件的名字, 'click' 表示点击
+    // 第二个是事件发生后会被自动调用的函数
+    var clicked_times = 0
+    var clicked = function () {
+        clicked_times = clicked_times + 1
+        log('clicked times: ', clicked_times)
+    }
+    loginButton.addEventListener('click', clicked)
+
+    // 有一个常见的需求是在 字典/数组 和 字符串 之间相互转换
+    // 这个过程叫做 序列化/反序列化
+    // 在 js 中, 序列化使用 JSON 数据格式
+    // 全称 JavaScript Object Notation (js 对象标记)
+    var s = JSON.stringify([1, 2, 3, 4])
+    log('序列化后的字符串: ', typeof s, s)
+    var z = JSON.parse(s)
+    log('反序列化后的数组: ', typeof z, z)
+
+</script>
+</body>
+</html>
