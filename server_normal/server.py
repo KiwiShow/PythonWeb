@@ -97,6 +97,7 @@ def run(host='', port=3000):
     # 初始化 socket 套路
     # 使用 with 可以保证程序中断的时候正确关闭 socket 释放占用的端口
     log('from run --> start at', '{}:{}'.format(host, port))
+    print('from run --> start at', '{}:{}'.format(host, port))
     with socket.socket() as s:
         # 字典放在这里在多线程的时候就不会重复构造了
         r_d = {
