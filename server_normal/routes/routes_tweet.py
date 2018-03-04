@@ -6,7 +6,11 @@ from session import session
 
 from utils import log, template
 
-from routes import redirect, http_response, error
+from routes import (
+    redirect,
+    http_response,
+    error,
+)
 from routes.routes_user import current_user
 from routes.routes_todo import login_required
 

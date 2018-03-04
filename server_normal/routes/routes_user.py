@@ -1,19 +1,15 @@
 from utils import log, template
-from routes import http_response, random_str, response_with_headers
+from routes import (
+    redirect,
+    current_user,
+    http_response,
+    random_str,
+    response_with_headers,
+    login_required,
+    session,
+)
 from models.message import Message
 from models.user import User
-
-session = {}
-
-
-# 获取当前的user实例,
-def current_user(request):
-    session_id = request.cookies.get('sid', '')
-    log("from current_user --> session id : ", session_id)
-    log("from current_user --> session dict: ", session)
-    user_id = session.get(session_id, -1)
-    u = User.find_by(id=user_id)
-    return u
 
 
 def route_index(request):
@@ -116,23 +112,41 @@ def route_message(request):
 
 def route_profile(request):
     u = current_user(request)
-    if u is None:
-        header = 'HTTP/1.1 302 Temporarily Moved\r\n' \
-                 'Content-Type: text/html\r\n' \
-                 'Location: http://localhost:3000/login\r\n'
-        body = template('login.html', username='游客')
-        r = header + '\r\n' + body
-        return r.encode(encoding='utf-8')
-    else:
-        header = 'HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n'
-        # 页面全靠自己拼，template用不了
-        body = '<h1>id:{} ' \
-               'username: {} ' \
-               'note: {}</h1>'.format(u.id,
-                                      u.username,
-                                      u.note)
-        r = header + '\r\n' + body
-        return r.encode(encoding='utf-8')
+    body = '<h1>id:{} ' \
+           'username: {} ' \
+           'note: {}</h1>'.format(u.id,
+                                  u.username,
+                                  u.note)
+    return http_response(body)
+
+
+def admin(request):
+    headers = {
+        'Content-Type': 'text/html',
+    }
+    u = current_user(request)
+    # 设定用户id=1是管理员进行权限验证
+    if u.id != 1:
+        return redirect('/login')
+    body = template('admin.html', users=u.all())
+    header = response_with_headers(headers)
+    r = header + '\r\n' + body
+    return r.encode(encoding='utf-8')
+
+
+def admin_update(request):
+    u = current_user(request)
+    # 设定用户id=1是管理员进行权限验证
+    if u.id != 1:
+        return redirect('/login')
+    form = request.form()
+    print(form.get('id', -1))
+    user_id = int(form.get('id', -1))
+    user_password = form.get('password', '')
+    user = User.find_by(id=user_id)
+    user.password = user.salted_password(user_password)
+    user.save()
+    return redirect('/admin/users')
 
 
 route_dict = {
@@ -140,5 +154,7 @@ route_dict = {
     '/login': route_login,
     '/register': route_register,
     '/messages': route_message,
-    '/profile': route_profile,
+    '/profile': login_required(route_profile),
+    '/admin/users': login_required(admin),
+    '/admin/user/update': login_required(admin_update),
 }

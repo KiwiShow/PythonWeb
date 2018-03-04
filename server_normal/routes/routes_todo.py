@@ -1,23 +1,13 @@
 from utils import log, template
-from routes import redirect, response_with_headers
+from routes import (
+    redirect,
+    response_with_headers,
+    login_required,
+    current_user,
+)
 from models.to_be_mongo import change_time
 from models.todo import Todo
-from models.user import User
-from routes.routes_user import current_user  # 不放在utils中放在routes中是因为一些变量只在routes.py中定义
 import time
-
-
-# 登录验证
-def login_required(route_function):
-    def f(request):
-        u = current_user(request)
-        if u is None:
-            log('from route_todo --> 非登录用户 redirect 到/login')
-            return redirect('/login')
-        else:
-            return route_function(request)
-
-    return f
 
 
 def index(request):
@@ -88,40 +78,10 @@ def delete(request):
     return redirect('/todo/index')
 
 
-def admin(request):
-    headers = {
-        'Content-Type': 'text/html',
-    }
-    u = current_user(request)
-    # 设定用户id=1是管理员进行权限验证
-    if u.id != 1:
-        return redirect('/login')
-    body = template('admin.html', users=u.all())
-    header = response_with_headers(headers)
-    r = header + '\r\n' + body
-    return r.encode(encoding='utf-8')
-
-
-def admin_update(request):
-    u = current_user(request)
-    # 设定用户id=1是管理员进行权限验证
-    if u.id != 1:
-        return redirect('/login')
-    form = request.form()
-    user_id = int(form.get('id', -1))
-    user_password = form.get('password', '')
-    user = User.find_by(id=user_id)
-    user.password = user.salted_password(user_password)
-    user.save()
-    return redirect('/admin/users')
-
-
 route_dict = {
     '/todo/index': login_required(index),
     '/todo/add': login_required(add),
     '/todo/edit': login_required(edit),
     '/todo/update': login_required(update),
     '/todo/delete': login_required(delete),
-    '/admin/users': login_required(admin),
-    '/admin/user/update': login_required(admin_update),
 }
