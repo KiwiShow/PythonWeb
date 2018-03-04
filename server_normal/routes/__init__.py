@@ -1,4 +1,9 @@
 import random
+from utils import log
+from models.user import User
+
+
+session = {}
 
 
 def random_str():
@@ -43,3 +48,26 @@ def error(request, code=404):
         404: b'HTTP/1.1 404 NOT FOUND\r\n\r\n<h1>NOT FOUND</h1>',
     }
     return e.get(code, b'')
+
+
+# 登录验证
+def login_required(route_function):
+    def f(request):
+        u = current_user(request)
+        if u is None:
+            log('from route_todo --> 非登录用户 redirect 到/login')
+            return redirect('/login')
+        else:
+            return route_function(request)
+
+    return f
+
+
+# 获取当前的user实例,
+def current_user(request):
+    session_id = request.cookies.get('sid', '')
+    log("from current_user --> session id : ", session_id)
+    log("from current_user --> session dict: ", session)
+    user_id = session.get(session_id, -1)
+    u = User.find_by(id=user_id)
+    return u
