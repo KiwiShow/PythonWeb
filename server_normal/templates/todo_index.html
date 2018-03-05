@@ -6,23 +6,24 @@
 </head>
 <body>
     <h1>TODO</h1>
+    <h3>通过http的form添加</h3>
     <form action="/todo/add" method="post">
         <input type="text" name="title" placeholder="请输入todo">
         <br>
         <button type="submit">添加</button>
     </form>
+    <br>
+    <h3>通过ajax的form添加</h3>
+    <input id='id-input-todo' type="text" name="title" placeholder="请输入todo">
+    <br>
+    <button id='id-button-add'>添加</button>
 
     <div class="todo-list">
         <!--to_do will be here-->
         {% for t in todos %}
-        <div class="todo-cell" data-id="${id}">
-            <span>通过Http获得</span>
-            <span class="todo-id">{{ t.id }}</span>
-            <span class="todo-title">{{ t.title }}</span>
-            <span>created@{{ t.created_time }}</span>
-            <span>updated@{{ t.updated_time }}</span>
-            <button class="todo-edit" data-id="${id}">编辑</button>
-            <button class="todo-delete" data-id="${id}">删除</button>
+        <div class="todo-cell">
+            <h3>{{ t.id }} : {{ t.title}} created@{{ t.created_time }} updated@{{ t.updated_time }}
+                <a href="/todo/edit?id={{ t.id }}">编辑</a> <a href="/todo/delete?id={{ t.id }}">删除</a></h3>
         </div>
         {% endfor %}
         <br>

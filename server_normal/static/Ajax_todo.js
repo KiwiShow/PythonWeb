@@ -39,8 +39,30 @@ let allTodos = function () {
 
 }
 
+let bindEventTodoAdd = function () {
+    let b = e('#id-button-add')
+    b.addEventListener('click', function () {
+        let input = e('#id-input-todo')
+        let title = input.value
+        let form = {
+            title: title,
+        }
+        ajaxTodoAdd(form, function (r) {
+            let todo = JSON.parse(r)
+            insertTodo(todo)
+        })
+
+    })
+
+}
+
+let bindEvents = function() {
+    bindEventTodoAdd()
+}
+
 
 let __main = function() {
+    bindEvents()
     allTodos()
 }
 

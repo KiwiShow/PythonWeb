@@ -29,3 +29,8 @@ let ajaxTodoIndex = function (callback) {
     let path = '/ajax/todo/index'
     ajax('GET', path, '', callback)
 }
+
+let ajaxTodoAdd = function (form, callback) {
+    let path = '/ajax/todo/add'
+    ajax('POST', path, form, callback)
+}

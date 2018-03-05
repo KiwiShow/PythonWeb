@@ -16,6 +16,15 @@ def index(request):
     return json_response(todos)
 
 
+def add(request):
+    u = current_user(request)
+    if request.method == 'POST':
+        form = request.json()
+        t = Todo.new(form, user_id=u.id)
+    return json_response(t.json())
+
+
 route_dict = {
     '/ajax/todo/index': login_required(index),
+    '/ajax/todo/add': login_required(add),
 }
