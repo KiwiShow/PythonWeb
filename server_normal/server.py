@@ -10,6 +10,7 @@ from routes.routes_static import route_static
 from routes.routes_todo import route_dict as todo_routes
 from routes.routes_user import route_dict as user_routes
 from routes.routes_tweet import route_dict as tweet_routes
+from routes.routes_todo_ajax import route_dict as todo_ajax_routes
 
 
 # server.py的整理思路
@@ -106,6 +107,7 @@ def run(host='', port=3000):
         r_d.update(user_routes)
         r_d.update(todo_routes)
         r_d.update(tweet_routes)
+        r_d.update(todo_ajax_routes)
         # 使用 下面这句 可以保证程序重启后使用原有端口, 原因忽略
         s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         s.bind((host, port))
