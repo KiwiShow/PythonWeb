@@ -89,6 +89,13 @@ class MonModel(object):
     def all(cls):
         return cls._find()
 
+    # 找到类所有的实例,返回json类型数据
+    @classmethod
+    def all_json(cls):
+        ms = cls.all()
+        jsons = [m.json() for m in ms]
+        return jsons
+
     @classmethod
     def _find(cls, **kwargs):
         name = cls.__name__
@@ -107,6 +114,13 @@ class MonModel(object):
     @classmethod
     def find_all(cls, **kwargs):
         return cls._find(**kwargs)
+
+    # 找到类所有满足条件的实例，返回json类型数据
+    @classmethod
+    def find_all_json(cls, **kwargs):
+        ms = cls.find_all(**kwargs)
+        jsons = [m.json() for m in ms]
+        return jsons
 
     @classmethod
     def find(cls, id):
@@ -173,7 +187,7 @@ class MonModel(object):
         query = {
             fk: self.id,
         }
-        count = mongua.db[name]._find(query).count()
+        count = mon.web[name]._find(query).count()
         return count
 
 # # Model 是用于存储数据的基类
