@@ -1,0 +1,136 @@
+h1 {
+    color: white;
+}
+
+/*实现平方的功能*/
+.kiwi-square {
+    color: red;
+    background: lightblue;
+    position: relative;
+    top: -9px;
+    font-size: 18px;
+    left: 1px;
+}
+
+/*不会改变页面布局*/
+div {
+    outline: 1px red dashed;
+}
+
+/*参考第一个不是static的父节点元素移动*/
+.kiwi-abs {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: green;
+
+}
+
+
+.kiwi-relative {
+    position: relative;
+    /*inline元素水平居中套路*/
+    text-align: center;
+    height: 100px;
+    background: lightyellow;
+
+
+}
+
+.kiwi-relative {
+    transition: background 2s, height 3s;
+}
+
+/*以当前页面为参考值，无视滚动条*/
+.kiwi-fixed {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    background: red;
+
+}
+
+.kiwi-box {
+    width: 100px;
+    height: 100px;
+    background: lightblue;
+    overflow: hidden;
+    padding: 20px;
+    margin: 10px;
+    border: 29px solid red;
+    border-top: 38px solid blue;
+    /*padding: 10px 20px 30px 40px;*/
+    border-radius: 10px;
+}
+
+
+body {
+    /*background: url('3.jpg');*/
+}
+
+
+.kiwi-left {
+    float: left;
+}
+
+.kiwi-right {
+    float: right;
+}
+
+
+.kiwi-big-box {
+    background: lightblue;
+}
+
+/*block水平居中套路*/
+.kiwi-center-box {
+    margin: 0 auto;
+}
+
+/*inline元素垂直居中套路，父节点必须是relative*/
+.kiwi-vertical-center {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+
+
+/*伪类*/
+.kiwi-relative:hover {
+    background: blue;
+    cursor: pointer;
+    height: 200px;
+}
+
+
+/*伪元素*/
+p::after {
+    content: '!!!!';
+    display: block;
+}
+
+p::first-letter {
+    text-decoration: underline;
+    font-size: 20px;
+    color: red;
+}
+
+/*套路，可以用float元素撑起别的元素*/
+.kiwi-clear::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+.kiwi-static :hover {
+  animation: 1s rainbow infinite;
+}
+
+
+@keyframes rainbow {
+  0% { background: #c00; }
+  50% { background: orange; }
+  100% { background: yellowgreen; }
+}
