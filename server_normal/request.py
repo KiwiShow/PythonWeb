@@ -74,3 +74,7 @@ class Request(object):
             f[k] = v
         log('from form --> form(): ', f)
         return f
+
+    def json(self):
+        import json
+        return json.loads(self.body)
