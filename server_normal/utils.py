@@ -1,6 +1,7 @@
 from jinja2 import Environment, FileSystemLoader
 import os.path
 import time
+import json
 from datetime import datetime
 
 
@@ -27,3 +28,11 @@ env = Environment(loader=loader)
 def template(path, **kwargs):
     t = env.get_template(path)
     return t.render(**kwargs)
+
+
+# 针对ajax请求，返回json格式的数据
+def json_response(data):
+    header = 'HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n'
+    body = json.dumps(data, ensure_ascii=False, indent=2)
+    r = header + '\r\n' + body
+    return r.encode(encoding='utf-8')

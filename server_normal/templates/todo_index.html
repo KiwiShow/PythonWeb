@@ -12,11 +12,29 @@
         <button type="submit">添加</button>
     </form>
 
-    {% for t in todos %}
-        <div class="todo-cell">
-            <h3>{{ t.id }} : {{ t.title}} created@{{ t.created_time }} updated@{{ t.updated_time }}
-                <a href="/todo/edit?id={{ t.id }}">编辑</a> <a href="/todo/delete?id={{ t.id }}">删除</a></h3>
+    <div class="todo-list">
+        <!--to_do will be here-->
+        {% for t in todos %}
+        <div class="todo-cell" data-id="${id}">
+            <span>通过Http获得</span>
+            <span class="todo-id">{{ t.id }}</span>
+            <span class="todo-title">{{ t.title }}</span>
+            <span>created@{{ t.created_time }}</span>
+            <span>updated@{{ t.updated_time }}</span>
+            <button class="todo-edit" data-id="${id}">编辑</button>
+            <button class="todo-delete" data-id="${id}">删除</button>
         </div>
-    {% endfor %}
+        {% endfor %}
+        <br>
+        <br>
+    </div>
+    <!--{% for t in todos %}-->
+        <!--<div class="todo-cell">-->
+            <!--<h3>{{ t.id }} : {{ t.title}} created@{{ t.created_time }} updated@{{ t.updated_time }}-->
+                <!--<a href="/todo/edit?id={{ t.id }}">编辑</a> <a href="/todo/delete?id={{ t.id }}">删除</a></h3>-->
+        <!--</div>-->
+    <!--{% endfor %}-->
+    <script src="/static?file=Ajax_base.js"></script>
+    <script src="/static?file=Ajax_todo.js"></script>
 </body>
 </html>
