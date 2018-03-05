@@ -160,6 +160,14 @@ class MonModel(object):
         d = {k: v for k, v in _dict.items() if k not in self.blacklist()}
         return d
 
+    # def json(self):
+    #     """
+    #     返回当前 model 的字典表示
+    #     """
+    #     # copy 会复制一份新数据并返回
+    #     d = self.__dict__.copy()
+    #     return d
+
     def __repr__(self):
         """
         这是一个 魔法函数
