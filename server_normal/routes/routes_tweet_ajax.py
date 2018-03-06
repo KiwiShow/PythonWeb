@@ -33,17 +33,21 @@ def comment_index(request):
     return json_response(comments)
 
 
+def add(request):
+    u = current_user(request)
+    form = request.json()
+    t = Tweet.new(form, user_id=u.id)
+    return json_response(t.json())
 
-# def delete(request):
-#     u = current_user(request)
-#     tweet_id = int(request.query.get('id'))
-#     t = Tweet.find(tweet_id)
-#     if u.id == t.user_id:
-#         t.remove(tweet_id)
-#     # redirect有必要加query吗
-#     return redirect('/tweet/index?user_id={}'.format(u.id))
-#
-#
+def delete(request):
+    tweet_id = int(request.query.get('id'))
+    t = Tweet.find_by(id=tweet_id)
+    check_id(request, id=tweet_id)
+    Tweet.remove(tweet_id)
+    # 不管如何，都需要返回json的数据，为了触发ajax中回调函数
+    return json_response(t.json())
+
+
 # def new(request):
 #     body = template('tweet_new.html')
 #     return http_response(body)
@@ -106,6 +110,8 @@ def comment_index(request):
 
 route_dict = {
     '/ajax/tweet/index': login_required(index),
+    '/ajax/tweet/add': login_required(add),
+    '/ajax/tweet/delete': login_required(delete),
     '/ajax/comment/index': login_required(comment_index),
     # '/tweet/delete': login_required(delete),
     # '/tweet/edit': login_required(edit),

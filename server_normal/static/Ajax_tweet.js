@@ -83,9 +83,9 @@ let bindEventTweetAdd = function () {
     let b = e('#id-button-add')
     b.addEventListener('click', function () {
         let input = e('#id-input-tweet')
-        let title = input.value
+        let content = input.value
         let form = {
-            title: title,
+            content: content,
         }
         ajaxTweetAdd(form, function (r) {
             let tweet = JSON.parse(r)
@@ -182,14 +182,14 @@ let bindEventTweetComFalse = function () {
 }
 
 let bindEvents = function() {
-    // bindEventTweetAdd()
-    // bindEventTweetDelete()
+    bindEventTweetAdd()
+    bindEventTweetDelete()
     // bindEventTweetEdit()
     // bindEventTweetUpdate()
 }
 
 let __main = function() {
-    // bindEvents()
+    bindEvents()
     allTweets()
 }
 
