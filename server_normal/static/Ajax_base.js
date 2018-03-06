@@ -21,9 +21,6 @@ let ajax = function (method, path, data, responseCallback) {
 }
 
 
-// Refused to execute script from
-// 'http://localhost:3000/static?file=Ajax_base.js'
-// because its MIME type ('image/gif') is not executable.
 // todo的AjaxAPI
 let ajaxTodoIndex = function (callback) {
     let path = '/ajax/todo/index'
@@ -43,6 +40,11 @@ let ajaxTodoDelete = function (id, callback) {
 let ajaxTodoUpdate = function (form, callback) {
     let path = '/ajax/todo/update'
     ajax('POST', path, form, callback)
+}
+
+let ajaxTodoSwitch = function (id, status, callback) {
+    let path = '/ajax/todo/status_switch?id=' + id + '&status=' + status
+    ajax('GET', path, '', callback)
 }
 
 

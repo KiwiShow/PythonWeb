@@ -66,10 +66,19 @@ def delete(request):
     return redirect('/todo/index')
 
 
+def switch(request):
+    todo_id = int(request.query.get('id'))
+    check_id(request, id=todo_id)
+    status = request.query.get('completed')
+    t = Todo.complete(todo_id, status)
+    return redirect('/todo/index')
+
+
 route_dict = {
     '/todo/index': login_required(index),
     '/todo/add': login_required(add),
     '/todo/edit': login_required(edit),
     '/todo/update': login_required(update),
     '/todo/delete': login_required(delete),
+    '/todo/status_switch': login_required(switch),
 }

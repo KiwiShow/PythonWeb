@@ -38,11 +38,21 @@ def update(request):
     newTodo = Todo.update(form)
     return json_response(newTodo.json())
 
+
+def switch(request):
+    todo_id = int(request.query.get('id'))
+    check_id(request, id=todo_id)
+    status = request.query.get('status')
+    t = Todo.complete(todo_id, status)
+    return json_response(t.json())
+
+
 route_dict = {
     '/ajax/todo/index': login_required(index),
     '/ajax/todo/add': login_required(add),
     '/ajax/todo/delete': login_required(delete),
     '/ajax/todo/update': login_required(update),
+    '/ajax/todo/status_switch': login_required(switch),
 }
 
 # todo 权限验证和login_required可以用装饰器来做， 需要修改

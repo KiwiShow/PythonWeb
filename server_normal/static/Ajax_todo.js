@@ -13,6 +13,7 @@ let todoTemplate = function (todo) {
     let title = todo.title
     let ct = todo.created_time
     let ut = todo.updated_time
+    let status = todo.completed
     // data-* 是 HTML5 新增的自定义标签属性的方法
     // data-id="1" 获取属性的方式是  .dataset.id
     let tem = `
@@ -20,8 +21,11 @@ let todoTemplate = function (todo) {
             <span>通过ajax获得</span>
             <span class="todo-id">${id}</span>
             <span class="todo-title">${title}</span>
-            <span>created@${ct}</span>
-            <span>updated@${ut}</span>
+            <span>ct@${ct}</span>
+            <span>ut@${ut}</span>
+            <span class="todo-status">完成?${status}</span>
+            <button class="todo-finished" data-id="${id}">设置为-完成</button>
+            <button class="todo-unfinished" data-id="${id}">设置为-未完成</button>
             <button class="todo-edit" data-id="${id}">编辑</button>
             <button class="todo-delete" data-id="${id}">删除</button>
         </div>    
@@ -117,13 +121,45 @@ let bindEventTodoUpdate = function () {
     })
 }
 
+let bindEventTodoComTrue = function () {
+    let todoList = e('.todo-list')
+    todoList.addEventListener('click', function (event) {
+        let self = event.target
+        if (self.classList.contains('todo-finished')) {
+            let todoCell = self.closest('.todo-cell')
+            let id = todoCell.dataset.id
+            ajaxTodoSwitch(id, 'True', function(r){
+                let status = todoCell.querySelector('.todo-status')
+                status.innerHTML = 'True'
+
+            })
+        }
+    })
+}
+
+let bindEventTodoComFalse = function () {
+    let todoList = e('.todo-list')
+    todoList.addEventListener('click', function (event) {
+        let self = event.target
+        if (self.classList.contains('todo-unfinished')) {
+            let todoCell = self.closest('.todo-cell')
+            let id = todoCell.dataset.id
+            ajaxTodoSwitch(id, 'False', function(r){
+                let status = todoCell.querySelector('.todo-status')
+                status.innerHTML = 'False'
+            })
+        }
+    })
+}
+
 let bindEvents = function() {
     bindEventTodoAdd()
     bindEventTodoDelete()
     bindEventTodoEdit()
     bindEventTodoUpdate()
+    bindEventTodoComTrue()
+    bindEventTodoComFalse()
 }
-
 
 let __main = function() {
     bindEvents()
