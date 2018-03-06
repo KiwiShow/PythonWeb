@@ -54,12 +54,6 @@ let ajaxTweetIndex = function (callback) {
     ajax('GET', path, '', callback)
 }
 
-
-let ajaxCommentIndex = function (tweet_id, callback) {
-    let path = '/ajax/comment/index?tweet_id=' + tweet_id
-    ajax('GET', path, '', callback)
-}
-
 let ajaxTweetAdd = function (form, callback) {
     let path = '/ajax/tweet/add'
     ajax('POST', path, form, callback)
@@ -70,6 +64,15 @@ let ajaxTweetDelete = function (id, callback) {
     ajax('GET', path, '', callback)
 }
 
+let ajaxTweetUpdate = function (form, callback) {
+    let path = '/ajax/tweet/update'
+    ajax('POST', path, form, callback)
+}
+
+let ajaxCommentIndex = function (tweet_id, callback) {
+    let path = '/ajax/comment/index?tweet_id=' + tweet_id
+    ajax('GET', path, '', callback)
+}
 
 let ajaxCommentAdd = function (form, callback) {
     let path = '/ajax/comment/add'

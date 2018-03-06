@@ -1,7 +1,7 @@
-from models.to_be_mongo import MonModel
+from models.to_be_mongo import MonModel, change_time
 from models.user import User
 from models.comment import Comment
-
+import time
 
 class Tweet(MonModel):
     """
@@ -25,7 +25,16 @@ class Tweet(MonModel):
     # def user(self):
     #     u = User.find_by(id=self.__dict__.get('user_id'))
     #     return u.json()['username']
-
+    @classmethod
+    def update(cls, form):
+        tweet_id = int(form.get('id', -1))
+        t = Tweet.find_by(id=tweet_id)
+        t.content = form.get('content')
+        tm = int(time.time())
+        t.updated_time = change_time(tm)
+        t.save()
+        return t
+    
     def comments(self):
         # return [c for c in Comment.all() if c.tweet_id == self.id]
         return Comment.find_all(tweet_id=self.id, deleted=False)

@@ -136,14 +136,14 @@ let bindEventTweetUpdate = function () {
             let id = tweetCell.dataset.id
             let form = {
                 id: id,
-                title: input.value,
+                content: input.value,
             }
             ajaxTweetUpdate(form, function(r){
                 let updateForm = self.closest('.tweet-update-form')
                 updateForm.remove()
                 let tweet = JSON.parse(r)
-                let title = tweetCell.querySelector('.tweet-title')
-                title.innerHTML = tweet.title
+                let  content = tweetCell.querySelector('.tweet-content')
+                content.innerHTML = tweet.content
                 // title.value = tweet.title
             })
         }
@@ -184,8 +184,8 @@ let bindEventTweetComFalse = function () {
 let bindEvents = function() {
     bindEventTweetAdd()
     bindEventTweetDelete()
-    // bindEventTweetEdit()
-    // bindEventTweetUpdate()
+    bindEventTweetEdit()
+    bindEventTweetUpdate()
 }
 
 let __main = function() {

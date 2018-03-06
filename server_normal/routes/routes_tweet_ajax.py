@@ -7,7 +7,6 @@ from session import session
 from utils import log, template, json_response
 
 from routes import (
-    redirect,
     http_response,
     error,
     login_required,
@@ -47,6 +46,11 @@ def delete(request):
     # 不管如何，都需要返回json的数据，为了触发ajax中回调函数
     return json_response(t.json())
 
+def update(request):
+    form = request.json()
+    check_id(request, form)
+    newTweet = Tweet.update(form)
+    return json_response(newTweet.json())
 
 # def new(request):
 #     body = template('tweet_new.html')
@@ -112,6 +116,7 @@ route_dict = {
     '/ajax/tweet/index': login_required(index),
     '/ajax/tweet/add': login_required(add),
     '/ajax/tweet/delete': login_required(delete),
+    '/ajax/tweet/update': login_required(update),
     '/ajax/comment/index': login_required(comment_index),
     # '/tweet/delete': login_required(delete),
     # '/tweet/edit': login_required(edit),
