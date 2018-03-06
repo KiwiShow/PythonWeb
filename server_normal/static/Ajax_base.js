@@ -34,3 +34,10 @@ let ajaxTodoAdd = function (form, callback) {
     let path = '/ajax/todo/add'
     ajax('POST', path, form, callback)
 }
+
+let ajaxTodoDelete = function (id, callback) {
+    let path = '/ajax/todo/delete?id=' + id
+    ajax('GET', path, '', callback)
+}
+
+

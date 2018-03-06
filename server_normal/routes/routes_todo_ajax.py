@@ -24,7 +24,18 @@ def add(request):
     return json_response(t.json())
 
 
+def delete(request):
+    todo_id = int(request.query.get('id'))
+    t = Todo.find_by(id=todo_id)
+    u = current_user(request)
+    if u.id != t.user_id:
+        return redirect('/login')
+    Todo.remove(todo_id)
+    return json_response(t.json())
+
+
 route_dict = {
     '/ajax/todo/index': login_required(index),
     '/ajax/todo/add': login_required(add),
+    '/ajax/todo/delete': login_required(delete),
 }

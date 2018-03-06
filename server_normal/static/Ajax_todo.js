@@ -1,11 +1,12 @@
 
 //id title created_time updated_time
 let todoTemplate = function (todo) {
-    log('in todoTemplate')
     let id = todo.id
     let title = todo.title
     let ct = todo.created_time
     let ut = todo.updated_time
+    // data-* 是 HTML5 新增的自定义标签属性的方法
+    // data-id="1" 获取属性的方式是  .dataset.id
     let tem = `
         <div class="todo-cell" data-id="${id}">
             <span>通过ajax获得</span>
@@ -21,14 +22,12 @@ let todoTemplate = function (todo) {
 }
 
 let insertTodo = function (todo) {
-    log('in insertTodo')
     let todoCell = todoTemplate(todo)
     let todoList = e('.todo-list')
     todoList.insertAdjacentHTML('beforeend', todoCell)
 }
 
 let allTodos = function () {
-    log('in allTodos')
     ajaxTodoIndex(function (r) {
         let todos = JSON.parse(r)
         for (let i = 0; i < todos.length; i++) {
@@ -56,8 +55,25 @@ let bindEventTodoAdd = function () {
 
 }
 
+// 事件委托
+let bindEventTodoDelete = function () {
+    let todoList = e('.todo-list')
+    todoList.addEventListener('click', function (event) {
+        let self = event.target
+        if (self.classList.contains('todo-delete')) {// 这里没有点符号
+            let todoId = self.dataset.id
+            ajaxTodoDelete(todoId, function (r) {
+                self.parentElement.remove()
+            })
+        }
+
+    })
+
+}
+
 let bindEvents = function() {
     bindEventTodoAdd()
+    bindEventTodoDelete()
 }
 
 
