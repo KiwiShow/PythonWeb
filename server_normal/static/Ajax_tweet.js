@@ -17,15 +17,24 @@ let tweetTemplate = function (tweet) {
     let user_id = tweet.user_id
     let tem = `
         <div class="tweet-cell" data-id="${id}">
-            <span>通过ajax获得</span>
-            <span class="tweet-content">${content}</span>
-            <span class="tweet-user_id">from---${user_id}</span>
-            <button class="tweet-delete" data-id="${id}">删除</button>
-            <button class="tweet-edit" data-id="${id}">编辑</button>
+            <div class="tweet-pure-cell" data-id="${id}">
+                <span class="tweet-content">${content}</span>
+                <span class="tweet-user_id">from---${user_id}</span>
+                <button class="tweet-delete" data-id="${id}">删除</button>
+                <button class="tweet-edit" data-id="${id}">编辑</button>
+            </div>
+            <div class="comment-form" data-id="${id}">
+                <h6>评论</h6>
+                <div class="comment-list" data-id="${id}">
+                    <!--comment-list goes here-->
+                </div>
+                <input type="hidden" name="tweet_id" value="${id}">
+                <input class="comment-add-input" name="content">
+                <br>
+                <button class="comment-add" data-id="${id}">添加</button>
+            </div>  
         </div> 
-        <h6>评论</h6>
-        <div class="comment-list">
-        </div>   
+ 
     `
     return tem
 }
@@ -37,11 +46,9 @@ let commentTemplate = function (comment) {
     let tweet_id = comment.tweet_id
     let tem = `
         <div class="comment-cell" data-id="${id}">
-            <span>通过ajax获得</span>
-            <span class="comment-user_id">${user_id}</span>
+            <span class="comment-user_id">${user_id}: </span>
             <span class="comment-content">${content}</span>
             <button class="comment-delete" data-id="${id}">删除</button>
-            <button class="comment-edit" data-id="${id}">编辑</button>
         </div>    
     `
     return tem
@@ -77,7 +84,6 @@ let allTweets = function () {
     })
 
 }
-
 
 let bindEventTweetAdd = function () {
     let b = e('#id-button-add')
@@ -129,9 +135,10 @@ let bindEventTweetEdit = function () {
 let bindEventTweetUpdate = function () {
     let tweetList = e('.tweet-list')
     tweetList.addEventListener('click', function (event) {
+        // log(event.target)
         let self = event.target
         if (self.classList.contains('tweet-update')) {
-            let tweetCell = self.closest('.tweet-cell')
+            let tweetCell = self.closest('.tweet-pure-cell')
             let input = tweetCell.querySelector('.tweet-update-input')
             let id = tweetCell.dataset.id
             let form = {
@@ -150,35 +157,32 @@ let bindEventTweetUpdate = function () {
     })
 }
 
-let bindEventTweetComTrue = function () {
-    let tweetList = e('.tweet-list')
-    tweetList.addEventListener('click', function (event) {
+let bindEventCommentAdd = function () {
+    let b = document.body
+    log(b)
+    b.addEventListener('click', function (event) {
         let self = event.target
-        if (self.classList.contains('tweet-finished')) {
-            let tweetCell = self.closest('.tweet-cell')
-            let id = tweetCell.dataset.id
-            ajaxTweetSwitch(id, 'True', function(r){
-                let status = tweetCell.querySelector('.tweet-status')
-                status.innerHTML = 'True'
-
+        // log(self)
+        // log(self.classList)
+        if(self.classList.contains('comment-add')) {
+            let commentForm = self.closest('.comment-form')
+            log(commentForm)
+            let tweetId = commentForm.dataset.id
+            let content = commentForm.querySelector('.comment-add-input').value
+            let form = {
+                tweet_id: tweetId,
+                content: content,
+            }
+            ajaxCommentAdd(form, function(r) {
+                // 收到返回的数据, 插入到页面中
+                let comment = JSON.parse(r)
+//                insertComment(comment)
+                insertComment(comment)
             })
         }
-    })
-}
 
-let bindEventTweetComFalse = function () {
-    let tweetList = e('.tweet-list')
-    tweetList.addEventListener('click', function (event) {
-        let self = event.target
-        if (self.classList.contains('tweet-unfinished')) {
-            let tweetCell = self.closest('.tweet-cell')
-            let id = tweetCell.dataset.id
-            ajaxTweetSwitch(id, 'False', function(r){
-                let status = tweetCell.querySelector('.tweet-status')
-                status.innerHTML = 'False'
-            })
-        }
     })
+
 }
 
 let bindEvents = function() {
@@ -186,11 +190,16 @@ let bindEvents = function() {
     bindEventTweetDelete()
     bindEventTweetEdit()
     bindEventTweetUpdate()
+    bindEventCommentAdd()
+    // bindEventTweetDelete()
+    // bindEventTweetEdit()
+    // bindEventTweetUpdate()
 }
 
 let __main = function() {
-    bindEvents()
     allTweets()
+    bindEvents()
+
 }
 
 __main()
