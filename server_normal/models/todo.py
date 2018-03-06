@@ -1,4 +1,5 @@
-from models.to_be_mongo import MonModel
+from models.to_be_mongo import MonModel, change_time
+
 import time
 
 
@@ -24,6 +25,17 @@ class Todo(MonModel):
         t.completed = completed
         t.save()
         return t
+
+    @classmethod
+    def update(cls, form):
+        todo_id = int(form.get('id', -1))
+        t = Todo.find_by(id=todo_id)
+        t.title = form.get('title')
+        tm = int(time.time())
+        t.updated_time = change_time(tm)
+        t.save()
+        return t
+
 
     # def change_time(self, t):
     #     format = '%Y/%m/%d %H:%M:%S'
