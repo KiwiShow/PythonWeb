@@ -31,11 +31,33 @@ def delete(request):
     if u.id != t.user_id:
         return redirect('/login')
     Todo.remove(todo_id)
+    # 不管如何，都需要返回json的数据，为了触发ajax中回调函数
     return json_response(t.json())
 
+
+def update(request):
+    form = request.json()
+    todo_id = int(form.get('id', -1))
+    t = Todo.find_by(id=todo_id)
+    u = current_user(request)
+    if u.id != t.user_id:
+        return redirect('/todo')
+    t.title = form.get('title')
+    # update时间
+    tm = int(time.time())
+    t.updated_time = change_time(tm)
+    t.save()
+    return json_response(t.json())
 
 route_dict = {
     '/ajax/todo/index': login_required(index),
     '/ajax/todo/add': login_required(add),
     '/ajax/todo/delete': login_required(delete),
+    '/ajax/todo/update': login_required(update),
 }
+
+# todo 权限验证和login_required可以用装饰器来做， 需要修改
+# todo update等函数需要在类中定义，在这里每个函数内部只需要3步
+# 1.拿数据
+# 2.处理数据
+# 3.返回数据

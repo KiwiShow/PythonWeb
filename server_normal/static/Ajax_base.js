@@ -40,4 +40,9 @@ let ajaxTodoDelete = function (id, callback) {
     ajax('GET', path, '', callback)
 }
 
+let ajaxTodoUpdate = function (form, callback) {
+    let path = '/ajax/todo/update'
+    ajax('POST', path, form, callback)
+}
+
 

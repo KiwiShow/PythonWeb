@@ -1,3 +1,11 @@
+let todoUpdateFormTemplate = function () {
+    let tem = `
+        <div class="todo-update-form">
+            <input class="todo-update-input">
+            <button class="todo-update">更新</button>
+    `
+    return tem
+}
 
 //id title created_time updated_time
 let todoTemplate = function (todo) {
@@ -71,9 +79,49 @@ let bindEventTodoDelete = function () {
 
 }
 
+let bindEventTodoEdit = function () {
+    let todoList = e('.todo-list')
+    todoList.addEventListener('click', function (event) {
+        let self = event.target
+        if (self.classList.contains('todo-edit')) {
+            let t = todoUpdateFormTemplate()
+            // 有个bug是每次点击都会出现input
+            // 更好的做法是用CSS实现一个input框
+            self.parentElement.insertAdjacentHTML('beforeend', t)
+            // self.parentElement.innerHTML += t
+        }
+    })
+}
+
+let bindEventTodoUpdate = function () {
+    let todoList = e('.todo-list')
+    todoList.addEventListener('click', function (event) {
+        let self = event.target
+        if (self.classList.contains('todo-update')) {
+            let todoCell = self.closest('.todo-cell')
+            let input = todoCell.querySelector('.todo-update-input')
+            let id = todoCell.dataset.id
+            let form = {
+                id: id,
+                title: input.value,
+            }
+            ajaxTodoUpdate(form, function(r){
+                let updateForm = self.closest('.todo-update-form')
+                updateForm.remove()
+                let todo = JSON.parse(r)
+                let title = todoCell.querySelector('.todo-title')
+                title.innerHTML = todo.title
+                // title.value = todo.title
+            })
+        }
+    })
+}
+
 let bindEvents = function() {
     bindEventTodoAdd()
     bindEventTodoDelete()
+    bindEventTodoEdit()
+    bindEventTodoUpdate()
 }
 
 
