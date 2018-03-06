@@ -35,7 +35,11 @@ def delete(request):
     tweet_id = int(request.query.get('id'))
     t = Tweet.find(tweet_id)
     if u.id == t.user_id:
+        # 这里只是删除了tweet，但是其所拥有的comment的deleted字段变成False
         t.remove(tweet_id)
+        for c in t.comments():
+            c.deleted = True
+            c.save()
     # redirect有必要加query吗
     return redirect('/tweet/index?user_id={}'.format(u.id))
 
