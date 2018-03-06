@@ -48,3 +48,16 @@ let ajaxTodoSwitch = function (id, status, callback) {
 }
 
 
+// tweet的AjaxAPI
+let ajaxTweetIndex = function (callback) {
+    let path = '/ajax/tweet/index'
+    ajax('GET', path, '', callback)
+}
+
+
+let ajaxCommentIndex = function (tweet_id, callback) {
+    let path = '/ajax/comment/index?tweet_id=' + tweet_id
+    ajax('GET', path, '', callback)
+}
+
+

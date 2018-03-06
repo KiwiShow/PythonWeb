@@ -1,19 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Tweet index</title>
 </head>
-<body>
-    <h1>{{ user.username }}的Tweet</h1>
-    <br>
+<p>
+    <h4>{{ user.username }}的Tweet</h4>
+    <h4>通过http的form添加</h4>
     <a href="/tweet/new">写新推特</a>
-
-    {% for t in tweets %}
-    <p>
-        {{ t.content }} from User<<---{{ user.username}}
+    <br>
+    <h4>通过ajax的form添加</h4>
+    <input id='id-input-tweet' type="text" name="title" placeholder="请输入tweet">
+    <br>
+    <button id='id-button-add'>添加</button>
+    <br>
+    <h3>http交互界面</h3>
+    <div class="tweet-list">
+        <h6>tweets</h6>
+        {% for t in tweets %}
+        {{ t.content }} from ---{{ user.username}}
         <a href="/tweet/delete?id={{ t.id }}">delete</a>
         <a href="/tweet/edit?id={{ t.id }}">edit</a>
+        <h6>评论</h6>
         {% for c in t.comments() %}
         <div class="comment">
             {{ c.user().username }} : {{ c.content }}
@@ -26,7 +34,12 @@
             <br>
             <button type="submit">添加评论</button>
         </form>
-    </p>
-    {% endfor %}
+        {% endfor %}
+        <h4>ajax交互界面</h4>
+        <h6>tweets</h6>
+    </div>
+
+    <script src='/static?file=Ajax_base.js'></script>
+    <script src='/static?file=Ajax_tweet.js'></script>
 </body>
 </html>
