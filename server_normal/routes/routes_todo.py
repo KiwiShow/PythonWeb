@@ -4,6 +4,7 @@ from routes import (
     response_with_headers,
     login_required,
     current_user,
+    check_id,
 )
 from models.to_be_mongo import change_time
 from models.todo import Todo
@@ -53,27 +54,14 @@ def edit(request):
 
 def update(request):
     form = request.form()
-    todo_id = int(form.get('id', -1))
-    t = Todo.find_by(id=todo_id)
-    u = current_user(request)
-    # 权限验证: 非授权用户不能更改
-    if u.id != t.user_id:
-        return redirect('/todo')
-    t.title = form.get('title')
-    # update时间
-    tm = int(time.time())
-    t.updated_time = change_time(tm)
-    t.save()
+    check_id(request, form)
+    newTodo = Todo.update(form)
     return redirect('/todo/index')
 
 
 def delete(request):
     todo_id = int(request.query.get('id'))
-    t = Todo.find_by(id=todo_id)
-    # 权限验证: 非授权用户不能更改
-    u = current_user(request)
-    if u.id != t.user_id:
-        return redirect('/login')
+    check_id(request, id=todo_id)
     Todo.remove(todo_id)
     return redirect('/todo/index')
 
