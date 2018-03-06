@@ -2,6 +2,7 @@ import random
 from utils import log
 from models.user import User
 from models.todo import Todo
+from models.tweet import Tweet
 
 
 session = {}
@@ -70,6 +71,16 @@ def check_id(request, form=None, id=None):
     else:
         todo_id = id
     t = Todo.find_by(id=todo_id)
+    u = current_user(request)
+    if u.id != t.user_id:
+        return redirect('/login')
+
+def check_id_tweet(request, form=None, id=None):
+    if id == None:
+        tweet_id = int(form.get('id', -1))
+    else:
+        tweet_id = id
+    t = Tweet.find_by(id=tweet_id)
     u = current_user(request)
     if u.id != t.user_id:
         return redirect('/login')

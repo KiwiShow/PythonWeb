@@ -10,7 +10,7 @@ from routes import (
     http_response,
     error,
     login_required,
-    check_id,
+    check_id_tweet,
 )
 from routes.routes_user import current_user
 
@@ -38,70 +38,32 @@ def add(request):
     t = Tweet.new(form, user_id=u.id)
     return json_response(t.json())
 
+
 def delete(request):
     tweet_id = int(request.query.get('id'))
     t = Tweet.find_by(id=tweet_id)
-    check_id(request, id=tweet_id)
+    check_id_tweet(request, id=tweet_id)
     Tweet.remove(tweet_id)
     # 不管如何，都需要返回json的数据，为了触发ajax中回调函数
     return json_response(t.json())
 
+
 def update(request):
     form = request.json()
-    check_id(request, form)
+    check_id_tweet(request, form)
     newTweet = Tweet.update(form)
     return json_response(newTweet.json())
 
-# def new(request):
-#     body = template('tweet_new.html')
-#     return http_response(body)
-#
-#
-# def add(request):
-#     u = current_user(request)
-#     form = request.form()
-#     t = Tweet.new(form, user_id=u.id)
-#     # t.user_id = u.id
-#     # t.save()
-#     # redirect有必要加query吗
-#     return redirect('/tweet/index?user_id={}'.format(u.id))
-#
-#
-# def edit(request):
-#     tweet_id = request.query.get('id', -1)
-#     tweet_id = int(tweet_id)
-#     t = Tweet.find(tweet_id)
-#     if t is None:
-#         return error(request)
-#     body = template('tweet_edit.html',
-#                     tweet_id=t.id,
-#                     tweet_content=t.content)
-#     return http_response(body)
-#
-#
-# def update(request):
-#     u = current_user(request)
-#     form = request.form()
-#     content = form.get('content', '')
-#     tweet_id = int(form.get('id', -1))
-#     t = Tweet.find(tweet_id)
-#     if u.id != t.user_id:
-#         return error(request)
-#     t.content = content
-#     t.save()
-#     # redirect有必要加query吗
-#     return redirect('/tweet/index?user_id={}'.format(u.id))
-#
-#
-# def comment_add(request):
-#     user = current_user(request)
-#     form = request.form()
-#     c = Comment.new(form, user_id=user.id)
-#     # c.save()
-#     uid = c.tweet().user().id
-#     return redirect('/tweet/index?user_id={}'.format(uid))
-#
-#
+
+
+def comment_add(request):
+    user = current_user(request)
+    form = request.form()
+    c = Comment.new(form, user_id=user.id)
+    # uid = c.tweet().user().id
+    return json_response(c.json())
+
+
 # def comment_delete(request):
 #     u = current_user(request)
 #     comment_id = request.query.get('id', -1)
@@ -117,13 +79,8 @@ route_dict = {
     '/ajax/tweet/add': login_required(add),
     '/ajax/tweet/delete': login_required(delete),
     '/ajax/tweet/update': login_required(update),
+    # 评论功能
     '/ajax/comment/index': login_required(comment_index),
-    # '/tweet/delete': login_required(delete),
-    # '/tweet/edit': login_required(edit),
-    # '/tweet/update': login_required(update),
-    # '/tweet/add': login_required(add),
-    # '/tweet/new': login_required(new),
-    # # 评论功能
-    # '/comment/add': login_required(comment_add),
-    # '/comment/delete': login_required(comment_delete),
+    '/ajax/comment/add': login_required(comment_add),
+    # '/ajax/comment/delete': login_required(comment_delete),
 }
