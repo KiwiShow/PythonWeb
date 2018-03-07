@@ -11,6 +11,7 @@ from routes import (
     http_response,
     error,
     check_id_tweet,
+    check_id_comment,
 )
 from routes.routes_user import current_user
 from routes.routes_todo import login_required
@@ -99,6 +100,26 @@ def comment_delete(request):
     return redirect('/tweet/index?user_id={}'.format(u.id))
 
 
+def comment_edit(request):
+    comment_id = request.query.get('id', -1)
+    comment_id = int(comment_id)
+    c = Comment.find(comment_id)
+    if c is None:
+        return error(request)
+    body = template('comment_edit.html',
+                    comment_id=c.id,
+                    comment_content=c.content)
+    return http_response(body)
+
+
+def comment_update(request):
+    form = request.form()
+    check_id_comment(request, form)
+    newTweet = Comment.update(form)
+    # redirect有必要加query吗
+    return redirect('/tweet/index')
+
+
 route_dict = {
     '/tweet/index': login_required(index),
     '/tweet/delete': login_required(delete),
@@ -109,4 +130,6 @@ route_dict = {
     # 评论功能
     '/comment/add': login_required(comment_add),
     '/comment/delete': login_required(comment_delete),
+    '/comment/edit': login_required(comment_edit),
+    '/comment/update': login_required(comment_update),
 }

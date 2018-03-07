@@ -19,13 +19,14 @@
         <h6>tweets</h6>
         {% for t in tweets %}
         {{ t.content }} from {{ user.username}} ct@{{ t.created_time}} ut@{{ t.updated_time}}
-        <a href="/tweet/delete?id={{ t.id }}">delete</a>
-        <a href="/tweet/edit?id={{ t.id }}">edit</a>
+        <a href="/tweet/delete?id={{ t.id }}">删除</a>
+        <a href="/tweet/edit?id={{ t.id }}">编辑</a>
         <h6>评论</h6>
         {% for c in t.comments() %}
         <div class="comment">
             {{ c.user().username }} : {{ c.content }}  ct@{{ c.created_time}} ut@{{ c.updated_time}}
-        <a href="/comment/delete?id={{ c.id }}">delete</a>
+        <a href="/comment/delete?id={{ c.id }}">删除</a>
+        <a href="/comment/edit?id={{ c.id }}">编辑</a>
         </div>
         {% endfor %}
         <form action="/comment/add" method="post">
