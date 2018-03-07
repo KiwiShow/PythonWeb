@@ -101,16 +101,15 @@ def comment_delete(request):
 
 
 def comment_edit(request):
-    comment_id = request.query.get('id', -1)
-    comment_id = int(comment_id)
+    u = current_user(request)
+    comment_id = int(request.query.get('id', -1))
     c = Comment.find(comment_id)
-    if c is None:
-        return error(request)
-    body = template('comment_edit.html',
-                    comment_id=c.id,
-                    comment_content=c.content)
-    return http_response(body)
-
+    if u.id == c.user_id:
+        body = template('comment_edit.html',
+                        comment_id=c.id,
+                        comment_content=c.content)
+        return http_response(body)
+    return redirect('/tweet/index?user_id={}'.format(u.id))
 
 def comment_update(request):
     form = request.form()
