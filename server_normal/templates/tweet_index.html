@@ -6,6 +6,12 @@
 </head>
 <p>
     <h4>{{ user.username }}的Tweet</h4>
+
+    <h3>去用户？的tweet</h3>
+    <form action="/tweet/index" method="get">
+        <input name="user_id" placeholder="输入用户id">
+        <button type="submit">GO</button>
+    </form>
     <h4>通过http的form添加</h4>
     <a href="/tweet/new">写新推特</a>
     <br>
