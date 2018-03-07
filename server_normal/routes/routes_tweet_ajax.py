@@ -56,7 +56,6 @@ def update(request):
     return json_response(newTweet.json())
 
 
-
 def comment_add(request):
     user = current_user(request)
     form = request.json()
@@ -79,6 +78,7 @@ def comment_update(request):
     check_id_comment(request, form)
     newComment = Comment.update(form)
     return json_response(newComment.json())
+
 
 route_dict = {
     '/ajax/tweet/index': login_required(index),

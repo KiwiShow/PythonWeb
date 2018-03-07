@@ -182,9 +182,12 @@ let bindEventTweetUpdate = function () {
 }
 
 // todo 搞懂self event target
-// todo comment的 edit 和 update
-// todo 测试不同user互删权限
-// todo 增加tweet和comment的ct和ut
+// 出现的问题是a用户不管在http://localhost:3000/tweet/index?user_id=3
+// 的情况下ajax交互界面显示依然a的tweet及其command。
+// 试图通过go-to-user-input获得user_id传给ajaxapi，但是不成功。
+// 因为每次go-to-user-button每次submit之后页面会重新渲染
+// 所以如果go-to-user-input没有默认值则ajax没有数据显示，
+// 有默认值则ajax一直显示默认user_id的数据😢
 let bindEventCommentAdd = function () {
     let b = e('.tweet-list')
     b.addEventListener('click', function (event) {
@@ -271,7 +274,6 @@ let bindEventCommentUpdate = function () {
         }
     })
 }
-
 
 let bindEvents = function() {
     bindEventTweetAdd()

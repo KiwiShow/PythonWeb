@@ -8,9 +8,9 @@
     <h4>{{ user.username }}的Tweet</h4>
 
     <h3>去用户？的tweet</h3>
-    <form action="/tweet/index" method="get">
-        <input name="user_id" placeholder="输入用户id">
-        <button type="submit">GO</button>
+    <form name="go_to_user_form" action="/tweet/index" method="get">
+        <input class="go-to-user-input" name="user_id" value="-1" type="text" placeholder="输入用户id">
+        <button class="go-to-user-button">GO</button>
     </form>
     <h4>通过http的form添加</h4>
     <a href="/tweet/new">写新推特</a>
