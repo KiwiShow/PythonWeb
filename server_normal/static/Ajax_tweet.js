@@ -16,11 +16,15 @@ let tweetTemplate = function (tweet) {
     let content = tweet.content
     let user_id = tweet.user_id
     let user_name = tweet.user_name
+    let ct = tweet.created_time
+    let ut = tweet.updated_time
     let tem = `
         <div class="tweet-cell" data-id="${id}">
             <div class="tweet-pure-cell" data-id="${id}">
                 <span class="tweet-content">${content}</span>
-                <span class="tweet-user_id">from---${user_name}</span>
+                <span class="tweet-user_id">from${user_name}</span>
+                <span class="tweet-ct">ct${ct}</span>
+                <span class="tweet-ut">ut${ut}</span>
                 <button class="tweet-delete" data-id="${id}">删除</button>
                 <button class="tweet-edit" data-id="${id}">编辑</button>
             </div>
@@ -45,10 +49,14 @@ let commentTemplate = function (comment) {
     let user_id = comment.user_id
     let user_name = comment.user_name
     let tweet_id = comment.tweet_id
+    let ct = comment.created_time
+    let ut = comment.updated_time
     let tem = `
         <div class="comment-cell" data-id="${id}">
             <span class="comment-user_id">${user_name}: </span>
             <span class="comment-content">${content}</span>
+            <span class="comment-ct">ct${ct}</span>
+            <span class="comment-ut">ut${ut}</span>
             <button class="comment-delete" data-id="${id}">删除</button>
         </div>    
     `
@@ -151,7 +159,11 @@ let bindEventTweetUpdate = function () {
                 updateForm.remove()
                 let tweet = JSON.parse(r)
                 let  content = tweetCell.querySelector('.tweet-content')
+                let  tweet_ct = tweetCell.querySelector('.tweet-ct')
+                let  tweet_ut = tweetCell.querySelector('.tweet-ut')
                 content.innerHTML = tweet.content
+                tweet_ct.innerHTML = tweet.created_time
+                tweet_ut.innerHTML = tweet.updated_time
                 // title.value = tweet.title
             })
         }
@@ -159,6 +171,9 @@ let bindEventTweetUpdate = function () {
 }
 
 // todo 搞懂self event target
+// todo comment的 edit 和 update
+// todo 测试不同user互删权限
+// todo 增加tweet和comment的ct和ut
 let bindEventCommentAdd = function () {
     let b = e('.tweet-list')
     b.addEventListener('click', function (event) {
