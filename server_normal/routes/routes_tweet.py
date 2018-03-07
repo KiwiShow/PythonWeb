@@ -10,6 +10,7 @@ from routes import (
     redirect,
     http_response,
     error,
+    check_id_tweet,
 )
 from routes.routes_user import current_user
 from routes.routes_todo import login_required
@@ -72,17 +73,11 @@ def edit(request):
 
 
 def update(request):
-    u = current_user(request)
     form = request.form()
-    content = form.get('content', '')
-    tweet_id = int(form.get('id', -1))
-    t = Tweet.find(tweet_id)
-    if u.id != t.user_id:
-        return error(request)
-    t.content = content
-    t.save()
+    check_id_tweet(request, form)
+    newTweet = Tweet.update(form)
     # redirect有必要加query吗
-    return redirect('/tweet/index?user_id={}'.format(u.id))
+    return redirect('/tweet/index')
 
 
 def comment_add(request):
