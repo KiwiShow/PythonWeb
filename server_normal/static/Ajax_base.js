@@ -84,4 +84,9 @@ let ajaxCommentDelete = function (id, callback) {
     ajax('GET', path, '', callback)
 }
 
+let ajaxCommentUpdate = function (form, callback) {
+    let path = '/ajax/comment/update'
+    ajax('POST', path, form, callback)
+}
+
 

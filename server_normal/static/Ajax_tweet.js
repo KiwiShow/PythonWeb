@@ -10,6 +10,15 @@ let tweetUpdateFormTemplate = function () {
     return tem
 }
 
+let commentUpdateFormTemplate = function () {
+    let tem = `
+        <div class="comment-update-form">
+            <input class="comment-update-input">
+            <button class="comment-update">更新</button>
+    `
+    return tem
+}
+
 //id title created_time updated_time
 let tweetTemplate = function (tweet) {
     let id = tweet.id
@@ -22,9 +31,9 @@ let tweetTemplate = function (tweet) {
         <div class="tweet-cell" data-id="${id}">
             <div class="tweet-pure-cell" data-id="${id}">
                 <span class="tweet-content">${content}</span>
-                <span class="tweet-user_id">from${user_name}</span>
-                <span class="tweet-ct">ct${ct}</span>
-                <span class="tweet-ut">ut${ut}</span>
+                <span class="tweet-user_id">from ${user_name}</span>
+                <span class="tweet-ct">ct@${ct}</span>
+                <span class="tweet-ut">ut@${ut}</span>
                 <button class="tweet-delete" data-id="${id}">删除</button>
                 <button class="tweet-edit" data-id="${id}">编辑</button>
             </div>
@@ -55,9 +64,11 @@ let commentTemplate = function (comment) {
         <div class="comment-cell" data-id="${id}">
             <span class="comment-user_id">${user_name}: </span>
             <span class="comment-content">${content}</span>
-            <span class="comment-ct">ct${ct}</span>
-            <span class="comment-ut">ut${ut}</span>
+            <span class="comment-ct">ct@${ct}</span>
+            <span class="comment-ut">ut@${ut}</span>
             <button class="comment-delete" data-id="${id}">删除</button>
+            <button class="comment-edit" data-id="${id}">编辑</button>
+
         </div>    
     `
     return tem
@@ -192,7 +203,10 @@ let bindEventCommentAdd = function () {
                 // 收到返回的数据, 插入到页面中
                 let comment = JSON.parse(r)
 //                insertComment(comment)
+                let input = commentForm.querySelector('.comment-add-input')
+                input.value = ''
                 insertComment(comment)
+
             })
         }
 
@@ -215,6 +229,50 @@ let bindEventCommentDelete = function () {
 
 }
 
+let bindEventCommentEdit = function () {
+    let tweetList = e('.tweet-list')
+    tweetList.addEventListener('click', function (event) {
+        let self = event.target
+        if (self.classList.contains('comment-edit')) {
+            let t = commentUpdateFormTemplate()
+            // 有个bug是每次点击都会出现input
+            // 更好的做法是用CSS实现一个input框
+            self.parentElement.insertAdjacentHTML('beforeend', t)
+            // self.parentElement.innerHTML += t
+        }
+    })
+}
+
+let bindEventCommentUpdate = function () {
+    let tweetList = e('.tweet-list')
+    tweetList.addEventListener('click', function (event) {
+        // log(event.target)
+        let self = event.target
+        if (self.classList.contains('comment-update')) {
+            let commentCell = self.closest('.comment-cell')
+            let input = commentCell.querySelector('.comment-update-input')
+            let id = commentCell.dataset.id
+            let form = {
+                id: id,
+                content: input.value,
+            }
+            ajaxCommentUpdate(form, function(r){
+                let updateForm = self.closest('.comment-update-form')
+                updateForm.remove()
+                let comment = JSON.parse(r)
+                let  content = commentCell.querySelector('.comment-content')
+                let  comment_ct = commentCell.querySelector('.comment-ct')
+                let  comment_ut = commentCell.querySelector('.comment-ut')
+                content.innerHTML = comment.content
+                comment_ct.innerHTML = comment.created_time
+                comment_ut.innerHTML = comment.updated_time
+                // title.value = tweet.title
+            })
+        }
+    })
+}
+
+
 let bindEvents = function() {
     bindEventTweetAdd()
     bindEventTweetDelete()
@@ -222,8 +280,8 @@ let bindEvents = function() {
     bindEventTweetUpdate()
     bindEventCommentAdd()
     bindEventCommentDelete()
-    // bindEventTweetEdit()
-    // bindEventTweetUpdate()
+    bindEventCommentEdit()
+    bindEventCommentUpdate()
 }
 
 let __main = function() {

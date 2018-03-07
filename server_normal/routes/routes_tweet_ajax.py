@@ -60,7 +60,7 @@ def update(request):
 def comment_add(request):
     user = current_user(request)
     form = request.json()
-    c = Comment.new(form, user_id=user.id, user_name=user.usernam)
+    c = Comment.new(form, user_id=user.id, user_name=user.username)
     # uid = c.tweet().user().id
     return json_response(c.json())
 
@@ -74,6 +74,12 @@ def comment_delete(request):
     return json_response(t.json())
 
 
+def comment_update(request):
+    form = request.json()
+    check_id_comment(request, form)
+    newComment = Comment.update(form)
+    return json_response(newComment.json())
+
 route_dict = {
     '/ajax/tweet/index': login_required(index),
     '/ajax/tweet/add': login_required(add),
@@ -83,4 +89,5 @@ route_dict = {
     '/ajax/comment/index': login_required(comment_index),
     '/ajax/comment/add': login_required(comment_add),
     '/ajax/comment/delete': login_required(comment_delete),
+    '/ajax/comment/update': login_required(comment_update),
 }

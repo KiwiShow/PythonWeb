@@ -1,8 +1,8 @@
-from models.to_be_mongo import MonModel
+from models.to_be_mongo import MonModel, change_time
 from models.user import User
 # from models.tweet import Tweet  # 这样不行
 import models.tweet  # 为了避免和comment交叉引用
-
+import time
 
 class Comment(MonModel):
     """
@@ -20,6 +20,16 @@ class Comment(MonModel):
         ('user_name', str, ''),
         ('tweet_id', int, -1),
     ]
+
+    @classmethod
+    def update(cls, form):
+        comment_id = int(form.get('id', -1))
+        c = Comment.find_by(id=comment_id)
+        c.content = form.get('content')
+        tm = int(time.time())
+        c.updated_time = change_time(tm)
+        c.save()
+        return c
 
     def user(self):
         # u = User.find_by(id=self.json()['user_id'])
