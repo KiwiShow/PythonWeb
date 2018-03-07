@@ -62,15 +62,15 @@ def add(request):
 
 
 def edit(request):
-    tweet_id = request.query.get('id', -1)
-    tweet_id = int(tweet_id)
+    u = current_user(request)
+    tweet_id = int(request.query.get('id', -1))
     t = Tweet.find(tweet_id)
-    if t is None:
-        return error(request)
-    body = template('tweet_edit.html',
-                    tweet_id=t.id,
-                    tweet_content=t.content)
-    return http_response(body)
+    if u.id == t.user_id:
+        body = template('tweet_edit.html',
+                        tweet_id=t.id,
+                        tweet_content=t.content)
+        return http_response(body)
+    return redirect('/tweet/index?user_id={}'.format(u.id))
 
 
 def update(request):
