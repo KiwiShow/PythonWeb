@@ -3,6 +3,7 @@ from utils import log
 from models.user import User
 from models.todo import Todo
 from models.tweet import Tweet
+from models.comment import Comment
 
 
 session = {}
@@ -85,7 +86,15 @@ def check_id_tweet(request, form=None, id=None):
     if u.id != t.user_id:
         return redirect('/login')
 
-
+def check_id_comment(request, form=None, id=None):
+    if id == None:
+        comment_id = int(form.get('id', -1))
+    else:
+        comment_id = id
+    t = Comment.find_by(id=comment_id)
+    u = current_user(request)
+    if u.id != t.user_id:
+        return redirect('/login')
 
 
 # 获取当前的user实例,

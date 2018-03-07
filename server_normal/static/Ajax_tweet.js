@@ -31,10 +31,9 @@ let tweetTemplate = function (tweet) {
                 <input type="hidden" name="tweet_id" value="${id}">
                 <input class="comment-add-input" name="content">
                 <br>
-                <button class="comment-add" data-id="${id}">添加</button>
+                <button class="comment-add" data-id="${id}">添加评论</button>
             </div>  
         </div> 
- 
     `
     return tem
 }
@@ -110,7 +109,7 @@ let bindEventTweetDelete = function () {
         if (self.classList.contains('tweet-delete')) {// 这里没有点符号
             let tweetId = self.dataset.id
             ajaxTweetDelete(tweetId, function (r) {
-                self.parentElement.remove()
+                self.parentElement.parentElement.remove()
             })
         }
 
@@ -157,16 +156,15 @@ let bindEventTweetUpdate = function () {
     })
 }
 
+// todo 搞懂self event target
 let bindEventCommentAdd = function () {
-    let b = document.body
-    log(b)
+    let b = e('.tweet-list')
     b.addEventListener('click', function (event) {
         let self = event.target
         // log(self)
         // log(self.classList)
         if(self.classList.contains('comment-add')) {
             let commentForm = self.closest('.comment-form')
-            log(commentForm)
             let tweetId = commentForm.dataset.id
             let content = commentForm.querySelector('.comment-add-input').value
             let form = {
@@ -185,13 +183,28 @@ let bindEventCommentAdd = function () {
 
 }
 
+let bindEventCommentDelete = function () {
+    let tweetList = e('.tweet-list')
+    tweetList.addEventListener('click', function (event) {
+        let self = event.target
+        if (self.classList.contains('comment-delete')) {
+            let commentId = self.dataset.id
+            ajaxCommentDelete(commentId, function (r) {
+                self.parentElement.remove()
+            })
+        }
+
+    })
+
+}
+
 let bindEvents = function() {
     bindEventTweetAdd()
     bindEventTweetDelete()
     bindEventTweetEdit()
     bindEventTweetUpdate()
     bindEventCommentAdd()
-    // bindEventTweetDelete()
+    bindEventCommentDelete()
     // bindEventTweetEdit()
     // bindEventTweetUpdate()
 }

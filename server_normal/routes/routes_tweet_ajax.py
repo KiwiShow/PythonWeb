@@ -11,6 +11,7 @@ from routes import (
     error,
     login_required,
     check_id_tweet,
+    check_id_comment,
 )
 from routes.routes_user import current_user
 
@@ -58,20 +59,19 @@ def update(request):
 
 def comment_add(request):
     user = current_user(request)
-    form = request.form()
+    form = request.json()
     c = Comment.new(form, user_id=user.id)
     # uid = c.tweet().user().id
     return json_response(c.json())
 
 
-# def comment_delete(request):
-#     u = current_user(request)
-#     comment_id = request.query.get('id', -1)
-#     comment_id = int(comment_id)
-#     c = Comment.find(comment_id)
-#     if u.id == c.user_id:
-#         c.remove(comment_id)
-#     return redirect('/tweet/index?user_id={}'.format(u.id))
+def comment_delete(request):
+    comment_id = int(request.query.get('id'))
+    t = Comment.find_by(id=comment_id)
+    check_id_comment(request, id=comment_id)
+    Comment.remove(comment_id)
+    # 不管如何，都需要返回json的数据，为了触发ajax中回调函数
+    return json_response(t.json())
 
 
 route_dict = {
@@ -82,5 +82,5 @@ route_dict = {
     # 评论功能
     '/ajax/comment/index': login_required(comment_index),
     '/ajax/comment/add': login_required(comment_add),
-    # '/ajax/comment/delete': login_required(comment_delete),
+    '/ajax/comment/delete': login_required(comment_delete),
 }
