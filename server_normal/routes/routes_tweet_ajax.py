@@ -34,9 +34,9 @@ def comment_index(request):
 
 
 def add(request):
-    u = current_user(request)
+    user = current_user(request)
     form = request.json()
-    t = Tweet.new(form, user_id=u.id)
+    t = Tweet.new(form, user_id=user.id, user_name=user.username)
     return json_response(t.json())
 
 
@@ -60,7 +60,7 @@ def update(request):
 def comment_add(request):
     user = current_user(request)
     form = request.json()
-    c = Comment.new(form, user_id=user.id)
+    c = Comment.new(form, user_id=user.id, user_name=user.usernam)
     # uid = c.tweet().user().id
     return json_response(c.json())
 

@@ -50,13 +50,13 @@ def new(request):
 
 
 def add(request):
-    u = current_user(request)
+    user = current_user(request)
     form = request.form()
-    t = Tweet.new(form, user_id=u.id)
+    t = Tweet.new(form, user_id=user.id, user_name=user.username)
     # t.user_id = u.id
     # t.save()
     # redirect有必要加query吗
-    return redirect('/tweet/index?user_id={}'.format(u.id))
+    return redirect('/tweet/index?user_id={}'.format(user.id))
 
 
 def edit(request):
@@ -88,7 +88,7 @@ def update(request):
 def comment_add(request):
     user = current_user(request)
     form = request.form()
-    c = Comment.new(form, user_id=user.id)
+    c = Comment.new(form, user_id=user.id, user_name=user.username)
     # c.save()
     uid = c.tweet().user().id
     return redirect('/tweet/index?user_id={}'.format(uid))

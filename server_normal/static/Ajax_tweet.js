@@ -15,11 +15,12 @@ let tweetTemplate = function (tweet) {
     let id = tweet.id
     let content = tweet.content
     let user_id = tweet.user_id
+    let user_name = tweet.user_name
     let tem = `
         <div class="tweet-cell" data-id="${id}">
             <div class="tweet-pure-cell" data-id="${id}">
                 <span class="tweet-content">${content}</span>
-                <span class="tweet-user_id">from---${user_id}</span>
+                <span class="tweet-user_id">from---${user_name}</span>
                 <button class="tweet-delete" data-id="${id}">删除</button>
                 <button class="tweet-edit" data-id="${id}">编辑</button>
             </div>
@@ -42,10 +43,11 @@ let commentTemplate = function (comment) {
     let id = comment.id
     let content = comment.content
     let user_id = comment.user_id
+    let user_name = comment.user_name
     let tweet_id = comment.tweet_id
     let tem = `
         <div class="comment-cell" data-id="${id}">
-            <span class="comment-user_id">${user_id}: </span>
+            <span class="comment-user_id">${user_name}: </span>
             <span class="comment-content">${content}</span>
             <button class="comment-delete" data-id="${id}">删除</button>
         </div>    

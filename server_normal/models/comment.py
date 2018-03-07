@@ -17,6 +17,7 @@ class Comment(MonModel):
     __fields__ = MonModel.__fields__ + [
         ('content', str, ''),
         ('user_id', int, -1),
+        ('user_name', str, ''),
         ('tweet_id', int, -1),
     ]
 
