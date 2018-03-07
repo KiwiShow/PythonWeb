@@ -1,5 +1,5 @@
 # PythonWeb
-用python开发web，一步一个脚印
+> 用python开发web，一步一个脚印
 
 ### 1.简单的[client](https://github.com/KiwiShow/PythonWeb/blob/master/client_server_socket/client_socket.py)和[server](https://github.com/KiwiShow/PythonWeb/blob/master/client_server_socket/server_socket.py)
 
@@ -80,8 +80,8 @@ route_dict = {
 ```
 4.简单的`cookie`和`session`功能
 
-* 相关技术
-* 前端用到了`html`，`ajax`和`jinja`模板渲染
-* 后端未使用任何框架。基于`socket`手工打造
-* 数据存储有`txt`接口和`MongoDB`接口
+## **相关技术**
+1.前端用到了`html`，`ajax`和`jinja`模板渲染
+2.后端未使用任何框架。基于`socket`手工打造
+3.数据存储有`txt`接口和`MongoDB`接口
 
