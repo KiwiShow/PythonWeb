@@ -23805,3 +23805,148 @@ DNT: 1
 2018/03/07 15:40:32 from __init__ --> Request: path and query:  /ajax/comment/index {'tweet_id': '62'}
 2018/03/07 15:40:32 from current_user --> session id :  44gegsre2ljekj43
 2018/03/07 15:40:32 from current_user --> session dict:  {'l2errdkjgbl5k5b5': 1, '2422gsbse34k2se3': 3, '44gegsre2ljekj43': 1, 'jeg5jjsgejgj432g': 3}
+2018/03/07 16:15:10 from run --> start at :3000
+2018/03/07 16:15:18 from __init__ --> Request log:  GET /tweet/index?user_id=1 HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: gsScrollPos-115=; gsScrollPos-55=0; gsScrollPos-53=0; gsScrollPos-91=0; gsScrollPos-161=0; Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293; user=s2k5sle2e322ggdr; sid=44gegsre2ljekj43
+DNT: 1
+
+
+2018/03/07 16:15:18 from add_cookies --> cookie:  ['gsScrollPos-115=', 'gsScrollPos-55=0', 'gsScrollPos-53=0', 'gsScrollPos-91=0', 'gsScrollPos-161=0', 'Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293', 'user=s2k5sle2e322ggdr', 'sid=44gegsre2ljekj43']
+2018/03/07 16:15:18 from __init__ --> Request: path and query:  /tweet/index {'user_id': '1'}
+2018/03/07 16:15:18 from current_user --> session id :  44gegsre2ljekj43
+2018/03/07 16:15:18 from current_user --> session dict:  {}
+2018/03/07 16:15:18 from route_todo --> 非登录用户 redirect 到/login
+2018/03/07 16:15:18 from __init__ --> Request log:  GET /login HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/tweet/index?user_id=1
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: gsScrollPos-55=0; gsScrollPos-53=0; gsScrollPos-91=0; gsScrollPos-161=0; Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293; user=s2k5sle2e322ggdr; sid=44gegsre2ljekj43
+DNT: 1
+
+
+2018/03/07 16:15:18 from add_cookies --> cookie:  ['gsScrollPos-55=0', 'gsScrollPos-53=0', 'gsScrollPos-91=0', 'gsScrollPos-161=0', 'Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293', 'user=s2k5sle2e322ggdr', 'sid=44gegsre2ljekj43']
+2018/03/07 16:15:18 from __init__ --> Request: path and query:  /login {}
+2018/03/07 16:15:18 from route_login --> cookies:  {'gsScrollPos-55': '0', 'gsScrollPos-53': '0', 'gsScrollPos-91': '0', 'gsScrollPos-161': '0', 'Pycharm-98ea3683': '6f229803-e920-47ba-a002-a3ed9e5fa293', 'user': 's2k5sle2e322ggdr', 'sid': '44gegsre2ljekj43'}
+2018/03/07 16:15:18 from current_user --> session id :  44gegsre2ljekj43
+2018/03/07 16:15:18 from current_user --> session dict:  {}
+2018/03/07 16:28:28 from __init__ --> Request log:  POST /login HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Content-Length: 25
+Cache-Control: max-age=0
+Origin: http://localhost:3000
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Content-Type: application/x-www-form-urlencoded
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/login
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: gsScrollPos-55=0; gsScrollPos-53=0; gsScrollPos-91=0; gsScrollPos-161=0; Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293; user=s2k5sle2e322ggdr; sid=44gegsre2ljekj43
+DNT: 1
+
+username=aaa&password=111
+2018/03/07 16:28:28 from add_cookies --> cookie:  ['gsScrollPos-55=0', 'gsScrollPos-53=0', 'gsScrollPos-91=0', 'gsScrollPos-161=0', 'Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293', 'user=s2k5sle2e322ggdr', 'sid=44gegsre2ljekj43']
+2018/03/07 16:28:28 from __init__ --> Request: path and query:  /login {}
+2018/03/07 16:28:28 from route_login --> cookies:  {'gsScrollPos-55': '0', 'gsScrollPos-53': '0', 'gsScrollPos-91': '0', 'gsScrollPos-161': '0', 'Pycharm-98ea3683': '6f229803-e920-47ba-a002-a3ed9e5fa293', 'user': 's2k5sle2e322ggdr', 'sid': '44gegsre2ljekj43'}
+2018/03/07 16:28:28 from current_user --> session id :  44gegsre2ljekj43
+2018/03/07 16:28:28 from current_user --> session dict:  {}
+2018/03/07 16:28:28 from form --> form username=aaa&password=111
+2018/03/07 16:28:28 from form --> form():  {'username': 'aaa', 'password': '111'}
+2018/03/07 16:28:28 from route_login --> session_id:  ksk2lle3242gkg25
+2018/03/07 16:28:38 from __init__ --> Request log:  GET /messages HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: gsScrollPos-55=0; gsScrollPos-53=0; gsScrollPos-91=0; gsScrollPos-161=0; Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293; user=s2k5sle2e322ggdr; sid=ksk2lle3242gkg25
+DNT: 1
+
+
+2018/03/07 16:28:38 from add_cookies --> cookie:  ['gsScrollPos-55=0', 'gsScrollPos-53=0', 'gsScrollPos-91=0', 'gsScrollPos-161=0', 'Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293', 'user=s2k5sle2e322ggdr', 'sid=ksk2lle3242gkg25']
+2018/03/07 16:28:38 from __init__ --> Request: path and query:  /messages {}
+2018/03/07 16:28:38 from route_message -->本次请求的 method GET
+2018/03/07 16:30:28 from __init__ --> Request log:  GET /todo/index HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Referer: http://localhost:3000/login
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: gsScrollPos-55=0; gsScrollPos-53=0; gsScrollPos-91=0; gsScrollPos-161=0; Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293; user=s2k5sle2e322ggdr; sid=ksk2lle3242gkg25
+DNT: 1
+
+
+2018/03/07 16:30:28 from add_cookies --> cookie:  ['gsScrollPos-55=0', 'gsScrollPos-53=0', 'gsScrollPos-91=0', 'gsScrollPos-161=0', 'Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293', 'user=s2k5sle2e322ggdr', 'sid=ksk2lle3242gkg25']
+2018/03/07 16:30:28 from __init__ --> Request: path and query:  /todo/index {}
+2018/03/07 16:30:28 from current_user --> session id :  ksk2lle3242gkg25
+2018/03/07 16:30:28 from current_user --> session dict:  {'ksk2lle3242gkg25': 1}
+2018/03/07 16:30:28 from current_user --> session id :  ksk2lle3242gkg25
+2018/03/07 16:30:28 from current_user --> session dict:  {'ksk2lle3242gkg25': 1}
+2018/03/07 16:30:28 from __init__ --> Request log:  GET /static?file=Ajax_base.js HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: */*
+Referer: http://localhost:3000/todo/index
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: gsScrollPos-55=0; gsScrollPos-53=0; gsScrollPos-91=0; gsScrollPos-161=0; Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293; user=s2k5sle2e322ggdr; sid=ksk2lle3242gkg25
+DNT: 1
+
+
+2018/03/07 16:30:28 from add_cookies --> cookie:  ['gsScrollPos-55=0', 'gsScrollPos-53=0', 'gsScrollPos-91=0', 'gsScrollPos-161=0', 'Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293', 'user=s2k5sle2e322ggdr', 'sid=ksk2lle3242gkg25']
+2018/03/07 16:30:28 from __init__ --> Request: path and query:  /static {'file': 'Ajax_base.js'}
+2018/03/07 16:30:28 from __init__ --> Request log:  GET /static?file=Ajax_todo.js HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Accept: */*
+Referer: http://localhost:3000/todo/index
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: gsScrollPos-55=0; gsScrollPos-53=0; gsScrollPos-91=0; gsScrollPos-161=0; Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293; user=s2k5sle2e322ggdr; sid=ksk2lle3242gkg25
+DNT: 1
+
+
+2018/03/07 16:30:28 from add_cookies --> cookie:  ['gsScrollPos-55=0', 'gsScrollPos-53=0', 'gsScrollPos-91=0', 'gsScrollPos-161=0', 'Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293', 'user=s2k5sle2e322ggdr', 'sid=ksk2lle3242gkg25']
+2018/03/07 16:30:28 from __init__ --> Request: path and query:  /static {'file': 'Ajax_todo.js'}
+2018/03/07 16:30:29 from __init__ --> Request log:  GET /ajax/todo/index HTTP/1.1
+Host: localhost:3000
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.189 Safari/537.36 Vivaldi/1.95.1077.55
+Content-Type: application/json
+Accept: */*
+Referer: http://localhost:3000/todo/index
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: gsScrollPos-55=0; gsScrollPos-53=0; gsScrollPos-91=0; gsScrollPos-161=0; Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293; user=s2k5sle2e322ggdr; sid=ksk2lle3242gkg25
+DNT: 1
+
+
+2018/03/07 16:30:29 from add_cookies --> cookie:  ['gsScrollPos-55=0', 'gsScrollPos-53=0', 'gsScrollPos-91=0', 'gsScrollPos-161=0', 'Pycharm-98ea3683=6f229803-e920-47ba-a002-a3ed9e5fa293', 'user=s2k5sle2e322ggdr', 'sid=ksk2lle3242gkg25']
+2018/03/07 16:30:29 from __init__ --> Request: path and query:  /ajax/todo/index {}
+2018/03/07 16:30:29 from current_user --> session id :  ksk2lle3242gkg25
+2018/03/07 16:30:29 from current_user --> session dict:  {'ksk2lle3242gkg25': 1}
+2018/03/07 16:30:29 from current_user --> session id :  ksk2lle3242gkg25
+2018/03/07 16:30:29 from current_user --> session dict:  {'ksk2lle3242gkg25': 1}
