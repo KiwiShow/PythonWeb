@@ -12,12 +12,13 @@
 
 ## **简单说说初步MVC的`server`，在文件夹`server_normal`中。**
 包含的功能：
-1.用户管理(没有用户删除功能)
+1.用户管理
 ```python
 route_dict = {
     '/': route_index,欢迎界面。有1个login链接
     '/login': route_login,登陆界面，登陆成功该界面刷新一些信息，不跳转。有2个链接分别去该用户的todo界面和tweet界面，有2个链接分别是数据api
     '/register': route_register,注册界面，注册成功该界面刷新一些信息，不跳转。
+    '/out': route_out,退出登陆
     '/messages': route_message,演示表单提交的页面，显示所有message
     '/profile': login_required(route_profile),该用户的id name password
     '/admin/users': login_required(admin),id为1的admin用户可以看所有用户id name password
@@ -81,7 +82,7 @@ route_dict = {
 4.简单的`cookie`和`session`功能
 
 ## **相关技术**
-1.前端用到了`html`，`ajax`和`jinja`模板渲染
-2.后端未使用任何框架。基于`socket`手工打造
-3.数据存储有`txt`接口和`MongoDB`接口
+1. 前端用到了`html`，`ajax`和`jinja`模板渲染
+2. 后端未使用任何框架。基于`socket`手工打造
+3. 数据存储有`txt`接口和`MongoDB`接口
 

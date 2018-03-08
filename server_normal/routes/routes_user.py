@@ -59,6 +59,22 @@ def route_login(request):
     return r.encode(encoding='utf-8')
 
 
+def route_out(request):
+    headers = {
+        'Content-Type': 'text/html',
+    }
+    session_id = request.cookies.get('sid', '')
+    if session_id != '':
+        session.pop(session_id)
+        result = '退出成功'
+    else:
+        result = '你还没登陆'
+    body = template('login.html', result=result, username='游客')
+    header = response_with_headers(headers)
+    r = header + '\r\n' + body
+    return r.encode(encoding='utf-8')
+
+
 def route_register(request):
     """
     POST /register HTTP/1.1
@@ -152,6 +168,7 @@ def admin_update(request):
 route_dict = {
     '/': route_index,
     '/login': route_login,
+    '/out': route_out,
     '/register': route_register,
     '/messages': route_message,
     '/profile': login_required(route_profile),
