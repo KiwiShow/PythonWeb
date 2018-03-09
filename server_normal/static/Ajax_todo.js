@@ -21,8 +21,8 @@ let todoTemplate = function (todo) {
             <span>通过ajax获得</span>
             <span class="todo-id">${id}</span>
             <span class="todo-title">${title}</span>
-            <span>ct@${ct}</span>
-            <span>ut@${ut}</span>
+            <span class="todo-ct">ct@${ct}</span>
+            <span class="todo-ut">ut@${ut}</span>
             <span class="todo-status">完成?${status}</span>
             <button class="todo-finished" data-id="${id}">设置为-完成</button>
             <button class="todo-unfinished" data-id="${id}">设置为-未完成</button>
@@ -114,7 +114,9 @@ let bindEventTodoUpdate = function () {
                 updateForm.remove()
                 let todo = JSON.parse(r)
                 let title = todoCell.querySelector('.todo-title')
+                let ut = todoCell.querySelector('.todo-ut')
                 title.innerHTML = todo.title
+                ut.innerHTML = todo.updated_time
                 // title.value = todo.title
             })
         }
