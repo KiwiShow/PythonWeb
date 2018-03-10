@@ -9,9 +9,12 @@
 
 ### 4.简单的`sqlite`和`MongoDB`数据库的练习[MongoDB](https://github.com/KiwiShow/PythonWeb/blob/todo_jinja/mongo_sqlite/mongo_demo.py)和[sqlite](https://github.com/KiwiShow/PythonWeb/blob/todo_jinja/mongo_sqlite/sqlite_demo.py)
 
+### 5.简单的2种爬虫(静态和动态)，以及一个jsonapi的小例子[Spider](https://github.com/KiwiShow/PythonWeb/tree/master/spider)
+
 
 ## **简单说说初步MVC的`server`，在文件夹`server_normal`中。**
 包含的功能：
+
 1.用户管理
 ```python
 route_dict = {
