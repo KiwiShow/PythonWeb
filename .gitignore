@@ -28,3 +28,9 @@ Thumbs.db
 *.rar
 *.tar
 *.zip
+spider/cached/
+spider/cached_zh/
+spider/ghostdriver.log
+spider/img/
+spider/img_mtime/
+spider/mtime/
