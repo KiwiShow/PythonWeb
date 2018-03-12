@@ -1,7 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 #.gitignore
 .idea/
-*.pyc
+*.py[cod]     # 将匹配 .pyc、.pyo 和 .pyd文件
+__pycache__/  # 排除整个文件夹
 .vscode
 
 
