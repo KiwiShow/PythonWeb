@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- html 中是所有的内容 -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>表单提交</title>
+    </head>
+    <body>
+        <!-- html 中的空格是会被转义的, 所以显示的和写的是不一样的 -->
+        <!-- 代码写了很多空格, 显示的时候就只有一个 -->
+        很        好普通版
+        <h1>很好 h1 版</h1>
+        <h2>很好 h2 版</h2>
+        <h3>很好 h3 版</h3>
+        <!-- form 是用来给服务器传递数据的 tag -->
+        <form action="{{ url_for('.messages') }}" method="post">
+            <textarea name="author" rows="8" cols="40"></textarea>
+            <textarea name="message" rows="8" cols="40"></textarea>
+            <!-- button type=submit 才可以提交表单 -->
+            <button type="submit">POST 提交</button>
+        </form>
+        <form action="{{ url_for('.messages') }}" method="get">
+            <textarea name="author" rows="8" cols="40"></textarea>
+            <textarea name="message" rows="8" cols="40"></textarea>
+            <button type="submit">GET 提交</button>
+        </form>
+        <div>
+            {{ messages }}
+        </div>
+    </body>
+</html>
