@@ -11,12 +11,12 @@ from flask import (
 main = Blueprint('static', __name__)
 
 
-@main.route('/static')
-def route_static():
+@main.route('/static/<string:filename>')
+def route_static(filename):
     """
     静态资源的处理函数, 读取图片并生成响应返回
     """
-    filename = request.args.get('file', 'doge.gif')
+    # filename = request.args.get('file', 'doge.gif')
     path = 'static/' + filename
     with open(path, 'rb') as f:
         # 强制设置成Content - Type: image/gif，被坑了好久
