@@ -10,6 +10,8 @@ from routes.routes_comment import main as comment_routes
 from routes.routes_comment_ajax import main as comment_routes_ajax
 
 
+from utils import log
+
 # 为了符合WSGI，将应用包装成一个app，可以被WSGI服务端通过application(env, response)调用
 app = Flask(__name__)
 
@@ -34,4 +36,6 @@ if __name__ == '__main__':
         host='0.0.0.0',
         port=3000,
     )
+    log('from run --> start at', '{}:{}'.format(config['host'], config['port']))
+    print('from run --> start at', '{}:{}'.format(config['host'], config['port']))
     app.run(**config)

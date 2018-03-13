@@ -1,0 +1,12 @@
+2018/03/13 16:39:00 from route_todo --> 非登录用户 redirect 到/login
+2018/03/13 16:40:06 from route_todo --> 非登录用户 redirect 到/login
+2018/03/13 16:44:58 from route_todo --> 非登录用户 redirect 到/login
+2018/03/13 16:45:07 from route_todo --> 非登录用户 redirect 到/login
+2018/03/13 16:49:39 from run --> start at 0.0.0.0:3000
+2018/03/13 16:49:40 from run --> start at 0.0.0.0:3000
+2018/03/13 16:54:41 from run --> start at 0.0.0.0:3000
+2018/03/13 16:56:36 from run --> start at 0.0.0.0:3000
+2018/03/13 16:56:36 from route_login --> cookies:  {'__wzd5b9bd4647ac6da6b114b': '1520429233|70f6233e8fbe'}
+2018/03/13 16:56:36 from current_user --> user_id :  -1
+2018/03/13 16:57:30 from current_user --> user_id :  1
+2018/03/13 16:57:37 from current_user --> user_id :  1
