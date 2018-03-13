@@ -20,6 +20,7 @@ main = Blueprint('ajax_tweet', __name__)
 
 
 @main.route('/index', methods=['GET'])
+@login_required
 def index():
     user_id = int(request.args.get('user_id', -1))
     if user_id == -1:
@@ -31,6 +32,7 @@ def index():
 
 
 @main.route('/add', methods=['POST'])
+@login_required
 def add():
     user = current_user()
     form = request.json
@@ -39,6 +41,7 @@ def add():
 
 
 @main.route('/delete', methods=['GET'])
+@login_required
 def delete():
     tweet_id = int(request.args.get('id'))
     t = Tweet.find_by(id=tweet_id)
@@ -49,6 +52,7 @@ def delete():
 
 
 @main.route('/update', methods=['POST'])
+@login_required
 def update():
     form = request.get_json()
     Tweet.check_id(form)

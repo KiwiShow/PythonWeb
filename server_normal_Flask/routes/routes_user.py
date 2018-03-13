@@ -29,6 +29,7 @@ def index():
     """
     body = render_template('index.html', username='游客')
     user = current_user()
+    log('routes_index ----> check current_user 返回值的type: ', user)
     if user is not None:
         body = render_template('index.html', username=user.username)
     r = make_response(body)
@@ -57,6 +58,7 @@ def login():
     :return:无论如何都会显示login页面
     """
     form = request.form
+    log('from route_login --> cookies: ', request.cookies)
     u = current_user()
     # ImmutableMultiDict([])是什么鬼？
     if form.get('username', None):
@@ -222,6 +224,7 @@ def message():
 
 
 @main.route('/profile', methods=['GET'])
+@login_required
 def profile():
     """
     显示已登录用户的信息，木有模板
@@ -250,6 +253,7 @@ def profile():
 
 
 @main.route('/admin/users', methods=['GET'])
+@login_required
 def admin():
     """
     只有用户id为1的用户有权限
@@ -277,6 +281,7 @@ def admin():
 
 
 @main.route('/admin/user/update', methods=['POST'])
+@login_required
 def admin_update():
     """
     只有用户id为1的用户有权限，输入需要修改的id和password

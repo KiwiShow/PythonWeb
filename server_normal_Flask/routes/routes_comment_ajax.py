@@ -21,6 +21,7 @@ main = Blueprint('ajax_comment', __name__)
 
 
 @main.route('/index', methods=['GET'])
+@login_required
 def index():
     tweet_id = int(request.args.get('tweet_id'))
     comments = Comment.find_all_json(tweet_id=tweet_id, deleted=False)
@@ -28,6 +29,7 @@ def index():
 
 
 @main.route('/add', methods=['POST'])
+@login_required
 def add():
     user = current_user()
     form = request.json
@@ -37,6 +39,7 @@ def add():
 
 
 @main.route('/delete', methods=['GET'])
+@login_required
 def delete():
     comment_id = int(request.args.get('id'))
     t = Comment.find_by(id=comment_id)
@@ -47,6 +50,7 @@ def delete():
 
 
 @main.route('/update', methods=['POST'])
+@login_required
 def update():
     form = request.get_json()
     Comment.check_id(form)

@@ -22,6 +22,7 @@ main = Blueprint('tweet', __name__)
 
 
 @main.route('/index', methods=['GET'])
+@login_required
 def index():
     """
     显示该用户所有tweet
@@ -41,6 +42,7 @@ def index():
 
 
 @main.route('/delete', methods=['GET'])
+@login_required
 def delete():
     u = current_user()
     tweet_id = int(request.args.get('id'))
@@ -57,12 +59,14 @@ def delete():
 
 
 @main.route('/new', methods=['GET'])
+@login_required
 def new():
     body = render_template('tweet_new.html')
     return make_response(body)
 
 
 @main.route('/add', methods=['POST'])
+@login_required
 def add():
     user = current_user()
     form = request.form
@@ -75,6 +79,7 @@ def add():
 
 
 @main.route('/edit', methods=['GET'])
+@login_required
 def edit():
     u = current_user()
     tweet_id = int(request.args.get('id', -1))
@@ -88,6 +93,7 @@ def edit():
 
 
 @main.route('/update', methods=['POST'])
+@login_required
 def update():
     form = request.form
     Tweet.check_id(form)

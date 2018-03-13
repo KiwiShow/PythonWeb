@@ -22,6 +22,7 @@ main = Blueprint('comment', __name__)
 
 
 @main.route('/add', methods=['POST'])
+@login_required
 def add():
     """
     添加comment
@@ -36,6 +37,7 @@ def add():
 
 
 @main.route('/delete', methods=['GET'])
+@login_required
 def delete():
     u = current_user()
     comment_id = request.args.get('id', -1)
@@ -47,6 +49,7 @@ def delete():
 
 
 @main.route('/edit', methods=['GET'])
+@login_required
 def edit():
     u = current_user()
     comment_id = int(request.args.get('id', -1))
@@ -60,6 +63,7 @@ def edit():
 
 
 @main.route('/update', methods=['POST'])
+@login_required
 def update():
     form = request.form
     Comment.check_id(form)

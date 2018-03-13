@@ -23,6 +23,7 @@ main = Blueprint('todo', __name__)
 
 
 @main.route('/index', methods=['GET'])
+@login_required
 def index():
     """
     显示该用户所有todo
@@ -35,6 +36,7 @@ def index():
 
 
 @main.route('/add', methods=['POST'])
+@login_required
 def add():
     """
     添加todo
@@ -47,6 +49,7 @@ def add():
 
 
 @main.route('/edit', methods=['GET'])
+@login_required
 def edit():
     todo_id = int(request.args.get('id'))
     t = Todo.find_by(id=todo_id)
@@ -58,6 +61,7 @@ def edit():
 
 
 @main.route('/update', methods=['POST'])
+@login_required
 def update():
     form = request.form
     Todo.check_id(form)
@@ -66,6 +70,7 @@ def update():
 
 
 @main.route('/delete', methods=['GET'])
+@login_required
 def delete():
     todo_id = int(request.args.get('id'))
     Todo.check_id(id=todo_id)
@@ -74,6 +79,7 @@ def delete():
 
 
 @main.route('/status_switch', methods=['GET'])
+@login_required
 def switch():
     todo_id = int(request.args.get('id'))
     Todo.check_id(id=todo_id)
