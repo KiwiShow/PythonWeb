@@ -132,7 +132,7 @@ def delete():
 def switch():
     todo_id = int(request.args.get('id'))
     check_id(id=todo_id)
-    status = request.args.get('completed')
+    status = request.args.get('status')
     t = Todo.complete(todo_id, status)
     return redirect(url_for('.index'))
 

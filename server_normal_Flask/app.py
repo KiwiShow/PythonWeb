@@ -3,6 +3,7 @@ from flask import Flask
 from routes.routes_user import main as user_routes
 from routes.routes_static import main as static_routes
 from routes.routes_todo import main as todo_routes
+from routes.routes_todo_ajax import main as todo_routes_ajax
 
 # 为了符合WSGI，将应用包装成一个app，可以被WSGI服务端通过application(env, response)调用
 app = Flask(__name__)
@@ -14,6 +15,7 @@ app.secret_key = 'Be the greatest，or nothing'
 app.register_blueprint(user_routes)
 app.register_blueprint(static_routes)
 app.register_blueprint(todo_routes, url_prefix='/todo')
+app.register_blueprint(todo_routes_ajax, url_prefix='/ajax/todo')
 
 # 运行
 if __name__ == '__main__':

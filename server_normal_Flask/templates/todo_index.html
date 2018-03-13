@@ -24,9 +24,9 @@
             <h3>{{ t.id }} : {{ t.title}}
                 ct@{{ t.created_time }}
                 ut@{{ t.updated_time }}
-                完成? {{ t.completed }}
-                <a href="{{ url_for('todo.switch') }}?id={{ t.id }}&completed=True">设置为-完成</a>
-                <a href="{{ url_for('todo.switch') }}?id={{ t.id }}&completed=False">设置为-未完成</a>
+                完成? {{ t.status }}
+                <a href="{{ url_for('todo.switch') }}?id={{ t.id }}&status=True">设置为-完成</a>
+                <a href="{{ url_for('todo.switch') }}?id={{ t.id }}&status=False">设置为-未完成</a>
                 <a href="{{ url_for('todo.edit') }}?id={{ t.id }}">编辑</a>
                 <a href="{{ url_for('todo.delete') }}?id={{ t.id }}">删除</a></h3>
         </div>

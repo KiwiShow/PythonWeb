@@ -16,13 +16,13 @@ class Todo(MonModel):
     __fields__ = MonModel.__fields__ + [
         ('title', str, ''),
         ('user_id', int, ''),
-        ('completed', bool, False),
+        ('status', bool, False),
     ]
 
     @classmethod
     def complete(cls, id, completed):
         t = cls.find(id)
-        t.completed = completed
+        t.status = completed
         t.save()
         return t
 

@@ -13,7 +13,7 @@ let todoTemplate = function (todo) {
     let title = todo.title
     let ct = todo.created_time
     let ut = todo.updated_time
-    let status = todo.completed
+    let status = todo.status
     // data-* 是 HTML5 新增的自定义标签属性的方法
     // data-id="1" 获取属性的方式是  .dataset.id
     let tem = `
@@ -132,7 +132,7 @@ let bindEventTodoComTrue = function () {
             let id = todoCell.dataset.id
             ajaxTodoSwitch(id, 'True', function(r){
                 let status = todoCell.querySelector('.todo-status')
-                status.innerHTML = 'True'
+                status.innerHTML = '完成? True'
 
             })
         }
@@ -148,7 +148,7 @@ let bindEventTodoComFalse = function () {
             let id = todoCell.dataset.id
             ajaxTodoSwitch(id, 'False', function(r){
                 let status = todoCell.querySelector('.todo-status')
-                status.innerHTML = 'False'
+                status.innerHTML = '完成? False'
             })
         }
     })
