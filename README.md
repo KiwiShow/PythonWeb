@@ -11,6 +11,8 @@
 
 ### 5.简单的2种爬虫(静态和动态)，以及一个jsonapi的小例子[Spider](https://github.com/KiwiShow/PythonWeb/tree/master/spider)
 
+### 6.用Flask改写的[server_flask](https://github.com/KiwiShow/PythonWeb/tree/master/server_normal_Flask)
+
 
 ## **简单说说初步MVC的`server`，在文件夹`server_normal`中。**
 包含的功能：
@@ -86,6 +88,6 @@ route_dict = {
 
 ## **相关技术**
 1. 前端用到了`html`，`ajax`和`jinja`模板渲染
-2. 后端未使用任何框架。基于`socket`手工打造
+2. 后端未使用任何框架。基于`socket`手工打造以及`Flask`版本
 3. 数据存储有`txt`接口和`MongoDB`接口
 
