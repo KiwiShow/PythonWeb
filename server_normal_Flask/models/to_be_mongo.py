@@ -182,6 +182,21 @@ class MonModel(object):
         s = '\n'.join(properties)
         return '< {}\n{} >\n'.format(classname, s)
 
+
+    @classmethod
+    def check_id(cls, form=None, id=None):
+        if id == None:
+            m_id = int(form.get('id', -1))
+        else:
+            m_id = id
+        m = cls.find_by(id=m_id)
+        from routes import current_user
+        from flask import redirect, url_for
+        u = current_user()
+        if u.id != m.user_id:
+            return redirect(url_for('.login'))
+
+
     # todo 暂时不用
     def data_count(self, cls):
         """
