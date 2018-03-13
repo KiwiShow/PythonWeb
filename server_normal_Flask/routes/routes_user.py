@@ -17,9 +17,10 @@ from models.message import Message
 from models.user import User
 
 
-main = Blueprint('todo', __name__)
+main = Blueprint('user', __name__)
 
 
+# todo login_required函数还未用
 @main.route('/', methods=['GET'])
 def index():
     """

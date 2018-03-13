@@ -16,7 +16,7 @@
     </form>
     <h3>{{ result }}</h3>
     <!--方便调试-->
-    <a href="/todo/index">My todos</a>
+    <a href="{{ url_for('todo.index') }}">My todos</a>
     <br>
     <a href="/ajax/todo/index">My todos(ajax)</a>
     <br>

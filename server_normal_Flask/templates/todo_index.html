@@ -7,7 +7,7 @@
 <body>
     <h1>TODO</h1>
     <h3>通过http的form添加</h3>
-    <form action="/todo/add" method="post">
+    <form action="{{ url_for('todo.add') }}" method="post">
         <input type="text" name="title" placeholder="请输入todo">
         <br>
         <button type="submit">添加</button>
@@ -25,10 +25,10 @@
                 ct@{{ t.created_time }}
                 ut@{{ t.updated_time }}
                 完成? {{ t.completed }}
-                <a href="/todo/status_switch?id={{ t.id }}&completed=True">设置为-完成</a>
-                <a href="/todo/status_switch?id={{ t.id }}&completed=False">设置为-未完成</a>
-                <a href="/todo/edit?id={{ t.id }}">编辑</a>
-                <a href="/todo/delete?id={{ t.id }}">删除</a></h3>
+                <a href="{{ url_for('todo.switch') }}?id={{ t.id }}&completed=True">设置为-完成</a>
+                <a href="{{ url_for('todo.switch') }}?id={{ t.id }}&completed=False">设置为-未完成</a>
+                <a href="{{ url_for('todo.edit') }}?id={{ t.id }}">编辑</a>
+                <a href="{{ url_for('todo.delete') }}?id={{ t.id }}">删除</a></h3>
         </div>
         {% endfor %}
         <br>

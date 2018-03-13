@@ -65,13 +65,13 @@ def login_required(route_function):
     return f
 
 # 身份验证
-def check_id(request, form=None, id=None):
+def check_id(form=None, id=None):
     if id == None:
         todo_id = int(form.get('id', -1))
     else:
         todo_id = id
     t = Todo.find_by(id=todo_id)
-    u = current_user(request)
+    u = current_user()
     if u.id != t.user_id:
         return redirect('/login')
 
