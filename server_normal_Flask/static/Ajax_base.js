@@ -33,7 +33,7 @@ let ajaxTodoAdd = function (form, callback) {
 }
 
 let ajaxTodoDelete = function (id, callback) {
-    let path = '/ajax/todo/delete?id=' + id
+    let path = '/ajax/todo/delete/' + id
     ajax('GET', path, '', callback)
 }
 
@@ -43,7 +43,7 @@ let ajaxTodoUpdate = function (form, callback) {
 }
 
 let ajaxTodoSwitch = function (id, status, callback) {
-    let path = '/ajax/todo/status_switch?id=' + id + '&status=' + status
+    let path = '/ajax/todo/status_switch/' + id + '?status=' + status
     ajax('GET', path, '', callback)
 }
 

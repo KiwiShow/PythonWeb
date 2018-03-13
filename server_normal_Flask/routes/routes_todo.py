@@ -48,10 +48,10 @@ def add():
     return redirect(url_for('.index'))
 
 
-@main.route('/edit', methods=['GET'])
+@main.route('/edit/<int:todo_id>', methods=['GET'])
 @login_required
-def edit():
-    todo_id = int(request.args.get('id'))
+def edit(todo_id):
+    # todo_id = int(request.args.get('id'))
     t = Todo.find_by(id=todo_id)
     user = current_user()
     if user.id != t.user_id:
@@ -69,19 +69,20 @@ def update():
     return redirect(url_for('.index'))
 
 
-@main.route('/delete', methods=['GET'])
+@main.route('/delete/<int:todo_id>', methods=['GET'])
 @login_required
-def delete():
-    todo_id = int(request.args.get('id'))
+def delete(todo_id):
+    # todo_id = int(request.args.get('id'))
     Todo.check_id(id=todo_id)
     Todo.remove(todo_id)
     return redirect(url_for('.index'))
 
 
-@main.route('/status_switch', methods=['GET'])
+# todo 修改
+@main.route('/status_switch/<int:todo_id>', methods=['GET'])
 @login_required
-def switch():
-    todo_id = int(request.args.get('id'))
+def switch(todo_id):
+    # todo_id = int(request.args.get('id'))
     Todo.check_id(id=todo_id)
     status = request.args.get('status')
     t = Todo.complete(todo_id, status)

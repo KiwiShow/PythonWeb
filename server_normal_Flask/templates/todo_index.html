@@ -25,17 +25,17 @@
                 ct@{{ t.created_time }}
                 ut@{{ t.updated_time }}
                 完成? {{ t.status }}
-                <a href="{{ url_for('todo.switch') }}?id={{ t.id }}&status=True">设置为-完成</a>
-                <a href="{{ url_for('todo.switch') }}?id={{ t.id }}&status=False">设置为-未完成</a>
-                <a href="{{ url_for('todo.edit') }}?id={{ t.id }}">编辑</a>
-                <a href="{{ url_for('todo.delete') }}?id={{ t.id }}">删除</a></h3>
+                <a href="{{ url_for('todo.switch', todo_id=t.id) }}?status=True">设置为-完成</a>
+                <a href="{{ url_for('todo.switch', todo_id=t.id) }}?status=False">设置为-未完成</a>
+                <a href="{{ url_for('todo.edit', todo_id=t.id) }}">编辑</a>
+                <a href="{{ url_for('todo.delete', todo_id=t.id) }}">删除</a></h3>
         </div>
         {% endfor %}
         <br>
         <br>
     </div>
 
-    <script src="/static?file=Ajax_base.js"></script>
-    <script src="/static?file=Ajax_todo.js"></script>
+    <script src="/static/Ajax_base.js"></script>
+    <script src="/static/Ajax_todo.js"></script>
 </body>
 </html>

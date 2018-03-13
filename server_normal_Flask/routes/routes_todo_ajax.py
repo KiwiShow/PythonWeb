@@ -43,10 +43,10 @@ def add():
     return jsonify(t.json())
 
 
-@main.route('/delete', methods=['GET'])
+@main.route('/delete/<int:todo_id>', methods=['GET'])
 @login_required
-def delete():
-    todo_id = int(request.args.get('id'))
+def delete(todo_id):
+    # todo_id = int(request.args.get('id'))
     Todo.check_id(id=todo_id)
     Todo.remove(todo_id)
     t = Todo.find_by(id=todo_id)
@@ -62,10 +62,11 @@ def update():
     return jsonify(newTodo.json())
 
 
-@main.route('/status_switch', methods=['GET'])
+# todo, status可否再作为一个动态路由里面的参数？
+@main.route('/status_switch/<int:todo_id>', methods=['GET'])
 @login_required
-def switch():
-    todo_id = int(request.args.get('id'))
+def switch(todo_id):
+    # todo_id = int(request.args.get('id'))
     Todo.check_id(id=todo_id)
     status = request.args.get('status')
     t = Todo.complete(todo_id, status)
