@@ -20,7 +20,6 @@ from models.user import User
 main = Blueprint('user', __name__)
 
 
-# todo login_required函数还未用
 @main.route('/', methods=['GET'])
 def index():
     """

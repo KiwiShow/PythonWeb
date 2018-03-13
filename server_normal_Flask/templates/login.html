@@ -18,10 +18,10 @@
     <!--方便调试-->
     <a href="{{ url_for('todo.index') }}">My todos</a>
     <br>
-    <a href="/ajax/todo/index">My todos(ajax)</a>
+    <a href="{{ url_for('ajax_todo.index') }}">My todos(ajax)</a>
     <br>
-    <a href="/tweet/index">My tweets</a>
+    <a href="{{ url_for('tweet.index') }}">My tweets</a>
     <br>
-    <a href="/ajax/tweet/index">My tweets(ajax)</a>
+    <a href="{{ url_for('ajax_tweet.index') }}">My tweets(ajax)</a>
 </body>
 </html>
