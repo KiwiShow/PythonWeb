@@ -13,19 +13,21 @@
         <h2>很好 h2 版</h2>
         <h3>很好 h3 版</h3>
         <!-- form 是用来给服务器传递数据的 tag -->
-        <form action="{{ url_for('.messages') }}" method="post">
+        <form action="{{ url_for('.message') }}" method="post">
             <textarea name="author" rows="8" cols="40"></textarea>
             <textarea name="message" rows="8" cols="40"></textarea>
             <!-- button type=submit 才可以提交表单 -->
             <button type="submit">POST 提交</button>
         </form>
-        <form action="{{ url_for('.messages') }}" method="get">
+        <form action="{{ url_for('.message') }}" method="get">
             <textarea name="author" rows="8" cols="40"></textarea>
             <textarea name="message" rows="8" cols="40"></textarea>
             <button type="submit">GET 提交</button>
         </form>
         <div>
-            {{ messages }}
+            {% for m in messages %}
+                <h3>{{ m }}</h3>
+            {% endfor %}
         </div>
     </body>
 </html>

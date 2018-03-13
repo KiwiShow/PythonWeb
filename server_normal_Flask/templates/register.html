@@ -21,10 +21,15 @@
 
 POST /register HTTP/1.1
 Content-Type: x-www-form-urlencoded
-Host: localhost:3000
+Host: localhost:3000r
 
 username=gwgw&password=123
 -->
-    <h3>{{ result }}</h3>
+    {{ result }}
+    <br>
+    {% for u in users %}
+        <h3>{{ u }}</h3>
+    {% endfor %}
+
 </body>
 </html>
