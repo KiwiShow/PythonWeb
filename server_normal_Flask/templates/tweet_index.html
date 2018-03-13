@@ -8,12 +8,12 @@
     <h4>{{ user.username }}的Tweet</h4>
 
     <h3>去用户？的tweet</h3>
-    <form name="go_to_user_form" action="/tweet/index" method="get">
+    <form name="go_to_user_form" action="{{ url_for('tweet.index') }}" method="get">
         <input class="go-to-user-input" name="user_id" value="-1" type="text" placeholder="输入用户id">
         <button class="go-to-user-button">GO</button>
     </form>
     <h4>通过http的form添加</h4>
-    <a href="/tweet/new">写新推特</a>
+    <a href="{{ url_for('tweet.new') }}">写新推特</a>
     <br>
     <h4>通过ajax的form添加</h4>
     <input id='id-input-tweet' type="text" name="title" placeholder="请输入tweet">
@@ -25,17 +25,17 @@
         <h6>tweets</h6>
         {% for t in tweets %}
         {{ t.content }} from {{ user.username}} ct@{{ t.created_time}} ut@{{ t.updated_time}}
-        <a href="/tweet/delete?id={{ t.id }}">删除</a>
-        <a href="/tweet/edit?id={{ t.id }}">编辑</a>
+        <a href="{{ url_for('tweet.delete', tweet_id=t.id) }}">删除</a>
+        <a href="{{ url_for('tweet.edit', tweet_id=t.id) }}">编辑</a>
         <h6>评论</h6>
         {% for c in t.comments() %}
         <div class="comment">
             {{ c.user().username }} : {{ c.content }}  ct@{{ c.created_time}} ut@{{ c.updated_time}}
-        <a href="/comment/delete?id={{ c.id }}">删除</a>
-        <a href="/comment/edit?id={{ c.id }}">编辑</a>
+        <a href="{{ url_for('comment.delete', comment_id=c.id) }}">删除</a>
+        <a href="{{ url_for('comment.edit', comment_id=c.id) }}">编辑</a>
         </div>
         {% endfor %}
-        <form action="/comment/add" method="post">
+        <form action="{{ url_for('comment.add') }}" method="post">
             <input type="hidden" name="tweet_id" value="{{ t.id }}">
             <input name="content">
             <br>
@@ -46,7 +46,7 @@
         <h6>tweets</h6>
     </div>
 
-    <script src='/static?file=Ajax_base.js'></script>
-    <script src='/static?file=Ajax_tweet.js'></script>
+    <script src='/static/Ajax_base.js'></script>
+    <script src='/static/Ajax_tweet.js'></script>
 </body>
 </html>

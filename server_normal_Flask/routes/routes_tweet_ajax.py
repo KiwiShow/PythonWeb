@@ -40,10 +40,10 @@ def add():
     return jsonify(t.json())
 
 
-@main.route('/delete', methods=['GET'])
+@main.route('/delete/<int:tweet_id>', methods=['GET'])
 @login_required
-def delete():
-    tweet_id = int(request.args.get('id'))
+def delete(tweet_id):
+    # tweet_id = int(request.args.get('id'))
     t = Tweet.find_by(id=tweet_id)
     Tweet.check_id(id=tweet_id)
     Tweet.remove(tweet_id)

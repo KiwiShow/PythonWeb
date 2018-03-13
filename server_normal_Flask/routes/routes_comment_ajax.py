@@ -20,10 +20,10 @@ from routes import (
 main = Blueprint('ajax_comment', __name__)
 
 
-@main.route('/index', methods=['GET'])
+@main.route('/index/<int:tweet_id>', methods=['GET'])
 @login_required
-def index():
-    tweet_id = int(request.args.get('tweet_id'))
+def index(tweet_id):
+    # tweet_id = int(request.args.get('tweet_id'))
     comments = Comment.find_all_json(tweet_id=tweet_id, deleted=False)
     return jsonify(comments)
 
@@ -38,10 +38,10 @@ def add():
     return jsonify(c.json())
 
 
-@main.route('/delete', methods=['GET'])
+@main.route('/delete/<int:comment_id>', methods=['GET'])
 @login_required
-def delete():
-    comment_id = int(request.args.get('id'))
+def delete(comment_id):
+    # comment_id = int(request.args.get('id'))
     t = Comment.find_by(id=comment_id)
     Comment.check_id(id=comment_id)
     Comment.remove(comment_id)

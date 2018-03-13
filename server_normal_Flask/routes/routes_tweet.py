@@ -41,11 +41,11 @@ def index():
         return make_response(body)
 
 
-@main.route('/delete', methods=['GET'])
+@main.route('/delete/<int:tweet_id>', methods=['GET'])
 @login_required
-def delete():
+def delete(tweet_id):
     u = current_user()
-    tweet_id = int(request.args.get('id'))
+    # tweet_id = int(request.args.get('id'))
     t = Tweet.find(tweet_id)
     if u.id == t.user_id:
         # 这里只是删除了tweet，但是其所拥有的comment的deleted字段变成False
@@ -78,11 +78,11 @@ def add():
     return redirect(url_for('.index'))
 
 
-@main.route('/edit', methods=['GET'])
+@main.route('/edit/<int:tweet_id>', methods=['GET'])
 @login_required
-def edit():
+def edit(tweet_id):
     u = current_user()
-    tweet_id = int(request.args.get('id', -1))
+    # tweet_id = int(request.args.get('id', -1))
     t = Tweet.find(tweet_id)
     if u.id == t.user_id:
         body = render_template('tweet_edit.html',

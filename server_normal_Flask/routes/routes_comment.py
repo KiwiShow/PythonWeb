@@ -36,23 +36,23 @@ def add():
     return redirect(url_for('tweet.index'))
 
 
-@main.route('/delete', methods=['GET'])
+@main.route('/delete/<int:comment_id>', methods=['GET'])
 @login_required
-def delete():
+def delete(comment_id):
     u = current_user()
-    comment_id = request.args.get('id', -1)
-    comment_id = int(comment_id)
+    # comment_id = request.args.get('id', -1)
+    # comment_id = int(comment_id)
     c = Comment.find(comment_id)
     if u.id == c.user_id:
         c.remove(comment_id)
     return redirect(url_for('tweet.index'))
 
 
-@main.route('/edit', methods=['GET'])
+@main.route('/edit/<int:comment_id>', methods=['GET'])
 @login_required
-def edit():
+def edit(comment_id):
     u = current_user()
-    comment_id = int(request.args.get('id', -1))
+    # comment_id = int(request.args.get('id', -1))
     c = Comment.find(comment_id)
     if u.id == c.user_id:
         body = render_template('comment_edit.html',
