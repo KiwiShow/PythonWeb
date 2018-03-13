@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>admin list</h1>
-    <form action="/admin/user/update" method="post">
+    <form action="{{ url_for('.admin_update') }}" method="post">
         <input type="text" name="id" placeholder="type id">
         <br>
 		<input type="text" name="password" placeholder="type password">
