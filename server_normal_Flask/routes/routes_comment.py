@@ -1,6 +1,10 @@
 from models.user import User
 from models.tweet import Tweet
 from models.comment import Comment
+from routes import (
+    login_required,
+    current_user,
+)
 
 from utils import log
 from flask import (
@@ -13,8 +17,6 @@ from flask import (
     make_response,
 )
 
-from routes.routes_user import current_user
-from routes.routes_todo import login_required
 
 main = Blueprint('comment', __name__)
 

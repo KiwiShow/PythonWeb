@@ -12,9 +12,10 @@ from flask import (
     session,
     make_response,
 )
-
-from routes.routes_user import current_user
-from routes.routes_todo import login_required
+from routes import (
+    login_required,
+    current_user,
+)
 
 
 main = Blueprint('tweet', __name__)

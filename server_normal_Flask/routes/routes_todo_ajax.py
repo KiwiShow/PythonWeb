@@ -9,7 +9,6 @@ from flask import (
     redirect,
     url_for,
     session,
-    make_response,
     jsonify,
 )
 from models.todo import Todo
