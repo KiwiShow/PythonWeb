@@ -18,6 +18,7 @@ class User(MonModel):
         ('password', str, ''),
         ('note', str, ''),
         ('role', int, 10),
+        ('user_image', str, '/uploads/default.png'),
     ]
 
     # def __init__(self, form):
