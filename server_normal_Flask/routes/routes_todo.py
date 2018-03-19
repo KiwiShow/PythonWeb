@@ -52,8 +52,10 @@ def add():
     """
     user = current_user()
     form = request.form
-    t = Todo.new(form, user_id=user.id)
-    return redirect(url_for('.index'))
+    token = request.args.get('token')
+    if Todo.check_token(token, csrf_tokens):
+        t = Todo.new(form, user_id=user.id)
+        return redirect(url_for('.index'))
 
 
 @main.route('/edit/<int:todo_id>', methods=['GET'])

