@@ -16,12 +16,9 @@
         <button type="submit">注册</button>
     </form>
 
-    <h1>Upload your avatar</h1>
-    <form action="{{ url_for('.add_img') }}" method="post" enctype=multipart/form-data>
-        <input type=file name=avatar>
-        <input type=submit value=Upload>
-        <!--<button type="submit">Upload</button>-->
-    </form>
+    <a href="{{ url_for('.login') }}">去登录页面</a>
+    <br>
+
 <!--
 假设你输入的  gwgw  123
 那么浏览器生成的请求是如下的样式
