@@ -1,5 +1,5 @@
 from utils import log
-from config import  image_file_dir
+from config import  image_file_dir, qiniu_up
 from routes import (
     current_user,
     login_required,
@@ -171,7 +171,7 @@ def allow_file(filename):
     return suffix in accept_image_file_type
 
 
-# 用户上传头像
+# 所有用户上传头像,先存在本地得到路径之后上传至七牛云，并删除本地图片
 @main.route('/add_image', methods=['POST'])
 @login_required
 def add_img():
@@ -184,12 +184,15 @@ def add_img():
         # 2018/3/19/yiasduifhy289389f.png
         file.save(os.path.join(image_file_dir, filename))
         # u.add_avatar(filename)
-        u.user_image = '/uploads/' + filename
+        domain = qiniu_up(filename)
+        os.remove(os.path.join(image_file_dir, filename))
+        u.user_image = domain + filename
         u.save()
     return redirect(url_for('.admin'))
 
 
 # web后端上传头像，后续可以改成Nginx+图床
+# 本地只有default.png一张图片
 @main.route('/uploads/<filename>')
 @login_required
 def uploads(filename):
