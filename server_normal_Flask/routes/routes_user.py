@@ -63,6 +63,7 @@ def login():
     body = render_template('login.html', result=result, username='游客')
     if u is not None:
         body = body.replace('游客', u.username)
+        body = body.replace('请再登陆', '')
     return make_response(body)
 
 
