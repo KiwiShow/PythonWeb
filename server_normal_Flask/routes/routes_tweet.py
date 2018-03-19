@@ -18,12 +18,10 @@ from routes import (
     current_user,
 )
 import uuid
+from config import gg
 
 
 main = Blueprint('tweet', __name__)
-
-
-csrf_tokens = dict()
 
 
 @main.route('/index', methods=['GET'])
@@ -42,10 +40,15 @@ def index():
         return redirect(url_for('user.login'))
     else:
         # 用字典对每个tweet进行token和user.id的匹配
-        token = str(uuid.uuid4())
-        csrf_tokens[token] = user.id
+        # token = str(uuid.uuid4())
+        # csrf_tokens[token] = user.id
+        # 保证每次调用index函数时清空gg
+        gg.delete_value()
+        # 保证每次调用index函数时都有新的token可用
+        gg.set_value(user.id)
+        print('from tweet',gg.csrf_tokens, gg.token)
         tweets = Tweet.find_all(user_id=user.id, deleted=False)
-        body = render_template('tweet_index.html', tweets=tweets, user=user, token=token)
+        body = render_template('tweet_index.html', tweets=tweets, user=user, token=gg.token)
         return make_response(body)
 
 
@@ -55,8 +58,9 @@ def delete(tweet_id):
     u = current_user()
     # tweet_id = int(request.args.get('id'))
     token = request.args.get('token')
-    if Tweet.check_token(token, csrf_tokens):
-        csrf_tokens.pop(token)
+    if Tweet.check_token(token, gg.csrf_tokens):
+        # gg.delete_value()
+        # csrf_tokens.pop(token)
         t = Tweet.find(tweet_id)
         if u.id == t.user_id:
             # 这里只是删除了tweet，但是其所拥有的comment的deleted字段变成False
@@ -73,7 +77,7 @@ def delete(tweet_id):
 @login_required
 def new():
     token = request.args.get('token')
-    if Tweet.check_token(token, csrf_tokens):
+    if Tweet.check_token(token, gg.csrf_tokens):
         body = render_template('tweet_new.html', token=token)
         return make_response(body)
 
@@ -83,7 +87,7 @@ def new():
 def add():
     user = current_user()
     token = request.args.get('token')
-    if Tweet.check_token(token, csrf_tokens):
+    if Tweet.check_token(token, gg.csrf_tokens):
         form = request.form
         t = Tweet.new(form, user_id=user.id, user_name=user.username)
         # t.user_id = u.id
@@ -98,7 +102,7 @@ def add():
 def edit(tweet_id):
     u = current_user()
     token = request.args.get('token')
-    if Tweet.check_token(token, csrf_tokens):
+    if Tweet.check_token(token, gg.csrf_tokens):
     # tweet_id = int(request.args.get('id', -1))
         t = Tweet.find(tweet_id)
         if u.id == t.user_id:
@@ -113,7 +117,7 @@ def edit(tweet_id):
 @login_required
 def update():
     token = request.args.get('token')
-    if Tweet.check_token(token, csrf_tokens):
+    if Tweet.check_token(token, gg.csrf_tokens):
         form = request.form
         Tweet.check_id(form)
         newTweet = Tweet.update(form)

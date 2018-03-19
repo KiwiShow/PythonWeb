@@ -40,11 +40,11 @@
 
 <h3>test tweet</h3>
 
-<a href="http://0.0.0.0:4000/tweet/edit/2">
+<a href="http://0.0.0.0:4000/tweet/edit/4">
     点击edit红包
 </a>
 <br>
-<a href="http://0.0.0.0:4000/tweet/delete/2">
+<a href="http://0.0.0.0:4000/tweet/delete/4">
     点击delete红包
 </a>
 
@@ -60,11 +60,29 @@
 </form>
 
 <form action="http://0.0.0.0:4000/tweet/update" method="post">
-    <input name="id" value="2" type="hidden">
+    <input name="id" value="4" type="hidden">
     <input name="content">
-    <button type="submit">submit</button>
+    <button type="submit">点击update红包</button>
 </form>
 
+<h3>test comment</h3>
+
+<a href="http://0.0.0.0:4000/comment/delete/6">点击delete红包</a>
+<br>
+<a href="http://0.0.0.0:4000/comment/edit/6">点击edit红包</a>
+<br>
+<form action="http://0.0.0.0:4000/comment/update" method="post">
+    <input name="id" value="6" type="hidden">
+    <input name="content" value="from hack again">
+    <button type="submit">点击update红包</button>
+</form>
+<br>
+ <form action="http://0.0.0.0:4000/comment/add" method="post">
+            <input type="hidden" name="tweet_id" value="5">
+            <input name="content">
+            <br>
+            <button type="submit">点击add红包</button>
+</form>
 
 <script>
     <!--自动提交-->

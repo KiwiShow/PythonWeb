@@ -5,7 +5,7 @@
     <title>comment edit</title>
 </head>
 <body>
-    <form action="{{ url_for('comment.update') }}" method="post">
+    <form action="{{ url_for('comment.update', token=token) }}" method="post">
         <input name="id" value="{{ comment_id }}" type="hidden">
         <input name="content" value="{{ comment_content }}">
         <button type="submit">submit</button>

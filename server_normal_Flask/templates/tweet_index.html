@@ -31,11 +31,11 @@
         {% for c in t.comments() %}
         <div class="comment">
             {{ c.user().username }} : {{ c.content }}  ct@{{ c.created_time}} ut@{{ c.updated_time}}
-        <a href="{{ url_for('comment.delete', comment_id=c.id) }}">删除</a>
-        <a href="{{ url_for('comment.edit', comment_id=c.id) }}">编辑</a>
+        <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>
+        <a href="{{ url_for('comment.edit', comment_id=c.id, token=token) }}">编辑</a>
         </div>
         {% endfor %}
-        <form action="{{ url_for('comment.add') }}" method="post">
+        <form action="{{ url_for('comment.add', token=token) }}" method="post">
             <input type="hidden" name="tweet_id" value="{{ t.id }}">
             <input name="content">
             <br>

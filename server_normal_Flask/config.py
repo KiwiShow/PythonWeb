@@ -37,3 +37,26 @@ def qiniu_up(pic_name):
     # 返回外链domain
     return 'http://p5shjfo1t.bkt.clouddn.com/'
 
+
+import uuid
+class global_token(object):
+    def __init__(self):
+        self.csrf_tokens = dict()
+        self.token = ''
+
+    def get_value(self):
+        return self.csrf_tokens, self.token
+
+    def set_value(self, user_id):
+        self.token = str(uuid.uuid4())
+        self.csrf_tokens[self.token] = user_id
+
+    def delete_value(self):
+        # 空字典不能pop
+        if self.token != '':
+            self.csrf_tokens.pop(self.token)
+
+
+gg = global_token()
+
+print('from config',gg.csrf_tokens, gg.token)
