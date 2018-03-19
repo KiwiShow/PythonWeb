@@ -123,11 +123,7 @@ def profile():
     # html元素有效有效有效有效有效有效有效有效有效有效有效
     # 似乎render_template函数里面参数赋值的时候有过滤？
     # 在render_template中直接文本替代是不行的，只会当成字符串
-    body = '<h1>id:{} ' \
-           'username: {} ' \
-           'note: {}</h1>'.format(u.id,
-                                  u.username,
-                                  u.note)
+    body = render_template('profile.html', u=u)
     return make_response(body)
 
 
@@ -188,7 +184,7 @@ def add_img():
         os.remove(os.path.join(image_file_dir, filename))
         u.user_image = domain + filename
         u.save()
-    return redirect(url_for('.admin'))
+    return redirect(url_for('.profile'))
 
 
 # web后端上传头像，后续可以改成Nginx+图床
