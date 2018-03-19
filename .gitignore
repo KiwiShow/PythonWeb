@@ -36,3 +36,4 @@ spider/img/
 spider/img_mtime/
 spider/mtime/
 /data_structure_and_algorithm/.ipynb_checkpoints/
+/server_normal_Flask/.qiniu_pythonsdk_hostscache.json
