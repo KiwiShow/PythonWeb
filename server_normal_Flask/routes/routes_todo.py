@@ -38,7 +38,7 @@ def index():
     gg.delete_value()
     # 保证每次调用index函数时都有新的token可用
     gg.set_value(user.id)
-    print('from todo', gg.csrf_tokens, gg.token)
+    log('from todo', gg.csrf_tokens, gg.token)
     body = render_template('todo_index.html', todos=todo_list, token=gg.token)
     return make_response(body)
 

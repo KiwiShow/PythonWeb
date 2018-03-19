@@ -17,7 +17,6 @@ from routes import (
     login_required,
     current_user,
 )
-import uuid
 from config import gg
 
 
@@ -46,7 +45,7 @@ def index():
         gg.delete_value()
         # 保证每次调用index函数时都有新的token可用
         gg.set_value(user.id)
-        print('from tweet',gg.csrf_tokens, gg.token)
+        log('from tweet',gg.csrf_tokens, gg.token)
         tweets = Tweet.find_all(user_id=user.id, deleted=False)
         body = render_template('tweet_index.html', tweets=tweets, user=user, token=gg.token)
         return make_response(body)
