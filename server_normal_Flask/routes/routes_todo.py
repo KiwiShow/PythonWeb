@@ -12,14 +12,19 @@ from flask import (
     url_for,
     session,
     make_response,
+    abort,
 )
 
 from models.to_be_mongo import change_time
 from models.todo import Todo
 import time
-
+import uuid
 
 main = Blueprint('todo', __name__)
+
+
+# 对todo的CRUD绑定一个token
+csrf_tokens = dict()
 
 
 @main.route('/index', methods=['GET'])
@@ -31,7 +36,10 @@ def index():
     """
     user = current_user()
     todo_list = Todo.find_all(user_id=user.id, deleted=False)
-    body = render_template('todo_index.html', todos=todo_list)
+    # 用字典对每个todo进行token和user.id的匹配
+    token = str(uuid.uuid4())
+    csrf_tokens[token] = user.id
+    body = render_template('todo_index.html', todos=todo_list, token=token)
     return make_response(body)
 
 
@@ -56,26 +64,33 @@ def edit(todo_id):
     user = current_user()
     if user.id != t.user_id:
         return redirect(url_for('.index'))
-    body = render_template('todo_edit.html', t=t)
-    return make_response(body)
+    token = request.args.get('token')
+    if Todo.check_token(token, csrf_tokens):
+        body = render_template('todo_edit.html', t=t, token=token)
+        return make_response(body)
 
 
 @main.route('/update', methods=['POST'])
 @login_required
 def update():
     form = request.form
-    Todo.check_id(form)
-    newTodo = Todo.update(form)
-    return redirect(url_for('.index'))
+    token = request.args.get('token')
+    if Todo.check_token(token, csrf_tokens):
+        Todo.check_id(form)
+        newTodo = Todo.update(form)
+        return redirect(url_for('.index'))
 
 
 @main.route('/delete/<int:todo_id>', methods=['GET'])
 @login_required
 def delete(todo_id):
     # todo_id = int(request.args.get('id'))
-    Todo.check_id(id=todo_id)
-    Todo.remove(todo_id)
-    return redirect(url_for('.index'))
+    token = request.args.get('token')
+    if Todo.check_token(token, csrf_tokens):
+        csrf_tokens.pop(token)
+        Todo.check_id(id=todo_id)
+        Todo.remove(todo_id)
+        return redirect(url_for('.index'))
 
 
 # todo 修改
@@ -83,7 +98,9 @@ def delete(todo_id):
 @login_required
 def switch(todo_id):
     # todo_id = int(request.args.get('id'))
-    Todo.check_id(id=todo_id)
-    status = request.args.get('status')
-    t = Todo.complete(todo_id, status)
-    return redirect(url_for('.index'))
+    token = request.args.get('token')
+    if Todo.check_token(token, csrf_tokens):
+        Todo.check_id(id=todo_id)
+        status = request.args.get('status')
+        t = Todo.complete(todo_id, status)
+        return redirect(url_for('.index'))

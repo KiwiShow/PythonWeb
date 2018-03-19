@@ -1,6 +1,8 @@
 from utils import log
 import time
 from pymongo import MongoClient
+from flask import abort
+
 
 mon = MongoClient('mongodb://localhost:27017')
 
@@ -182,7 +184,6 @@ class MonModel(object):
         s = '\n'.join(properties)
         return '< {}\n{} >\n'.format(classname, s)
 
-
     @classmethod
     def check_id(cls, form=None, id=None):
         if id == None:
@@ -195,6 +196,16 @@ class MonModel(object):
         u = current_user()
         if u.id != m.user_id:
             return redirect(url_for('.login'))
+
+    @classmethod
+    def check_token(cls, token, csrf_tokens):
+        from routes import current_user
+        user = current_user()
+        if token in csrf_tokens and csrf_tokens[token] == user.id:
+            return True
+        else:
+            abort(403)
+
 
 
     # todo 暂时不用

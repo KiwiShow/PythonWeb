@@ -22,3 +22,9 @@ def current_user():
     log("from current_user --> user_id : ", uid)
     u = User.find_by(id=uid)
     return u
+
+
+# 验证机制
+# 1.有无登陆 login_required
+# 2.是否有权限 check_id
+# 3.是否是本人操作，防止CSRF 用token或者验证码(验证码还有防爬虫的功能)
