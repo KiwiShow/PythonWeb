@@ -18,13 +18,10 @@ from flask import (
 from models.to_be_mongo import change_time
 from models.todo import Todo
 import time
-import uuid
+from config import gg
+
 
 main = Blueprint('todo', __name__)
-
-
-# 对todo的CRUD绑定一个token
-csrf_tokens = dict()
 
 
 @main.route('/index', methods=['GET'])
@@ -37,9 +34,12 @@ def index():
     user = current_user()
     todo_list = Todo.find_all(user_id=user.id, deleted=False)
     # 用字典对每个todo进行token和user.id的匹配
-    token = str(uuid.uuid4())
-    csrf_tokens[token] = user.id
-    body = render_template('todo_index.html', todos=todo_list, token=token)
+    # 保证每次调用index函数时清空gg
+    gg.delete_value()
+    # 保证每次调用index函数时都有新的token可用
+    gg.set_value(user.id)
+    print('from todo', gg.csrf_tokens, gg.token)
+    body = render_template('todo_index.html', todos=todo_list, token=gg.token)
     return make_response(body)
 
 
@@ -53,7 +53,7 @@ def add():
     user = current_user()
     form = request.form
     token = request.args.get('token')
-    if Todo.check_token(token, csrf_tokens):
+    if Todo.check_token(token, gg.csrf_tokens):
         t = Todo.new(form, user_id=user.id)
         return redirect(url_for('.index'))
 
@@ -67,7 +67,7 @@ def edit(todo_id):
     if user.id != t.user_id:
         return redirect(url_for('.index'))
     token = request.args.get('token')
-    if Todo.check_token(token, csrf_tokens):
+    if Todo.check_token(token, gg.csrf_tokens):
         body = render_template('todo_edit.html', t=t, token=token)
         return make_response(body)
 
@@ -77,7 +77,7 @@ def edit(todo_id):
 def update():
     form = request.form
     token = request.args.get('token')
-    if Todo.check_token(token, csrf_tokens):
+    if Todo.check_token(token, gg.csrf_tokens):
         Todo.check_id(form)
         newTodo = Todo.update(form)
         return redirect(url_for('.index'))
@@ -88,8 +88,7 @@ def update():
 def delete(todo_id):
     # todo_id = int(request.args.get('id'))
     token = request.args.get('token')
-    if Todo.check_token(token, csrf_tokens):
-        csrf_tokens.pop(token)
+    if Todo.check_token(token, gg.csrf_tokens):
         Todo.check_id(id=todo_id)
         Todo.remove(todo_id)
         return redirect(url_for('.index'))
@@ -101,7 +100,7 @@ def delete(todo_id):
 def switch(todo_id):
     # todo_id = int(request.args.get('id'))
     token = request.args.get('token')
-    if Todo.check_token(token, csrf_tokens):
+    if Todo.check_token(token, gg.csrf_tokens):
         Todo.check_id(id=todo_id)
         status = request.args.get('status')
         t = Todo.complete(todo_id, status)
