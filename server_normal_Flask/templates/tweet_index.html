@@ -13,7 +13,7 @@
         <button class="go-to-user-button">GO</button>
     </form>
     <h4>通过http的form添加</h4>
-    <a href="{{ url_for('tweet.new') }}">写新推特</a>
+    <a href="{{ url_for('tweet.new', token=token) }}">写新推特</a>
     <br>
     <h4>通过ajax的form添加</h4>
     <input id='id-input-tweet' type="text" name="title" placeholder="请输入tweet">
@@ -25,8 +25,8 @@
         <h6>tweets</h6>
         {% for t in tweets %}
         {{ t.content }} from {{ user.username}} ct@{{ t.created_time}} ut@{{ t.updated_time}}
-        <a href="{{ url_for('tweet.delete', tweet_id=t.id) }}">删除</a>
-        <a href="{{ url_for('tweet.edit', tweet_id=t.id) }}">编辑</a>
+        <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>
+        <a href="{{ url_for('tweet.edit', tweet_id=t.id, token=token) }}">编辑</a>
         <h6>评论</h6>
         {% for c in t.comments() %}
         <div class="comment">

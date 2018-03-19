@@ -9,7 +9,8 @@
 <!--用户不点击也中招-->
 <!--<img src="http://0.0.0.0:4000/todo/delete/3">-->
 <!--通过cookie，再伪造request删除/add用户数据-->
-<br>
+
+<h3>test todo</h3>
 <a href="http://0.0.0.0:4000/todo/edit/7">
     点击edit红包
 </a>
@@ -35,6 +36,34 @@
     <br>
     <a href="http://0.0.0.0:4000/todo/status_switch/9?status=True">设置为-完成</a>
     <a href="http://0.0.0.0:4000/todo/status_switch/9?status=False">设置为-未完成</a>
+
+
+<h3>test tweet</h3>
+
+<a href="http://0.0.0.0:4000/tweet/edit/2">
+    点击edit红包
+</a>
+<br>
+<a href="http://0.0.0.0:4000/tweet/delete/2">
+    点击delete红包
+</a>
+
+<br>
+<a href="http://0.0.0.0:4000/tweet/new">
+    点击去new红包
+</a>
+<br>
+<form action="http://0.0.0.0:4000/tweet/add" method="post">
+        <input name="content">
+        <br>
+        <button type="submit">点击add红包</button>
+</form>
+
+<form action="http://0.0.0.0:4000/tweet/update" method="post">
+    <input name="id" value="2" type="hidden">
+    <input name="content">
+    <button type="submit">submit</button>
+</form>
 
 
 <script>
