@@ -19,5 +19,7 @@ application = app.app
 # /Users/xxx/PycharmProjects/PythonWeb/server_normal_Flask/wsgi.py
 
 
-# 建立一个软连接
+# 建立一个软连接 for newapp.conf
 # ln -s /root/PythonWeb/server_normal_Flask/newapp.conf /etc/supervisor/conf.d/newapp.conf
+# 建立一个软连接 for newapp.nginx
+# ln -s /root/PythonWeb/server_normal_Flask/newapp.nginx /etc/nginx/sites-enabled/newapp
