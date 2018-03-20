@@ -85,8 +85,9 @@
 </form>
 
 <script>
-    <!--自动提交-->
-    {#todo 注释怎么变成这个样子#}
+    {#自动提交#}
+    {#这是jinja模板的注释😥#}
+
     {#let e = function(sel) {#}
     {#    return document.querySelector(sel)#}
     {#}#}
@@ -96,3 +97,11 @@
 
 </body>
 </html>
+
+{#XSS#}
+{#<script>alert('hello')</script>#}
+{#打开safe模式,add如上todo，会被执行XSS脚本,
+XSS可以有很多种:改背景颜色啦，
+偷cookie(flask默认做了安全防范，js代码不能拿到cookie，但是知乎就可以)#}
+{#<h3>{{ t.id }} : {{ t.title | safe}}#}
+{#不打开safe模式<>符号会被&lt; &gt;代替#}
