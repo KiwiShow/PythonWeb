@@ -8,7 +8,8 @@ import app
 
 sys.path.insert(0, abspath(dirname(__file__)))
 
-application = app.app
+# 这里变了骚年
+application = app.configured_app()
 
 
 # print(dirname(__file__))
