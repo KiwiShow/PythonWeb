@@ -17,7 +17,6 @@ from flask import (
 )
 from werkzeug.utils import secure_filename
 import os
-from models.message import Message
 from models.user import User
 
 
