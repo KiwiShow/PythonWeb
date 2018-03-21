@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>admin</title>
+</head>
+<body>
+    <h1>admin list</h1>
+    <form action="{{ url_for('.admin_update') }}" method="post">
+        <input type="text" name="id" placeholder="type id">
+        <br>
+		<input type="text" name="password" placeholder="type password">
+		<br>
+		<button type="submit">更新</button>
+    </form>
+    {% for u in users %}
+        <div class="user-cell">
+            <img src="{{ u.user_image }}" title="avatar"/>
+            <h3>id: {{ u.id }} username: {{ u.username }} password: {{ u.password }}</h3>
+        </div>
+    {% endfor %}
+</body>
+</html>

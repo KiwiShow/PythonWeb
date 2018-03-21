@@ -1,0 +1,77 @@
+2018/03/21 12:34:18 from run --> start at 0.0.0.0:5000
+2018/03/21 12:34:19 from run --> start at 0.0.0.0:5000
+2018/03/21 12:34:22 from current_user --> user_id :  1
+2018/03/21 12:34:22 routes_index ----> check current_user 返回值的type:  < User
+id: (1)
+type: (user)
+deleted: (False)
+created_time: (2018/03/19 14:22:31)
+updated_time: (2018/03/19 14:22:31)
+username: (aaa)
+password: (058e47bd47caa49cc31e4a8c2abade761cec433303662b44238baf7d9f177452)
+note: (sadfsdf)
+role: (10)
+user_image: (http://p5shjfo1t.bkt.clouddn.com/user1.jpg)
+_id: (5aaf57279d6cf22c2ef8a86d) >
+
+2018/03/21 12:34:33 from route_login --> cookies:  {'__wzd5b9bd4647ac6da6b114b': '1520429233|70f6233e8fbe', 'session': 'eyJ1c2VyX2lkIjoxfQ.DZNuHw.FU7XdJg747mmpgqCcFGQNKmpZNU'}
+2018/03/21 12:34:33 from current_user --> user_id :  1
+2018/03/21 12:34:42 from route_login --> cookies:  {'__wzd5b9bd4647ac6da6b114b': '1520429233|70f6233e8fbe'}
+2018/03/21 12:34:42 from current_user --> user_id :  -1
+2018/03/21 12:34:48 from route_login --> cookies:  {'__wzd5b9bd4647ac6da6b114b': '1520429233|70f6233e8fbe'}
+2018/03/21 12:34:48 from current_user --> user_id :  -1
+2018/03/21 17:12:39 from current_user --> user_id :  1
+2018/03/21 17:12:55 from current_user --> user_id :  1
+2018/03/21 17:12:55 from todo {'29408281-bd3e-4023-b7f1-5f24da9b0802': 1} 29408281-bd3e-4023-b7f1-5f24da9b0802
+2018/03/21 17:13:29 from current_user --> user_id :  1
+2018/03/21 17:13:29 from todo {'5d7baf5b-af3a-4b9b-8df2-f4087ddad725': 1} 5d7baf5b-af3a-4b9b-8df2-f4087ddad725
+2018/03/21 17:13:51 from current_user --> user_id :  1
+2018/03/21 17:13:51 from current_user --> user_id :  1
+2018/03/21 17:13:52 from current_user --> user_id :  1
+2018/03/21 17:13:52 from todo {'cbeabf3a-6e4c-4eee-afff-24bc40a8b7c9': 1} cbeabf3a-6e4c-4eee-afff-24bc40a8b7c9
+2018/03/21 17:14:32 from current_user --> user_id :  1
+2018/03/21 17:14:32 from todo {'78f56de6-ec28-4ddf-b986-7c487687f731': 1} 78f56de6-ec28-4ddf-b986-7c487687f731
+2018/03/21 17:14:49 from current_user --> user_id :  1
+2018/03/21 17:14:49 from todo {'93d14fdd-d903-4b34-92da-727c7ca68498': 1} 93d14fdd-d903-4b34-92da-727c7ca68498
+2018/03/21 17:15:42 from current_user --> user_id :  1
+2018/03/21 17:15:42 from todo {'48e57ffc-fac1-43e2-92dc-4c6092f2e07c': 1} 48e57ffc-fac1-43e2-92dc-4c6092f2e07c
+2018/03/21 17:16:07 from current_user --> user_id :  1
+2018/03/21 17:16:07 routes_index ----> check current_user 返回值的type:  < User
+id: (1)
+type: (user)
+deleted: (False)
+created_time: (2018/03/19 14:22:31)
+updated_time: (2018/03/19 14:22:31)
+username: (aaa)
+password: (058e47bd47caa49cc31e4a8c2abade761cec433303662b44238baf7d9f177452)
+note: (sadfsdf)
+role: (10)
+user_image: (http://p5shjfo1t.bkt.clouddn.com/user1.jpg)
+_id: (5aaf57279d6cf22c2ef8a86d) >
+
+2018/03/21 17:16:15 from route_login --> cookies:  {'__wzd5b9bd4647ac6da6b114b': '1520429233|70f6233e8fbe', 'session': 'eyJ1c2VyX2lkIjoxfQ.DZNyaA.eoO4u9DsC3CH2QyvaZKawdi70P4'}
+2018/03/21 17:16:15 from current_user --> user_id :  1
+2018/03/21 17:16:17 from route_login --> cookies:  {'__wzd5b9bd4647ac6da6b114b': '1520429233|70f6233e8fbe', 'session': 'eyJ1c2VyX2lkIjoxfQ.DZNyaA.eoO4u9DsC3CH2QyvaZKawdi70P4'}
+2018/03/21 17:16:17 from current_user --> user_id :  1
+2018/03/21 17:16:24 from current_user --> user_id :  1
+2018/03/21 17:16:24 from todo {'e8672f8b-7e42-45cb-8434-d5e683fed3b4': 1} e8672f8b-7e42-45cb-8434-d5e683fed3b4
+2018/03/21 17:16:36 from current_user --> user_id :  1
+2018/03/21 17:16:36 from tweet {'9d02931e-13df-4f2b-a767-b852450cd6c1': 1} 9d02931e-13df-4f2b-a767-b852450cd6c1
+2018/03/21 17:17:25 from current_user --> user_id :  1
+2018/03/21 17:17:25 from tweet {'53c4499d-95da-441e-9de3-e7d00a3aedcb': 1} 53c4499d-95da-441e-9de3-e7d00a3aedcb
+2018/03/21 17:17:39 from current_user --> user_id :  1
+2018/03/21 17:17:39 from tweet {'0bfdc3f0-2b82-49e7-b071-c4a6d8ef53de': 1} 0bfdc3f0-2b82-49e7-b071-c4a6d8ef53de
+2018/03/21 17:18:56 from current_user --> user_id :  1
+2018/03/21 17:18:56 from current_user --> user_id :  1
+2018/03/21 17:18:57 from current_user --> user_id :  1
+2018/03/21 17:18:57 from tweet {'c9ace03d-f253-43be-abd1-9fe1cb30df38': 1} c9ace03d-f253-43be-abd1-9fe1cb30df38
+2018/03/21 17:19:02 from current_user --> user_id :  1
+2018/03/21 17:19:02 from current_user --> user_id :  1
+2018/03/21 17:19:10 from current_user --> user_id :  1
+2018/03/21 17:19:10 from current_user --> user_id :  1
+2018/03/21 17:19:10 from current_user --> user_id :  1
+2018/03/21 17:19:10 from tweet {'aadd8b8f-384b-402f-a1d9-5ffbdbba059c': 1} aadd8b8f-384b-402f-a1d9-5ffbdbba059c
+2018/03/21 17:20:53 from run --> start at 0.0.0.0:5000
+2018/03/21 17:26:19 from current_user --> user_id :  1
+2018/03/21 17:26:19 from tweet {'bb11e4aa-ecbd-4b84-8dff-ac35a723e4b8': 1} bb11e4aa-ecbd-4b84-8dff-ac35a723e4b8
+2018/03/21 17:26:49 from current_user --> user_id :  1

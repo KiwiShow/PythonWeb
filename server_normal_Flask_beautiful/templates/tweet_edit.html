@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tweet edit</title>
+</head>
+<body>
+    <form action="{{ url_for('tweet.update', token=token) }}" method="post">
+        <input name="id" value="{{ tweet_id }}" type="hidden">
+        <input name="content" value="{{ tweet_content }}">
+        <button type="submit">submit</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My profile</title>
+</head>
+<body>
+    <h1>我的profile</h1>
+    <div class="user-cell">
+            <img src="{{ u.user_image }}" title="avatar" width="80" height="80">
+            <h3>id: {{ u.id }} username: {{ u.username }} password: {{ u.password }}</h3>
+    </div>
+
+    <h1>Upload your avatar</h1>
+    <form action="{{ url_for('.add_img') }}" method="post" enctype=multipart/form-data>
+        <input type=file name=avatar>
+        <input type=submit value=Upload>
+        <!--<button type="submit">Upload</button>-->
+    </form>
+</body>
+</html>

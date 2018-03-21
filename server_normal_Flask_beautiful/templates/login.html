@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册登录页面</title>
+</head>
+<body>
+    <h1>登录</h1>
+    <h2>你好 {{ username }}</h2>
+    <form action="{{ url_for('.login') }}" method="post">
+        <input type="text" name="username" value="aaa" placeholder="请输入用户名">
+        <br>
+        <input type="text" name="password" value="111" placeholder="请输入密码">
+        <br>
+        <button type="submit">登录</button>
+    </form>
+
+    <form action="{{ url_for('.out') }}" >
+        <button type="submit">登出</button>
+    </form>
+
+    <h3>{{ result }}</h3>
+    <!--方便调试-->
+    <a href="{{ url_for('.profile') }}">My profile</a>
+    <br>
+    <a href="{{ url_for('todo.index') }}">My todos</a>
+    <br>
+    <a href="{{ url_for('tweet.index') }}">My tweets</a>
+</body>
+</html>
