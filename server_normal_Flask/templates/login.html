@@ -12,8 +12,13 @@
         <br>
         <input type="text" name="password" value="111" placeholder="请输入密码">
         <br>
-        <button type="submit">登录</button><a href="{{ url_for('.out') }}">登出</a>
+        <button type="submit">登录</button>
     </form>
+
+    <form action="{{ url_for('.out') }}" >
+        <button type="submit">登出</button>
+    </form>
+
     <h3>{{ result }}</h3>
     <!--方便调试-->
     <a href="{{ url_for('.profile') }}">My profile</a>
