@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>主页(LOGIN按钮和图片)</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Hello {{ username }}</h1>
-    <a href="{{ url_for('.login') }}">Login</a>
-    <img src="/static/doge.gif"/>
-    <img src="/static/doge1.jpg"/>
-    <img src="/static/doge2.gif"/>
+    <div class="lead text-center">Hello {{ username }}</div>
+    <a class="btn btn-primary btn-lg active" href="{{ url_for('.login') }}">Login</a>
+    <br>
+    <img src="/static/image/doge.gif"/>
+    <img src="/static/image/doge1.jpg"/>
+    <img src="/static/image/doge2.gif"/>
 </body>
 </html>
