@@ -3,30 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Todo index</title>
+    <link rel="stylesheet" href="/static/css/index_cnode.css">
+    <script src="https://cdn.bootcss.com/marked/0.3.18/marked.min.js"></script>
 </head>
 <body>
-    <h1>TODO</h1>
-    <form action="{{ url_for('todo.add', token=token) }}" method="post">
-        <input type="text" name="title" placeholder="请输入todo">
-        <br>
-        <button type="submit">添加</button>
-    </form>
-    <br>
-    <div class="todo-list">
-        <!--to_do will be here-->
-        {% for t in todos %}
-        <div class="todo-cell">
-            <h3>{{ t.id }} : {{ t.title}}
-                ct@{{ t.created_time }}
-                ut@{{ t.updated_time }}
-                完成? {{ t.status }}
-                <a href="{{ url_for('todo.switch', todo_id=t.id, token=token) }}&status=True">设置为-完成</a>
-                <a href="{{ url_for('todo.switch', todo_id=t.id, token=token) }}&status=False">设置为-未完成</a>
-                <a href="{{ url_for('todo.edit', todo_id=t.id, token=token) }}">编辑</a>
-                <a href="{{ url_for('todo.delete', todo_id=t.id, token=token) }}">删除</a></h3>
+    <div id="main">
+        <div id="sidebar">
+            <div class="panel">
+                <div class="inner">
+                    <form action="{{ url_for('todo.add', token=token) }}" method="post">
+                        <input type="text" name="title" placeholder="请输入todo">
+                        <br>
+                        <button type="submit" class="span-success">添加</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        {% endfor %}
-        <br>
+        <div id="content">
+        <div class="panel">
+            <div class="inner post">
+                <div class="topic_list">
+                    {% for t in todos %}
+                    <div class="cell">
+                        <div class="topic_title_wrapper">
+                            <a class="topic_title">
+                            {{ t.title}}
+                            ct@{{ t.created_time }}
+                            ut@{{ t.updated_time }}
+                            完成? {{ t.status }}
+                            </a>
+                            <a href="{{ url_for('todo.switch', todo_id=t.id, token=token) }}&status=True">设置为-完成</a>
+                            <a href="{{ url_for('todo.switch', todo_id=t.id, token=token) }}&status=False">设置为-未完成</a>
+                            <a href="{{ url_for('todo.edit', todo_id=t.id, token=token) }}">编辑</a>
+                            <a href="{{ url_for('todo.delete', todo_id=t.id, token=token) }}">删除</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 </body>
 </html>
