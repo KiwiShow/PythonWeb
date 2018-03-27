@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>edit todo </title>
+    <link rel="stylesheet" href="/static/css/index_cnode.css">
 </head>
 <body>
-    <h1>修改 todo</h1>
-    <form action="{{ url_for('todo.update', token=token) }}" method="post">
-        <input type="hidden" name="id" placeholder="id" value="{{ t.id }}">
-        <br>
-        <input name="title" placeholder="title" value="{{ t.title }}">
-        <br>
-        <button>提交修改</button>
-    </form>
+
+    <div id="main">
+        <div class="panel">
+            <div class="inner">
+                <form action="{{ url_for('todo.update', token=token) }}" method="post">
+                    <input type="hidden" name="id" placeholder="id" value="{{ t.id }}">
+                    <br>
+                    <input name="title" placeholder="title" value="{{ t.title }}">
+                    <br>
+                    <button type="submit" class="span-success">提交修改</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
