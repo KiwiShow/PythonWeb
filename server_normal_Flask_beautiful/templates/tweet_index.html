@@ -1,40 +1,70 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Tweet index</title>
+    <link rel="stylesheet" href="/static/css/index_cnode.css">
 </head>
-<p>
-    <h4>{{ user.username }}的Tweet</h4>
+{#    <h4>{{ user.username }}的Tweet</h4>#}
 
-    <h3>去用户？的tweet</h3>
-    <form name="go_to_user_form" action="{{ url_for('tweet.index') }}" method="get">
-        <input class="go-to-user-input" name="user_id" value="-1" type="text" placeholder="输入用户id">
-        <button class="go-to-user-button">GO</button>
-    </form>
-    <a href="{{ url_for('tweet.new', token=token) }}">写新推特</a>
-    <br>
-    <div class="tweet-list">
-        <h6>tweets</h6>
-        {% for t in tweets %}
-        {{ t.content }} from {{ user.username}} ct@{{ t.created_time}} ut@{{ t.updated_time}}
-        <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>
-        <a href="{{ url_for('tweet.edit', tweet_id=t.id, token=token) }}">编辑</a>
-        <h6>评论</h6>
-        {% for c in t.comments() %}
-        <div class="comment">
-            {{ c.user().username }} : {{ c.content }}  ct@{{ c.created_time}} ut@{{ c.updated_time}}
-        <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>
-        <a href="{{ url_for('comment.edit', comment_id=c.id, token=token) }}">编辑</a>
+{#    <h3>去用户？的tweet</h3>#}
+{#    <form name="go_to_user_form" action="{{ url_for('tweet.index') }}" method="get">#}
+{#        <input class="go-to-user-input" name="user_id" value="-1" type="text" placeholder="输入用户id">#}
+{#        <button class="go-to-user-button">GO</button>#}
+{#    </form>#}
+{#    <a href="{{ url_for('tweet.new', token=token) }}">写新推特</a>#}
+{#    <br>#}
+{#    <div class="tweet-list">#}
+{#        <h6>tweets</h6>#}
+{#        {% for t in tweets %}#}
+{#        {{ t.content }} from {{ user.username}} ct@{{ t.created_time}} ut@{{ t.updated_time}}#}
+{#        <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>#}
+{#        <a href="{{ url_for('tweet.edit', tweet_id=t.id, token=token) }}">编辑</a>#}
+{#        <h6>评论</h6>#}
+{#        {% for c in t.comments() %}#}
+{#        <div class="comment">#}
+{#            {{ c.user().username }} : {{ c.content }}  ct@{{ c.created_time}} ut@{{ c.updated_time}}#}
+{#        <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>#}
+{#        <a href="{{ url_for('comment.edit', comment_id=c.id, token=token) }}">编辑</a>#}
+{#        </div>#}
+{#        {% endfor %}#}
+{#        <form action="{{ url_for('comment.add', token=token) }}" method="post">#}
+{#            <input type="hidden" name="tweet_id" value="{{ t.id }}">#}
+{#            <input name="content">#}
+{#            <br>#}
+{#            <button type="submit">添加评论</button>#}
+{#        </form>#}
+{#        {% endfor %}#}
+{#    </div>#}
+
+    <div id="main">
+        <div id="sidebar">
+            <div class="panel">
+                <div class="inner">
+                    <a href="{{ url_for('tweet.new', token=token) }}" class="create_topic_btn">
+                        <span class="span-success">写新推特</span>
+                    </a>
+                </div>
+            </div>
         </div>
-        {% endfor %}
-        <form action="{{ url_for('comment.add', token=token) }}" method="post">
-            <input type="hidden" name="tweet_id" value="{{ t.id }}">
-            <input name="content">
-            <br>
-            <button type="submit">添加评论</button>
-        </form>
-        {% endfor %}
+        <div id="content">
+            <div class="panel">
+                <div class="inner post">
+                    <div class="topic_list">
+                        {% for t in tweets %}
+                        <div class="cell">
+                            <div class="topic_title_wrapper">
+                                <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">
+                                    {{ t.title }}
+                                </a>
+                                <span>from {{ t.user().username}}  {{ t.comments() | count }} comments/ {{ t.views }} views</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

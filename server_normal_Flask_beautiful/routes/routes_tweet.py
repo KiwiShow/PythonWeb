@@ -46,8 +46,9 @@ def index():
         # 保证每次调用index函数时都有新的token可用
         gg.set_value(user.id)
         log('from tweet',gg.csrf_tokens, gg.token)
-        tweets = Tweet.find_all(user_id=user.id, deleted=False)
-        body = render_template('tweet_index.html', tweets=tweets, user=user, token=gg.token)
+        # 改为显示所有的tweet，每个Tweet都有各自的username
+        tweets = Tweet.find_all(deleted=False)
+        body = render_template('tweet_index.html', tweets=tweets, token=gg.token)
         return make_response(body)
 
 
@@ -105,9 +106,7 @@ def edit(tweet_id):
     # tweet_id = int(request.args.get('id', -1))
         t = Tweet.find(tweet_id)
         if u.id == t.user_id:
-            body = render_template('tweet_edit.html',
-                            tweet_id=t.id,
-                            tweet_content=t.content, token=token)
+            body = render_template('tweet_edit.html', t=t, token=token)
             return make_response(body)
         return redirect(url_for('.index'))
 
@@ -124,6 +123,20 @@ def update():
         return redirect(url_for('.index'))
 
 
+@main.route('/detail/<int:tweet_id>', methods=['GET'])
+@login_required
+def detail(tweet_id):
+    u = current_user()
+    token = request.args.get('token')
+    if Tweet.check_token(token, gg.csrf_tokens):
+    # tweet_id = int(request.args.get('id', -1))
+    #     t = Tweet.find(tweet_id)
+        t = Tweet.get(tweet_id)
+        # 这里不需要验证是否是自己发的tweet
+        # if u.id == t.user_id:
+        body = render_template('tweet_detail.html', t=t, token=token)
+        return make_response(body)
+    return redirect(url_for('.index'))
 # route_dict = {
 #     '/tweet/index': login_required(index),
 #     '/tweet/delete': login_required(delete),

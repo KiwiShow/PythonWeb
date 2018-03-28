@@ -37,7 +37,7 @@ def add():
         c = Comment.new(form, user_id=user.id, user_name=user.username)
         # c.save()
         # uid = c.tweet().user().id
-        return redirect(url_for('tweet.index'))
+        return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=token))
 
 
 @main.route('/delete/<int:comment_id>', methods=['GET'])
@@ -51,7 +51,7 @@ def delete(comment_id):
         c = Comment.find(comment_id)
         if u.id == c.user_id:
             c.remove(comment_id)
-        return redirect(url_for('tweet.index'))
+        return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=token))
 
 
 @main.route('/edit/<int:comment_id>', methods=['GET'])
@@ -67,7 +67,7 @@ def edit(comment_id):
                             comment_id=c.id,
                             comment_content=c.content, token=token)
             return make_response(body)
-        return redirect(url_for('tweet.index'))
+        return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=token))
 
 
 @main.route('/update', methods=['POST'])
@@ -79,4 +79,4 @@ def update():
         Comment.check_id(form)
         newTweet = Comment.update(form)
         # redirect有必要加query吗
-        return redirect(url_for('tweet.index'))
+        return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=token))

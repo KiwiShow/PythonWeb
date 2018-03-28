@@ -14,7 +14,9 @@ class Tweet(MonModel):
     ('updated_time', int, 0),
     """
     __fields__ = MonModel.__fields__ + [
+        ('title', str, ''),
         ('content', str, ''),
+        ('views', int, 0),
         ('user_id', int, -1),
         ('user_name', str, ''),
     ]
@@ -43,6 +45,13 @@ class Tweet(MonModel):
     def user(self):
         u = User.find_by(id=self.user_id)
         return u
+
+    @classmethod
+    def get(cls, id):
+        t = cls.find(id)
+        t.views += 1
+        t.save()
+        return t
 
 # class Tweet(Model):
 #     def __init__(self, form, user_id=-1):

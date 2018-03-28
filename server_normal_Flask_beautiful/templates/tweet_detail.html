@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tweet detail</title>
+    <link rel="stylesheet" href="/static/css/index_cnode.css">
+</head>
+<body>
+<div id="main">
+    <div id="content">
+        <div class='panel'>
+            <div class='header topic_header'>
+                <span class="topic_full_title">
+                    {{ t.title }}
+                </span>
+                 <div class="changes">
+                    <span class="gua-time" id="{{ t.ct }}"></span>
+                    <!--<span>-->
+                        <!--发布于 2 天前 改正时间显示-->
+                    <!--</span>-->
+                    <span>
+                        {% set u = t.user() %}
+                        作者
+                        <a href="{{ url_for('user.user_detail', id=u.id) }}">
+                            {{ u.username }}
+                        </a>
+                    </span>
+                    <span>
+                        {{ t.views }} 次浏览
+                    </span>
+                    <span>
+                        来自 问答
+                    </span>
+                </div>
+            </div>
+
+            <div class='inner topic'>
+                <div class='topic_content'>
+                    <div class="markdown-text">{{ t.content }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='panel'>
+        <div class='header'>
+            <span class='col_fade'>
+                <!-- 过滤器 -->
+                {{ t.comments() | count }} 回复
+            </span>
+        </div>
+        {% for r in t.comments() %}
+        {% set u = r.user() %}
+        <div class='cell reply_area reply_item'>
+            <div class='author_content'>
+                <a href="{{ url_for('user.user_detail', id=u.id) }}" class="user_avatar">
+                    <img src="{{ u.user_image }}" title="{{ u.username }}"/>
+                </a>
+                <div class='user_info'>
+                    <a class='dark reply_author' href="{{ url_for('user.user_detail', id=u.id) }}">
+                        {{ u.username }}
+                    </a>
+                    <a class="reply_time">
+                        {{ loop.index }}楼 / {{ loop.length }}楼 •
+                        <span class="gua-time" id="{{ r.ct }}"></span>
+                    </a>
+                </div>
+                <div class='user_action'>
+                    <span>
+                        <i class="fa up_btn fa-thumbs-o-up invisible" title="喜欢"></i>
+                        <span class="up-count">
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class='reply_content from-leiwei1991'>
+                <div class="markdown-text">{{ r.content }}</div>
+            </div>
+        </div>
+        {% endfor %}
+        <div>
+            <form action="{{ url_for('comment.add', token=token) }}" method="post">
+                <input type="hidden" name="tweet_id" value="{{ t.id }}">
+                <textarea name="content"></textarea>
+                <button>添加回复</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

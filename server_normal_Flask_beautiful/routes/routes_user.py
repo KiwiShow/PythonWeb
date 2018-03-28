@@ -190,6 +190,14 @@ def hack():
     print('cookie', cookie)
 
 
+# 增加一个可以看到任意user的路由函数
+@main.route('/user/<int:id>')
+@login_required
+def user_detail(id):
+    u = User.find(id)
+    return render_template('profile.html', u=u)
+
+
 # route_dict = {
 #     '/': route_index,
 #     '/login': route_login,
