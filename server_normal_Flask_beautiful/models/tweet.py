@@ -35,7 +35,9 @@ class Tweet(MonModel):
         t.title = form.get('title')
         t.content = form.get('content')
         tm = int(time.time())
-        t.updated_time = change_time(tm)
+        # t.updated_time = change_time(tm)
+        # 因为需要算基于linux时间算delta，所以不需要格式化时间
+        t.updated_time = tm
         t.save()
         return t
     

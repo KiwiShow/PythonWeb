@@ -67,8 +67,11 @@ class MonModel(object):
                 raise KeyError
         m.id = next_id(name)
         t = int(time.time())
-        m.created_time = change_time(t)
-        m.updated_time = change_time(t)
+        # 因为需要算基于linux时间算delta，所以不需要格式化时间
+        # m.created_time = change_time(t)
+        # m.updated_time = change_time(t)
+        m.created_time = t
+        m.updated_time = t
         m.type = name.lower()
         m.save()
         return m

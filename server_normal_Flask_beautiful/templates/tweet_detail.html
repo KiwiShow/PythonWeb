@@ -14,7 +14,7 @@
                     {{ t.title }}
                 </span>
                  <div class="changes">
-                    <span class="gua-time" id="{{ t.ct }}"></span>
+                    <span class="time" id="{{ t.created_time }}"></span>
                     <!--<span>-->
                         <!--发布于 2 天前 改正时间显示-->
                     <!--</span>-->
@@ -61,7 +61,7 @@
                     </a>
                     <a class="reply_time">
                         {{ loop.index }}楼 / {{ loop.length }}楼 •
-                        <span class="gua-time" id="{{ c.ct }}"></span>
+                        <span class="time" id="{{ c.created_time }}"></span>
                     </a>
                 </div>
                 <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>
@@ -88,5 +88,46 @@
         </div>
     </div>
 </div>
+<script>
+    let log = function () {
+    console.log.apply(console, arguments)
+    }
+
+    let e = function (sel) {
+        return document.querySelector(sel)
+    }
+
+    let es = function (sel) {
+        return document.querySelectorAll(sel)
+    }
+
+    let createTimer = function () {
+        setInterval(function () {
+            let times = es('.time')
+            for(let i = 0; i < times.length; i++)  {
+                let t = times[i]
+                let time = Number(t.id)
+                let now = Math.floor(new Date() / 1000)
+                let delta = now - time
+
+                day = Math.floor(delta/86400)
+                hour = Math.floor((delta%86400)/3600)
+                minute = Math.floor((delta%3600)/60)
+                second = Math.floor(delta%60)
+
+                let s = delta + ' 秒前'
+                let ss = day + ' 天前' + hour + ' 小时前' + minute + ' 分前' +  second + ' 秒前'
+                t.innerHTML = ss
+            }
+        }, 1000)
+
+    }
+
+    let __main = function () {
+        createTimer()
+    }
+
+    __main()
+</script>
 </body>
 </html>
