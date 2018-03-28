@@ -6,6 +6,8 @@
 </head>
 <body>
     <form action="{{ url_for('tweet.add', token=token) }}" method="post">
+        <input name="title">
+        <br>
         <input name="content">
         <br>
         <button type="submit">发表新推特</button>
