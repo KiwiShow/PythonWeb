@@ -77,6 +77,6 @@ def update():
     if Comment.check_token(token, gg.csrf_tokens):
         form = request.form
         Comment.check_id(form)
-        newTweet = Comment.update(form)
+        newComment = Comment.update(form)
         # redirect有必要加query吗
-        return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=token))
+        return redirect(url_for('tweet.detail', tweet_id=newComment.tweet_id, token=token))

@@ -48,8 +48,8 @@
                 {{ t.comments() | count }} 回复
             </span>
         </div>
-        {% for r in t.comments() %}
-        {% set u = r.user() %}
+        {% for c in t.comments() %}
+        {% set u = c.user() %}
         <div class='cell reply_area reply_item'>
             <div class='author_content'>
                 <a href="{{ url_for('user.user_detail', id=u.id) }}" class="user_avatar">
@@ -61,9 +61,11 @@
                     </a>
                     <a class="reply_time">
                         {{ loop.index }}楼 / {{ loop.length }}楼 •
-                        <span class="gua-time" id="{{ r.ct }}"></span>
+                        <span class="gua-time" id="{{ c.ct }}"></span>
                     </a>
                 </div>
+                <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>
+                <a href="{{ url_for('comment.edit', comment_id=c.id, token=token) }}">编辑</a>
                 <div class='user_action'>
                     <span>
                         <i class="fa up_btn fa-thumbs-o-up invisible" title="喜欢"></i>
@@ -73,7 +75,7 @@
                 </div>
             </div>
             <div class='reply_content from-leiwei1991'>
-                <div class="markdown-text">{{ r.content }}</div>
+                <div class="markdown-text">{{ c.content }}</div>
             </div>
         </div>
         {% endfor %}
