@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>tweet detail</title>
     <link rel="stylesheet" href="/static/css/index_cnode.css">
+    <script src="//cdn.bootcss.com/marked/0.3.19/marked.min.js"></script>
 </head>
 <body>
 <div id="main">
@@ -123,8 +124,18 @@
 
     }
 
+    let markContents = function () {
+        let contentDivs = es('.markdown-text')
+        for(let i = 0; i < contentDivs.length; i++) {
+            let contentDiv = contentDivs[i]
+            let content = marked(contentDiv.innerHTML)
+            contentDiv.innerHTML = content
+        }
+    }
+
     let __main = function () {
         createTimer()
+        markContents()
     }
 
     __main()
