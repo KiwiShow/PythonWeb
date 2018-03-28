@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>tweet new</title>
+    <link rel="stylesheet" href="/static/css/index_cnode.css">
 </head>
 <body>
-    <form action="{{ url_for('tweet.add', token=token) }}" method="post">
-        <input name="title">
-        <br>
-        <input name="content">
-        <br>
-        <button type="submit">发表新推特</button>
-    </form>
+
+    <div id="main">
+        <div class="panel">
+            <div class="inner">
+                <form action="{{ url_for('tweet.add', token=token) }}" method="post">
+                    <input name="title" placeholder="title">
+                    <br>
+                    <input name="content" placeholder="content">
+                    <br>
+                    <button type="submit" class="span-success">发表新推特</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

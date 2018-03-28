@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>tweet edit</title>
+    <link rel="stylesheet" href="/static/css/index_cnode.css">
 </head>
 <body>
-    <form action="{{ url_for('tweet.update', token=token) }}" method="post">
-        <input name="id" value="{{ t.id }}" type="hidden">
-        <input name="title" value="{{ t.title }}">
-        <input name="content" value="{{ t.content }}">
-        <button type="submit">submit</button>
-    </form>
+    <div id="main">
+        <div class="panel">
+            <div class="inner">
+                <form action="{{ url_for('tweet.update', token=token) }}" method="post">
+                    <input name="id" value="{{ t.id }}" type="hidden">
+                    <br>
+                    <input name="title" value="{{ t.title }}">
+                    <br>
+                    <input name="content" value="{{ t.content }}">
+                    <br>
+                    <button type="submit" class="span-success">提交修改</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

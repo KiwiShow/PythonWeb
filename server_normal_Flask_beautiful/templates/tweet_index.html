@@ -57,7 +57,9 @@
                                 <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">
                                     {{ t.title }}
                                 </a>
-                                <span>from {{ t.user().username}}  {{ t.comments() | count }} comments/ {{ t.views }} views</span>
+                                <span>from {{ t.user().username}}  {{ t.comments() | count }} comments/ {{ t.views }} views
+                                    <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>
+                                    <a href="{{ url_for('tweet.edit', tweet_id=t.id, token=token) }}">编辑</a></span>
                             </div>
                         </div>
                         {% endfor %}

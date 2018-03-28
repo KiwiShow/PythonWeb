@@ -32,6 +32,7 @@ class Tweet(MonModel):
     def update(cls, form):
         tweet_id = int(form.get('id', -1))
         t = Tweet.find_by(id=tweet_id)
+        t.title = form.get('title')
         t.content = form.get('content')
         tm = int(time.time())
         t.updated_time = change_time(tm)
