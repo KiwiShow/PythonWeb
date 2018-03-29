@@ -39,7 +39,7 @@ def index():
     # 保证每次调用index函数时都有新的token可用
     gg.set_value(user.id)
     log('from todo', gg.csrf_tokens, gg.token)
-    body = render_template('todo_index.html', todos=todo_list, token=gg.token)
+    body = render_template('todo/todo_index.html', todos=todo_list, token=gg.token)
     return make_response(body)
 
 
@@ -68,7 +68,7 @@ def edit(todo_id):
         return redirect(url_for('.index'))
     token = request.args.get('token')
     if Todo.check_token(token, gg.csrf_tokens):
-        body = render_template('todo_edit.html', t=t, token=token)
+        body = render_template('todo/todo_edit.html', t=t, token=token)
         return make_response(body)
 
 

@@ -54,7 +54,7 @@ def index():
         else:
             tweets = Tweet.find_all(board_id=board_id, deleted=False)
         bs = Board.find_all(deleted=False)
-        body = render_template('tweet_index.html', tweets=tweets, token=gg.token, bs=bs, bid=board_id)
+        body = render_template('tweet/tweet_index.html', tweets=tweets, token=gg.token, bs=bs, bid=board_id)
         return make_response(body)
 
 
@@ -86,7 +86,7 @@ def new():
     board_id = int(request.args.get('board_id', -1))
     if Tweet.check_token(token, gg.csrf_tokens):
         bs = Board.find_all(deleted=False)
-        body = render_template('tweet_new.html', token=token, bs=bs, bid=board_id)
+        body = render_template('tweet/tweet_new.html', token=token, bs=bs, bid=board_id)
         return make_response(body)
 
 
@@ -115,7 +115,7 @@ def edit(tweet_id):
     # tweet_id = int(request.args.get('id', -1))
         t = Tweet.find(tweet_id)
         if u.id == t.user_id:
-            body = render_template('tweet_edit.html', t=t, token=token)
+            body = render_template('tweet/tweet_edit.html', t=t, token=token)
             return make_response(body)
         return redirect(url_for('.index'))
 
@@ -143,7 +143,7 @@ def detail(tweet_id):
         t = Tweet.get(tweet_id)
         # 这里不需要验证是否是自己发的tweet
         # if u.id == t.user_id:
-        body = render_template('tweet_detail.html', t=t, token=token)
+        body = render_template('tweet/tweet_detail.html', t=t, token=token)
         return make_response(body)
     return redirect(url_for('.index'))
 # route_dict = {

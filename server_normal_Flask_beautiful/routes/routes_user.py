@@ -30,11 +30,11 @@ def index():
     主页的处理函数，如果登录，显示username，不然则显示游客
     :return: 主页
     """
-    body = render_template('index.html', username='游客')
+    body = render_template('user/index.html', username='游客')
     user = current_user()
     log('routes_index ----> check current_user 返回值的type: ', user)
     if user is not None:
-        body = render_template('index.html', username=user.username)
+        body = render_template('user/index.html', username=user.username)
     r = make_response(body)
     return r
 
@@ -60,7 +60,7 @@ def login():
             result = '用户名或者密码错误'
     else:
         result = '请再登陆'
-    body = render_template('login.html', result=result, username='游客')
+    body = render_template('user/login.html', result=result, username='游客')
     if u is not None:
         body = body.replace('游客', u.username)
         body = body.replace('请再登陆', '')
@@ -93,7 +93,7 @@ def register():
             result = '注册成功'
         else:
             result = '用户名或者密码长度必须大于2或者用户名已注册'
-    body = render_template('register.html', result=result, users=User.find_all(deleted=False))
+    body = render_template('user/register.html', result=result, users=User.find_all(deleted=False))
     return make_response(body)
 
 
@@ -108,7 +108,7 @@ def profile():
     # html元素有效有效有效有效有效有效有效有效有效有效有效
     # 似乎render_template函数里面参数赋值的时候有过滤？
     # 在render_template中直接文本替代是不行的，只会当成字符串
-    body = render_template('profile.html', u=u)
+    body = render_template('user/profile.html', u=u)
     return make_response(body)
 
 
@@ -122,7 +122,7 @@ def admin():
     u = current_user()
     if u.id != 1:
         return redirect(url_for('.login'))
-    body = render_template('admin.html', users=User.find_all(deleted=False), boards=Board.find_all(deleted=False))
+    body = render_template('user/admin.html', users=User.find_all(deleted=False), boards=Board.find_all(deleted=False))
     return make_response(body)
 
 
@@ -206,7 +206,7 @@ def hack():
 @login_required
 def user_detail(id):
     u = User.find(id)
-    return render_template('profile.html', u=u)
+    return render_template('user/profile.html', u=u)
 
 
 # route_dict = {
