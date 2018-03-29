@@ -33,6 +33,23 @@
         </div>
     </form>
 
+    <form class="form-horizontal" method="post" action="{{ url_for('.register') }}">
+        <div class="control-group">
+            <label class="control-label">用户名</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" name="username">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">密码</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" name="password">
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="submit" class="span-primary" value="注册">
+        </div>
+    </form>
 
         <table class="table table-hover">
         <tr>
@@ -40,6 +57,7 @@
             <th>name</th>
             <th>password(sha256)</th>
             <th>created_time</th>
+            <th>想干啥?</th>
         </tr>
         {% for u in users %}
         <tr>
@@ -47,6 +65,8 @@
             <td>{{ u.username }}</td>
             <td>{{ u.password }}</td>
             <td>{{ u.created_time }}</td>
+            <td><a href="{{ url_for('.user_delete', user_id=u.id) }}">删除</a></td>
+
         </tr>
         {% endfor %}
     </table>

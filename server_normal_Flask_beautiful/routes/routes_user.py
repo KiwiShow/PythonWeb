@@ -121,7 +121,7 @@ def admin():
     u = current_user()
     if u.id != 1:
         return redirect(url_for('.login'))
-    body = render_template('admin.html', users=u.all())
+    body = render_template('admin.html', users=User.find_all(deleted=False))
     return make_response(body)
 
 
@@ -141,6 +141,16 @@ def admin_update():
     user = User.find_by(id=user_id)
     user.password = user.salted_password(user_password)
     user.save()
+    return redirect(url_for('.admin'))
+
+
+@main.route('/admin/user/delete/<int:user_id>')
+@login_required
+def user_delete(user_id):
+    u = current_user()
+    if u.id != 1:
+        return redirect(url_for('.login'))
+    User.remove(user_id)
     return redirect(url_for('.admin'))
 
 

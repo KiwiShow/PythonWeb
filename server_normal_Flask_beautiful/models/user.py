@@ -50,7 +50,7 @@ class User(MonModel):
         #         return True
         # return False
         # 更加简洁
-        user = User.find_by(username=form.get('username'))
+        user = User.find_by(username=form.get('username'), deleted=False)
         return user is not None and user.password == User.salted_password(form.get('password'))
 
     @classmethod
