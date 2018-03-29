@@ -18,6 +18,7 @@ from flask import (
 from werkzeug.utils import secure_filename
 import os
 from models.user import User
+from models.board import Board
 
 
 main = Blueprint('user', __name__)
@@ -92,7 +93,7 @@ def register():
             result = '注册成功'
         else:
             result = '用户名或者密码长度必须大于2或者用户名已注册'
-    body = render_template('register.html', result=result, users=User.all())
+    body = render_template('register.html', result=result, users=User.find_all(deleted=False))
     return make_response(body)
 
 
@@ -121,7 +122,7 @@ def admin():
     u = current_user()
     if u.id != 1:
         return redirect(url_for('.login'))
-    body = render_template('admin.html', users=User.find_all(deleted=False))
+    body = render_template('admin.html', users=User.find_all(deleted=False), boards=Board.find_all(deleted=False))
     return make_response(body)
 
 

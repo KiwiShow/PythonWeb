@@ -70,5 +70,57 @@
         </tr>
         {% endfor %}
     </table>
+
+
+    <br>
+    <div class="lead">board list</div>
+    <br>
+
+    <form class="form-horizontal" method="post" action="{{ url_for('board.add') }}">
+        <div class="control-group">
+            <label class="control-label">title</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" name="title">
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="submit" class="span-primary" value="add">
+        </div>
+    </form>
+
+    <form class="form-horizontal" method="post" action="{{ url_for('board.update') }}">
+        <div class="control-group">
+            <label class="control-label">id</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" name="id">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">title</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" name="title">
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="submit" class="span-primary" value="update">
+        </div>
+    </form>
+
+
+        <table class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>title</th>
+            <th>想干啥?</th>
+        </tr>
+        {% for b in boards %}
+        <tr>
+            <td>{{ b.id }}</td>
+            <td>{{ b.title }}</td>
+            <td><a href="{{ url_for('board.delete', board_id=b.id) }}">删除</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
