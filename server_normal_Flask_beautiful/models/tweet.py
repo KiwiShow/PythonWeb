@@ -1,5 +1,6 @@
 from models import MonModel, change_time
 from models.user import User
+from models.board import Board
 from models.comment import Comment
 import time
 
@@ -48,6 +49,10 @@ class Tweet(MonModel):
 
     def user(self):
         u = User.find_by(id=self.user_id)
+        return u
+
+    def board(self):
+        u = Board.find_by(id=self.board_id)
         return u
 
     @classmethod

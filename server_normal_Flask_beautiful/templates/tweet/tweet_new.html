@@ -30,6 +30,12 @@
         </div>
         <div id="content">
             <div class="panel">
+                <div class="header">
+                    <ol class="breadcrumb">
+                        <li><a href="{{ url_for('tweet.index') }}">主页</a><span class="divider">/</span></li>
+                        <li class="active">发布tweet</li>
+                    </ol>
+                </div>
                 <div class="inner post">
                     <form id="create_topic_form" method="post" action="{{ url_for('tweet.add', token=token, board_id=bid) }}">
                         <fieldset>

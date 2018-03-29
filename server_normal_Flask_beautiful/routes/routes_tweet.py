@@ -54,7 +54,7 @@ def index():
         else:
             tweets = Tweet.find_all(board_id=board_id, deleted=False)
         bs = Board.find_all(deleted=False)
-        body = render_template('tweet/tweet_index.html', tweets=tweets, token=gg.token, bs=bs, bid=board_id)
+        body = render_template('tweet/tweet_index.html', tweets=tweets, token=gg.token, bs=bs, bid=board_id, u=user)
         return make_response(body)
 
 

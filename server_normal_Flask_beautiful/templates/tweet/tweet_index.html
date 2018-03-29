@@ -40,6 +40,24 @@
     <div id="main">
         <div id="sidebar">
             <div class="panel">
+                <div class="header">
+                      <span class="col_fade">个人信息</span>
+                </div>
+                <div class="inner">
+                    <div class="user_card">
+                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id) }}">
+                      <img src="{{ u.user_image }}" title="{{ u.username }}"/>
+                    </a>
+                    <span class="user_name"><a class="dark" href="{{ url_for('user.user_detail', id=u.id) }}">{{ u.username }}</a></span>
+
+                    <div class="space clearfix"></div>
+                    <span class="signature">
+                        “这家伙很懒，什么个性签名都没有留下。”
+                    </span>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
                 <div class="inner">
                     <a href="{{ url_for('tweet.new', token=token, board_id=bid) }}" class="create_topic_btn">
                         <span class="span-success">写新推特</span>
@@ -58,21 +76,85 @@
                 <div class="inner post">
                     <div class="topic_list">
                         {% for t in tweets %}
-                        <div class="cell">
-                            <div class="topic_title_wrapper">
-                                <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">
-                                    {{ t.title }}
+                            <div class="cell">
+                                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
+                                <img src="{{ u.user_image }}" title="{{ u.username }}">
+                              </a>
+                                <span class="reply_count pull-left">
+                                <span class="count_of_replies" title="回复数">
+                                  {{ t.comments() | count }}
+                                </span>
+                                <span class="count_seperator">/</span>
+                                <span class="count_of_visits" title="点击数">
+                                  {{ t.views }}
+                                </span>
+                              </span>
+                                <a class="last_time pull-right">
+                                <img class="user_small_avatar" src="{{ u.user_image }}">
+                                <span class="last_active_time time" id="{{ t.created_time }}"></span>
                                 </a>
-                                <span>from {{ t.user().username}}  {{ t.comments() | count }} comments/ {{ t.views }} views
-                                    <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>
-                                    <a href="{{ url_for('tweet.edit', tweet_id=t.id, token=token) }}">编辑</a></span>
+                                <div class="topic_title_wrapper">
+                                  <span class="put_good">{{ t.board().title }}</span>
+                                  <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}" title="{{ t.title }}">
+                                  {{ t.title }}
+                                  </a>
+                              </div>
                             </div>
-                        </div>
+{#                        <div class="cell">#}
+{#                            <div class="topic_title_wrapper">#}
+{#                                <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">#}
+{#                                    {{ t.title }}#}
+{#                                </a>#}
+{#                                <span>from {{ t.user().username}}  {{ t.comments() | count }} comments/ {{ t.views }} views#}
+{#                                    <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>#}
+{#                                    <a href="{{ url_for('tweet.edit', tweet_id=t.id, token=token) }}">编辑</a></span>#}
+{#                            </div>#}
+{#                        </div>#}
                         {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<script>
+    let log = function () {
+    console.log.apply(console, arguments)
+    }
+
+    let e = function (sel) {
+        return document.querySelector(sel)
+    }
+
+    let es = function (sel) {
+        return document.querySelectorAll(sel)
+    }
+
+    let createTimer = function () {
+        setInterval(function () {
+            let times = es('.time')
+            for(let i = 0; i < times.length; i++)  {
+                let t = times[i]
+                let time = Number(t.id)
+                let now = Math.floor(new Date() / 1000)
+                let delta = now - time
+
+                day = Math.floor(delta/86400)
+                hour = Math.floor((delta%86400)/3600)
+                minute = Math.floor((delta%3600)/60)
+
+                let s = delta + ' 秒前'
+                let ss = day + ' 天前' + hour + ' 小时前' + minute + ' 分前'
+                t.innerHTML = ss
+            }
+        }, 1000)
+
+    }
+
+    let __main = function () {
+        createTimer()
+    }
+
+    __main()
+</script>
 </body>
 </html>
