@@ -5,22 +5,44 @@
     <title>tweet detail</title>
     <link rel="stylesheet" href="//o4j806krb.qnssl.com/public/stylesheets/index.min.23a5b1ca.min.css" media="all">
     <script src="//cdn.bootcss.com/marked/0.3.19/marked.min.js"></script>
+    <script src="//o4j806krb.qnssl.com/public/index.min.f7c13f64.min.js"></script>
+    <script src="//o4j806krb.qnssl.com/public/editor.min.08791783.min.js"></script>
 </head>
 <body>
 <div id="main">
+    <div id="sidebar">
+        <div class="panel">
+            {% set u = t.user() %}
+            <div class="header">
+                <span class="col_fade">个人信息</span>
+            </div>
+            <div class="inner">
+                <div class="user_card">
+                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}"/>
+                    </a>
+                    <span class="user_name"><a class="dark"
+                                               href="{{ url_for('user.user_detail', id=u.id) }}">{{ u.username }}</a></span>
+
+                    <div class="space clearfix"></div>
+                    <span class="signature">
+                    “这家伙很懒，什么个性签名都没有留下。”
+                </span>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="content">
+        {% set u = t.user() %}
         <div class='panel'>
             <div class='header topic_header'>
                 <span class="topic_full_title">
+                    <span class="put_good">{{ t.board().title }}</span>
                     {{ t.title }}
                 </span>
-                 <div class="changes">
+                <div class="changes">
                     <span class="time" id="{{ t.created_time }}"></span>
-                    <!--<span>-->
-                        <!--发布于 2 天前 改正时间显示-->
-                    <!--</span>-->
                     <span>
-                        {% set u = t.user() %}
                         作者
                         <a href="{{ url_for('user.user_detail', id=u.id) }}">
                             {{ u.username }}
@@ -28,9 +50,15 @@
                     </span>
                     <span>
                         {{ t.views }} 次浏览
-                    </span>
+                     </span>
                     <span>
-                        来自 问答
+                        来自 {{ t.board().title }}
+                     </span>
+                    <span>
+                          <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>
+                     </span>
+                    <span>
+                         <a href="{{ url_for('tweet.edit', tweet_id=t.id, token=token) }}">编辑</a>
                     </span>
                 </div>
             </div>
@@ -41,57 +69,68 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class='panel'>
-        <div class='header'>
+        <div class='panel'>
+            <div class='header'>
             <span class='col_fade'>
                 <!-- 过滤器 -->
                 {{ t.comments() | count }} 回复
             </span>
-        </div>
-        {% for c in t.comments() %}
-        {% set u = c.user() %}
-        <div class='cell reply_area reply_item'>
-            <div class='author_content'>
-                <a href="{{ url_for('user.user_detail', id=u.id) }}" class="user_avatar">
-                    <img src="{{ u.user_image }}" title="{{ u.username }}"/>
-                </a>
-                <div class='user_info'>
-                    <a class='dark reply_author' href="{{ url_for('user.user_detail', id=u.id) }}">
-                        {{ u.username }}
-                    </a>
-                    <a class="reply_time">
-                        {{ loop.index }}楼 / {{ loop.length }}楼 •
-                        <span class="time" id="{{ c.created_time }}"></span>
-                    </a>
-                </div>
-                <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>
-                <a href="{{ url_for('comment.edit', comment_id=c.id, token=token) }}">编辑</a>
-                <div class='user_action'>
+            </div>
+            {% for c in t.comments() %}
+                {% set u = c.user() %}
+                <div class='cell reply_area reply_item'>
+                    <div class='author_content'>
+                        <a href="{{ url_for('user.user_detail', id=u.id) }}" class="user_avatar">
+                            <img src="{{ u.user_image }}" title="{{ u.username }}"/>
+                        </a>
+                        <div class='user_info'>
+                            <a class='dark reply_author' href="{{ url_for('user.user_detail', id=u.id) }}">
+                                {{ u.username }}
+                            </a>
+                            <a class="reply_time">
+                                {{ loop.index }}楼 / {{ loop.length }}楼 •
+                                <span class="time" id="{{ c.created_time }}"></span>
+                            </a>
+                        </div>
+                        <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>
+                        <a href="{{ url_for('comment.edit', comment_id=c.id, token=token) }}">编辑</a>
+                        <div class='user_action'>
                     <span>
                         <i class="fa up_btn fa-thumbs-o-up invisible" title="喜欢"></i>
                         <span class="up-count">
                         </span>
                     </span>
+                        </div>
+                    </div>
+                    <div class='reply_content from-leiwei1991'>
+                        <div class="markdown-text">{{ c.content }}</div>
+                    </div>
                 </div>
-            </div>
-            <div class='reply_content from-leiwei1991'>
-                <div class="markdown-text">{{ c.content }}</div>
-            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-        <div>
-            <form action="{{ url_for('comment.add', token=token) }}" method="post">
-                <input type="hidden" name="tweet_id" value="{{ t.id }}">
-                <textarea name="content"></textarea>
-                <button>添加回复</button>
-            </form>
+        <div class="panel">
+            <div class="header">
+                <span class="col_fade">添加回复</span>
+            </div>
+            <div class="inner reply">
+                <form id="reply_form" action="{{ url_for('comment.add', token=token) }}" method="post">
+                    <div class="markdown_editor in_editor">
+                        <div class="markdown_in_editor">
+                            <input type="hidden" name="tweet_id" value="{{ t.id }}">
+                            <textarea class='editor' name='content' rows='8'></textarea>
+                            <div class='editor_buttons'>
+                                <input class='span-primary submit_btn' type="submit" data-loading-text="回复中.." value="回复" >
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 <script>
     let log = function () {
-    console.log.apply(console, arguments)
+        console.log.apply(console, arguments)
     }
 
     let e = function (sel) {
@@ -105,19 +144,19 @@
     let createTimer = function () {
         setInterval(function () {
             let times = es('.time')
-            for(let i = 0; i < times.length; i++)  {
+            for (let i = 0; i < times.length; i++) {
                 let t = times[i]
                 let time = Number(t.id)
                 let now = Math.floor(new Date() / 1000)
                 let delta = now - time
 
-                day = Math.floor(delta/86400)
-                hour = Math.floor((delta%86400)/3600)
-                minute = Math.floor((delta%3600)/60)
-                second = Math.floor(delta%60)
+                day = Math.floor(delta / 86400)
+                hour = Math.floor((delta % 86400) / 3600)
+                minute = Math.floor((delta % 3600) / 60)
+                second = Math.floor(delta % 60)
 
                 let s = delta + ' 秒前'
-                let ss = day + ' 天前' + hour + ' 小时前' + minute + ' 分前' +  second + ' 秒前'
+                let ss = '发布于 ' + day + ' 天前' + hour + ' 小时前' + minute + ' 分前' + second + ' 秒前'
                 t.innerHTML = ss
             }
         }, 1000)
@@ -126,7 +165,7 @@
 
     let markContents = function () {
         let contentDivs = es('.markdown-text')
-        for(let i = 0; i < contentDivs.length; i++) {
+        for (let i = 0; i < contentDivs.length; i++) {
             let contentDiv = contentDivs[i]
             let content = marked(contentDiv.innerHTML)
             contentDiv.innerHTML = content
@@ -139,6 +178,12 @@
     }
 
     __main()
+</script>
+<script>
+  (function () {
+    let editor = new Editor();
+    editor.render($('.editor')[0]);
+  })();
 </script>
 </body>
 </html>
