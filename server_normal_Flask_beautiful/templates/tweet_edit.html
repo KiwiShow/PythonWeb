@@ -3,24 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>tweet edit</title>
-    <link rel="stylesheet" href="/static/css/index_cnode.css">
+    <link rel="stylesheet" href="//o4j806krb.qnssl.com/public/stylesheets/index.min.23a5b1ca.min.css" media="all">
+    <script src="//o4j806krb.qnssl.com/public/index.min.f7c13f64.min.js"></script>
+    <script src="//o4j806krb.qnssl.com/public/editor.min.08791783.min.js"></script>
 </head>
 <body>
     <div id="main">
-        <div class="panel">
-            <div class="inner">
-                <form action="{{ url_for('tweet.update', token=token) }}" method="post">
-                    <input name="id" value="{{ t.id }}" type="hidden">
-                    <br>
-                    <input name="title" value="{{ t.title }}">
-                    <br>
-                    <input name="content" value="{{ t.content }}">
-                    <br>
-                    <button type="submit" class="span-success">提交修改</button>
-                </form>
+        <div id="sidebar">
+            <div class="panel">
+                <div class="header">
+                  <span class="col_fade">Markdown 语法参考</span>
+                </div>
+                <div class="inner">
+                  <ol>
+                    <li><tt>### 单行的标题</tt></li>
+                    <li><tt>**粗体**</tt></li>
+                    <li><tt>`console.log('行内代码')`</tt></li>
+                    <li><tt>```js\n code \n```</tt> 标记代码块</li>
+                    <li><tt>[内容](链接)</tt></li>
+                    <li><tt>![文字说明](图片链接)</tt></li>
+                  </ol>
+                  <span><a href="https://segmentfault.com/markdown" target="_blank">Markdown 文档</a></span>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div class="panel">
+                <div class="inner post">
+                    <form id="create_topic_form" method="post" action="{{ url_for('tweet.update', token=token) }}">
+                        <fieldset>
+                            <input name="id" value="{{ t.id }}" type="hidden">
+                            <textarea autofocus class='span9' id='title' name='title' rows='1'
+                                      placeholder="标题字数 10 字以上">{{ t.title }}</textarea>
+                            <div class='markdown_editor in_editor'>
+                              <div class='markdown_in_editor'>
+                                <textarea class='editor' name='content' rows='20'
+                                          placeholder='文章支持 Markdown 语法, 请注意标记代码'>{{ t.content }}</textarea>
+                                <div class='editor_buttons'>
+                                  <input type="submit" class='span-primary submit_btn' data-loading-text="提交中" value="提交修改">
+                                </div>
+                              </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-
+<script>
+  (function () {
+    let editor = new Editor();
+    editor.render($('.editor')[0]);
+  })();
+</script>
 </body>
 </html>
