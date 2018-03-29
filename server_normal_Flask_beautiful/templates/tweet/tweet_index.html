@@ -36,51 +36,68 @@
 {#        </form>#}
 {#        {% endfor %}#}
 {#    </div>#}
+<!-- navbar -->
+<div class='navbar'>
+    <div class='navbar-inner'>
+        <div class='container'>
+            <ul class='nav pull-right'>
+                <li><a href="{{ url_for('tweet.index') }}">首页</a></li>
+                <li><a href="{{ url_for('user.login') }}">切换用户</a></li>
+                <li><a href="{{ url_for('user.out') }}">退出</a></li>
+                <li><a href="{{ url_for('user.admin') }}">管理员界面</a></li>
 
-    <div id="main">
-        <div id="sidebar">
-            <div class="panel">
-                <div class="header">
-                      <span class="col_fade">个人信息</span>
-                </div>
-                <div class="inner">
-                    <div class="user_card">
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="main">
+    <div id="sidebar">
+        <div class="panel">
+            <div class="header">
+                <span class="col_fade">个人信息</span>
+            </div>
+            <div class="inner">
+                <div class="user_card">
                     <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id) }}">
-                      <img src="{{ u.user_image }}" title="{{ u.username }}"/>
+                        <img src="{{ u.user_image }}" title="{{ u.username }}"/>
                     </a>
-                    <span class="user_name"><a class="dark" href="{{ url_for('user.user_detail', id=u.id) }}">{{ u.username }}</a></span>
+                    <span class="user_name"><a class="dark"
+                                               href="{{ url_for('user.user_detail', id=u.id) }}">{{ u.username }}</a></span>
 
                     <div class="space clearfix"></div>
                     <span class="signature">
                         “这家伙很懒，什么个性签名都没有留下。”
                     </span>
-                    </div>
-                </div>
-            </div>
-            <div class="panel">
-                <div class="inner">
-                    <a href="{{ url_for('tweet.new', token=token, board_id=bid) }}" class="create_topic_btn">
-                        <span class="span-success">写新推特</span>
-                    </a>
                 </div>
             </div>
         </div>
-        <div id="content">
-            <div class="panel">
-                <div class="header">
-                    <a href="{{ url_for('tweet.index') }}" class="topic-tab current-tab">全部</a>
-                    {% for b in bs %}
-                    <a href="{{ url_for('tweet.index', board_id=b.id) }}" class="topic-tab current-tab">{{ b.title }}</a>
-                    {% endfor %}
-                </div>
-                <div class="inner post">
-                    <div class="topic_list">
-                        {% for t in tweets %}
-                            <div class="cell">
-                                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
+        <div class="panel">
+            <div class="inner">
+                <a href="{{ url_for('tweet.new', token=token, board_id=bid) }}" class="create_topic_btn">
+                    <span class="span-success">写新推特</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div class="panel">
+            <div class="header">
+                <a href="{{ url_for('tweet.index') }}" class="topic-tab current-tab">全部</a>
+                {% for b in bs %}
+                    <a href="{{ url_for('tweet.index', board_id=b.id) }}"
+                       class="topic-tab current-tab">{{ b.title }}</a>
+                {% endfor %}
+            </div>
+            <div class="inner post">
+                <div class="topic_list">
+                    {% for t in tweets %}
+                        <div class="cell">
+                            {% set u = t.user() %}
+                            <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
                                 <img src="{{ u.user_image }}" title="{{ u.username }}">
-                              </a>
-                                <span class="reply_count pull-left">
+                            </a>
+                            <span class="reply_count pull-left">
                                 <span class="count_of_replies" title="回复数">
                                   {{ t.comments() | count }}
                                 </span>
@@ -89,36 +106,37 @@
                                   {{ t.views }}
                                 </span>
                               </span>
-                                <a class="last_time pull-right">
+                            <a class="last_time pull-right">
                                 <img class="user_small_avatar" src="{{ u.user_image }}">
                                 <span class="last_active_time time" id="{{ t.created_time }}"></span>
+                            </a>
+                            <div class="topic_title_wrapper">
+                                <span class="put_good">{{ t.board().title }}</span>
+                                <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
+                                   title="{{ t.title }}">
+                                    {{ t.title }}
                                 </a>
-                                <div class="topic_title_wrapper">
-                                  <span class="put_good">{{ t.board().title }}</span>
-                                  <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}" title="{{ t.title }}">
-                                  {{ t.title }}
-                                  </a>
-                              </div>
                             </div>
-{#                        <div class="cell">#}
-{#                            <div class="topic_title_wrapper">#}
-{#                                <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">#}
-{#                                    {{ t.title }}#}
-{#                                </a>#}
-{#                                <span>from {{ t.user().username}}  {{ t.comments() | count }} comments/ {{ t.views }} views#}
-{#                                    <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>#}
-{#                                    <a href="{{ url_for('tweet.edit', tweet_id=t.id, token=token) }}">编辑</a></span>#}
-{#                            </div>#}
-{#                        </div>#}
-                        {% endfor %}
-                    </div>
+                        </div>
+                        {#                        <div class="cell">#}
+                        {#                            <div class="topic_title_wrapper">#}
+                        {#                                <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">#}
+                        {#                                    {{ t.title }}#}
+                        {#                                </a>#}
+                        {#                                <span>from {{ t.user().username}}  {{ t.comments() | count }} comments/ {{ t.views }} views#}
+                        {#                                    <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>#}
+                        {#                                    <a href="{{ url_for('tweet.edit', tweet_id=t.id, token=token) }}">编辑</a></span>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
+</div>
 <script>
     let log = function () {
-    console.log.apply(console, arguments)
+        console.log.apply(console, arguments)
     }
 
     let e = function (sel) {
@@ -132,15 +150,15 @@
     let createTimer = function () {
         setInterval(function () {
             let times = es('.time')
-            for(let i = 0; i < times.length; i++)  {
+            for (let i = 0; i < times.length; i++) {
                 let t = times[i]
                 let time = Number(t.id)
                 let now = Math.floor(new Date() / 1000)
                 let delta = now - time
 
-                day = Math.floor(delta/86400)
-                hour = Math.floor((delta%86400)/3600)
-                minute = Math.floor((delta%3600)/60)
+                day = Math.floor(delta / 86400)
+                hour = Math.floor((delta % 86400) / 3600)
+                minute = Math.floor((delta % 3600) / 60)
 
                 let s = delta + ' 秒前'
                 let ss = day + ' 天前' + hour + ' 小时前' + minute + ' 分前'
