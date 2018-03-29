@@ -18,6 +18,7 @@ class Tweet(MonModel):
         ('content', str, ''),
         ('views', int, 0),
         ('user_id', int, -1),
+        ('board_id', int, -1),
         ('user_name', str, ''),
     ]
 

@@ -1,5 +1,6 @@
 from models.user import User
 from models.tweet import Tweet
+from models.board import Board
 from models.comment import Comment
 
 from utils import log
@@ -31,6 +32,7 @@ def index():
     :return: 显示tweet页面
     """
     user_id = int(request.args.get('user_id', -1))
+    board_id = int(request.args.get('board_id', -1))
     if user_id == -1:
         u = current_user()
         user_id = u.id
@@ -47,8 +49,12 @@ def index():
         gg.set_value(user.id)
         log('from tweet',gg.csrf_tokens, gg.token)
         # 改为显示所有的tweet，每个Tweet都有各自的username
-        tweets = Tweet.find_all(deleted=False)
-        body = render_template('tweet_index.html', tweets=tweets, token=gg.token)
+        if board_id == -1:
+            tweets = Tweet.find_all(deleted=False)
+        else:
+            tweets = Tweet.find_all(board_id=board_id, deleted=False)
+        bs = Board.find_all(deleted=False)
+        body = render_template('tweet_index.html', tweets=tweets, token=gg.token, bs=bs, bid=board_id)
         return make_response(body)
 
 
@@ -77,8 +83,10 @@ def delete(tweet_id):
 @login_required
 def new():
     token = request.args.get('token')
+    board_id = int(request.args.get('board_id', -1))
     if Tweet.check_token(token, gg.csrf_tokens):
-        body = render_template('tweet_new.html', token=token)
+        bs = Board.find_all(deleted=False)
+        body = render_template('tweet_new.html', token=token, bs=bs, bid=board_id)
         return make_response(body)
 
 
@@ -87,6 +95,7 @@ def new():
 def add():
     user = current_user()
     token = request.args.get('token')
+    board_id = int(request.args.get('board_id', -1))
     if Tweet.check_token(token, gg.csrf_tokens):
         form = request.form
         t = Tweet.new(form, user_id=user.id, user_name=user.username)
@@ -94,7 +103,7 @@ def add():
         # t.save()
         # redirect有必要加query吗
         # return redirect('/tweet/index?user_id={}'.format(user.id))
-        return redirect(url_for('.index'))
+        return redirect(url_for('.index', board_id=board_id))
 
 
 @main.route('/edit/<int:tweet_id>', methods=['GET'])

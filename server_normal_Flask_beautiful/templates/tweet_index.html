@@ -41,7 +41,7 @@
         <div id="sidebar">
             <div class="panel">
                 <div class="inner">
-                    <a href="{{ url_for('tweet.new', token=token) }}" class="create_topic_btn">
+                    <a href="{{ url_for('tweet.new', token=token, board_id=bid) }}" class="create_topic_btn">
                         <span class="span-success">写新推特</span>
                     </a>
                 </div>
@@ -49,6 +49,12 @@
         </div>
         <div id="content">
             <div class="panel">
+                <div class="header">
+                    <a href="{{ url_for('tweet.index') }}" class="topic-tab current-tab">全部</a>
+                    {% for b in bs %}
+                    <a href="{{ url_for('tweet.index', board_id=b.id) }}" class="topic-tab current-tab">{{ b.title }}</a>
+                    {% endfor %}
+                </div>
                 <div class="inner post">
                     <div class="topic_list">
                         {% for t in tweets %}

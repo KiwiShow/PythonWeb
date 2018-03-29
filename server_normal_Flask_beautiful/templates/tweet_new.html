@@ -31,8 +31,22 @@
         <div id="content">
             <div class="panel">
                 <div class="inner post">
-                    <form id="create_topic_form" method="post" action="{{ url_for('tweet.add', token=token) }}">
+                    <form id="create_topic_form" method="post" action="{{ url_for('tweet.add', token=token, board_id=bid) }}">
                         <fieldset>
+                            <span class="tab-selector">选择版块：</span>
+                            <select name="board_id" id="board" required>
+                                <option value="">请选择</option>
+{#                                默认选中从哪个board过来的，判断依据是bid，所以会复杂一些#}
+                                <!--此处有问题，set似乎不管用了，-->
+                                {% for b in bs %}
+                                {% set yes = '' %}
+                                {% if bid == b.id %}
+                                    {% set yes = 'selected' %}
+                                {% endif %}
+                                <option value="{{ b.id }}"  {{ yes }} >{{ b.title }}</option>
+{#                                <option value="{{ b.id }}">{{ b.title }}</option>#}
+                                {% endfor %}
+                            </select>
                             <textarea autofocus class='span9' id='title' name='title' rows='1'
                                       placeholder="标题字数 10 字以上"></textarea>
                             <div class='markdown_editor in_editor'>
