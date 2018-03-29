@@ -29,7 +29,7 @@ def next_id(name):
         'upsert': True,
         'new': True,
     }
-    doc = mon.web['data_id']
+    doc = mon.web_flask_beautiful['data_id']
     # 这里有个小问题：data_id表里的seq是一直增加的，所以其它类型数据的id是一直增加的，不存在其它类型
     # 的表删除之后id从0开始
     new_id = doc.find_and_modify(**kwargs).get('seq')
@@ -106,7 +106,7 @@ class MonModel(object):
         name = cls.__name__
         flag_sort = '__sort'
         sort = kwargs.pop(flag_sort, None)
-        ds = mon.web[name].find(kwargs)
+        ds = mon.web_flask_beautiful[name].find(kwargs)
         if sort is not None:
             ds = ds.sort(sort)
         l = [cls._new_with_bson(d) for d in ds]
@@ -148,11 +148,11 @@ class MonModel(object):
         values = {
             'deleted': True
         }
-        mon.web[name].update_one(query, {"$set": values})
+        mon.web_flask_beautiful[name].update_one(query, {"$set": values})
 
     def save(self):
         name = self.__class__.__name__
-        mon.web[name].save(self.__dict__)
+        mon.web_flask_beautiful[name].save(self.__dict__)
 
     def blacklist(self):
         b = [
@@ -224,7 +224,7 @@ class MonModel(object):
         query = {
             fk: self.id,
         }
-        count = mon.web[name]._find(query).count()
+        count = mon.web_flask_beautiful[name]._find(query).count()
         return count
 
 # # Model 是用于存储数据的基类

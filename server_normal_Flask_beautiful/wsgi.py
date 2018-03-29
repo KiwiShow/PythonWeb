@@ -21,6 +21,6 @@ application = app.configured_app()
 
 
 # 建立一个软连接 for webapp.conf
-# ln -s /root/PythonWeb/server_normal_Flask/webapp.conf /etc/supervisor/conf.d/webapp.conf
+# ln -s /root/PythonWeb/server_normal_Flask_beautiful/webapp.conf /etc/supervisor/conf.d/webapp.conf
 # 建立一个软连接 for webapp.nginx
-# ln -s /root/PythonWeb/server_normal_Flask/webapp.nginx /etc/nginx/sites-enabled/webapp
+# ln -s /root/PythonWeb/server_normal_Flask_beautiful/webapp.nginx /etc/nginx/sites-enabled/webapp
