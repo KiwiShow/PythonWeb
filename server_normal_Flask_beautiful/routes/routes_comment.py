@@ -63,7 +63,7 @@ def edit(comment_id):
     if Comment.check_token(token, gg.csrf_tokens):
         c = Comment.find(comment_id)
         if u.id == c.user_id:
-            body = render_template('comment_edit.html',
+            body = render_template('tweet/comment_edit.html',
                             comment_id=c.id,
                             comment_content=c.content, token=token)
             return make_response(body)
