@@ -1,5 +1,5 @@
 from utils import log
-from config import  image_file_dir, qiniu_up
+from config import  image_file_dir, qiniu_up, gg
 from routes import (
     current_user,
     login_required,
@@ -108,8 +108,10 @@ def profile():
     # html元素有效有效有效有效有效有效有效有效有效有效有效
     # 似乎render_template函数里面参数赋值的时候有过滤？
     # 在render_template中直接文本替代是不行的，只会当成字符串
-    body = render_template('user/profile.html', u=u)
-    return make_response(body)
+    token = request.args.get('token')
+    if User.check_token(token, gg.csrf_tokens):
+        body = render_template('user/profile.html', u=u, token=token)
+        return make_response(body)
 
 
 @main.route('/admin/users', methods=['GET'])
@@ -206,7 +208,9 @@ def hack():
 @login_required
 def user_detail(id):
     u = User.find(id)
-    return render_template('user/profile.html', u=u)
+    token = request.args.get('token')
+    if User.check_token(token, gg.csrf_tokens):
+        return render_template('user/profile.html', u=u, token=token)
 
 
 # route_dict = {

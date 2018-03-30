@@ -32,11 +32,11 @@
             </div>
             <div class="inner">
                 <div class="user_card">
-                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id) }}">
+                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
                         <img src="{{ u.user_image }}" title="{{ u.username }}"/>
                     </a>
                     <span class="user_name"><a class="dark"
-                                               href="{{ url_for('user.user_detail', id=u.id) }}">{{ u.username }}</a></span>
+                                               href="{{ url_for('user.user_detail', id=u.id, token=token) }}">{{ u.username }}</a></span>
 
                     <div class="space clearfix"></div>
                     <span class="signature">
@@ -58,7 +58,7 @@
                     <span class="time" id="{{ t.created_time }}"></span>
                     <span>
                         作者
-                        <a href="{{ url_for('user.user_detail', id=u.id) }}">
+                        <a href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
                             {{ u.username }}
                         </a>
                     </span>
@@ -94,11 +94,11 @@
                 {% set u = c.user() %}
                 <div class='cell reply_area reply_item'>
                     <div class='author_content'>
-                        <a href="{{ url_for('user.user_detail', id=u.id) }}" class="user_avatar">
+                        <a href="{{ url_for('user.user_detail', id=u.id, token=token) }}" class="user_avatar">
                             <img src="{{ u.user_image }}" title="{{ u.username }}"/>
                         </a>
                         <div class='user_info'>
-                            <a class='dark reply_author' href="{{ url_for('user.user_detail', id=u.id) }}">
+                            <a class='dark reply_author' href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
                                 {{ u.username }}
                             </a>
                             <a class="reply_time">

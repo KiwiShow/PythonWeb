@@ -85,7 +85,7 @@
             </div>
             {% for t in u.todos() %}
             <div class="cell">
-                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
+                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
                     <img src="{{ u.user_image }}" title="{{ u.username }}">
                 </a>
                 <span class="reply_count pull-left">
@@ -120,7 +120,7 @@
             </div>
             {% for t in u.tweets() %}
             <div class="cell">
-                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
+                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
                     <img src="{{ u.user_image }}" title="{{ u.username }}">
                 </a>
                 <span class="reply_count pull-left">
@@ -157,7 +157,7 @@
 {#                方案2:在User类中构造一个特殊的方法，返回无重复的Tweet  Done#}
 {#                方案3:在这里进行过滤#}
                 <div class="cell">
-                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
+                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
                         <img src="{{ u.user_image }}" title="{{ u.username }}">
                     </a>
                     <span class="reply_count pull-left">

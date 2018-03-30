@@ -22,6 +22,8 @@ class Board(MonModel):
         b = Board.find_by(id=board_id)
         b.title = form.get('title')
         tm = int(time.time())
-        b.updated_time = change_time(tm)
+        # b.updated_time = change_time(tm)
+        # 因为需要算基于linux时间算delta，所以不需要格式化时间
+        b.updated_time = tm
         b.save()
         return b
