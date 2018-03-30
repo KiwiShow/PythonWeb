@@ -78,3 +78,9 @@ class User(MonModel):
     # 增加一个获取该user全部有效comment的函数
     def comments(self):
         return Comment.find_all(user_id=self.id, deleted=False)
+
+    # 增加一个获取该user全部有效comment所对应的tweet且不重复的函数
+    def uni_tweets(self):
+        set1 = set([c.tweet().id for c in self.comments()])
+        # print('set1        ',set)
+        return [Tweet.find(i) for i in set1]

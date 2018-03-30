@@ -151,9 +151,11 @@
                 <span class="col_fade">最近参与的Tweet</span>
             </div>
 {#            什么是参与，即有评论的tweet#}
-            {% for c in u.comments() %}
-{#                如何解决重复Tweet的问题#}
-                {% set t = c.tweet() %}
+            {% for t in u.uni_tweets() %}
+{#                如何解决重复对一个Tweet评论2次的问题#}
+{#                方案1:限制一个Tweet一个user只能comment一次#}
+{#                方案2:在User类中构造一个特殊的方法，返回无重复的Tweet  Done#}
+{#                方案3:在这里进行过滤#}
                 <div class="cell">
                     <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
                         <img src="{{ u.user_image }}" title="{{ u.username }}">
