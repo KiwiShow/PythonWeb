@@ -108,10 +108,8 @@ def profile():
     # html元素有效有效有效有效有效有效有效有效有效有效有效
     # 似乎render_template函数里面参数赋值的时候有过滤？
     # 在render_template中直接文本替代是不行的，只会当成字符串
-    token = request.args.get('token')
-    if User.check_token(token, gg.csrf_tokens):
-        body = render_template('user/profile.html', u=u, token=token)
-        return make_response(body)
+    body = render_template('user/profile.html', u=u)
+    return make_response(body)
 
 
 @main.route('/admin/users', methods=['GET'])
@@ -139,11 +137,7 @@ def admin_update():
     if u.id != 1:
         return redirect(url_for('.login'))
     form = request.form
-    user_id = int(form.get('id', -1))
-    user_password = form.get('password', '')
-    user = User.find_by(id=user_id)
-    user.password = user.salted_password(user_password)
-    user.save()
+    newUser = User.update(form)
     return redirect(url_for('.admin'))
 
 
@@ -204,22 +198,56 @@ def hack():
 
 
 # 增加一个可以看到任意user的路由函数
+# 不需要check token，CRUD中除了查不需要验证token，但是需要传递token
 @main.route('/user/<int:id>')
 @login_required
 def user_detail(id):
     u = User.find(id)
     token = request.args.get('token')
+    return render_template('user/profile.html', u=u, token=token)
+
+
+# 增加一个在setting页面update的路由函数
+@main.route('/user/update', methods=['POST'])
+@login_required
+def user_update():
+    u = current_user()
+    token = request.args.get('token')
     if User.check_token(token, gg.csrf_tokens):
-        return render_template('user/profile.html', u=u, token=token)
+        form = request.form
+        newUser = User.update(form)
+        return redirect(url_for('user.user_setting', id=u.id, token=token))
+
+
+# 增加一个在setting页面update密码的路由函数
+@main.route('/user/update_password', methods=['POST'])
+@login_required
+def user_update_password():
+    u = current_user()
+    token = request.args.get('token')
+    if User.check_token(token, gg.csrf_tokens):
+        form = request.form
+        if u.password == User.salted_password(form.get('old_password')):
+            newUser = User.update_pass(form)
+            return redirect(url_for('user.user_setting', id=u.id, token=token))
 
 
 # route_dict = {
-#     '/': route_index,
-#     '/login': route_login,
-#     '/out': route_out,
-#     '/register': route_register,
-#     '/messages': route_message,
-#     '/profile': login_required(route_profile),
-#     '/admin/users': login_required(admin),
-#     '/admin/user/update': login_required(admin_update),
-# }
+    #     '/': route_index,
+    #     '/login': route_login,
+    #     '/out': route_out,
+    #     '/register': route_register,
+    #     '/messages': route_message,
+    #     '/profile': login_required(route_profile),
+    #     '/admin/users': login_required(admin),
+    #     '/admin/user/update': login_required(admin_update),
+    # }
+
+
+# 增加一个去setting页面的路由函数
+@main.route('/setting/<int:id>')
+@login_required
+def user_setting(id):
+    u = User.find(id)
+    token = request.args.get('token')
+    return render_template('user/setting.html', u=u, token=token)
