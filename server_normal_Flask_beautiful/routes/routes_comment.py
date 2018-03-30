@@ -57,17 +57,17 @@ def delete(comment_id):
 @main.route('/edit/<int:comment_id>', methods=['GET'])
 @login_required
 def edit(comment_id):
-    u = current_user()
+    user = current_user()
     # comment_id = int(request.args.get('id', -1))
     token = request.args.get('token')
     if Comment.check_token(token, gg.csrf_tokens):
         c = Comment.find(comment_id)
-        if u.id == c.user_id:
+        if user.id == c.user_id:
             body = render_template('tweet/comment_edit.html',
                             comment_id=c.id,
-                            comment_content=c.content, token=token)
+                            comment_content=c.content, token=token, u=user)
             return make_response(body)
-        return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=token))
+        return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=token, u=user))
 
 
 @main.route('/update', methods=['POST'])

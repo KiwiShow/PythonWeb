@@ -204,7 +204,7 @@ def hack():
 def user_detail(id):
     u = User.find(id)
     token = request.args.get('token')
-    return render_template('user/profile.html', u=u, token=token)
+    return render_template('user/profile.html', u=u, token=token, bid=-1)
 
 
 # 增加一个在setting页面update的路由函数
@@ -250,4 +250,4 @@ def user_update_password():
 def user_setting(id):
     u = User.find(id)
     token = request.args.get('token')
-    return render_template('user/setting.html', u=u, token=token)
+    return render_template('user/setting.html', u=u, token=token, bid=-1)

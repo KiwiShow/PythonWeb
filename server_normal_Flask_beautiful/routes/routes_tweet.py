@@ -82,11 +82,12 @@ def delete(tweet_id):
 @main.route('/new', methods=['GET'])
 @login_required
 def new():
+    user = current_user()
     token = request.args.get('token')
     board_id = int(request.args.get('board_id', -1))
     if Tweet.check_token(token, gg.csrf_tokens):
         bs = Board.find_all(deleted=False)
-        body = render_template('tweet/tweet_new.html', token=token, bs=bs, bid=board_id)
+        body = render_template('tweet/tweet_new.html', token=token, bs=bs, bid=board_id, u=user)
         return make_response(body)
 
 
@@ -109,13 +110,13 @@ def add():
 @main.route('/edit/<int:tweet_id>', methods=['GET'])
 @login_required
 def edit(tweet_id):
-    u = current_user()
+    user = current_user()
     token = request.args.get('token')
     if Tweet.check_token(token, gg.csrf_tokens):
     # tweet_id = int(request.args.get('id', -1))
         t = Tweet.find(tweet_id)
-        if u.id == t.user_id:
-            body = render_template('tweet/tweet_edit.html', t=t, token=token)
+        if user.id == t.user_id:
+            body = render_template('tweet/tweet_edit.html', t=t, token=token, u=user)
             return make_response(body)
         return redirect(url_for('.index'))
 
@@ -135,7 +136,7 @@ def update():
 @main.route('/detail/<int:tweet_id>', methods=['GET'])
 @login_required
 def detail(tweet_id):
-    u = current_user()
+    user = current_user()
     token = request.args.get('token')
     if Tweet.check_token(token, gg.csrf_tokens):
     # tweet_id = int(request.args.get('id', -1))
@@ -143,7 +144,7 @@ def detail(tweet_id):
         t = Tweet.get(tweet_id)
         # 这里不需要验证是否是自己发的tweet
         # if u.id == t.user_id:
-        body = render_template('tweet/tweet_detail.html', t=t, token=token)
+        body = render_template('tweet/tweet_detail.html', t=t, token=token, u=user)
         return make_response(body)
     return redirect(url_for('.index'))
 # route_dict = {

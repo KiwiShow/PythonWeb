@@ -14,6 +14,7 @@
             <ul class='nav pull-right'>
                 <li><a href="{{ url_for('tweet.index') }}">首页</a></li>
                 <li><a href="{{ url_for('user.login') }}">切换用户</a></li>
+                <li><a href="{{ url_for('user.user_setting', id=u.id, token=token) }}">设置</a></li>
                 <li><a href="{{ url_for('user.out') }}">退出</a></li>
                 <li><a href="{{ url_for('user.admin') }}">管理员界面</a></li>
 
@@ -38,7 +39,7 @@
 
                     <div class="space clearfix"></div>
                     <span class="signature">
-                        “这家伙很懒，什么个性签名都没有留下。”
+                        {{ u.note }}
                     </span>
                 </div>
             </div>
