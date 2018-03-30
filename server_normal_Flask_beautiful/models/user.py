@@ -3,6 +3,7 @@ from .todo import Todo
 from .tweet import Tweet
 from .comment import Comment
 import hashlib
+import time
 
 
 class User(MonModel):
@@ -18,10 +19,36 @@ class User(MonModel):
     __fields__ = MonModel.__fields__ + [
         ('username', str, ''),
         ('password', str, ''),
-        ('note', str, ''),
+        ('note', str, '“不要懒哦!”'),
         ('role', int, 10),
         ('user_image', str, '/uploads/default.png'),
     ]
+
+    @classmethod
+    def update(cls, form):
+        user_id = int(form.get('id', -1))
+        u = User.find_by(id=user_id)
+        u.username = form.get('username')
+        u.note = form.get('note')
+        tm = int(time.time())
+        # b.updated_time = change_time(tm)
+        # 因为需要算基于linux时间算delta，所以不需要格式化时间
+        u.updated_time = tm
+        u.save()
+        return u
+
+    @classmethod
+    def update_pass(cls, form):
+        user_id = int(form.get('id', -1))
+        u = User.find_by(id=user_id)
+        user_password = form.get('password')
+        u.password = User.salted_password(user_password)
+        tm = int(time.time())
+        # b.updated_time = change_time(tm)
+        # 因为需要算基于linux时间算delta，所以不需要格式化时间
+        u.updated_time = tm
+        u.save()
+        return u
 
     # def __init__(self, form):
     #     self.username = form.get('username', '')

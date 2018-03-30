@@ -28,7 +28,9 @@ class Comment(MonModel):
         c = Comment.find_by(id=comment_id)
         c.content = form.get('content')
         tm = int(time.time())
-        c.updated_time = change_time(tm)
+        # c.updated_time = change_time(tm)
+        # 因为需要算基于linux时间算delta，所以不需要格式化时间
+        c.updated_time = tm
         c.save()
         return c
 
