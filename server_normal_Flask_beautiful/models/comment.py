@@ -1,5 +1,6 @@
 from models import MonModel, change_time
-from models.user import User
+# from models.user import User
+import models.user
 # from models.tweet import Tweet  # 这样不行
 import models.tweet  # 为了避免和comment交叉引用
 import time
@@ -37,7 +38,7 @@ class Comment(MonModel):
         # print('comments__dict__.get("user_id")', self.__dict__.get('user_id'))
         # 以下2种写法都可以
         # u = User.find_by(id=self.__dict__.get('user_id'))
-        u = User.find_by(id=self.user_id)
+        u = models.user.User.find_by(id=self.user_id)
         # return u.json()['username']
         return u
 

@@ -1,5 +1,7 @@
 from models import MonModel
 from .todo import Todo
+from .tweet import Tweet
+from .comment import Comment
 import hashlib
 
 
@@ -67,8 +69,12 @@ class User(MonModel):
 
     # 增加一个获取该user全部todo的函数 todo
     def todos(self):
-        ts = []
-        for t in Todo.all():
-            if t.user_id == self.json()['id']:
-                ts.append(t)
-        return ts
+        return Todo.find_all(user_id=self.id, deleted=False)
+
+    # 增加一个获取该user全部有效tweet的函数
+    def tweets(self):
+        return Tweet.find_all(user_id=self.id, deleted=False)
+
+    # 增加一个获取该user全部有效comment的函数
+    def comments(self):
+        return Comment.find_all(user_id=self.id, deleted=False)
