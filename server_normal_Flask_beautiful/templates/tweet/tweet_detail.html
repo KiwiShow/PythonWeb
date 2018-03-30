@@ -104,6 +104,9 @@
                             <a class="reply_time">
                                 {{ loop.index }}楼 / {{ loop.length }}楼 •
                                 <span class="time" id="{{ c.created_time }}"></span>
+                                {% if u.id == t.user().id %}
+                                    <span class="reply_by_author">作者</span>
+                                {% endif %}
                             </a>
                         </div>
                         <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>
