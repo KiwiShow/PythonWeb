@@ -4,40 +4,311 @@
     <meta charset="UTF-8">
     <title>My profile</title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//o4j806krb.qnssl.com/public/stylesheets/index.min.23a5b1ca.min.css" media="all">
 </head>
 <body>
-    <div class="lead text-center">{{ u.username }}的profile</div>
-    <div class="user-cell">
-            <img src="{{ u.user_image }}" title="avatar" width="80" height="80">
-        <table class="table table-hover">
-        <tr>
-            <th>ID</th>
-            <th>name</th>
-            <th>password(sha256)</th>
-            <th>created_time</th>
-        </tr>
-        <tr>
-            <td>{{ u.id }}</td>
-            <td>{{ u.username }}</td>
-            <td>{{ u.password }}</td>
-            <td>{{ u.created_time }}</td>
-        </tr>
-    </table>
+
+<div class='navbar'>
+    <div class='navbar-inner'>
+        <div class='container'>
+            <ul class='nav pull-right'>
+                <li><a href="{{ url_for('tweet.index') }}">首页</a></li>
+                <li><a href="{{ url_for('user.login') }}">切换用户</a></li>
+                <li><a href="{{ url_for('user.out') }}">退出</a></li>
+                <li><a href="{{ url_for('user.admin') }}">管理员界面</a></li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="main">
+    <div id="sidebar">
+        <div class="panel">
+            <div class="header">
+                <span class="col_fade">个人信息</span>
+            </div>
+            <div class="inner">
+                <div class="user_card">
+                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}"/>
+                    </a>
+                    <span class="user_name"><a class="dark"
+                                               href="{{ url_for('user.user_detail', id=u.id) }}">{{ u.username }}</a></span>
+
+                    <div class="space clearfix"></div>
+                    <span class="signature">
+                        “这家伙很懒，什么个性签名都没有留下。”
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="inner">
+                <a href="{{ url_for('tweet.new', token=token, board_id=bid) }}" class="create_topic_btn">
+                    <span class="span-success">写新推特</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id='content'>
+        <div class='panel'>
+            <div class='header'>
+                <ul class='breadcrumb'>
+                    <li><a href="{{ url_for('tweet.index') }}">主页</a><span class='divider'>/</span></li>
+                </ul>
+            </div>
+            <div class='inner userinfo'>
+                <div class='user_big_avatar'>
+                    <img src="{{ u.user_image }}" class="user_avatar"
+                         title="{{ u.username }}"/>
+                </div>
+                <a class='dark'>{{ u.username }}</a>
+
+                <div class='user_profile'>
+                    <ul class='unstyled'>
+                        {#                        <span class='big'>0</span> 积分#}
+                        <li>
+                            <i class="fa fa-lg fa-fw fa-github"></i>
+                            <a class='dark' href="https://github.com/KiwiShow" target='_blank'>
+                                @{{ u.username }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p class='col_fade time' id="{{ u.created_time }}"></p>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="header">
+                <span class="col_fade">我的待办事项</span>
+            </div>
+            {% for t in u.todos() %}
+            <div class="cell">
+                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
+                    <img src="{{ u.user_image }}" title="{{ u.username }}">
+                </a>
+                <span class="reply_count pull-left">
+                    <span class="count_of_replies" title="序号">
+                      {{ loop.index }}
+                    </span>
+                    <span class="count_seperator">/</span>
+                    <span class="count_of_visits" title="总数">
+                      {{ u.todos() | count }}
+                    </span>
+                </span>
+                <a class="last_time pull-right">
+                    <img class="user_small_avatar" src="{{ u.user_image }}">
+                    <span class="last_active_time timetime" id="{{ t.created_time }}"></span>
+                </a>
+                <div class="topic_title_wrapper">
+                    {% if t.status  %}
+                        <span class="put_good">Done</span>
+                    {% else %}
+                        <span class="put_good">加油</span>
+                    {% endif %}
+                    <a class="topic_title" title="{{ t.title }} " href="{{ url_for('todo.index') }}">
+                        {{ t.title }}
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="panel">
+            <div class="header">
+                <span class="col_fade">最近创建的Tweet</span>
+            </div>
+            {% for t in u.tweets() %}
+            <div class="cell">
+                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
+                    <img src="{{ u.user_image }}" title="{{ u.username }}">
+                </a>
+                <span class="reply_count pull-left">
+                    <span class="count_of_replies" title="回复数">
+                      {{ t.comments() | count }}
+                    </span>
+                    <span class="count_seperator">/</span>
+                    <span class="count_of_visits" title="点击数">
+                      {{ t.views }}
+                    </span>
+                </span>
+                <a class="last_time pull-right">
+                    <img class="user_small_avatar" src="{{ u.user_image }}">
+                    <span class="last_active_time timetime" id="{{ t.created_time }}"></span>
+                </a>
+                <div class="topic_title_wrapper">
+                    <span class="put_good">{{ t.board().title }}</span>
+                    <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
+                       title="{{ t.title }}">
+                        {{ t.title }}
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="panel">
+            <div class="header">
+                <span class="col_fade">最近参与的Tweet</span>
+            </div>
+{#            什么是参与，即有评论的tweet#}
+            {% for c in u.comments() %}
+{#                如何解决重复Tweet的问题#}
+                {% set t = c.tweet() %}
+                <div class="cell">
+                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}">
+                    </a>
+                    <span class="reply_count pull-left">
+                        <span class="count_of_replies" title="回复数">
+                          {{ t.comments() | count }}
+                        </span>
+                        <span class="count_seperator">/</span>
+                        <span class="count_of_visits" title="点击数">
+                          {{ t.views }}
+                        </span>
+                      </span>
+                    <a class="last_time pull-right">
+                        <img class="user_small_avatar" src="{{ u.user_image }}">
+                        <span class="last_active_time timetime" id="{{ t.created_time }}"></span>
+                    </a>
+                    <div class="topic_title_wrapper">
+                        <span class="put_good">{{ t.board().title }}</span>
+                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
+                           title="{{ t.title }}">
+                            {{ t.title }}
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div id='footer'>
+        <div id='footer_main'>
+            <div class="links">
+                <a class='dark' href='https://github.com/KiwiShow/PythonWeb'>源码地址</a>
+            </div>
+
+            <div class='col_fade'>
+
+                <p>这是个人的一个玩具，模仿<a href="https://cnodejs.org/">CNode</a>(国内最专业的 Node.js 开源技术社区，致力于 Node.js 的技术研究)
+                </p>
+                <p>欢迎来到python社区
+                    <a href="https://www.python.org/"
+                       target="_blank"
+                       class="sponsor_outlink" data-label="ucloud_bottom">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Python_logo_and_wordmark.svg/200px-Python_logo_and_wordmark.svg.png"
+                             title="python"
+                             alt="python" width="92px"/>
+                    </a>
+                    ，云存储使用
+                    <a href="http://www.qiniu.com/?ref=cnode" target="_blank"
+                       class="sponsor_outlink" data-label="qiniu_bottom">
+                        <img src="//dn-cnode.qbox.me/Fg0jtDIcTqVC049oVu5-sn6Om4NX" title="七牛云存储"
+                             alt="七牛云存储" width="115px"/>
+                    </a>
+                    ，使用<a href="http://flask.pocoo.org/" target="_blank"
+                          class="sponsor_outlink" data-label="alinode_bottom">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Flask_logo.svg/220px-Flask_logo.svg.png"
+                             title="flask"
+                             alt="flask" height="54px" width="166px"/>
+                    </a>web框架。
+                </p>
+            </div>
+        </div>
     </div>
 
-    <div class="lead">Upload your avatar</div>
-    <form class="form-horizontal" method="post" action="{{ url_for('.add_img') }}" enctype=multipart/form-data>
-        <div class="control-group">
-            <label class="control-label">上传头像</label>
-            <div class="controls">
-                <input type=file class="input-xlarge" name="avatar">
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <input type=submit class="input-xlarge" value="Upload">
-            </div>
-        </div>
-    </form>
+
+{#<div class="lead text-center">{{ u.username }}的profile</div>#}
+{#<div class="user-cell">#}
+{#    <img src="{{ u.user_image }}" title="avatar" width="80" height="80">#}
+{#    <table class="table table-hover">#}
+{#        <tr>#}
+{#            <th>ID</th>#}
+{#            <th>name</th>#}
+{#            <th>password(sha256)</th>#}
+{#            <th>created_time</th>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <td>{{ u.id }}</td>#}
+{#            <td>{{ u.username }}</td>#}
+{#            <td>{{ u.password }}</td>#}
+{#            <td>{{ u.created_time }}</td>#}
+{#        </tr>#}
+{#    </table>#}
+{#</div>#}
+{##}
+{#<div class="lead">Upload your avatar</div>#}
+{#<form class="form-horizontal" method="post" action="{{ url_for('.add_img') }}" enctype=multipart/form-data>#}
+{#    <div class="control-group">#}
+{#        <label class="control-label">上传头像</label>#}
+{#        <div class="controls">#}
+{#            <input type=file class="input-xlarge" name="avatar">#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="control-group">#}
+{#        <div class="controls">#}
+{#            <input type=submit class="input-xlarge" value="Upload">#}
+{#        </div>#}
+{#    </div>#}
+{#</form>#}
+
+<script>
+    let log = function () {
+        console.log.apply(console, arguments)
+    }
+
+    let e = function (sel) {
+        return document.querySelector(sel)
+    }
+
+    let es = function (sel) {
+        return document.querySelectorAll(sel)
+    }
+
+    let createTimer = function () {
+        setInterval(function () {
+            let times = es('.time')
+            let timetimes = es('.timetime')
+            for (let i = 0; i < times.length; i++) {
+                let t = times[i]
+                let time = Number(t.id)
+                let now = Math.floor(new Date() / 1000)
+                let delta = now - time
+
+                day = Math.floor(delta / 86400)
+                hour = Math.floor((delta % 86400) / 3600)
+                minute = Math.floor((delta % 3600) / 60)
+
+                let s = delta + ' 秒前'
+                let ss = '注册时间 ' + day + ' 天' + hour + ' 小时' + minute + ' 分前'
+                t.innerHTML = ss
+            }
+            for (let i = 0; i < timetimes.length; i++) {
+                let t = timetimes[i]
+                let time = Number(t.id)
+                let now = Math.floor(new Date() / 1000)
+                let delta = now - time
+
+                day = Math.floor(delta / 86400)
+                hour = Math.floor((delta % 86400) / 3600)
+                minute = Math.floor((delta % 3600) / 60)
+
+                let s = delta + ' 秒前'
+                let ss = day + ' 天' + hour + ' 小时' + minute + ' 分前'
+                t.innerHTML = ss
+            }
+        }, 1000)
+
+    }
+
+    let __main = function () {
+        createTimer()
+    }
+
+    __main()
+</script>
+
 </body>
 </html>
