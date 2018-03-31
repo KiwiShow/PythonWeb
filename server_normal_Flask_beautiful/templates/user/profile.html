@@ -67,6 +67,11 @@
         <div class="header">
             <span class="col_fade">我的待办事项</span>
         </div>
+        {% if u.todos() == [] %}
+            <div class="inner">
+                <p>无待办事项</p>
+            </div>
+        {% endif %}
         {% for t in u.todos() %}
             <div class="cell">
                 {% if user %}
@@ -114,6 +119,11 @@
         <div class="header">
             <span class="col_fade">最近创建的Tweet</span>
         </div>
+        {% if u.tweets() == [] %}
+            <div class="inner">
+                <p>无Tweet</p>
+            </div>
+        {% endif %}
         {% for t in u.tweets() %}
             <div class="cell">
                 {% if user %}
@@ -159,6 +169,11 @@
         <div class="header">
             <span class="col_fade">最近参与的Tweet</span>
         </div>
+        {% if u.uni_tweets() == [] %}
+            <div class="inner">
+                <p>无Tweet</p>
+            </div>
+        {% endif %}
         {#            什么是参与，即有评论的tweet#}
         {% for t in u.uni_tweets() %}
             {#                如何解决重复对一个Tweet评论2次的问题#}
