@@ -206,6 +206,7 @@ def hack():
 
 # 增加一个可以看到任意user的路由函数
 # 不需要check token，CRUD中除了查不需要验证token，但是需要传递token
+# 需要传递   u: 我想要看的用户    和    user: current_user()
 @main.route('/user/<int:id>')
 @login_required
 def user_detail(id):
@@ -220,41 +221,42 @@ def user_detail(id):
 @main.route('/user/update', methods=['POST'])
 @login_required
 def user_update():
-    u = current_user()
+    user = current_user()
     token = request.args.get('token')
     if User.check_token(token, gg.csrf_tokens):
         form = request.form
         newUser = User.update(form)
-        return redirect(url_for('user.user_setting', id=u.id, token=token))
+        return redirect(url_for('user.user_setting', id=user.id, token=token))
 
 
 # 增加一个在setting页面update密码的路由函数
 @main.route('/user/update_password', methods=['POST'])
 @login_required
 def user_update_password():
-    u = current_user()
+    user = current_user()
     token = request.args.get('token')
     if User.check_token(token, gg.csrf_tokens):
         form = request.form
-        if u.password == User.salted_password(form.get('old_password')):
+        if user.password == User.salted_password(form.get('old_password')):
             newUser = User.update_pass(form)
-            return redirect(url_for('user.user_setting', id=u.id, token=token))
+            return redirect(url_for('user.user_setting', id=user.id, token=token))
 
 
 # 增加一个去setting页面的路由函数
-@main.route('/setting/<int:id>')
+@main.route('/setting')
 @login_required
 def user_setting(id):
-    u = User.find(id)
+    user = current_user()
     token = request.args.get('token')
-    return render_template('user/setting.html', u=u, token=token, bid=-1)
+    if User.check_token(token, gg.csrf_tokens):
+        return render_template('user/setting.html', u=user, token=token, bid=-1)
 
 
 # 增加一个去login页面的路由函数
 @main.route('/login', methods=['GET'])
 def user_login():
-    u = current_user()
-    return render_template('user/new_login.html', u=u)
+    user = current_user()
+    return render_template('user/new_login.html', u=user)
 
 
 # 增加一个signin的路由函数
@@ -273,8 +275,8 @@ def user_signin():
 # 增加一个去register页面的路由函数
 @main.route('/register_page', methods=['GET'])
 def user_reg():
-    u = current_user()
-    return render_template('user/new_register.html', u=u)
+    user = current_user()
+    return render_template('user/new_register.html', u=user)
 
 
 # 增加一个register的路由函数

@@ -43,13 +43,13 @@ def add():
 @main.route('/delete/<int:comment_id>', methods=['GET'])
 @login_required
 def delete(comment_id):
-    u = current_user()
+    user = current_user()
     # comment_id = request.args.get('id', -1)
     # comment_id = int(comment_id)
     token = request.args.get('token')
     if Comment.check_token(token, gg.csrf_tokens):
         c = Comment.find(comment_id)
-        if u.id == c.user_id:
+        if user.id == c.user_id:
             c.remove(comment_id)
         return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=token))
 
