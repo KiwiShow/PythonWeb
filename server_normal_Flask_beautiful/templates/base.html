@@ -12,6 +12,9 @@
 <div class='navbar'>
     <div class='navbar-inner'>
         <div class='container'>
+            <a class="brand" href="{{ url_for('tweet.index') }}">
+                <img src="//o4j806krb.qnssl.com/public/images/cnodejs_light.svg">
+            </a>
             <ul class='nav pull-right'>
                 <li><a href="{{ url_for('tweet.index') }}">首页</a></li>
                 {% if user  %}
