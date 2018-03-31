@@ -9,8 +9,8 @@ def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if session.get('user_id', None) is None:
-            log('from route_todo --> 非登录用户 redirect 到/login')
-            return redirect(url_for('user.login'))
+            log('from routes --> 非登录用户 redirect 到/login')
+            return redirect(url_for('user.user_login'))
         return f(*args, **kwargs)
     return decorated_function
 

@@ -19,7 +19,7 @@ class User(MonModel):
     __fields__ = MonModel.__fields__ + [
         ('username', str, ''),
         ('password', str, ''),
-        ('note', str, '“不要懒哦!”'),
+        ('note', str, '不要懒哦!'),
         ('role', int, 10),
         ('user_image', str, '/uploads/default.png'),
     ]
@@ -29,7 +29,7 @@ class User(MonModel):
         user_id = int(form.get('id', -1))
         u = User.find_by(id=user_id)
         u.username = form.get('username')
-        u.note = form.get('note')
+        u.note = form.get('note', '别偷懒哦')
         tm = int(time.time())
         # b.updated_time = change_time(tm)
         # 因为需要算基于linux时间算delta，所以不需要格式化时间

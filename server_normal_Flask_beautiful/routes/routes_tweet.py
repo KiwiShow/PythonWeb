@@ -38,7 +38,7 @@ def index():
         user_id = u.id
     user = User.find(user_id)
     if user is None:
-        return redirect(url_for('user.login'))
+        return redirect(url_for('user.user_signin'))
     else:
         # 用字典对每个tweet进行token和user.id的匹配
         # token = str(uuid.uuid4())

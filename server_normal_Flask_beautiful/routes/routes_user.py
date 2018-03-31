@@ -39,8 +39,8 @@ def index():
     return r
 
 
-@main.route('/login', methods=['POST', 'GET'])
-def login():
+@main.route('/test_login', methods=['POST', 'GET'])
+def test_login():
     """
     允许GET是因为在index页面转到login页面需要
     POST是因为在login页面输入账号密码点击login按钮需要
@@ -74,11 +74,11 @@ def out():
     :return: 返回login页面
     """
     session.pop('user_id')
-    return redirect(url_for('.login'))
+    return redirect(url_for('.test_login'))
 
 
-@main.route('/register', methods=['POST', 'GET'])
-def register():
+@main.route('/test_register', methods=['POST', 'GET'])
+def test_register():
     """
     允许GET是因为在地址栏输入地址转到register页面需要
     POST是因为在register页面输入账号密码点击register按钮需要
@@ -110,6 +110,11 @@ def profile():
     # 在render_template中直接文本替代是不行的，只会当成字符串
     body = render_template('user/profile.html', u=u)
     return make_response(body)
+
+
+# ==============================
+# 以上测试用，可以作废
+# ==============================
 
 
 @main.route('/admin/users', methods=['GET'])
@@ -204,11 +209,13 @@ def hack():
 @main.route('/user/<int:id>')
 @login_required
 def user_detail(id):
+    user = current_user()
     u = User.find(id)
     token = request.args.get('token')
-    return render_template('user/profile.html', u=u, token=token, bid=-1)
+    return render_template('user/profile.html', u=u, user=user, token=token, bid=-1)
 
 
+# update方法需要重新写，统一到model父类中
 # 增加一个在setting页面update的路由函数
 @main.route('/user/update', methods=['POST'])
 @login_required
@@ -234,18 +241,6 @@ def user_update_password():
             return redirect(url_for('user.user_setting', id=u.id, token=token))
 
 
-# route_dict = {
-    #     '/': route_index,
-    #     '/login': route_login,
-    #     '/out': route_out,
-    #     '/register': route_register,
-    #     '/messages': route_message,
-    #     '/profile': login_required(route_profile),
-    #     '/admin/users': login_required(admin),
-    #     '/admin/user/update': login_required(admin_update),
-    # }
-
-
 # 增加一个去setting页面的路由函数
 @main.route('/setting/<int:id>')
 @login_required
@@ -253,3 +248,54 @@ def user_setting(id):
     u = User.find(id)
     token = request.args.get('token')
     return render_template('user/setting.html', u=u, token=token, bid=-1)
+
+
+# 增加一个去login页面的路由函数
+@main.route('/login', methods=['GET'])
+def user_login():
+    u = current_user()
+    return render_template('user/new_login.html', u=u)
+
+
+# 增加一个signin的路由函数
+@main.route('/signin', methods=['POST'])
+def user_signin():
+    form = request.form
+    log('from route_login --> cookies: ', request.cookies)
+    # ImmutableMultiDict([])是什么鬼？
+    if form.get('username', None):
+        if User.validate_login(form):
+            u = User.find_by(username=form.get('username'))
+            session['user_id'] = u.id
+            return redirect(url_for('tweet.index'))
+
+
+# 增加一个去register页面的路由函数
+@main.route('/register_page', methods=['GET'])
+def user_reg():
+    u = current_user()
+    return render_template('user/new_register.html', u=u)
+
+
+# 增加一个register的路由函数
+@main.route('/register', methods=['POST'])
+def user_register():
+    """
+    允许GET是因为在地址栏输入地址转到register页面需要
+    POST是因为在register页面输入账号密码点击register按钮需要
+    主要的bug是转到register页面和register页面都都是同一个路由函数
+    :return: 返回register页面，并显示所有用户信息
+    """
+    form = request.form
+    if User.validate_register(form):
+        return redirect(url_for('user.user_login'))
+
+
+@main.route('/signout')
+def user_signout():
+    """
+    在session中删除当前登录的user_id
+    :return: 返回login页面
+    """
+    session.pop('user_id')
+    return redirect(url_for('tweet.index'))
