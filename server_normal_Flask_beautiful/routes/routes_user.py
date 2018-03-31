@@ -163,19 +163,21 @@ def allow_file(filename):
 @login_required
 def add_img():
     u = current_user()
-    file = request.files['avatar']
-    if allow_file(file.filename):
-        # 上传的文件一定要用 secure_filename 函数过滤一下名字
-        # ../../../../../../../root/.ssh/authorized_keys
-        filename = secure_filename(file.filename)
-        # 2018/3/19/yiasduifhy289389f.png
-        file.save(os.path.join(image_file_dir, filename))
-        # u.add_avatar(filename)
-        domain = qiniu_up(filename)
-        os.remove(os.path.join(image_file_dir, filename))
-        u.user_image = domain + filename
-        u.save()
-    return redirect(url_for('.profile'))
+    token = request.args.get('token')
+    if User.check_token(token, gg.csrf_tokens):
+        file = request.files['avatar']
+        if allow_file(file.filename):
+            # 上传的文件一定要用 secure_filename 函数过滤一下名字
+            # ../../../../../../../root/.ssh/authorized_keys
+            filename = secure_filename(file.filename)
+            # 2018/3/19/yiasduifhy289389f.png
+            file.save(os.path.join(image_file_dir, filename))
+            # u.add_avatar(filename)
+            domain = qiniu_up(filename)
+            os.remove(os.path.join(image_file_dir, filename))
+            u.user_image = domain + filename
+            u.save()
+        return redirect(url_for('.user_setting', id=u.id, token=token))
 
 
 # web后端上传头像，后续可以改成Nginx+图床

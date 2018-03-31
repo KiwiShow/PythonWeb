@@ -114,6 +114,26 @@
                 </form>
             </div>
         </div>
+        <div class='panel'>
+            <div class='header'>
+                <span class='col_fade'>更改头像</span>
+            </div>
+            <div class='inner'>
+                <form id='change_pass_form' class='form-horizontal' action='{{ url_for('user.add_img', token=token) }}' enctype=multipart/form-data method='post'>
+                    <div class='control-group'>
+                        <label class='control-label' for='old_pass'>上传头像</label>
+
+                        <div class='controls'>
+                            <input type=file class='input-xlarge' name='avatar'/>
+                        </div>
+                    </div>
+
+                    <div class='form-actions'>
+                        <input type='submit' class='span-primary submit_btn' data-loading-text="上传中.." value='上传'/>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
