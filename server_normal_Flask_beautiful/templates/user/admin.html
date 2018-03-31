@@ -23,6 +23,13 @@
             </div>
         </div>
         <div class="control-group">
+            <label class="control-label">USERNAME</label>
+            <div class="controls">
+                <input type="text" class="input-xlarge" name="username">
+            </div>
+        </div>
+
+        <div class="control-group">
             <label class="control-label">PASSWORD</label>
             <div class="controls">
                 <input type="text" class="input-xlarge" name="password">
@@ -33,7 +40,7 @@
         </div>
     </form>
 
-    <form class="form-horizontal" method="post" action="{{ url_for('.register') }}">
+    <form class="form-horizontal" method="post" action="{{ url_for('user.user_register') }}">
         <div class="control-group">
             <label class="control-label">用户名</label>
             <div class="controls">

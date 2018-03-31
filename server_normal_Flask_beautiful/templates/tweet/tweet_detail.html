@@ -1,239 +1,187 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>tweet detail</title>
-    <link rel="stylesheet" href="//o4j806krb.qnssl.com/public/stylesheets/index.min.23a5b1ca.min.css" media="all">
-    <script src="//cdn.bootcss.com/marked/0.3.19/marked.min.js"></script>
-    <script src="//o4j806krb.qnssl.com/public/index.min.f7c13f64.min.js"></script>
-    <script src="//o4j806krb.qnssl.com/public/editor.min.08791783.min.js"></script>
-</head>
-<body>
-<div class='navbar'>
-    <div class='navbar-inner'>
-        <div class='container'>
-            <ul class='nav pull-right'>
-                <li><a href="{{ url_for('tweet.index') }}">首页</a></li>
-                <li><a href="{{ url_for('user.login') }}">切换用户</a></li>
-                <li><a href="{{ url_for('user.user_setting', id=u.id, token=token) }}">设置</a></li>
-                <li><a href="{{ url_for('user.out') }}">退出</a></li>
-                <li><a href="{{ url_for('user.admin') }}">管理员界面</a></li>
+{% extends "base.html" %}
 
-            </ul>
+{% block title %}
+    tweet detail
+{% endblock %}
+
+{% block sidebar_panel %}
+    <div class="panel">
+        {% set u = t.user() %}
+        <div class="header">
+            <span class="col_fade">个人信息</span>
         </div>
-    </div>
-</div>
+        <div class="inner">
+            <div class="user_card">
+                <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
+                    <img src="{{ u.user_image }}" title="{{ u.username }}"/>
+                </a>
+                <span class="user_name"><a class="dark"
+                                           href="{{ url_for('user.user_detail', id=u.id, token=token) }}">{{ u.username }}</a></span>
 
-<div id="main">
-    <div id="sidebar">
-        <div class="panel">
-            {% set u = t.user() %}
-            <div class="header">
-                <span class="col_fade">个人信息</span>
-            </div>
-            <div class="inner">
-                <div class="user_card">
-                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
-                        <img src="{{ u.user_image }}" title="{{ u.username }}"/>
-                    </a>
-                    <span class="user_name"><a class="dark"
-                                               href="{{ url_for('user.user_detail', id=u.id, token=token) }}">{{ u.username }}</a></span>
-
-                    <div class="space clearfix"></div>
-                    <span class="signature">
+                <div class="space clearfix"></div>
+                <span class="signature">
                         “ {{ u.note }} ”
                 </span>
-                </div>
             </div>
         </div>
     </div>
-    <div id="content">
-        {% set u = t.user() %}
-        <div class='panel'>
-            <div class='header topic_header'>
+{% endblock %}
+
+{% block content %}
+    {% set u = t.user() %}
+    <div class='panel'>
+        <div class='header topic_header'>
                 <span class="topic_full_title">
                     <span class="put_good">{{ t.board().title }}</span>
                     {{ t.title }}
                 </span>
-                <div class="changes">
-                    <span class="time" id="{{ t.created_time }}"></span>
-                    <span>
+            <div class="changes">
+                <span class="time" id="{{ t.created_time }}"></span>
+                <span>
                         作者
                         <a href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
                             {{ u.username }}
                         </a>
                     </span>
-                    <span>
+                <span>
                         {{ t.views }} 次浏览
                      </span>
-                    <span>
+                <span>
                         来自 {{ t.board().title }}
                      </span>
-                    <span>
+                <span>
                           <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>
                      </span>
-                    <span>
+                <span>
                          <a href="{{ url_for('tweet.edit', tweet_id=t.id, token=token) }}">编辑</a>
                     </span>
-                </div>
-            </div>
-
-            <div class='inner topic'>
-                <div class='topic_content'>
-                    <div class="markdown-text">{{ t.content }}</div>
-                </div>
             </div>
         </div>
-        <div class='panel'>
-            <div class='header'>
+
+        <div class='inner topic'>
+            <div class='topic_content'>
+                <div class="markdown-text">{{ t.content }}</div>
+            </div>
+        </div>
+    </div>
+    <div class='panel'>
+        <div class='header'>
             <span class='col_fade'>
                 <!-- 过滤器 -->
                 {{ t.comments() | count }} 回复
             </span>
-            </div>
-            {% for c in t.comments() %}
-                {% set u = c.user() %}
-                <div class='cell reply_area reply_item'>
-                    <div class='author_content'>
-                        <a href="{{ url_for('user.user_detail', id=u.id, token=token) }}" class="user_avatar">
-                            <img src="{{ u.user_image }}" title="{{ u.username }}"/>
+        </div>
+        {% for c in t.comments() %}
+            {% set u = c.user() %}
+            <div class='cell reply_area reply_item'>
+                <div class='author_content'>
+                    <a href="{{ url_for('user.user_detail', id=u.id, token=token) }}" class="user_avatar">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}"/>
+                    </a>
+                    <div class='user_info'>
+                        <a class='dark reply_author' href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
+                            {{ u.username }}
                         </a>
-                        <div class='user_info'>
-                            <a class='dark reply_author' href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
-                                {{ u.username }}
-                            </a>
-                            <a class="reply_time">
-                                {{ loop.index }}楼 / {{ loop.length }}楼 •
-                                <span class="time" id="{{ c.created_time }}"></span>
-                                {% if u.id == t.user().id %}
-                                    <span class="reply_by_author">作者</span>
-                                {% endif %}
-                            </a>
-                        </div>
-                        <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>
-                        <a href="{{ url_for('comment.edit', comment_id=c.id, token=token) }}">编辑</a>
-                        <div class='user_action'>
+                        <a class="reply_time">
+                            {{ loop.index }}楼 / {{ loop.length }}楼 •
+                            <span class="time" id="{{ c.created_time }}"></span>
+                            {% if u.id == t.user().id %}
+                                <span class="reply_by_author">作者</span>
+                            {% endif %}
+                        </a>
+                    </div>
+                    <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>
+                    <a href="{{ url_for('comment.edit', comment_id=c.id, token=token) }}">编辑</a>
+                    <div class='user_action'>
                     <span>
                         <i class="fa up_btn fa-thumbs-o-up invisible" title="喜欢"></i>
                         <span class="up-count">
                         </span>
                     </span>
-                        </div>
-                    </div>
-                    <div class='reply_content from-leiwei1991'>
-                        <div class="markdown-text">{{ c.content }}</div>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
-        <div class="panel">
-            <div class="header">
-                <span class="col_fade">添加回复</span>
+                <div class='reply_content from-leiwei1991'>
+                    <div class="markdown-text">{{ c.content }}</div>
+                </div>
             </div>
-            <div class="inner reply">
-                <form id="reply_form" action="{{ url_for('comment.add', token=token) }}" method="post">
-                    <div class="markdown_editor in_editor">
-                        <div class="markdown_in_editor">
-                            <input type="hidden" name="tweet_id" value="{{ t.id }}">
-                            <textarea class='editor' name='content' rows='8'></textarea>
-                            <div class='editor_buttons'>
-                                <input class='span-primary submit_btn' type="submit" data-loading-text="回复中.." value="回复" >
-                            </div>
+        {% endfor %}
+    </div>
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">添加回复</span>
+        </div>
+        <div class="inner reply">
+            <form id="reply_form" action="{{ url_for('comment.add', token=token) }}" method="post">
+                <div class="markdown_editor in_editor">
+                    <div class="markdown_in_editor">
+                        <input type="hidden" name="tweet_id" value="{{ t.id }}">
+                        <textarea class='editor' name='content' rows='8'></textarea>
+                        <div class='editor_buttons'>
+                            <input class='span-primary submit_btn' type="submit" data-loading-text="回复中.." value="回复">
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
-</div>
-<div id='footer'>
-    <div id='footer_main'>
-        <div class="links">
-            <a class='dark' href='https://github.com/KiwiShow/PythonWeb'>源码地址</a>
-        </div>
+{% endblock %}
 
-        <div class='col_fade'>
-
-            <p>这是个人的一个玩具，模仿<a href="https://cnodejs.org/">CNode</a>(国内最专业的 Node.js 开源技术社区，致力于 Node.js 的技术研究)</p>
-            <p>欢迎来到python社区
-                <a href="https://www.python.org/"
-                   target="_blank"
-                   class="sponsor_outlink" data-label="ucloud_bottom">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Python_logo_and_wordmark.svg/200px-Python_logo_and_wordmark.svg.png" title="python"
-                         alt="python" width="92px"/>
-                </a>
-                ，云存储使用
-                <a href="http://www.qiniu.com/?ref=cnode" target="_blank"
-                   class="sponsor_outlink" data-label="qiniu_bottom">
-                    <img src="//dn-cnode.qbox.me/Fg0jtDIcTqVC049oVu5-sn6Om4NX" title="七牛云存储"
-                         alt="七牛云存储" width="115px"/>
-                </a>
-                ，使用<a href="http://flask.pocoo.org/" target="_blank"
-                     class="sponsor_outlink" data-label="alinode_bottom">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Flask_logo.svg/220px-Flask_logo.svg.png" title="flask"
-                         alt="flask" height="54px" width="166px"/>
-                </a>web框架。
-            </p>
-        </div>
-    </div>
-</div>
-
-<script>
-    let log = function () {
-        console.log.apply(console, arguments)
-    }
-
-    let e = function (sel) {
-        return document.querySelector(sel)
-    }
-
-    let es = function (sel) {
-        return document.querySelectorAll(sel)
-    }
-
-    let createTimer = function () {
-        setInterval(function () {
-            let times = es('.time')
-            for (let i = 0; i < times.length; i++) {
-                let t = times[i]
-                let time = Number(t.id)
-                let now = Math.floor(new Date() / 1000)
-                let delta = now - time
-
-                day = Math.floor(delta / 86400)
-                hour = Math.floor((delta % 86400) / 3600)
-                minute = Math.floor((delta % 3600) / 60)
-                second = Math.floor(delta % 60)
-
-                let s = delta + ' 秒前'
-                let ss = '发布于 ' + day + ' 天前' + hour + ' 小时前' + minute + ' 分前' + second + ' 秒前'
-                t.innerHTML = ss
-            }
-        }, 1000)
-
-    }
-
-    let markContents = function () {
-        let contentDivs = es('.markdown-text')
-        for (let i = 0; i < contentDivs.length; i++) {
-            let contentDiv = contentDivs[i]
-            let content = marked(contentDiv.innerHTML)
-            contentDiv.innerHTML = content
+{% block script %}
+    <script>
+        let log = function () {
+            console.log.apply(console, arguments)
         }
-    }
 
-    let __main = function () {
-        createTimer()
-        markContents()
-    }
+        let e = function (sel) {
+            return document.querySelector(sel)
+        }
 
-    __main()
-</script>
-<script>
-  (function () {
-    let editor = new Editor();
-    editor.render($('.editor')[0]);
-  })();
-</script>
-</body>
-</html>
+        let es = function (sel) {
+            return document.querySelectorAll(sel)
+        }
+
+        let createTimer = function () {
+            setInterval(function () {
+                let times = es('.time')
+                for (let i = 0; i < times.length; i++) {
+                    let t = times[i]
+                    let time = Number(t.id)
+                    let now = Math.floor(new Date() / 1000)
+                    let delta = now - time
+
+                    day = Math.floor(delta / 86400)
+                    hour = Math.floor((delta % 86400) / 3600)
+                    minute = Math.floor((delta % 3600) / 60)
+                    second = Math.floor(delta % 60)
+
+                    let s = delta + ' 秒前'
+                    let ss = '发布于 ' + day + ' 天前' + hour + ' 小时前' + minute + ' 分前' + second + ' 秒前'
+                    t.innerHTML = ss
+                }
+            }, 1000)
+
+        }
+
+        let markContents = function () {
+            let contentDivs = es('.markdown-text')
+            for (let i = 0; i < contentDivs.length; i++) {
+                let contentDiv = contentDivs[i]
+                let content = marked(contentDiv.innerHTML)
+                contentDiv.innerHTML = content
+            }
+        }
+
+        let __main = function () {
+            createTimer()
+            markContents()
+        }
+
+        __main()
+    </script>
+    <script>
+        (function () {
+            let editor = new Editor()
+            editor.render($('.editor')[0])
+        })()
+    </script>
+{% endblock %}

@@ -1,106 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>tweet edit</title>
-    <link rel="stylesheet" href="//o4j806krb.qnssl.com/public/stylesheets/index.min.23a5b1ca.min.css" media="all">
-    <script src="//o4j806krb.qnssl.com/public/index.min.f7c13f64.min.js"></script>
-    <script src="//o4j806krb.qnssl.com/public/editor.min.08791783.min.js"></script>
-</head>
-<body>
-    <div class='navbar'>
-    <div class='navbar-inner'>
-        <div class='container'>
-            <ul class='nav pull-right'>
-                <li><a href="{{ url_for('tweet.index') }}">首页</a></li>
-                <li><a href="{{ url_for('user.login') }}">切换用户</a></li>
-                <li><a href="{{ url_for('user.user_setting', id=u.id, token=token) }}">设置</a></li>
-                <li><a href="{{ url_for('user.out') }}">退出</a></li>
-                <li><a href="{{ url_for('user.admin') }}">管理员界面</a></li>
+{% extends "base.html" %}
 
-            </ul>
+{% block title %}
+    tweet new
+{% endblock %}
+
+{% block sidebar_panel %}
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">Markdown 语法参考</span>
+        </div>
+        <div class="inner">
+            <ol>
+                <li><tt>### 单行的标题</tt></li>
+                <li><tt>**粗体**</tt></li>
+                <li><tt>`console.log('行内代码')`</tt></li>
+                <li><tt>```js\n code \n```</tt> 标记代码块</li>
+                <li><tt>[内容](链接)</tt></li>
+                <li><tt>![文字说明](图片链接)</tt></li>
+            </ol>
+            <span><a href="https://segmentfault.com/markdown" target="_blank">Markdown 文档</a></span>
         </div>
     </div>
-</div>
-    <div id="main">
-        <div id="sidebar">
-            <div class="panel">
-                <div class="header">
-                  <span class="col_fade">Markdown 语法参考</span>
-                </div>
-                <div class="inner">
-                  <ol>
-                    <li><tt>### 单行的标题</tt></li>
-                    <li><tt>**粗体**</tt></li>
-                    <li><tt>`console.log('行内代码')`</tt></li>
-                    <li><tt>```js\n code \n```</tt> 标记代码块</li>
-                    <li><tt>[内容](链接)</tt></li>
-                    <li><tt>![文字说明](图片链接)</tt></li>
-                  </ol>
-                  <span><a href="https://segmentfault.com/markdown" target="_blank">Markdown 文档</a></span>
-                </div>
-            </div>
-        </div>
-        <div id="content">
-            <div class="panel">
-                <div class="inner post">
-                    <form id="create_topic_form" method="post" action="{{ url_for('tweet.update', token=token) }}">
-                        <fieldset>
-                            <input name="id" value="{{ t.id }}" type="hidden">
-                            <textarea autofocus class='span9' id='title' name='title' rows='1'
-                                      placeholder="标题字数 10 字以上">{{ t.title }}</textarea>
-                            <div class='markdown_editor in_editor'>
-                              <div class='markdown_in_editor'>
+{% endblock %}
+
+{% block content %}
+    <div class="panel">
+        <div class="inner post">
+            <form id="create_topic_form" method="post" action="{{ url_for('tweet.update', token=token) }}">
+                <fieldset>
+                    <input name="id" value="{{ t.id }}" type="hidden">
+                    <textarea autofocus class='span9' id='title' name='title' rows='1'
+                              placeholder="标题字数 10 字以上">{{ t.title }}</textarea>
+                    <div class='markdown_editor in_editor'>
+                        <div class='markdown_in_editor'>
                                 <textarea class='editor' name='content' rows='20'
                                           placeholder='文章支持 Markdown 语法, 请注意标记代码'>{{ t.content }}</textarea>
-                                <div class='editor_buttons'>
-                                  <input type="submit" class='span-primary submit_btn' data-loading-text="提交中" value="提交修改">
-                                </div>
-                              </div>
+                            <div class='editor_buttons'>
+                                <input type="submit" class='span-primary submit_btn' data-loading-text="提交中"
+                                       value="提交修改">
                             </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
     </div>
-    <div id='footer'>
-    <div id='footer_main'>
-        <div class="links">
-            <a class='dark' href='https://github.com/KiwiShow/PythonWeb'>源码地址</a>
-        </div>
+{% endblock %}
 
-        <div class='col_fade'>
-
-            <p>这是个人的一个玩具，模仿<a href="https://cnodejs.org/">CNode</a>(国内最专业的 Node.js 开源技术社区，致力于 Node.js 的技术研究)</p>
-            <p>欢迎来到python社区
-                <a href="https://www.python.org/"
-                   target="_blank"
-                   class="sponsor_outlink" data-label="ucloud_bottom">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Python_logo_and_wordmark.svg/200px-Python_logo_and_wordmark.svg.png" title="python"
-                         alt="python" width="92px"/>
-                </a>
-                ，云存储使用
-                <a href="http://www.qiniu.com/?ref=cnode" target="_blank"
-                   class="sponsor_outlink" data-label="qiniu_bottom">
-                    <img src="//dn-cnode.qbox.me/Fg0jtDIcTqVC049oVu5-sn6Om4NX" title="七牛云存储"
-                         alt="七牛云存储" width="115px"/>
-                </a>
-                ，使用<a href="http://flask.pocoo.org/" target="_blank"
-                     class="sponsor_outlink" data-label="alinode_bottom">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Flask_logo.svg/220px-Flask_logo.svg.png" title="flask"
-                         alt="flask" height="54px" width="166px"/>
-                </a>web框架。
-            </p>
-        </div>
-    </div>
-</div>
-
-<script>
-  (function () {
-    let editor = new Editor();
-    editor.render($('.editor')[0]);
-  })();
-</script>
-</body>
-</html>
+{% block script %}
+    <script>
+        (function () {
+            let editor = new Editor()
+            editor.render($('.editor')[0])
+        })()
+    </script>
+{% endblock %}
