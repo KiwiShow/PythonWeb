@@ -25,21 +25,20 @@ main = Blueprint('tweet', __name__)
 
 
 @main.route('/index', methods=['GET'])
-@login_required
+# @login_required
 def index():
     """
     显示该用户所有tweet
     :return: 显示tweet页面
     """
-    user_id = int(request.args.get('user_id', -1))
+    user = current_user()
     board_id = int(request.args.get('board_id', -1))
-    if user_id == -1:
-        u = current_user()
-        user_id = u.id
-    user = User.find(user_id)
-    if user is None:
-        return redirect(url_for('user.user_signin'))
+    if board_id == -1:
+        tweets = Tweet.find_all(deleted=False)
     else:
+        tweets = Tweet.find_all(board_id=board_id, deleted=False)
+    bs = Board.find_all(deleted=False)
+    if user is not None:
         # 用字典对每个tweet进行token和user.id的匹配
         # token = str(uuid.uuid4())
         # csrf_tokens[token] = user.id
@@ -48,14 +47,9 @@ def index():
         # 保证每次调用index函数时都有新的token可用
         gg.set_value(user.id)
         log('from tweet',gg.csrf_tokens, gg.token)
-        # 改为显示所有的tweet，每个Tweet都有各自的username
-        if board_id == -1:
-            tweets = Tweet.find_all(deleted=False)
-        else:
-            tweets = Tweet.find_all(board_id=board_id, deleted=False)
-        bs = Board.find_all(deleted=False)
-        body = render_template('tweet/tweet_index.html', tweets=tweets, token=gg.token, bs=bs, bid=board_id, u=user)
-        return make_response(body)
+        return render_template('tweet/tweet_index.html', tweets=tweets, token=gg.token, bs=bs, bid=board_id, user=user)
+    else:
+        return render_template('tweet/tweet_index.html', tweets=tweets, bs=bs, bid=board_id, user=user)
 
 
 @main.route('/delete/<int:tweet_id>', methods=['GET'])
@@ -87,8 +81,7 @@ def new():
     board_id = int(request.args.get('board_id', -1))
     if Tweet.check_token(token, gg.csrf_tokens):
         bs = Board.find_all(deleted=False)
-        body = render_template('tweet/tweet_new.html', token=token, bs=bs, bid=board_id, u=user)
-        return make_response(body)
+        return render_template('tweet/tweet_new.html', token=token, bs=bs, bid=board_id)
 
 
 @main.route('/add', methods=['POST'])
@@ -116,8 +109,7 @@ def edit(tweet_id):
     # tweet_id = int(request.args.get('id', -1))
         t = Tweet.find(tweet_id)
         if user.id == t.user_id:
-            body = render_template('tweet/tweet_edit.html', t=t, token=token, u=user)
-            return make_response(body)
+            return render_template('tweet/tweet_edit.html', t=t, token=token)
         return redirect(url_for('.index'))
 
 
@@ -134,29 +126,17 @@ def update():
 
 
 @main.route('/detail/<int:tweet_id>', methods=['GET'])
-@login_required
+# @login_required
 def detail(tweet_id):
     user = current_user()
-    token = request.args.get('token')
-    if Tweet.check_token(token, gg.csrf_tokens):
-    # tweet_id = int(request.args.get('id', -1))
-    #     t = Tweet.find(tweet_id)
-        t = Tweet.get(tweet_id)
+    t = Tweet.get(tweet_id)
+    if user is not None:
+        token = request.args.get('token')
+        # tweet_id = int(request.args.get('id', -1))
+        #     t = Tweet.find(tweet_id)
         # 这里不需要验证是否是自己发的tweet
         # if u.id == t.user_id:
-        body = render_template('tweet/tweet_detail.html', t=t, token=token, u=user)
-        return make_response(body)
-    return redirect(url_for('.index'))
-# route_dict = {
-#     '/tweet/index': login_required(index),
-#     '/tweet/delete': login_required(delete),
-#     '/tweet/edit': login_required(edit),
-#     '/tweet/update': login_required(update),
-#     '/tweet/add': login_required(add),
-#     '/tweet/new': login_required(new),
-    # 评论功能
-    # '/comment/add': login_required(comment_add),
-    # '/comment/delete': login_required(comment_delete),
-    # '/comment/edit': login_required(comment_edit),
-    # '/comment/update': login_required(comment_update),
-# }
+        return render_template('tweet/tweet_detail.html', t=t, token=token, user=user)
+    else:
+        return render_template('tweet/tweet_detail.html', t=t, user=user)
+

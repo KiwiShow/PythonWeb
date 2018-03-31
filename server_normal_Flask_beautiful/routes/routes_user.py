@@ -208,12 +208,15 @@ def hack():
 # 不需要check token，CRUD中除了查不需要验证token，但是需要传递token
 # 需要传递   u: 我想要看的用户    和    user: current_user()
 @main.route('/user/<int:id>')
-@login_required
+# @login_required
 def user_detail(id):
     user = current_user()
     u = User.find(id)
     token = request.args.get('token')
-    return render_template('user/profile.html', u=u, user=user, token=token, bid=-1)
+    if user is not None:
+        return render_template('user/profile.html', u=u, user=user, token=token, bid=-1)
+    else:
+        return render_template('user/profile.html', u=u, user=user)
 
 
 # update方法需要重新写，统一到model父类中
@@ -245,11 +248,11 @@ def user_update_password():
 # 增加一个去setting页面的路由函数
 @main.route('/setting')
 @login_required
-def user_setting(id):
+def user_setting():
     user = current_user()
     token = request.args.get('token')
     if User.check_token(token, gg.csrf_tokens):
-        return render_template('user/setting.html', u=user, token=token, bid=-1)
+        return render_template('user/setting.html', user=user, token=token, bid=-1)
 
 
 # 增加一个去login页面的路由函数

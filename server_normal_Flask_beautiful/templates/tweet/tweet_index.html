@@ -5,32 +5,47 @@
 {% endblock %}
 
 {% block sidebar_panel %}
-    <div class="panel">
-        <div class="header">
-            <span class="col_fade">个人信息</span>
-        </div>
-        <div class="inner">
-            <div class="user_card">
-                <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
-                    <img src="{{ u.user_image }}" title="{{ u.username }}"/>
-                </a>
-                <span class="user_name"><a class="dark"
-                                           href="{{ url_for('user.user_detail', id=u.id, token=token) }}">{{ u.username }}</a></span>
+    {% if user %}
+        <div class="panel">
+            <div class="header">
+                <span class="col_fade">个人信息</span>
+            </div>
+            <div class="inner">
+                <div class="user_card">
+                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=user.id, token=token) }}">
+                        <img src="{{ user.user_image }}" title="{{ user.username }}"/>
+                    </a>
+                    <span class="user_name"><a class="dark"
+                                               href="{{ url_for('user.user_detail', id=user.id, token=token) }}">{{ user.username }}</a></span>
 
-                <div class="space clearfix"></div>
-                <span class="signature">
-                        “ {{ u.note }} ”
+                    <div class="space clearfix"></div>
+                    <span class="signature">
+                            “ {{ user.note }} ”
                     </span>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="panel">
-        <div class="inner">
-            <a href="{{ url_for('tweet.new', token=token, board_id=bid) }}" class="create_topic_btn">
-                <span class="span-success">写新推特</span>
-            </a>
+        <div class="panel">
+            <div class="inner">
+                <a href="{{ url_for('tweet.new', token=token, board_id=bid) }}" class="create_topic_btn">
+                    <span class="span-success">写新推特</span>
+                </a>
+            </div>
         </div>
-    </div>
+    {% else %}
+        <div class="panel">
+            <div class="inner">
+                <p><h1>你瞅啥？</h1></p>
+                <div>
+                    您可以
+                    <a href="{{ url_for('user.user_login') }}">登录</a>
+                    或
+                    <a href="{{ url_for('user.user_reg') }}">注册</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
 {% endblock %}
 
 {% block content %}
@@ -65,10 +80,18 @@
                         </a>
                         <div class="topic_title_wrapper">
                             <span class="put_good">{{ t.board().title }}</span>
-                            <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
-                               title="{{ t.title }}">
-                                {{ t.title }}
-                            </a>
+{#                            使用这种办法导致了代码重复 todo#}
+                            {% if user %}
+                                <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
+                                   title="{{ t.title }}">
+                                    {{ t.title }}
+                                </a>
+                            {% else %}
+                                <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id) }}"
+                                   title="{{ t.title }}">
+                                    {{ t.title }}
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
                     {#                        <div class="cell">#}

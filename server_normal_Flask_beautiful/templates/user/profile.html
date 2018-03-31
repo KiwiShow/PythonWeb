@@ -24,13 +24,15 @@
             </div>
         </div>
     </div>
-    <div class="panel">
-        <div class="inner">
-            <a href="{{ url_for('tweet.new', token=token, board_id=bid) }}" class="create_topic_btn">
-                <span class="span-success">写新推特</span>
-            </a>
+    {% if user %}
+        <div class="panel">
+            <div class="inner">
+                <a href="{{ url_for('tweet.new', token=token, board_id=bid) }}" class="create_topic_btn">
+                    <span class="span-success">写新推特</span>
+                </a>
+            </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -67,9 +69,15 @@
         </div>
         {% for t in u.todos() %}
             <div class="cell">
-                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
-                    <img src="{{ u.user_image }}" title="{{ u.username }}">
-                </a>
+                {% if user %}
+                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}">
+                    </a>
+                {% else %}
+                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}">
+                    </a>
+                {% endif %}
                 <span class="reply_count pull-left">
                     <span class="count_of_replies" title="序号">
                       {{ loop.index }}
@@ -89,9 +97,15 @@
                     {% else %}
                         <span class="put_good">加油</span>
                     {% endif %}
-                    <a class="topic_title" title="{{ t.title }} " href="{{ url_for('todo.index') }}">
-                        {{ t.title }}
-                    </a>
+                    {% if user %}
+                        <a class="topic_title" title="{{ t.title }} " href="{{ url_for('todo.index', token=token) }}">
+                            {{ t.title }}
+                        </a>
+                    {% else %}
+                        <a class="topic_title" title="{{ t.title }} " href="{{ url_for('todo.index') }}">
+                            {{ t.title }}
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
@@ -102,9 +116,15 @@
         </div>
         {% for t in u.tweets() %}
             <div class="cell">
-                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
-                    <img src="{{ u.user_image }}" title="{{ u.username }}">
-                </a>
+                {% if user %}
+                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}">
+                    </a>
+                {% else %}
+                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}">
+                    </a>
+                {% endif %}
                 <span class="reply_count pull-left">
                     <span class="count_of_replies" title="回复数">
                       {{ t.comments() | count }}
@@ -120,10 +140,17 @@
                 </a>
                 <div class="topic_title_wrapper">
                     <span class="put_good">{{ t.board().title }}</span>
-                    <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
-                       title="{{ t.title }}">
-                        {{ t.title }}
-                    </a>
+                    {% if user %}
+                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
+                           title="{{ t.title }}">
+                            {{ t.title }}
+                        </a>
+                    {% else %}
+                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id) }}"
+                           title="{{ t.title }}">
+                            {{ t.title }}
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
@@ -139,9 +166,15 @@
             {#                方案2:在User类中构造一个特殊的方法，返回无重复的Tweet  Done#}
             {#                方案3:在这里进行过滤#}
             <div class="cell">
-                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
-                    <img src="{{ u.user_image }}" title="{{ u.username }}">
-                </a>
+                {% if user %}
+                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}">
+                    </a>
+                {% else %}
+                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}">
+                    </a>
+                {% endif %}
                 <span class="reply_count pull-left">
                         <span class="count_of_replies" title="回复数">
                           {{ t.comments() | count }}
@@ -157,10 +190,17 @@
                 </a>
                 <div class="topic_title_wrapper">
                     <span class="put_good">{{ t.board().title }}</span>
-                    <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
-                       title="{{ t.title }}">
-                        {{ t.title }}
-                    </a>
+                    {% if user %}
+                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
+                           title="{{ t.title }}">
+                            {{ t.title }}
+                        </a>
+                    {% else %}
+                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id) }}"
+                           title="{{ t.title }}">
+                            {{ t.title }}
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}

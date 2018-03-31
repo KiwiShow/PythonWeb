@@ -12,12 +12,19 @@
         </div>
         <div class="inner">
             <div class="user_card">
-                <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
-                    <img src="{{ u.user_image }}" title="{{ u.username }}"/>
-                </a>
-                <span class="user_name"><a class="dark"
-                                           href="{{ url_for('user.user_detail', id=u.id, token=token) }}">{{ u.username }}</a></span>
-
+                {% if user %}
+                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}"/>
+                    </a>
+                    <span class="user_name"><a class="dark"
+                                               href="{{ url_for('user.user_detail', id=u.id, token=token) }}">{{ u.username }}</a></span>
+                {% else %}
+                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}"/>
+                    </a>
+                    <span class="user_name"><a class="dark"
+                                               href="{{ url_for('user.user_detail', id=u.id) }}">{{ u.username }}</a></span>
+                {% endif %}
                 <div class="space clearfix"></div>
                 <span class="signature">
                         “ {{ u.note }} ”
@@ -39,9 +46,15 @@
                 <span class="time" id="{{ t.created_time }}"></span>
                 <span>
                         作者
+                    {% if user %}
                         <a href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
                             {{ u.username }}
                         </a>
+                    {% else %}
+                        <a href="{{ url_for('user.user_detail', id=u.id) }}">
+                        {{ u.username }}
+                    {% endif %}
+                    </a>
                     </span>
                 <span>
                         {{ t.views }} 次浏览
@@ -49,12 +62,14 @@
                 <span>
                         来自 {{ t.board().title }}
                      </span>
-                <span>
+                {% if user %}
+                    <span>
                           <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>
                      </span>
-                <span>
+                    <span>
                          <a href="{{ url_for('tweet.edit', tweet_id=t.id, token=token) }}">编辑</a>
                     </span>
+                {% endif %}
             </div>
         </div>
 
@@ -75,23 +90,41 @@
             {% set u = c.user() %}
             <div class='cell reply_area reply_item'>
                 <div class='author_content'>
-                    <a href="{{ url_for('user.user_detail', id=u.id, token=token) }}" class="user_avatar">
-                        <img src="{{ u.user_image }}" title="{{ u.username }}"/>
-                    </a>
-                    <div class='user_info'>
-                        <a class='dark reply_author' href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
-                            {{ u.username }}
+                    {% if user %}
+                        <a href="{{ url_for('user.user_detail', id=u.id, token=token) }}" class="user_avatar">
+                            <img src="{{ u.user_image }}" title="{{ u.username }}"/>
                         </a>
-                        <a class="reply_time">
-                            {{ loop.index }}楼 / {{ loop.length }}楼 •
-                            <span class="time" id="{{ c.created_time }}"></span>
-                            {% if u.id == t.user().id %}
-                                <span class="reply_by_author">作者</span>
-                            {% endif %}
+                        <div class='user_info'>
+                            <a class='dark reply_author' href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
+                                {{ u.username }}
+                            </a>
+                            <a class="reply_time">
+                                {{ loop.index }}楼 / {{ loop.length }}楼 •
+                                <span class="time" id="{{ c.created_time }}"></span>
+                                {% if u.id == t.user().id %}
+                                    <span class="reply_by_author">作者</span>
+                                {% endif %}
+                            </a>
+                        </div>
+                        <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>
+                        <a href="{{ url_for('comment.edit', comment_id=c.id, token=token) }}">编辑</a>
+                    {% else %}
+                        <a href="{{ url_for('user.user_detail', id=u.id) }}" class="user_avatar">
+                            <img src="{{ u.user_image }}" title="{{ u.username }}"/>
                         </a>
-                    </div>
-                    <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>
-                    <a href="{{ url_for('comment.edit', comment_id=c.id, token=token) }}">编辑</a>
+                        <div class='user_info'>
+                            <a class='dark reply_author' href="{{ url_for('user.user_detail', id=u.id) }}">
+                                {{ u.username }}
+                            </a>
+                            <a class="reply_time">
+                                {{ loop.index }}楼 / {{ loop.length }}楼 •
+                                <span class="time" id="{{ c.created_time }}"></span>
+                                {% if u.id == t.user().id %}
+                                    <span class="reply_by_author">作者</span>
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% endif %}
                     <div class='user_action'>
                     <span>
                         <i class="fa up_btn fa-thumbs-o-up invisible" title="喜欢"></i>
@@ -106,24 +139,27 @@
             </div>
         {% endfor %}
     </div>
-    <div class="panel">
-        <div class="header">
-            <span class="col_fade">添加回复</span>
-        </div>
-        <div class="inner reply">
-            <form id="reply_form" action="{{ url_for('comment.add', token=token) }}" method="post">
-                <div class="markdown_editor in_editor">
-                    <div class="markdown_in_editor">
-                        <input type="hidden" name="tweet_id" value="{{ t.id }}">
-                        <textarea class='editor' name='content' rows='8'></textarea>
-                        <div class='editor_buttons'>
-                            <input class='span-primary submit_btn' type="submit" data-loading-text="回复中.." value="回复">
+    {% if user %}
+        <div class="panel">
+            <div class="header">
+                <span class="col_fade">添加回复</span>
+            </div>
+            <div class="inner reply">
+                <form id="reply_form" action="{{ url_for('comment.add', token=token) }}" method="post">
+                    <div class="markdown_editor in_editor">
+                        <div class="markdown_in_editor">
+                            <input type="hidden" name="tweet_id" value="{{ t.id }}">
+                            <textarea class='editor' name='content' rows='8'></textarea>
+                            <div class='editor_buttons'>
+                                <input class='span-primary submit_btn' type="submit" data-loading-text="回复中.."
+                                       value="回复">
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}
 
 {% block script %}
