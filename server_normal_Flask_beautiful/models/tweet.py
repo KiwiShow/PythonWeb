@@ -33,16 +33,10 @@ class Tweet(MonModel):
     @classmethod
     def update(cls, form):
         tweet_id = int(form.get('id', -1))
-        t = Tweet.find_by(id=tweet_id)
-        t.title = form.get('title')
-        t.content = form.get('content')
-        tm = int(time.time())
-        # t.updated_time = change_time(tm)
-        # 因为需要算基于linux时间算delta，所以不需要格式化时间
-        t.updated_time = tm
-        t.save()
-        return t
-    
+        whitelist = ['id', 'title', 'content', 'views', 'user_id', 'board_id', 'user_name']
+        Tweet.ori_update(whitelist, tweet_id, form)
+
+
     def comments(self):
         # return [c for c in Comment.all() if c.tweet_id == self.id]
         return Comment.find_all(tweet_id=self.id, deleted=False)

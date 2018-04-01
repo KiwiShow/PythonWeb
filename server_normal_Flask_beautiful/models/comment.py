@@ -25,14 +25,9 @@ class Comment(MonModel):
     @classmethod
     def update(cls, form):
         comment_id = int(form.get('id', -1))
-        c = Comment.find_by(id=comment_id)
-        c.content = form.get('content')
-        tm = int(time.time())
-        # c.updated_time = change_time(tm)
-        # 因为需要算基于linux时间算delta，所以不需要格式化时间
-        c.updated_time = tm
-        c.save()
-        return c
+        whitelist = ['id', 'content', 'user_id', 'user_name', 'tweet_id']
+        Comment.ori_update(whitelist, comment_id, form)
+        return Comment.find_by(id=comment_id)
 
     def user(self):
         # u = User.find_by(id=self.json()['user_id'])

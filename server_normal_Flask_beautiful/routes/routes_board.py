@@ -39,6 +39,6 @@ def delete(board_id):
 @login_required
 def update():
         form = request.form
-        newBoard = Board.update(form)
+        Board.update(form)
         # redirect有必要加query吗
         return redirect(url_for('user.admin'))

@@ -86,7 +86,7 @@ def update():
     if Todo.check_token(token, gg.csrf_tokens):
         form = request.form
         Todo.check_id(form)
-        newTodo = Todo.update(form)
+        Todo.update(form)
         return redirect(url_for('.index'))
 
 

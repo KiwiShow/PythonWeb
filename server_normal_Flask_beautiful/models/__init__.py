@@ -150,6 +150,25 @@ class MonModel(object):
         }
         mon.web_flask_beautiful[name].update_one(query, {"$set": values})
 
+    # whitelist 是一个列表， query 和 form 都是 字典
+    @classmethod
+    def ori_update(cls, whitelist, id, form, password=None):
+        name = cls.__name__
+        query = {
+            'id': id,
+        }
+        values = {}
+        for key in whitelist:
+            if form.get(key, '') != '':
+                values[key] = form.get(key)
+        tm = int(time.time())
+        values.pop('id')
+        if password:
+            values['password'] = password
+        values['updated_time'] = tm
+        print('value', values)
+        mon.web_flask_beautiful[name].update_one(query, {"$set": values})
+
     def save(self):
         name = self.__class__.__name__
         mon.web_flask_beautiful[name].save(self.__dict__)

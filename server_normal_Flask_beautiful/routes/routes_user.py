@@ -124,8 +124,9 @@ def admin():
     只有用户id为1的用户有权限
     :return: 返回所有用户的信息
     """
+    user = current_user()
     User.check_admin()
-    body = render_template('user/admin.html', users=User.find_all(deleted=False), boards=Board.find_all(deleted=False))
+    body = render_template('user/admin.html', user=user, users=User.find_all(deleted=False), boards=Board.find_all(deleted=False))
     return make_response(body)
 
 
@@ -138,7 +139,8 @@ def admin_update():
     """
     User.check_admin()
     form = request.form
-    newUser = User.update(form)
+    # newUser = User.update(form)
+    User.update(form)
     return redirect(url_for('.admin'))
 
 
@@ -222,7 +224,12 @@ def user_update():
     token = request.args.get('token')
     if User.check_token(token, gg.csrf_tokens):
         form = request.form
-        newUser = User.update(form)
+        # newUser = User.update(form)
+        if form.get('old_password', '') != '':
+            if user.password == User.salted_password(form.get('old_password', '')):
+                User.update(form)
+        else:
+            User.update(form)
         return redirect(url_for('user.user_setting', id=user.id, token=token))
 
 

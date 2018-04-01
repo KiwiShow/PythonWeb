@@ -112,7 +112,7 @@ def update():
     if Tweet.check_token(token, gg.csrf_tokens):
         form = request.form
         Tweet.check_id(form)
-        newTweet = Tweet.update(form)
+        Tweet.update(form)
         # redirect有必要加query吗
         return redirect(url_for('.index'))
 

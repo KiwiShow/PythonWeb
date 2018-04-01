@@ -27,28 +27,12 @@ class User(MonModel):
     @classmethod
     def update(cls, form):
         user_id = int(form.get('id', -1))
-        u = User.find_by(id=user_id)
-        u.username = form.get('username')
-        u.note = form.get('note', '别偷懒哦')
-        tm = int(time.time())
-        # b.updated_time = change_time(tm)
-        # 因为需要算基于linux时间算delta，所以不需要格式化时间
-        u.updated_time = tm
-        u.save()
-        return u
-
-    @classmethod
-    def update_pass(cls, form):
-        user_id = int(form.get('id', -1))
-        u = User.find_by(id=user_id)
         user_password = form.get('password')
-        u.password = User.salted_password(user_password)
-        tm = int(time.time())
-        # b.updated_time = change_time(tm)
-        # 因为需要算基于linux时间算delta，所以不需要格式化时间
-        u.updated_time = tm
-        u.save()
-        return u
+        password = User.salted_password(user_password)
+        whitelist = ['id', 'username', 'password', 'note', 'role', 'user_image']
+        # 因为form不可改变，而password需要加盐处理，所以只好额外传递一个参数password
+        User.ori_update(whitelist, user_id, form, password=password)
+
 
     # def __init__(self, form):
     #     self.username = form.get('username', '')
