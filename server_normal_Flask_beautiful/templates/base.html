@@ -22,7 +22,7 @@
                     <li><a href="{{ url_for('user.user_setting', token=token) }}">设置</a></li>
                     <li><a href="{{ url_for('user.user_signout') }}">退出</a></li>
                     {% if user.id == 1 %}
-                        <li><a href="{{ url_for('user.admin') }}">管理员界面</a></li>
+                        <li><a href="{{ url_for('user.admin', token=token) }}">管理员界面</a></li>
                     {% endif %}
                 {% else %}
                     <li><a href="{{ url_for('user.user_login') }}">登录</a></li>

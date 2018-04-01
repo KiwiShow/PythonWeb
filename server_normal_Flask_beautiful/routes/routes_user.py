@@ -125,9 +125,26 @@ def admin():
     :return: 返回所有用户的信息
     """
     user = current_user()
-    User.check_admin()
-    body = render_template('user/admin.html', user=user, users=User.find_all(deleted=False), boards=Board.find_all(deleted=False))
-    return make_response(body)
+    token = request.args.get('token')
+    if User.check_token(token, gg.csrf_tokens):
+        User.check_admin()
+        body = render_template('user/new_admin.html', token=token, user=user, users=User.find_all(deleted=False), boards=Board.find_all(deleted=False))
+        return make_response(body)
+
+
+@main.route('/admin/user/edit/<int:user_id>', methods=['GET'])
+@login_required
+def admin_edit(user_id):
+    """
+    只有用户id为1的用户有权限，输入需要修改的id和password
+    :return: 返回修改过的所有用户的信息
+    """
+    user = current_user()
+    token = request.args.get('token')
+    if User.check_token(token, gg.csrf_tokens):
+        User.check_admin()
+        u = User.find(user_id)
+        return render_template('user/new_admin_edit.html', token=token, user=user, u=u)
 
 
 @main.route('/admin/user/update', methods=['POST'])
@@ -137,19 +154,39 @@ def admin_update():
     只有用户id为1的用户有权限，输入需要修改的id和password
     :return: 返回修改过的所有用户的信息
     """
-    User.check_admin()
-    form = request.form
-    # newUser = User.update(form)
-    User.update(form)
-    return redirect(url_for('.admin'))
+    token = request.args.get('token')
+    if User.check_token(token, gg.csrf_tokens):
+        User.check_admin()
+        form = request.form
+        User.update(form)
+        return redirect(url_for('.admin', token=token))
+
+
+# 增加一个register的路由函数
+@main.route('/admin/user/register', methods=['POST'])
+def admin_register():
+    """
+    允许GET是因为在地址栏输入地址转到register页面需要
+    POST是因为在register页面输入账号密码点击register按钮需要
+    主要的bug是转到register页面和register页面都都是同一个路由函数
+    :return: 返回register页面，并显示所有用户信息
+    """
+    token = request.args.get('token')
+    if User.check_token(token, gg.csrf_tokens):
+        User.check_admin()
+        form = request.form
+        if User.validate_register(form):
+            return redirect(url_for('.admin', token=token))
 
 
 @main.route('/admin/user/delete/<int:user_id>')
 @login_required
 def user_delete(user_id):
-    User.check_admin()
-    User.remove(user_id)
-    return redirect(url_for('.admin'))
+    token = request.args.get('token')
+    if User.check_token(token, gg.csrf_tokens):
+        User.check_admin()
+        User.remove(user_id)
+        return redirect(url_for('.admin', token=token))
 
 
 # 图片格式安全过滤
@@ -231,19 +268,6 @@ def user_update():
         else:
             User.update(form)
         return redirect(url_for('user.user_setting', id=user.id, token=token))
-
-
-# 增加一个在setting页面update密码的路由函数
-@main.route('/user/update_password', methods=['POST'])
-@login_required
-def user_update_password():
-    user = current_user()
-    token = request.args.get('token')
-    if User.check_token(token, gg.csrf_tokens):
-        form = request.form
-        if user.password == User.salted_password(form.get('old_password')):
-            newUser = User.update_pass(form)
-            return redirect(url_for('user.user_setting', id=user.id, token=token))
 
 
 # 增加一个去setting页面的路由函数

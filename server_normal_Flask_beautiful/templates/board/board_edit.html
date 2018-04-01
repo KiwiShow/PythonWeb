@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}
+    管理员界面 修改 Board
+{% endblock %}
+
+{% block sidebar_panel %}
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">管理员信息</span>
+        </div>
+        <div class="inner">
+            <div class="user_card">
+                <a class="user_avatar" href="{{ url_for('user.user_detail', id=user.id) }}">
+                    <img src="{{ user.user_image }}" title="{{ user.username }}"/>
+                </a>
+                <span class="user_name"><a class="dark"
+                                           href="{{ url_for('user.user_detail', id=user.id) }}">{{ user.username }}</a></span>
+
+                <div class="space clearfix"></div>
+                <span class="signature">
+                        “ {{ user.note }} ”
+                    </span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class='panel'>
+        <div class='header'>
+            <span class='col_fade'>更改Board</span>
+        </div>
+        <div class='inner'>
+            <form id='change_pass_form' class='form-horizontal'
+                  action='{{ url_for('board.update', token=token) }}' method='post'>
+                <input name="id" value="{{ b.id }}" type="hidden">
+                <div class='control-group'>
+                    <label class='control-label'>title</label>
+
+                    <div class='controls'>
+                        <input class='input-xlarge' name='title' value="{{ b.title }}" size='30'/>
+                    </div>
+                </div>
+
+                <div class='form-actions'>
+                    <input type='submit' class='span-primary submit_btn' data-loading-text="更改中.." value='更改Board'/>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+{% block title %}
+    管理员界面
+{% endblock %}
+
+{% block sidebar_panel %}
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">管理员信息</span>
+        </div>
+        <div class="inner">
+            <div class="user_card">
+                <a class="user_avatar" href="{{ url_for('user.user_detail', id=user.id) }}">
+                    <img src="{{ user.user_image }}" title="{{ user.username }}"/>
+                </a>
+                <span class="user_name"><a class="dark"
+                                           href="{{ url_for('user.user_detail', id=user.id) }}">{{ user.username }}</a></span>
+
+                <div class="space clearfix"></div>
+                <span class="signature">
+                        “ {{ user.note }} ”
+                    </span>
+            </div>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="header">
+            <span class='col_fade'>注册新用户</span>
+        </div>
+        <div class="inner">
+            <form id="signin_form"  action="{{ url_for('user.admin_register', token=token) }}" method="post">
+                <div class="control-group">
+                    <label class="control-label" for="username">用户名</label>
+
+                    <div class="controls">
+                        <input class="input-xlarge" id="name" name="username" size="30" type="text"
+                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="password">密码</label>
+
+                    <div class="controls">
+                        <input class="input-xlarge" id="pass" name="password" size="30" type="password"
+                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <input type="submit" class="span-primary" value="注册">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="header">
+            <span class='col_fade'>添加新Board</span>
+        </div>
+        <div class="inner">
+            <form id="signin_form"  action="{{ url_for('board.add', token=token) }}" method="post">
+                <div class="control-group">
+                    <label class="control-label" for="password">title</label>
+
+                    <div class="controls">
+                        <input class="input-xlarge" id="pass" name="title" size="30" type="password"
+                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <input type="submit" class="span-primary" value="添加">
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">所有用户</span>
+        </div>
+        {% if users == [] %}
+            <div class="inner">
+                <p>无用户</p>
+            </div>
+        {% endif %}
+        {% for u in users %}
+            <div class="cell">
+                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
+                    <img src="{{ u.user_image }}" title="{{ u.username }}">
+                </a>
+                <span class="reply_count pull-left">
+                    <span class="count_of_replies" title="序号">
+                      {{ loop.index }}
+                    </span>
+                    <span class="count_seperator">/</span>
+                    <span class="count_of_visits" title="总数">
+                      {{ users | count }}
+                    </span>
+                </span>
+                <a class="last_time pull-right">
+                    <span class="last_active_time timetime" id="{{ u.created_time }}"></span>
+                </a>
+                <div class="topic_title_wrapper changes">
+
+                    <span class="topic_title">
+                        {{ u.username }}
+                    </span>
+
+                    <span>
+                        <a href="{{ url_for('user.user_delete', user_id=u.id, token=token) }}">删除</a>
+                    </span>
+                    <span>
+                          <a href="{{ url_for('user.admin_edit', user_id=u.id, token=token) }}">编辑</a>
+                    </span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">所有Board</span>
+        </div>
+        {% if boards == [] %}
+            <div class="inner">
+                <p>无Board</p>
+            </div>
+        {% endif %}
+        {% for b in boards %}
+            <div class="cell">
+                <span class="reply_count pull-left">
+                    <span class="count_of_replies" title="序号">
+                      {{ loop.index }}
+                    </span>
+                    <span class="count_seperator">/</span>
+                    <span class="count_of_visits" title="总数">
+                      {{ boards | count }}
+                    </span>
+                </span>
+                <a class="last_time pull-right">
+                    <span class="last_active_time timetime" id="{{ b.created_time }}"></span>
+                </a>
+                <div class="topic_title_wrapper changes">
+
+                    <span class="topic_title">
+                        {{ b.title }}
+                    </span>
+
+                    <span>
+                        <a href="{{ url_for('board.delete', board_id=b.id, token=token) }}">删除</a>
+                    </span>
+                    <span>
+                          <a href="{{ url_for('board.edit', board_id=b.id, token=token) }}">编辑</a>
+                    </span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        let log = function () {
+            console.log.apply(console, arguments)
+        }
+
+        let e = function (sel) {
+            return document.querySelector(sel)
+        }
+
+        let es = function (sel) {
+            return document.querySelectorAll(sel)
+        }
+
+        let createTimer = function () {
+            setInterval(function () {
+                let times = es('.time')
+                let timetimes = es('.timetime')
+                for (let i = 0; i < times.length; i++) {
+                    let t = times[i]
+                    let time = Number(t.id)
+                    let now = Math.floor(new Date() / 1000)
+                    let delta = now - time
+
+                    day = Math.floor(delta / 86400)
+                    hour = Math.floor((delta % 86400) / 3600)
+                    minute = Math.floor((delta % 3600) / 60)
+
+                    let s = delta + ' 秒前'
+                    let ss = '注册时间 ' + day + ' 天' + hour + ' 小时' + minute + ' 分前'
+                    t.innerHTML = ss
+                }
+                for (let i = 0; i < timetimes.length; i++) {
+                    let t = timetimes[i]
+                    let time = Number(t.id)
+                    let now = Math.floor(new Date() / 1000)
+                    let delta = now - time
+
+                    day = Math.floor(delta / 86400)
+                    hour = Math.floor((delta % 86400) / 3600)
+                    minute = Math.floor((delta % 3600) / 60)
+
+                    let s = delta + ' 秒前'
+                    let ss = '创建于 ' + day + ' 天' + hour + ' 小时' + minute + ' 分前'
+                    t.innerHTML = ss
+                }
+            }, 1000)
+
+        }
+
+        let __main = function () {
+            createTimer()
+        }
+
+        __main()
+    </script>
+{% endblock %}
