@@ -34,10 +34,10 @@ def index():
     user = current_user()
     board_id = int(request.args.get('board_id', -1))
     if board_id == -1:
-        tweets = Tweet.find_all(deleted=False)
+        tweets = Tweet.find_all()
     else:
-        tweets = Tweet.find_all(board_id=board_id, deleted=False)
-    bs = Board.find_all(deleted=False)
+        tweets = Tweet.find_all(board_id=board_id)
+    bs = Board.find_all()
     if user is not None:
         # 用字典对每个tweet进行token和user.id的匹配
         # token = str(uuid.uuid4())
@@ -73,7 +73,7 @@ def new():
     token = request.args.get('token')
     board_id = int(request.args.get('board_id', -1))
     if Tweet.check_token(token, gg.csrf_tokens):
-        bs = Board.find_all(deleted=False)
+        bs = Board.find_all()
         return render_template('tweet/tweet_new.html', token=token, bs=bs, bid=board_id, user=user)
 
 

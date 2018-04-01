@@ -106,6 +106,13 @@ class MonModel(object):
         name = cls.__name__
         flag_sort = '__sort'
         sort = kwargs.pop(flag_sort, None)
+        # 这里 kwargs 没有对 deleted 做出限定，所以已删除的 还会 被找到
+        # 所以需要对 deleted=False 做出限定，避免在子类的路由函数中增加 deleted=False
+        if 'deleted' not in kwargs.keys():
+            dd = {
+                'deleted': False,
+            }
+            kwargs.update(dd)
         ds = mon.web_flask_beautiful[name].find(kwargs)
         if sort is not None:
             ds = ds.sort(sort)

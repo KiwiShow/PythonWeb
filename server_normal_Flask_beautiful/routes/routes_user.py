@@ -93,7 +93,7 @@ def test_register():
             result = '注册成功'
         else:
             result = '用户名或者密码长度必须大于2或者用户名已注册'
-    body = render_template('user/register.html', result=result, users=User.find_all(deleted=False))
+    body = render_template('user/register.html', result=result, users=User.find_all())
     return make_response(body)
 
 
@@ -128,7 +128,7 @@ def admin():
     token = request.args.get('token')
     if User.check_token(token, gg.csrf_tokens):
         User.check_admin()
-        body = render_template('user/new_admin.html', token=token, user=user, users=User.find_all(deleted=False), boards=Board.find_all(deleted=False))
+        body = render_template('user/new_admin.html', token=token, user=user, users=User.find_all(), boards=Board.find_all())
         return make_response(body)
 
 

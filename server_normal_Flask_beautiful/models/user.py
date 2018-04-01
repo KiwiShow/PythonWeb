@@ -63,7 +63,7 @@ class User(MonModel):
         #         return True
         # return False
         # 更加简洁
-        user = User.find_by(username=form.get('username'), deleted=False)
+        user = User.find_by(username=form.get('username'))
         return user is not None and user.password == User.salted_password(form.get('password'))
 
     @classmethod
@@ -80,15 +80,15 @@ class User(MonModel):
 
     # 增加一个获取该user全部todo的函数 todo
     def todos(self):
-        return Todo.find_all(user_id=self.id, deleted=False)
+        return Todo.find_all(user_id=self.id)
 
     # 增加一个获取该user全部有效tweet的函数
     def tweets(self):
-        return Tweet.find_all(user_id=self.id, deleted=False)
+        return Tweet.find_all(user_id=self.id)
 
     # 增加一个获取该user全部有效comment的函数
     def comments(self):
-        return Comment.find_all(user_id=self.id, deleted=False)
+        return Comment.find_all(user_id=self.id)
 
     # 增加一个获取该user全部有效comment所对应的tweet且不重复的函数
     def uni_tweets(self):

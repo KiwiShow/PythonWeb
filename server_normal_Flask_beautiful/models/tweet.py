@@ -39,7 +39,7 @@ class Tweet(MonModel):
 
     def comments(self):
         # return [c for c in Comment.all() if c.tweet_id == self.id]
-        return Comment.find_all(tweet_id=self.id, deleted=False)
+        return Comment.find_all(tweet_id=self.id)
 
     def user(self):
         u = models.user.User.find_by(id=self.user_id)
