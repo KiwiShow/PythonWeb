@@ -28,11 +28,11 @@
         <div class="inner post">
             <form id="create_topic_form" method="post" action="{{ url_for('comment.update', token=token) }}">
                 <fieldset>
-                    <input name="id" value="{{ comment_id }}" type="hidden">
+                    <input name="id" value="{{ c.id }}" type="hidden">
                     <div class='markdown_editor in_editor'>
                         <div class='markdown_in_editor'>
                                 <textarea class='editor' name='content' rows='20'
-                                          placeholder='文章支持 Markdown 语法, 请注意标记代码'>{{ comment_content }}</textarea>
+                                          placeholder='文章支持 Markdown 语法, 请注意标记代码'>{{ c.content }}</textarea>
                             <div class='editor_buttons'>
                                 <input type="submit" class='span-primary submit_btn' data-loading-text="提交中"
                                        value="提交修改">

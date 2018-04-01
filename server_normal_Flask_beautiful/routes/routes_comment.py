@@ -43,14 +43,13 @@ def add():
 @main.route('/delete/<int:comment_id>', methods=['GET'])
 @login_required
 def delete(comment_id):
-    user = current_user()
     # comment_id = request.args.get('id', -1)
     # comment_id = int(comment_id)
     token = request.args.get('token')
     if Comment.check_token(token, gg.csrf_tokens):
         c = Comment.find(comment_id)
-        if user.id == c.user_id:
-            c.remove(comment_id)
+        Comment.check_id(comment_id)
+        c.remove(comment_id)
         return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=token))
 
 
@@ -62,12 +61,8 @@ def edit(comment_id):
     token = request.args.get('token')
     if Comment.check_token(token, gg.csrf_tokens):
         c = Comment.find(comment_id)
-        if user.id == c.user_id:
-            body = render_template('tweet/comment_edit.html',
-                            comment_id=c.id,
-                            comment_content=c.content, token=token, user=user)
-            return make_response(body)
-        return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=token, user=user))
+        Comment.check_id(id=comment_id)
+        return render_template('tweet/comment_edit.html', c=c, token=token, user=user)
 
 
 @main.route('/update', methods=['POST'])

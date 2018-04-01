@@ -55,21 +55,14 @@ def index():
 @main.route('/delete/<int:tweet_id>', methods=['GET'])
 @login_required
 def delete(tweet_id):
-    u = current_user()
     # tweet_id = int(request.args.get('id'))
     token = request.args.get('token')
     if Tweet.check_token(token, gg.csrf_tokens):
         # gg.delete_value()
         # csrf_tokens.pop(token)
         t = Tweet.find(tweet_id)
-        if u.id == t.user_id:
-            # 这里只是删除了tweet，但是其所拥有的comment的deleted字段变成False
-            t.remove(tweet_id)
-            for c in t.comments():
-                c.deleted = True
-                c.save()
-        # redirect有必要加query吗
-        # return redirect('/tweet/index?user_id={}'.format(u.id))
+        Tweet.check_id(tweet_id)
+        t.remove(tweet_id)
         return redirect(url_for('.index'))
 
 
@@ -108,9 +101,8 @@ def edit(tweet_id):
     if Tweet.check_token(token, gg.csrf_tokens):
     # tweet_id = int(request.args.get('id', -1))
         t = Tweet.find(tweet_id)
-        if user.id == t.user_id:
-            return render_template('tweet/tweet_edit.html', t=t, token=token, user=user)
-        return redirect(url_for('.index'))
+        Tweet.check_id(id=tweet_id)
+        return render_template('tweet/tweet_edit.html', t=t, token=token, user=user)
 
 
 @main.route('/update', methods=['POST'])
