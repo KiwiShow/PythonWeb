@@ -113,7 +113,8 @@ class User(MonModel):
         return [Tweet.find(i) for i in set1]
 
     # 增加一个验证是否是管理员
-    def check_admin(self):
+    @classmethod
+    def check_admin(cls):
         from routes import current_user
         from flask import (
             redirect,
