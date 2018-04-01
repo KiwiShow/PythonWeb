@@ -26,5 +26,6 @@ def current_user():
 
 # 验证机制
 # 1.有无登陆 login_required
-# 2.是否有权限 check_id
+# 2.是否有权限(即是否自己的东西) check_id
 # 3.是否是本人操作，防止CSRF 用token或者验证码(验证码还有防爬虫的功能)
+# 4.验证是否是管理员

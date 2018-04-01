@@ -124,9 +124,7 @@ def admin():
     只有用户id为1的用户有权限
     :return: 返回所有用户的信息
     """
-    u = current_user()
-    if u.id != 1:
-        return redirect(url_for('.login'))
+    User.check_admin()
     body = render_template('user/admin.html', users=User.find_all(deleted=False), boards=Board.find_all(deleted=False))
     return make_response(body)
 
@@ -138,9 +136,7 @@ def admin_update():
     只有用户id为1的用户有权限，输入需要修改的id和password
     :return: 返回修改过的所有用户的信息
     """
-    u = current_user()
-    if u.id != 1:
-        return redirect(url_for('.login'))
+    User.check_admin()
     form = request.form
     newUser = User.update(form)
     return redirect(url_for('.admin'))
@@ -149,9 +145,7 @@ def admin_update():
 @main.route('/admin/user/delete/<int:user_id>')
 @login_required
 def user_delete(user_id):
-    u = current_user()
-    if u.id != 1:
-        return redirect(url_for('.login'))
+    User.check_admin()
     User.remove(user_id)
     return redirect(url_for('.admin'))
 

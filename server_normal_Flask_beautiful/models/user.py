@@ -111,3 +111,14 @@ class User(MonModel):
         set1 = set([c.tweet().id for c in self.comments()])
         # print('set1        ',set)
         return [Tweet.find(i) for i in set1]
+
+    # 增加一个验证是否是管理员
+    def check_admin(self):
+        from routes import current_user
+        from flask import (
+            redirect,
+            url_for,
+        )
+        user = current_user()
+        if user.id != 1:
+            return redirect(url_for('.user_login'))
