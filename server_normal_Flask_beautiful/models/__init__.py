@@ -166,7 +166,7 @@ class MonModel(object):
         if password:
             values['password'] = password
         values['updated_time'] = tm
-        print('value', values)
+        # print('value', values)
         mon.web_flask_beautiful[name].update_one(query, {"$set": values})
 
     def save(self):
