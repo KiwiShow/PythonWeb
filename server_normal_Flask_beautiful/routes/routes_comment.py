@@ -48,7 +48,7 @@ def delete(comment_id):
     token = request.args.get('token')
     if Comment.check_token(token, gg.csrf_tokens):
         c = Comment.find(comment_id)
-        Comment.check_id(comment_id)
+        Comment.check_id(id=comment_id)
         c.remove(comment_id)
         return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=token))
 
