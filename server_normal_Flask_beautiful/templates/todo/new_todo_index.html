@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Todo index
+{% endblock %}
+
+{% block sidebar_panel %}
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">个人信息</span>
+        </div>
+        <div class="inner">
+            <div class="user_card">
+                <a class="user_avatar" href="{{ url_for('user.user_detail', id=user.id) }}">
+                    <img src="{{ user.user_image }}" title="{{ user.username }}"/>
+                </a>
+                <span class="user_name"><a class="dark"
+                                           href="{{ url_for('user.user_detail', id=user.id) }}">{{ user.username }}</a></span>
+
+                <div class="space clearfix"></div>
+                <span class="signature">
+                        “ {{ user.note }} ”
+                    </span>
+            </div>
+        </div>
+    </div>
+    {% if user %}
+        <div class="panel">
+            <div class="inner">
+                <a href="{{ url_for('todo.new', token=token) }}" class="create_topic_btn">
+                    <span class="span-success">写新Todo</span>
+                </a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class='panel'>
+        <div class='header'>
+            <ul class='breadcrumb'>
+                <li><a href="{{ url_for('tweet.index') }}">主页</a><span class='divider'>/</span></li>
+            </ul>
+        </div>
+        <div class='inner userinfo'>
+            <div class='user_big_avatar'>
+                <img src="{{ user.user_image }}" class="user_avatar"
+                     title="{{ user.username }}"/>
+            </div>
+            <a class='dark'>{{ user.username }}</a>
+
+            <div class='user_profile'>
+                <ul class='unstyled'>
+                    {#                        <span class='big'>0</span> 积分#}
+                    <li>
+                        <i class="fa fa-lg fa-fw fa-github"></i>
+                        <a class='dark' href="https://github.com/KiwiShow" target='_blank'>
+                            @{{ user.username }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p class='col_fade time' id="{{ user.created_time }}"></p>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">我的待办事项</span>
+        </div>
+        {% if user.todos() == [] %}
+            <div class="inner">
+                <p>无待办事项</p>
+            </div>
+        {% endif %}
+        {% for t in user.todos() %}
+            <div class="cell">
+                {% if user %}
+                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=user.id, token=token) }}">
+                        <img src="{{ user.user_image }}" title="{{ user.username }}">
+                    </a>
+                {% else %}
+                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=user.id) }}">
+                        <img src="{{ user.user_image }}" title="{{ user.username }}">
+                    </a>
+                {% endif %}
+                <span class="reply_count pull-left">
+                    <span class="count_of_replies" title="序号">
+                      {{ loop.index }}
+                    </span>
+                    <span class="count_seperator">/</span>
+                    <span class="count_of_visits" title="总数">
+                      {{ user.todos() | count }}
+                    </span>
+                </span>
+                <a class="last_time pull-right">
+                    <span class="last_active_time timetime" id="{{ t.created_time }}"></span>
+                </a>
+                <div class="topic_title_wrapper">
+                    {% if t.status %}
+                        <span class="put_good">Done</span>
+                    {% else %}
+                        <span class="put_good">加油</span>
+                    {% endif %}
+                    <a class="topic_title" title="{{ t.title }} " href="{{ url_for('todo.index', token=token) }}">
+                        {{ t.title }}
+                    </a>
+                    <a href="{{ url_for('todo.switch', todo_id=t.id, token=token) }}&status=True">设置为-完成</a>
+                    <a href="{{ url_for('todo.switch', todo_id=t.id, token=token) }}&status=False">设置为-未完成</a>
+                    <a href="{{ url_for('todo.edit', todo_id=t.id, token=token) }}">编辑</a>
+                    <a href="{{ url_for('todo.delete', todo_id=t.id, token=token) }}">删除</a>
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        let log = function () {
+            console.log.apply(console, arguments)
+        }
+
+        let e = function (sel) {
+            return document.querySelector(sel)
+        }
+
+        let es = function (sel) {
+            return document.querySelectorAll(sel)
+        }
+
+        let createTimer = function () {
+            setInterval(function () {
+                let times = es('.time')
+                let timetimes = es('.timetime')
+                for (let i = 0; i < times.length; i++) {
+                    let t = times[i]
+                    let time = Number(t.id)
+                    let now = Math.floor(new Date() / 1000)
+                    let delta = now - time
+
+                    day = Math.floor(delta / 86400)
+                    hour = Math.floor((delta % 86400) / 3600)
+                    minute = Math.floor((delta % 3600) / 60)
+
+                    let s = delta + ' 秒前'
+                    let ss = '注册时间 ' + day + ' 天' + hour + ' 小时' + minute + ' 分前'
+                    t.innerHTML = ss
+                }
+                for (let i = 0; i < timetimes.length; i++) {
+                    let t = timetimes[i]
+                    let time = Number(t.id)
+                    let now = Math.floor(new Date() / 1000)
+                    let delta = now - time
+
+                    day = Math.floor(delta / 86400)
+                    hour = Math.floor((delta % 86400) / 3600)
+                    minute = Math.floor((delta % 3600) / 60)
+
+                    let s = delta + ' 秒前'
+                    let ss = day + ' 天' + hour + ' 小时' + minute + ' 分前'
+                    t.innerHTML = ss
+                }
+            }, 1000)
+
+        }
+
+        let __main = function () {
+            createTimer()
+        }
+
+        __main()
+    </script>
+{% endblock %}

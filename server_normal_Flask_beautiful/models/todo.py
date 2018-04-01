@@ -22,7 +22,12 @@ class Todo(MonModel):
     @classmethod
     def complete(cls, id, completed):
         t = cls.find(id)
-        t.status = completed
+        if completed == 'True':
+            t.status = True
+        else:
+            t.status = False
+        print(type(t.status))
+        print(type(completed))
         t.save()
         return t
 
