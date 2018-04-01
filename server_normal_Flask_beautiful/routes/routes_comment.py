@@ -65,9 +65,9 @@ def edit(comment_id):
         if user.id == c.user_id:
             body = render_template('tweet/comment_edit.html',
                             comment_id=c.id,
-                            comment_content=c.content, token=token, u=user)
+                            comment_content=c.content, token=token, user=user)
             return make_response(body)
-        return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=token, u=user))
+        return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=token, user=user))
 
 
 @main.route('/update', methods=['POST'])

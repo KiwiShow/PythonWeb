@@ -81,7 +81,7 @@ def new():
     board_id = int(request.args.get('board_id', -1))
     if Tweet.check_token(token, gg.csrf_tokens):
         bs = Board.find_all(deleted=False)
-        return render_template('tweet/tweet_new.html', token=token, bs=bs, bid=board_id)
+        return render_template('tweet/tweet_new.html', token=token, bs=bs, bid=board_id, user=user)
 
 
 @main.route('/add', methods=['POST'])
@@ -109,7 +109,7 @@ def edit(tweet_id):
     # tweet_id = int(request.args.get('id', -1))
         t = Tweet.find(tweet_id)
         if user.id == t.user_id:
-            return render_template('tweet/tweet_edit.html', t=t, token=token)
+            return render_template('tweet/tweet_edit.html', t=t, token=token, user=user)
         return redirect(url_for('.index'))
 
 
