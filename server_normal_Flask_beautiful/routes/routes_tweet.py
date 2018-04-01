@@ -62,7 +62,7 @@ def delete(tweet_id):
         # csrf_tokens.pop(token)
         t = Tweet.find(tweet_id)
         Tweet.check_id(tweet_id)
-        t.remove(tweet_id)
+        t.remove_with_comments(tweet_id)
         return redirect(url_for('.index'))
 
 

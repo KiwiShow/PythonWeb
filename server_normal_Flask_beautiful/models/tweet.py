@@ -63,7 +63,8 @@ class Tweet(MonModel):
         return t
 
     # 父类remove只是删除了tweet，但是其所拥有的comment的deleted字段变成False
-    def remove(self, id):
+    def remove_with_comments(self, id):
+        self.remove(id)
         for c in self.comments():
             c.deleted = True
             c.save()
