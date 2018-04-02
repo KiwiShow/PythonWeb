@@ -62,7 +62,7 @@
                 {% for t in tweets %}
                     <div class="cell">
                         {% set u = t.user() %}
-                        <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
+                        <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
                             <img src="{{ u.user_image }}" title="{{ u.username }}">
                         </a>
                         <span class="reply_count pull-left">
