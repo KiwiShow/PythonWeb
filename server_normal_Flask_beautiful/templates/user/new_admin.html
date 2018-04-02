@@ -29,7 +29,7 @@
             <span class='col_fade'>注册新用户</span>
         </div>
         <div class="inner">
-            <form id="signin_form"  action="{{ url_for('user.admin_register', token=token) }}" method="post">
+            <form id="signin_form" action="{{ url_for('user.admin_register', token=token) }}" method="post">
                 <div class="control-group">
                     <label class="control-label" for="username">用户名</label>
 
@@ -57,7 +57,7 @@
             <span class='col_fade'>添加新Board</span>
         </div>
         <div class="inner">
-            <form id="signin_form"  action="{{ url_for('board.add', token=token) }}" method="post">
+            <form id="signin_form" action="{{ url_for('board.add', token=token) }}" method="post">
                 <div class="control-group">
                     <label class="control-label" for="password">title</label>
 
@@ -68,6 +68,80 @@
                 </div>
                 <div class="form-actions">
                     <input type="submit" class="span-primary" value="添加">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="header">
+            <span class='col_fade'>发送私信(单人)</span>
+        </div>
+        <div class="inner">
+            <form id="signin_form" action="{{ url_for('mail.add', token=token) }}" method="post">
+                <input type="hidden" name="sender_id" value="1">
+
+                <div class="control-group">
+                    <label class="control-label" for="receiver_id">用户id</label>
+
+                    <div class="controls">
+                        <input class="input-xlarge" id="name" name="receiver_id" size="30" type="text"
+                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="title">title</label>
+
+                    <div class="controls">
+                        <input class="input-xlarge" id="pass" name="title" size="30" type="password"
+                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="content">content</label>
+
+                    <div class="controls">
+                        <input class="input-xlarge" id="pass" name="content" size="30" type="password"
+                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                    </div>
+                </div>
+
+
+                <div class="form-actions">
+                    <input type="submit" class="span-primary" value="发送">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="header">
+            <span class='col_fade'>发送私信(全体)</span>
+        </div>
+        <div class="inner">
+            <form id="signin_form" action="{{ url_for('mail.admin_add', token=token) }}" method="post">
+                <input type="hidden" name="sender_id" value="1">
+
+                <div class="control-group">
+                    <label class="control-label" for="title">title</label>
+
+                    <div class="controls">
+                        <input class="input-xlarge" id="pass" name="title" size="30" type="password"
+                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="content">content</label>
+
+                    <div class="controls">
+                        <input class="input-xlarge" id="pass" name="content" size="30" type="password"
+                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                    </div>
+                </div>
+
+
+                <div class="form-actions">
+                    <input type="submit" class="span-primary" value="发送">
                 </div>
             </form>
         </div>

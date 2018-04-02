@@ -1,5 +1,6 @@
 from utils import log
 from models.mail import Mail
+from models.user import User
 from flask import (
     request,
     Blueprint,
@@ -55,7 +56,25 @@ def add():
         form = request.form
         # form里面有title，content，sender_id，receiver_id
         m = Mail.new(form)
+        # 管理员 回到管理员 界面
+        if current_user().id == 1:
+            return redirect(url_for('user.admin', token=token))
+
         return redirect(url_for('.index'))
+
+
+# 群发私信
+@main.route('/admin_add', methods=['POST'])
+@login_required
+def admin_add():
+    token = request.args.get('token')
+    if Mail.check_token(token, gg.csrf_tokens):
+        User.check_admin()
+        form = request.form
+        for u in User.find_all():
+            if u.id != 1:
+                m = Mail.new(form, receiver_id=u.id)
+        return redirect(url_for('user.admin', token=token))
 
 
 @main.route('/delete/<int:mail_id>', methods=['GET'])
@@ -75,7 +94,7 @@ def delete(mail_id):
         # 只有管理员删除，那么就真的删除
         if current_user().id == 1:
             m.remove(mail_id)
-            return redirect(url_for('user.admin'))
+            return redirect(url_for('user.admin', token=token))
 
         if current_user().id == m.receiver_id:
             m.remove(mail_id, receiver_deleted=True)
