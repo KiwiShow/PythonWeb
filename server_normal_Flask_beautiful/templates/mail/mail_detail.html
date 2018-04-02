@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}
+    mail detail
+{% endblock %}
+
+{% block sidebar_panel %}
+    <div class="panel">
+        {% set u = m.from_user() %}
+        <div class="header">
+            <span class="col_fade">发送人信息</span>
+        </div>
+        <div class="inner">
+            <div class="user_card">
+                {% if user %}
+                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}"/>
+                    </a>
+                    <span class="user_name"><a class="dark"
+                                               href="{{ url_for('user.user_detail', id=u.id, token=token) }}">{{ u.username }}</a></span>
+                {% else %}
+                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}"/>
+                    </a>
+                    <span class="user_name"><a class="dark"
+                                               href="{{ url_for('user.user_detail', id=u.id) }}">{{ u.username }}</a></span>
+                {% endif %}
+                <div class="space clearfix"></div>
+                <span class="signature">
+                        “ {{ u.note }} ”
+                </span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class='panel'>
+        <div class='header topic_header'>
+                <span class="topic_full_title">
+                    {{ m.title }}
+                </span>
+            <div class="changes">
+                {% set u = m.from_user() %}
+                <span class="time" id="{{ m.created_time }}"></span>
+                {% if user.id == m.from_user().id %}
+                    <span>
+                        <a href="{{ url_for('mail.edit', mail_id=m.id, token=token) }}">编辑</a>
+                    </span>
+                    <span>
+                        <a href="{{ url_for('mail.delete', mail_id=m.id, token=token) }}">删除</a>                     </span>
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class='inner topic'>
+            <div class='topic_content'>
+                <div class="markdown-text">{{ m.content }}</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        let log = function () {
+            console.log.apply(console, arguments)
+        }
+
+        let e = function (sel) {
+            return document.querySelector(sel)
+        }
+
+        let es = function (sel) {
+            return document.querySelectorAll(sel)
+        }
+
+        let createTimer = function () {
+            setInterval(function () {
+                let times = es('.time')
+                for (let i = 0; i < times.length; i++) {
+                    let t = times[i]
+                    let time = Number(t.id)
+                    let now = Math.floor(new Date() / 1000)
+                    let delta = now - time
+
+                    day = Math.floor(delta / 86400)
+                    hour = Math.floor((delta % 86400) / 3600)
+                    minute = Math.floor((delta % 3600) / 60)
+                    second = Math.floor(delta % 60)
+
+                    let s = delta + ' 秒前'
+                    let ss = '发布于 ' + day + ' 天前' + hour + ' 小时前' + minute + ' 分前' + second + ' 秒前'
+                    t.innerHTML = ss
+                }
+            }, 1000)
+
+        }
+
+        let markContents = function () {
+            let contentDivs = es('.markdown-text')
+            for (let i = 0; i < contentDivs.length; i++) {
+                let contentDiv = contentDivs[i]
+                let content = marked(contentDiv.innerHTML)
+                contentDiv.innerHTML = content
+            }
+        }
+
+        let __main = function () {
+            createTimer()
+            markContents()
+        }
+
+        __main()
+    </script>
+    <script>
+        (function () {
+            let editor = new Editor()
+            editor.render($('.editor')[0])
+        })()
+    </script>
+{% endblock %}

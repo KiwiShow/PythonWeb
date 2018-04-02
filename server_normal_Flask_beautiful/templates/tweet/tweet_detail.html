@@ -32,6 +32,15 @@
             </div>
         </div>
     </div>
+    {% if user.id != u.id %}
+        <div class="panel">
+            <div class="inner">
+                <a href="{{ url_for('mail.new', token=token, to_user_id=u.id) }}" class="create_topic_btn">
+                    <span class="span-success">给上面的家伙发送私信</span>
+                </a>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
