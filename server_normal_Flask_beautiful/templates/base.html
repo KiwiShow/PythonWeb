@@ -19,6 +19,7 @@
                 <li><a href="{{ url_for('tweet.index') }}">首页</a></li>
                 {% if user  %}
                     <li><a href="{{ url_for('todo.index') }}">待办事项</a></li>
+                    <li><a href="{{ url_for('mail.index') }}">未读消息</a></li>
                     <li><a href="{{ url_for('user.user_setting', token=token) }}">设置</a></li>
                     <li><a href="{{ url_for('user.user_signout') }}">退出</a></li>
                     {% if user.id == 1 %}
