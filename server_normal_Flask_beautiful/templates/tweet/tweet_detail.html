@@ -115,8 +115,11 @@
                                 {% endif %}
                             </a>
                         </div>
-                        <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>
-                        <a href="{{ url_for('comment.edit', comment_id=c.id, token=token) }}">编辑</a>
+                        {% if user.id == u.id %}
+                            <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>
+                            <a href="{{ url_for('comment.edit', comment_id=c.id, token=token) }}">编辑</a>
+                        {% endif %}
+
                     {% else %}
                         <a href="{{ url_for('user.user_detail', id=u.id) }}" class="user_avatar">
                             <img src="{{ u.user_image }}" title="{{ u.username }}"/>
