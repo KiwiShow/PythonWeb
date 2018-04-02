@@ -108,11 +108,19 @@ class MonModel(object):
         sort = kwargs.pop(flag_sort, None)
         # 这里 kwargs 没有对 deleted 做出限定，所以已删除的 还会 被找到
         # 所以需要对 deleted=False 做出限定，避免在子类的路由函数中增加 deleted=False
-        if 'deleted' not in kwargs.keys():
-            dd = {
-                'deleted': False,
-            }
-            kwargs.update(dd)
+        # if 'deleted' not in kwargs.keys():
+        #     dd = {
+        #         'deleted': False,
+        #     }
+        #     kwargs.update(dd)
+
+        # **kwargs 针对mail一方删除，另外一方还可以看
+        dd = {
+            'deleted': False,
+        }
+        if 'sender_deleted' in kwargs.keys() or 'receiver_deleted' in kwargs.keys():
+            dd = {}
+        kwargs.update(dd)
         ds = mon.web_flask_beautiful[name].find(kwargs)
         if sort is not None:
             ds = ds.sort(sort)
@@ -146,8 +154,9 @@ class MonModel(object):
         else:
             return None
 
+    # **kwargs 针对mail一方删除，另外一方还可以看
     @classmethod
-    def remove(cls, id):
+    def remove(cls, id, **kwargs):
         name = cls.__name__
         query = {
             'id': id,
@@ -155,6 +164,8 @@ class MonModel(object):
         values = {
             'deleted': True
         }
+        if 'sender_deleted' in kwargs.keys() or 'receiver_deleted' in kwargs.keys():
+            values = kwargs
         mon.web_flask_beautiful[name].update_one(query, {"$set": values})
 
     # whitelist 是一个列表， query 和 form 都是 字典

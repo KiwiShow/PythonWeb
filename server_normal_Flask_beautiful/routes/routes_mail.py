@@ -33,8 +33,8 @@ def index():
         gg.delete_value()
         gg.set_value(user.id)
         log('from mail',gg.csrf_tokens, gg.token)
-        send_mail = Mail.find_all(sender_id=user.id)
-        received_mail = Mail.find_all(receiver_id=user.id)
+        send_mail = Mail.find_all(sender_id=user.id, sender_deleted=False)
+        received_mail = Mail.find_all(receiver_id=user.id, receiver_deleted=False)
         return render_template('mail/mail_index.html', sends=send_mail, receives=received_mail, token=gg.token, user=user)
 
 
@@ -69,9 +69,12 @@ def delete(mail_id):
         m = Mail.find(mail_id)
         # check_id 需要 user_id 而 mail类 没有
         # Mail.check_id(id=mail_id)
-        if current_user().id in [m.receiver_id, m.sender_id]:
-            m.remove(mail_id)
-            return redirect(url_for('.index'))
+        # if current_user().id in [m.receiver_id, m.sender_id]:
+        if current_user().id == m.receiver_id:
+            m.remove(mail_id, receiver_deleted=True)
+        elif current_user().id == m.sender_id:
+            m.remove(mail_id, sender_deleted=True)
+        return redirect(url_for('.index'))
 
 
 @main.route('/edit/<int:mail_id>', methods=['GET'])

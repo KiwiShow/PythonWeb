@@ -3,6 +3,7 @@ from models import MonModel, change_time
 import models.user
 import time
 
+
 class Mail(MonModel):
     """
     __fields__ = [
@@ -19,6 +20,8 @@ class Mail(MonModel):
         ('sender_id', int, -1),
         ('receiver_id', int, -1),
         ('read_or_not', bool, False),
+        ('sender_deleted', bool, False),
+        ('receiver_deleted', bool, False),
     ]
 
     def set_sender(self, sender_id):
@@ -46,4 +49,3 @@ class Mail(MonModel):
         whitelist = ['id', 'title', 'content', 'sender_id', 'receiver_id', 'read']
         Mail.ori_update(whitelist, mail_id, form)
         return Mail.find_by(id=mail_id)
-
