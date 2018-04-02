@@ -70,6 +70,13 @@ def delete(mail_id):
         # check_id 需要 user_id 而 mail类 没有
         # Mail.check_id(id=mail_id)
         # if current_user().id in [m.receiver_id, m.sender_id]:
+
+        # 如果私信双方都已删除，不是真的删除
+        # 只有管理员删除，那么就真的删除
+        if current_user().id == 1:
+            m.remove(mail_id)
+            return redirect(url_for('user.admin'))
+
         if current_user().id == m.receiver_id:
             m.remove(mail_id, receiver_deleted=True)
         elif current_user().id == m.sender_id:

@@ -19,6 +19,7 @@ from werkzeug.utils import secure_filename
 import os
 from models.user import User
 from models.board import Board
+from models.mail import Mail
 
 
 main = Blueprint('user', __name__)
@@ -128,7 +129,7 @@ def admin():
     token = request.args.get('token')
     if User.check_token(token, gg.csrf_tokens):
         User.check_admin()
-        body = render_template('user/new_admin.html', token=token, user=user, users=User.find_all(), boards=Board.find_all())
+        body = render_template('user/new_admin.html', token=token, mails=Mail.find_all(), user=user, users=User.find_all(), boards=Board.find_all())
         return make_response(body)
 
 

@@ -114,12 +114,9 @@ class MonModel(object):
         #     }
         #     kwargs.update(dd)
 
-        # **kwargs 针对mail一方删除，另外一方还可以看
         dd = {
             'deleted': False,
         }
-        if 'sender_deleted' in kwargs.keys() or 'receiver_deleted' in kwargs.keys():
-            dd = {}
         kwargs.update(dd)
         ds = mon.web_flask_beautiful[name].find(kwargs)
         if sort is not None:

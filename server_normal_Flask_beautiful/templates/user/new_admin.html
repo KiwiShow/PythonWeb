@@ -157,6 +157,65 @@
             </div>
         {% endfor %}
     </div>
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">所有私信</span>
+        </div>
+        {% if mails == [] %}
+            <div class="inner">
+                <p>无私信</p>
+            </div>
+        {% endif %}
+        {% for m in mails %}
+            {% set from_user = m.from_user() %}
+            {% set to_user = m.to_user() %}
+            <div class="cell">
+                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=from_user.id, token=token) }}">
+                    <img src="{{ from_user.user_image }}" title="{{ from_user.username }}">
+                </a>
+
+                <span class="reply_count pull-left">
+                    <span class="count_of_replies" title="序号">
+                      {{ loop.index }}
+                    </span>
+                    <span class="count_seperator">/</span>
+                    <span class="count_of_visits" title="总数">
+                      {{ mails | count }}
+                    </span>
+                </span>
+
+                <a class="last_time pull-right">
+                    <img class="user_small_avatar" href="{{ url_for('user.user_detail', id=to_user.id, token=token) }}"
+                         src="{{ to_user.user_image }}" title="{{ to_user.username }}">
+
+                    <span class="last_active_time timetime" id="{{ m.created_time }}"></span>
+                </a>
+                <div class="topic_title_wrapper changes">
+                    <span class="topic_title">
+                        {{ from_user.username }}
+                    </span>
+
+                    <span class="put_good">发送给</span>
+
+                    <span class="topic_title">
+                        {{ to_user.username }}
+                    </span>
+
+                    <span class="put_good">Title</span>
+
+                    <a class="topic_title" title="{{ m.title }} "
+                       href="{{ url_for('mail.detail', mail_id=m.id, token=token) }}">
+                        {{ m.title }}
+                    </a>
+
+                    <span>
+                        <a href="{{ url_for('mail.delete', mail_id=m.id, token=token) }}">删除</a>
+                    </span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}
 
 {% block script %}
