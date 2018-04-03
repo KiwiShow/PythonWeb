@@ -1,5 +1,5 @@
 from utils import log
-from config import  image_file_dir, qiniu_up, gg
+from config import  gg, image_file_dir
 from routes import (
     current_user,
     login_required,
@@ -15,8 +15,6 @@ from flask import (
     make_response,
     send_from_directory,
 )
-from werkzeug.utils import secure_filename
-import os
 from models.user import User
 from models.board import Board
 from models.mail import Mail
@@ -126,10 +124,9 @@ def admin():
     :return: 返回所有用户的信息
     """
     user = current_user()
-    token = request.args.get('token')
-    if User.check_token(token, gg.csrf_tokens):
+    if User.check_token():
         User.check_admin()
-        body = render_template('user/new_admin.html', token=token, mails=Mail.find_all(), user=user, users=User.find_all(), boards=Board.find_all())
+        body = render_template('user/new_admin.html', token=gg.token, mails=Mail.find_all(), user=user, users=User.find_all(), boards=Board.find_all())
         return make_response(body)
 
 
@@ -141,11 +138,10 @@ def admin_edit(user_id):
     :return: 返回修改过的所有用户的信息
     """
     user = current_user()
-    token = request.args.get('token')
-    if User.check_token(token, gg.csrf_tokens):
+    if User.check_token():
         User.check_admin()
         u = User.find(user_id)
-        return render_template('user/new_admin_edit.html', token=token, user=user, u=u)
+        return render_template('user/new_admin_edit.html', token=gg.token, user=user, u=u)
 
 
 @main.route('/admin/user/update', methods=['POST'])
@@ -155,12 +151,11 @@ def admin_update():
     只有用户id为1的用户有权限，输入需要修改的id和password
     :return: 返回修改过的所有用户的信息
     """
-    token = request.args.get('token')
-    if User.check_token(token, gg.csrf_tokens):
+    if User.check_token():
         User.check_admin()
         form = request.form
         User.update(form)
-        return redirect(url_for('.admin', token=token))
+        return redirect(url_for('.admin', token=gg.token))
 
 
 # 增加一个register的路由函数
@@ -172,29 +167,20 @@ def admin_register():
     主要的bug是转到register页面和register页面都都是同一个路由函数
     :return: 返回register页面，并显示所有用户信息
     """
-    token = request.args.get('token')
-    if User.check_token(token, gg.csrf_tokens):
+    if User.check_token():
         User.check_admin()
         form = request.form
         if User.validate_register(form):
-            return redirect(url_for('.admin', token=token))
+            return redirect(url_for('.admin', token=gg.token))
 
 
 @main.route('/admin/user/delete/<int:user_id>')
 @login_required
 def user_delete(user_id):
-    token = request.args.get('token')
-    if User.check_token(token, gg.csrf_tokens):
+    if User.check_token():
         User.check_admin()
         User.remove(user_id)
-        return redirect(url_for('.admin', token=token))
-
-
-# 图片格式安全过滤
-def allow_file(filename):
-    suffix = filename.split('.')[-1]
-    from config import accept_image_file_type
-    return suffix in accept_image_file_type
+        return redirect(url_for('.admin', token=gg.token))
 
 
 # 所有用户上传头像,先存在本地得到路径之后上传至七牛云，并删除本地图片
@@ -202,21 +188,10 @@ def allow_file(filename):
 @login_required
 def add_img():
     u = current_user()
-    token = request.args.get('token')
-    if User.check_token(token, gg.csrf_tokens):
+    if User.check_token():
         file = request.files['avatar']
-        if allow_file(file.filename):
-            # 上传的文件一定要用 secure_filename 函数过滤一下名字
-            # ../../../../../../../root/.ssh/authorized_keys
-            filename = secure_filename(file.filename)
-            # 2018/3/19/yiasduifhy289389f.png
-            file.save(os.path.join(image_file_dir, filename))
-            # u.add_avatar(filename)
-            domain = qiniu_up(filename)
-            os.remove(os.path.join(image_file_dir, filename))
-            u.user_image = domain + filename
-            u.save()
-        return redirect(url_for('.user_setting', id=u.id, token=token))
+        u.save_and_up(file)
+        return redirect(url_for('.user_setting', id=u.id, token=gg.token))
 
 
 # web后端上传头像，后续可以改成Nginx+图床
@@ -246,11 +221,9 @@ def hack():
 def user_detail(id):
     user = current_user()
     u = User.find(id)
-    token = request.args.get('token')
     if user is not None:
-        return render_template('user/profile.html', u=u, user=user, token=token, bid=-1)
-    else:
-        return render_template('user/profile.html', u=u, user=user)
+        return render_template('user/profile.html', u=u, user=user, token=gg.token, bid=-1)
+    return render_template('user/profile.html', u=u, user=user)
 
 
 # update方法需要重新写，统一到model父类中
@@ -259,16 +232,10 @@ def user_detail(id):
 @login_required
 def user_update():
     user = current_user()
-    token = request.args.get('token')
-    if User.check_token(token, gg.csrf_tokens):
+    if User.check_token():
         form = request.form
-        # newUser = User.update(form)
-        if form.get('old_password', '') != '':
-            if user.password == User.salted_password(form.get('old_password', '')):
-                User.update(form)
-        else:
-            User.update(form)
-        return redirect(url_for('user.user_setting', id=user.id, token=token))
+        user.password_update(form)
+        return redirect(url_for('user.user_setting', id=user.id, token=gg.token))
 
 
 # 增加一个去setting页面的路由函数
@@ -276,9 +243,8 @@ def user_update():
 @login_required
 def user_setting():
     user = current_user()
-    token = request.args.get('token')
-    if User.check_token(token, gg.csrf_tokens):
-        return render_template('user/setting.html', user=user, token=token, bid=-1)
+    if User.check_token():
+        return render_template('user/setting.html', user=user, token=gg.token, bid=-1)
 
 
 # 增加一个去login页面的路由函数

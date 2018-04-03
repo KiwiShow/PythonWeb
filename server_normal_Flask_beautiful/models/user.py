@@ -2,6 +2,7 @@ from models import MonModel
 from .todo import Todo
 from .tweet import Tweet
 from .comment import Comment
+from config import  check_image
 import hashlib
 import time
 
@@ -107,3 +108,16 @@ class User(MonModel):
         user = current_user()
         if user.id != 1:
             return redirect(url_for('.user_login'))
+
+    # 增加图片上传和验证和图床功能
+    def save_and_up(self, file):
+        user_image = check_image(file)
+        self.user_image = user_image
+        self.save()
+
+    def password_update(self, form):
+        if form.get('old_password', '') != '':
+            if self.password == self.salted_password(form.get('old_password', '')):
+                self.update(form)
+        else:
+            self.update(form)

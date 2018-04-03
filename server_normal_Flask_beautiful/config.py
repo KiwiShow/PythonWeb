@@ -1,4 +1,5 @@
 secret_key = 'Be the greatest，or nothing'
+import os
 import os.path
 image_file_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static/image')
 accept_image_file_type = ['jpg', 'gif', 'png']
@@ -37,6 +38,26 @@ def qiniu_up(pic_name):
     # 返回外链domain
     return 'http://p5shjfo1t.bkt.clouddn.com/'
 
+
+# 图片格式安全过滤
+def allow_file(filename):
+    suffix = filename.split('.')[-1]
+    return suffix in accept_image_file_type
+
+
+def check_image(file):
+    if allow_file(file.filename):
+        from werkzeug.utils import secure_filename
+        # 上传的文件一定要用 secure_filename 函数过滤一下名字
+        # ../../../../../../../root/.ssh/authorized_keys
+        filename = secure_filename(file.filename)
+        # 2018/3/19/yiasduifhy289389f.png
+        file.save(os.path.join(image_file_dir, filename))
+        # u.add_avatar(filename)
+        domain = qiniu_up(filename)
+        os.remove(os.path.join(image_file_dir, filename))
+        user_image = domain + filename
+        return user_image
 
 import uuid
 class global_token(object):
