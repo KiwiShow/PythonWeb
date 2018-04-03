@@ -31,9 +31,7 @@ def index():
     """
     user = current_user()
     if user is not None:
-        gg.delete_value()
-        gg.set_value(user.id)
-        log('from mail',gg.csrf_tokens, gg.token)
+        gg.reset_value(user.id)
         send_mail = Mail.find_all(sender_id=user.id, sender_deleted=False)
         received_mail = Mail.find_all(receiver_id=user.id, receiver_deleted=False)
         return render_template('mail/mail_index.html', sends=send_mail, receives=received_mail, token=gg.token, user=user)
@@ -43,23 +41,20 @@ def index():
 @login_required
 def new(to_user_id):
     user = current_user()
-    token = request.args.get('token')
-    if Mail.check_token(token, gg.csrf_tokens):
-        return render_template('mail/mail_new.html', token=token, to_user_id=to_user_id, user=user)
+    if Mail.check_token():
+        return render_template('mail/mail_new.html', token=gg.token, to_user_id=to_user_id, user=user)
 
 
 @main.route('/add', methods=['POST'])
 @login_required
 def add():
-    token = request.args.get('token')
-    if Mail.check_token(token, gg.csrf_tokens):
+    if Mail.check_token():
         form = request.form
         # form里面有title，content，sender_id，receiver_id
         m = Mail.new(form)
         # 管理员 回到管理员 界面
         if current_user().id == 1:
-            return redirect(url_for('user.admin', token=token))
-
+            return redirect(url_for('user.admin', token=gg.token))
         return redirect(url_for('.index'))
 
 
@@ -67,39 +62,20 @@ def add():
 @main.route('/admin_add', methods=['POST'])
 @login_required
 def admin_add():
-    token = request.args.get('token')
-    if Mail.check_token(token, gg.csrf_tokens):
+    if Mail.check_token():
         User.check_admin()
         form = request.form
         for u in User.find_all():
             if u.id != 1:
                 m = Mail.new(form, receiver_id=u.id)
-        return redirect(url_for('user.admin', token=token))
+        return redirect(url_for('user.admin', token=gg.token))
 
 
 @main.route('/delete/<int:mail_id>', methods=['GET'])
 @login_required
 def delete(mail_id):
-    # mail_id = int(request.args.get('id'))
-    token = request.args.get('token')
-    if Mail.check_token(token, gg.csrf_tokens):
-        # gg.delete_value()
-        # csrf_tokens.pop(token)
-        m = Mail.find(mail_id)
-        # check_id 需要 user_id 而 mail类 没有
-        # Mail.check_id(id=mail_id)
-        # if current_user().id in [m.receiver_id, m.sender_id]:
-
-        # 如果私信双方都已删除，不是真的删除
-        # 只有管理员删除，那么就真的删除
-        if current_user().id == 1:
-            m.remove(mail_id)
-            return redirect(url_for('user.admin', token=token))
-
-        if current_user().id == m.receiver_id:
-            m.remove(mail_id, receiver_deleted=True)
-        elif current_user().id == m.sender_id:
-            m.remove(mail_id, sender_deleted=True)
+    if Mail.check_token():
+        Mail.receiver_sender_delete(mail_id)
         return redirect(url_for('.index'))
 
 
@@ -107,19 +83,17 @@ def delete(mail_id):
 @login_required
 def edit(mail_id):
     user = current_user()
-    token = request.args.get('token')
-    if Mail.check_token(token, gg.csrf_tokens):
+    if Mail.check_token():
     # mail_id = int(request.args.get('id', -1))
         m = Mail.find(mail_id)
         if current_user().id in [m.receiver_id, m.sender_id]:
-            return render_template('mail/mail_edit.html', m=m, token=token, user=user)
+            return render_template('mail/mail_edit.html', m=m, token=gg.token, user=user)
 
 
 @main.route('/update/<int:mail_id>', methods=['POST'])
 @login_required
 def update(mail_id):
-    token = request.args.get('token')
-    if Mail.check_token(token, gg.csrf_tokens):
+    if Mail.check_token():
         form = request.form
         m = Mail.find(mail_id)
         if current_user().id in [m.receiver_id, m.sender_id]:
@@ -134,4 +108,4 @@ def detail(mail_id):
     user = current_user()
     m = Mail.mark_read(mail_id)
     token = request.args.get('token')
-    return render_template('mail/mail_detail.html', m=m, token=token, user=user)
+    return render_template('mail/mail_detail.html', m=m, token=gg.token, user=user)

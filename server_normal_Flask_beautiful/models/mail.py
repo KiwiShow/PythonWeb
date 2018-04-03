@@ -1,6 +1,8 @@
 from models import MonModel, change_time
 # from models.user import User
+from routes import current_user
 import models.user
+from config import gg
 import time
 
 
@@ -49,3 +51,17 @@ class Mail(MonModel):
         whitelist = ['id', 'title', 'content', 'sender_id', 'receiver_id', 'read']
         Mail.ori_update(whitelist, mail_id, form)
         return Mail.find_by(id=mail_id)
+
+    @classmethod
+    def receiver_sender_delete(cls, mail_id):
+        from flask import redirect, url_for
+        # 如果私信双方都已删除，不是真的删除
+        # 只有管理员删除，那么就真的删除
+        if current_user().id == 1:
+            cls.remove(mail_id)
+            return redirect(url_for('user.admin', token=gg.token))
+        m = cls.find(mail_id)
+        if current_user().id == m.receiver_id:
+            cls.remove(mail_id, receiver_deleted=True)
+        elif current_user().id == m.sender_id:
+            cls.remove(mail_id, sender_deleted=True)
