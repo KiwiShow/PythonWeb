@@ -1,7 +1,8 @@
 from utils import log
 import time
 from pymongo import MongoClient
-from flask import abort
+from flask import abort, request
+from config import gg
 
 
 mon = MongoClient('mongodb://localhost:27017')
@@ -235,10 +236,11 @@ class MonModel(object):
             return redirect(url_for('.login'))
 
     @classmethod
-    def check_token(cls, token, csrf_tokens):
+    def check_token(cls):
         from routes import current_user
+        token = request.args.get('token')
         user = current_user()
-        if token in csrf_tokens and csrf_tokens[token] == user.id:
+        if token in gg.csrf_tokens and gg.csrf_tokens[token] == user.id:
             return True
         else:
             abort(403)

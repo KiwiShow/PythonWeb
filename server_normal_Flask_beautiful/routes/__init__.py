@@ -1,5 +1,7 @@
 from utils import log
 from models.user import User
+from models.tweet import Tweet
+from models.board import Board
 from flask import session, redirect, url_for, g
 from functools import wraps
 
@@ -22,6 +24,16 @@ def current_user():
     log("from current_user --> user_id : ", uid)
     u = User.find_by(id=uid)
     return u
+
+
+# 找到属于本board_id 的 tweets
+def tweets_and_boards(board_id):
+    if board_id == -1:
+        tweets = Tweet.find_all()
+    else:
+        tweets = Tweet.find_all(board_id=board_id)
+    bs = Board.find_all()
+    return tweets, bs
 
 
 # 验证机制

@@ -56,6 +56,10 @@ class global_token(object):
         if self.token != '':
             self.csrf_tokens.pop(self.token)
 
+    def reset_value(self, user_id):
+        self.delete_value()
+        self.set_value(user_id)
+
 
 gg = global_token()
 
