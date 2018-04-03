@@ -65,7 +65,7 @@ def new():
     board_id = int(request.args.get('board_id', -1))
     if Tweet.check_token():
         bs = Board.find_all()
-        return render_template('tweet/tweet_new.html', token=token, bs=bs, bid=board_id, user=user)
+        return render_template('tweet/tweet_new.html', token=gg.token, bs=bs, bid=board_id, user=user)
 
 
 @main.route('/add', methods=['POST'])
@@ -91,7 +91,7 @@ def edit(tweet_id):
     # tweet_id = int(request.args.get('id', -1))
         t = Tweet.find(tweet_id)
         Tweet.check_id(id=tweet_id)
-        return render_template('tweet/tweet_edit.html', t=t, token=token, user=user)
+        return render_template('tweet/tweet_edit.html', t=t, token=gg.token, user=user)
 
 
 @main.route('/update', methods=['POST'])
@@ -116,6 +116,6 @@ def detail(tweet_id):
         #     t = Tweet.find(tweet_id)
         # 这里不需要验证是否是自己发的tweet
         # if u.id == t.user_id:
-        return render_template('tweet/tweet_detail.html', t=t, token=token, user=user)
+        return render_template('tweet/tweet_detail.html', t=t, token=gg.token, user=user)
     return render_template('tweet/tweet_detail.html', t=t, user=user)
 
