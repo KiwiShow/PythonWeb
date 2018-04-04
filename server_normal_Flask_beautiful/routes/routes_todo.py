@@ -68,7 +68,7 @@ def edit(todo_id):
         # todo_id = int(request.args.get('id'))
         t = Todo.find_by(id=todo_id)
         Todo.check_id(id=todo_id)
-        return render_template('todo/new_todo_edit.html', t=t, token=gg.token)
+        return render_template('todo/new_todo_edit.html', t=t, token=gg.token, user=user)
 
 
 @main.route('/update', methods=['POST'])
