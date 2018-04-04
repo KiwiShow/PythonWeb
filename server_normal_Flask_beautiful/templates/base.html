@@ -7,6 +7,8 @@
     <script src="//cdn.bootcss.com/marked/0.3.19/marked.min.js"></script>
     <script src="//o4j806krb.qnssl.com/public/index.min.f7c13f64.min.js"></script>
     <script src="//o4j806krb.qnssl.com/public/editor.min.08791783.min.js"></script>
+    <script src="//cdn.bootcss.com/moment.js/2.22.0/moment.min.js"></script>
+    <script src="//cdn.bootcss.com/moment.js/2.22.0/locale/zh-cn.js"></script>
 </head>
 <body>
 <div class='navbar'>
@@ -17,7 +19,7 @@
             </a>
             <ul class='nav pull-right'>
                 <li><a href="{{ url_for('tweet.index') }}">首页</a></li>
-                {% if user  %}
+                {% if user %}
                     <li><a href="{{ url_for('todo.index') }}">待办事项</a></li>
                     <li><a href="{{ url_for('mail.index') }}">未读消息</a></li>
                     <li><a href="{{ url_for('user.user_setting', token=token) }}">设置</a></li>
@@ -79,6 +81,63 @@
 </div>
 
 {% block script %}
+    <script>
+        let log = function () {
+            console.log.apply(console, arguments)
+        }
+
+        let e = function (sel) {
+            return document.querySelector(sel)
+        }
+
+        let es = function (sel) {
+            return document.querySelectorAll(sel)
+        }
+
+        let createTimer = function () {
+            setInterval(function () {
+                let times = es('.time')
+                for (let i = 0; i < times.length; i++) {
+                    let t = times[i]
+                    let time = Number(t.id) * 1000
+                    {#let now = Math.floor(new Date() / 1000)#}
+                    {#let delta = now - time#}
+
+                    {#day = Math.floor(delta / 86400)#}
+                    {#hour = Math.floor((delta % 86400) / 3600)#}
+                    {#minute = Math.floor((delta % 3600) / 60)#}
+
+                    {#let s = delta + ' 秒前'#}
+                    {#let ss = day + ' 天前' + hour + ' 小时前' + minute + ' 分前'#}
+                    ss = moment(time).fromNow()
+                    t.innerHTML = ss
+                }
+            }, 1000)
+
+        }
+
+        let markContents = function () {
+            let contentDivs = es('.markdown-text')
+            for (let i = 0; i < contentDivs.length; i++) {
+                let contentDiv = contentDivs[i]
+                let content = marked(contentDiv.innerHTML)
+                contentDiv.innerHTML = content
+            }
+        }
+
+        let __main = function () {
+            createTimer()
+            markContents()
+        }
+
+        __main()
+    </script>
+    <script>
+        (function () {
+            let editor = new Editor()
+            editor.render($('.editor')[0])
+        })()
+    </script>
 {% endblock %}
 </body>
 </html>
