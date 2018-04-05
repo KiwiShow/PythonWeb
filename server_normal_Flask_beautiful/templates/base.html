@@ -110,7 +110,7 @@
                     {#let s = delta + ' 秒前'#}
                     {#let ss = day + ' 天前' + hour + ' 小时前' + minute + ' 分前'#}
                     ss = moment(time).fromNow()
-                    t.innerHTML = ss
+                    t.innerHTML = t.dataset.type +  ss
                 }
             }, 1000)
 

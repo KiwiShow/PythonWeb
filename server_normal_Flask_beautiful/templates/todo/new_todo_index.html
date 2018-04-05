@@ -60,7 +60,7 @@
                     </li>
                 </ul>
             </div>
-            <p class='col_fade time' id="{{ user.created_time }}"></p>
+            <p class='col_fade time' data-type='发布于注册时间 ' id="{{ user.created_time }}"></p>
         </div>
     </div>
     <div class="panel">
@@ -93,7 +93,7 @@
                     </span>
                 </span>
                 <a class="last_time pull-right">
-                    <span class="last_active_time timetime" id="{{ t.created_time }}"></span>
+                    <span class="last_active_time time" data-type='创建于 ' id="{{ t.created_time }}"></span>
                 </a>
                 <div class="topic_title_wrapper">
                     {% if t.status %}

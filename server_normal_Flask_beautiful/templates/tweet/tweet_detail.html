@@ -52,7 +52,7 @@
                     {{ t.title }}
                 </span>
             <div class="changes">
-                <span class="time" id="{{ t.created_time }}"></span>
+                <span class="time" data-type='发布于 ' id="{{ t.created_time }}"></span>
                 <span>
                         作者
                     {% if user %}
@@ -71,6 +71,8 @@
                 <span>
                         来自 {{ t.board().title }}
                      </span>
+                <span class="time" data-type='最后一次编辑是 ' id="{{ t.updated_time }}"></span>
+
                 {% if user %}
                     <span>
                           <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>
@@ -109,7 +111,7 @@
                             </a>
                             <a class="reply_time">
                                 {{ loop.index }}楼 / {{ loop.length }}楼 •
-                                <span class="time" id="{{ c.created_time }}"></span>
+                                <span class="time" data-type='回复于 ' id="{{ c.created_time }}"></span>
                                 {% if u.id == t.user().id %}
                                     <span class="reply_by_author">作者</span>
                                 {% endif %}
@@ -130,7 +132,7 @@
                             </a>
                             <a class="reply_time">
                                 {{ loop.index }}楼 / {{ loop.length }}楼 •
-                                <span class="time" id="{{ c.created_time }}"></span>
+                                <span class="time" data-type='回复于 ' id="{{ c.created_time }}"></span>
                                 {% if u.id == t.user().id %}
                                     <span class="reply_by_author">作者</span>
                                 {% endif %}

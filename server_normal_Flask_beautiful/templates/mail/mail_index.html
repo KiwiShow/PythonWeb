@@ -51,7 +51,7 @@
                     </li>
                 </ul>
             </div>
-            <p class='col_fade time' id="{{ user.created_time }}"></p>
+            <p class='col_fade time' data-type='注册时间 ' id="{{ user.created_time }}"></p>
         </div>
     </div>
     <div class="panel">
@@ -80,7 +80,7 @@
                 </span>
 
                 <a class="last_time pull-right">
-                    <span class="last_active_time timetime" id="{{ m.created_time }}"></span>
+                    <span class="last_active_time time" data-type='收到于 ' id="{{ m.created_time }}"></span>
                 </a>
                 <div class="topic_title_wrapper">
                     {% if m.read_or_not %}
@@ -124,7 +124,7 @@
                     </span>
                 </span>
                 <a class="last_time pull-right">
-                    <span class="last_active_time timetime" id="{{ m.created_time }}"></span>
+                    <span class="last_active_time time" data-type='发出于 ' id="{{ m.created_time }}"></span>
                 </a>
                 <div class="topic_title_wrapper">
                     <a class="topic_title" title="{{ m.title }} "

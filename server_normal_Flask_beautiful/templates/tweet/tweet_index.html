@@ -35,7 +35,8 @@
     {% else %}
         <div class="panel">
             <div class="inner">
-                <p><h1>你瞅啥？</h1></p>
+                <p>
+                <h1>你瞅啥？</h1></p>
                 <div>
                     您可以
                     <a href="{{ url_for('user.user_login') }}">登录</a>
@@ -74,13 +75,27 @@
                                   {{ t.views }}
                                 </span>
                               </span>
-                        <a class="last_time pull-right">
-                            <img class="user_small_avatar" src="{{ u.user_image }}">
-                            <span class="last_active_time time" id="{{ t.created_time }}"></span>
-                        </a>
+
+                        {% if t.comments() %}
+                            {% for c in t.comments() %}
+                                {% if loop.last %}
+                                <a class="last_time pull-right"
+                                   href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">
+                                    <img class="user_small_avatar" src="{{ c.user().user_image }}">
+                                    <span class="last_active_time time" data-type='最新评论 ' id="{{ c.created_time }}"></span>
+                                </a>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <a class="last_time pull-right"
+                               href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">
+                                <img class="user_small_avatar" src="{{ u.user_image }}">
+                                <span class="last_active_time time" data-type='创建于 ' id="{{ t.created_time }}"></span>
+                            </a>
+                        {% endif %}
                         <div class="topic_title_wrapper">
                             <span class="put_good">{{ t.board().title }}</span>
-{#                            使用这种办法导致了代码重复 todo#}
+                            {#                            使用这种办法导致了代码重复 todo#}
                             {% if user %}
                                 <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
                                    title="{{ t.title }}">

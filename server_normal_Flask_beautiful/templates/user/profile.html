@@ -69,7 +69,7 @@
                     </li>
                 </ul>
             </div>
-            <p class='col_fade time' id="{{ u.created_time }}"></p>
+            <p class='col_fade time' data-type='注册时间 ' id="{{ u.created_time }}"></p>
         </div>
     </div>
     <div class="panel">
@@ -103,7 +103,7 @@
                 </span>
                 <a class="last_time pull-right">
                     <img class="user_small_avatar" src="{{ u.user_image }}">
-                    <span class="last_active_time time" id="{{ t.created_time }}"></span>
+                    <span class="last_active_time time" data-type='创建于 ' id="{{ t.created_time }}"></span>
                 </a>
                 <div class="topic_title_wrapper">
                     {% if t.status %}
@@ -155,7 +155,7 @@
                 </span>
                 <a class="last_time pull-right">
                     <img class="user_small_avatar" src="{{ u.user_image }}">
-                    <span class="last_active_time time" id="{{ t.created_time }}"></span>
+                    <span class="last_active_time time" data-type='发布于 ' id="{{ t.created_time }}"></span>
                 </a>
                 <div class="topic_title_wrapper">
                     <span class="put_good">{{ t.board().title }}</span>
@@ -210,7 +210,7 @@
                       </span>
                 <a class="last_time pull-right">
                     <img class="user_small_avatar" src="{{ u.user_image }}">
-                    <span class="last_active_time time" id="{{ t.created_time }}"></span>
+                    <span class="last_active_time time" data-type='回复于 ' id="{{ t.created_time }}"></span>
                 </a>
                 <div class="topic_title_wrapper">
                     <span class="put_good">{{ t.board().title }}</span>
