@@ -112,11 +112,11 @@
                         <span class="put_good">加油</span>
                     {% endif %}
                     {% if user %}
-                        <a class="topic_title" title="{{ t.title }} " href="{{ url_for('todo.index', token=token) }}">
+                        <a class="topic_title" title="{{ t.title }} ">
                             {{ t.title }}
                         </a>
                     {% else %}
-                        <a class="topic_title" title="{{ t.title }} " href="{{ url_for('todo.index') }}">
+                        <a class="topic_title" title="{{ t.title }} ">
                             {{ t.title }}
                         </a>
                     {% endif %}
@@ -211,6 +211,56 @@
                 <a class="last_time pull-right">
                     <img class="user_small_avatar" src="{{ u.user_image }}">
                     <span class="last_active_time time" data-type='回复于 ' id="{{ t.created_time }}"></span>
+                </a>
+                <div class="topic_title_wrapper">
+                    <span class="put_good">{{ t.board().title }}</span>
+                    {% if user %}
+                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
+                           title="{{ t.title }}">
+                            {{ t.title }}
+                        </a>
+                    {% else %}
+                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id) }}"
+                           title="{{ t.title }}">
+                            {{ t.title }}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">我收藏的Tweet</span>
+        </div>
+        {% if u.tweets() == [] %}
+            <div class="inner">
+                <p>无Tweet</p>
+            </div>
+        {% endif %}
+        {% for t in u.like_tweets() %}
+            <div class="cell">
+                {% if user %}
+                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}">
+                    </a>
+                {% else %}
+                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
+                        <img src="{{ u.user_image }}" title="{{ u.username }}">
+                    </a>
+                {% endif %}
+                <span class="reply_count pull-left">
+                    <span class="count_of_replies" title="回复数">
+                      {{ t.comments() | count }}
+                    </span>
+                    <span class="count_seperator">/</span>
+                    <span class="count_of_visits" title="点击数">
+                      {{ t.views }}
+                    </span>
+                </span>
+                <a class="last_time pull-right">
+                    <img class="user_small_avatar" src="{{ u.user_image }}">
+                    <span class="last_active_time time" data-type='发布于 ' id="{{ t.created_time }}"></span>
                 </a>
                 <div class="topic_title_wrapper">
                     <span class="put_good">{{ t.board().title }}</span>
