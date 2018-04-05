@@ -23,27 +23,42 @@ class User(MonModel):
         ('note', str, '不要懒哦!'),
         ('role', int, 10),
         ('user_image', str, '/uploads/default.png'),
-        ('I_likes', list, []),
+        ('I_like_tweets', list, []),
+        ('I_like_comments', list, []),
     ]
 
-    def like(self, id):
-        self.I_likes.append(id)
+    def like_tweet(self, id):
+        self.I_like_tweets.append(id)
         self.save()
 
-    def delike(self, id):
-        self.I_likes.remove(id)
+    def delike_tweet(self, id):
+        self.I_like_tweets.remove(id)
         self.save()
 
-    def like_tweets(self):
+    def liked_tweets(self):
         r = []
-        for i in self.I_likes:
+        for i in self.I_like_tweets:
             r.append(Tweet.find(i))
+        return r
+
+    def like_comment(self, id):
+        self.I_like_comments.append(id)
+        self.save()
+
+    def delike_comment(self, id):
+        self.I_like_comments.remove(id)
+        self.save()
+
+    def liked_comments(self):
+        r = []
+        for i in self.I_like_comments:
+            r.append(Comment.find(i))
         return r
 
     @classmethod
     def update(cls, form):
         user_id = int(form.get('id', -1))
-        whitelist = ['id', 'username', 'password', 'note', 'role', 'user_image', 'I_likes']
+        whitelist = ['id', 'username', 'password', 'note', 'role', 'user_image', 'I_like_tweets', 'I_like_comments']
         if form.get('password', '') != '':
             user_password = form.get('password')
             password = User.salted_password(user_password)

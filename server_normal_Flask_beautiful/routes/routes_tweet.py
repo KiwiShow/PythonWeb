@@ -127,7 +127,7 @@ def like(tweet_id):
     t = Tweet.find(tweet_id)
     if Tweet.check_token():
         t.like(user.id)
-        user.like(tweet_id)
+        user.like_tweet(tweet_id)
         return redirect(url_for('.detail', tweet_id=tweet_id, token=gg.token))
 
 
@@ -138,5 +138,5 @@ def delike(tweet_id):
     t = Tweet.find(tweet_id)
     if Tweet.check_token():
         t.delike(user.id)
-        user.delike(tweet_id)
+        user.delike_tweet(tweet_id)
         return redirect(url_for('.detail', tweet_id=tweet_id, token=gg.token))

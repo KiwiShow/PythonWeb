@@ -87,8 +87,6 @@
                         <span class="span-success">收藏</span>
                     </a>
                     </span>
-
-
                 {% endif %}
 
                 {% if user.id == t.user_id %}
@@ -135,6 +133,20 @@
                                     <span class="reply_by_author">作者</span>
                                 {% endif %}
                             </a>
+                        </div>
+                        <div class="user_action">
+                            <span>
+                                {% if user.id in c.who_likes %}
+                                    <a href="{{ url_for('comment.delike', comment_id=c.id, token=token) }}">
+                                        <i class="fa up_btn fa-thumbs-o-up" title="喜欢"></i>
+                                    </a>
+                                {% else %}
+                                    <a href="{{ url_for('comment.like', comment_id=c.id, token=token) }}">
+                                        <i class="fa up_btn fa-thumbs-o-up" title="喜欢"></i>
+                                    </a>
+                                {% endif %}
+                                <span class="up-count">{{ c.who_likes | count }}</span>
+                            </span>
                         </div>
                         {% if user.id == u.id %}
                             <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>

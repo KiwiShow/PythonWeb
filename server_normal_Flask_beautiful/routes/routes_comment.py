@@ -66,3 +66,25 @@ def update():
         newComment = Comment.update(form)
         # redirect有必要加query吗
         return redirect(url_for('tweet.detail', tweet_id=newComment.tweet_id, token=gg.token))
+
+
+@main.route('/like/<int:comment_id>', methods=['GET'])
+@login_required
+def like(comment_id):
+    user = current_user()
+    c = Comment.find(comment_id)
+    if Comment.check_token():
+        c.like(user.id)
+        user.like_comment(comment_id)
+        return redirect(url_for('tweet.detail', tweet_id=c.tweet().id, token=gg.token))
+
+
+@main.route('/delike/<int:comment_id>', methods=['GET'])
+@login_required
+def delike(comment_id):
+    user = current_user()
+    c = Comment.find(comment_id)
+    if Comment.check_token():
+        c.delike(user.id)
+        user.delike_comment(comment_id)
+        return redirect(url_for('tweet.detail', tweet_id=c.tweet().id, token=gg.token))

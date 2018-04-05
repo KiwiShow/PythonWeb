@@ -20,7 +20,16 @@ class Comment(MonModel):
         ('user_id', int, -1),
         ('user_name', str, ''),
         ('tweet_id', int, -1),
+        ('who_likes', list, []),
     ]
+
+    def like(self, id):
+        self.who_likes.append(id)
+        self.save()
+
+    def delike(self, id):
+        self.who_likes.remove(id)
+        self.save()
 
     @classmethod
     def update(cls, form):
