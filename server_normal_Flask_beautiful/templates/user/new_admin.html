@@ -174,7 +174,7 @@
                     </span>
                 </span>
                 <a class="last_time pull-right">
-                    <span class="last_active_time timetime" id="{{ u.created_time }}"></span>
+                    <span class="last_active_time time" data-type='创建于 ' id="{{ u.created_time }}"></span>
                 </a>
                 <div class="topic_title_wrapper changes">
 
@@ -213,7 +213,7 @@
                     </span>
                 </span>
                 <a class="last_time pull-right">
-                    <span class="last_active_time timetime" id="{{ b.created_time }}"></span>
+                    <span class="last_active_time time" data-type='创建于 ' id="{{ b.created_time }}"></span>
                 </a>
                 <div class="topic_title_wrapper changes">
 
@@ -262,7 +262,7 @@
                     <img class="user_small_avatar" href="{{ url_for('user.user_detail', id=to_user.id, token=token) }}"
                          src="{{ to_user.user_image }}" title="{{ to_user.username }}">
 
-                    <span class="last_active_time timetime" id="{{ m.created_time }}"></span>
+                    <span class="last_active_time time" data-type='创建于 ' id="{{ m.created_time }}"></span>
                 </a>
                 <div class="topic_title_wrapper changes">
                     <span class="topic_title">
