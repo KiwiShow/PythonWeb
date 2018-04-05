@@ -28,10 +28,13 @@ class User(MonModel):
     @classmethod
     def update(cls, form):
         user_id = int(form.get('id', -1))
-        user_password = form.get('password')
-        password = User.salted_password(user_password)
         whitelist = ['id', 'username', 'password', 'note', 'role', 'user_image']
+        if form.get('password', '') != '':
+            user_password = form.get('password')
+            password = User.salted_password(user_password)
         # 因为form不可改变，而password需要加盐处理，所以只好额外传递一个参数password
+        else:
+            password = None
         User.ori_update(whitelist, user_id, form, password=password)
 
 

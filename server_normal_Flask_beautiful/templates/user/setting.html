@@ -58,7 +58,8 @@
                     <label class='control-label' for='signature'>个性签名</label>
 
                     <div class='controls'>
-                        <textarea class='input-xlarge' id='signature' name='note' size='30'>{{ user.note }}</textarea>
+                        <input class='input-xlarge' id='signature' name='note' size='30' type='text'
+                                value="{{ user.note }}"/>
                     </div>
                 </div>
                 <div class='form-actions'>
