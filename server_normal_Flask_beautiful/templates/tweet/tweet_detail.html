@@ -73,7 +73,7 @@
                      </span>
                 <span class="time" data-type='最后一次编辑是 ' id="{{ t.updated_time }}"></span>
 
-                {% if user %}
+                {% if user.id == t.user_id %}
                     <span>
                           <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>
                      </span>
