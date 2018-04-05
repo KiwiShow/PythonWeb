@@ -119,3 +119,24 @@ def detail(tweet_id):
         return render_template('tweet/tweet_detail.html', t=t, token=gg.token, user=user)
     return render_template('tweet/tweet_detail.html', t=t, user=user)
 
+
+@main.route('/like/<int:tweet_id>', methods=['GET'])
+@login_required
+def like(tweet_id):
+    user = current_user()
+    t = Tweet.find(tweet_id)
+    if Tweet.check_token():
+        t.like(user.id)
+        user.like(tweet_id)
+        return redirect(url_for('.detail', tweet_id=tweet_id, token=gg.token))
+
+
+@main.route('/delike/<int:tweet_id>', methods=['GET'])
+@login_required
+def delike(tweet_id):
+    user = current_user()
+    t = Tweet.find(tweet_id)
+    if Tweet.check_token():
+        t.delike(user.id)
+        user.delike(tweet_id)
+        return redirect(url_for('.detail', tweet_id=tweet_id, token=gg.token))

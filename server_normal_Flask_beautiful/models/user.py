@@ -23,12 +23,27 @@ class User(MonModel):
         ('note', str, '不要懒哦!'),
         ('role', int, 10),
         ('user_image', str, '/uploads/default.png'),
+        ('I_likes', list, []),
     ]
+
+    def like(self, id):
+        self.I_likes.append(id)
+        self.save()
+
+    def delike(self, id):
+        self.I_likes.remove(id)
+        self.save()
+
+    def like_tweets(self):
+        r = []
+        for i in self.I_likes:
+            r.append(Tweet.find(i))
+        return r
 
     @classmethod
     def update(cls, form):
         user_id = int(form.get('id', -1))
-        whitelist = ['id', 'username', 'password', 'note', 'role', 'user_image']
+        whitelist = ['id', 'username', 'password', 'note', 'role', 'user_image', 'I_likes']
         if form.get('password', '') != '':
             user_password = form.get('password')
             password = User.salted_password(user_password)

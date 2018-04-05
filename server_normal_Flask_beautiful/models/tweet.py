@@ -21,6 +21,7 @@ class Tweet(MonModel):
         ('user_id', int, -1),
         ('board_id', int, -1),
         ('user_name', str, ''),
+        ('who_likes', list, []),
     ]
 
     # def comments(self):
@@ -33,8 +34,16 @@ class Tweet(MonModel):
     @classmethod
     def update(cls, form):
         tweet_id = int(form.get('id', -1))
-        whitelist = ['id', 'title', 'content', 'views', 'user_id', 'board_id', 'user_name']
+        whitelist = ['id', 'title', 'content', 'views', 'user_id', 'board_id', 'user_name', 'who_likes']
         Tweet.ori_update(whitelist, tweet_id, form)
+
+    def like(self, id):
+        self.who_likes.append(id)
+        self.save()
+
+    def delike(self, id):
+        self.who_likes.remove(id)
+        self.save()
 
 
     def comments(self):
