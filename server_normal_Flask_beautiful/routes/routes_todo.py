@@ -32,9 +32,11 @@ def index():
     :return: 显示todo页面
     """
     user = current_user()
+    print('from todo  before', gg.csrf_tokens)
     gg.reset_value(user.id)
-    log('from todo', gg.csrf_tokens, gg.token)
-    return render_template('todo/new_todo_index.html', token=gg.token, user=user)
+    print('from todo  after', gg.csrf_tokens)
+
+    return render_template('todo/new_todo_index.html', token=gg.token[user.id], user=user)
 
 
 # 增加new路由函数去增加的页面
@@ -43,7 +45,7 @@ def index():
 def new():
     user = current_user()
     if Todo.check_token():
-        return render_template('todo/todo_new.html', token=gg.token, user=user)
+        return render_template('todo/todo_new.html', token=gg.token[user.id], user=user)
 
 
 @main.route('/add', methods=['POST'])
@@ -68,7 +70,7 @@ def edit(todo_id):
         # todo_id = int(request.args.get('id'))
         t = Todo.find_by(id=todo_id)
         Todo.check_id(id=todo_id)
-        return render_template('todo/new_todo_edit.html', t=t, token=gg.token, user=user)
+        return render_template('todo/new_todo_edit.html', t=t, token=gg.token[user.id], user=user)
 
 
 @main.route('/update', methods=['POST'])

@@ -34,7 +34,7 @@ def add():
     if Comment.check_token():
         form = request.form
         c = Comment.new(form, user_id=user.id, user_name=user.username)
-        return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=gg.token))
+        return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=gg.token[user.id]))
 
 
 @main.route('/delete/<int:comment_id>', methods=['GET'])
@@ -44,7 +44,7 @@ def delete(comment_id):
         c = Comment.find(comment_id)
         Comment.check_id(id=comment_id)
         c.remove(comment_id)
-        return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=gg.token))
+        return redirect(url_for('tweet.detail', tweet_id=c.tweet_id, token=gg.token[current_user().id]))
 
 
 @main.route('/edit/<int:comment_id>', methods=['GET'])
@@ -54,7 +54,7 @@ def edit(comment_id):
     if Comment.check_token():
         c = Comment.find(comment_id)
         Comment.check_id(id=comment_id)
-        return render_template('tweet/comment_edit.html', c=c, token=gg.token, user=user)
+        return render_template('tweet/comment_edit.html', c=c, token=gg.token[user.id], user=user)
 
 
 @main.route('/update', methods=['POST'])
@@ -65,7 +65,7 @@ def update():
         Comment.check_id(form)
         newComment = Comment.update(form)
         # redirect有必要加query吗
-        return redirect(url_for('tweet.detail', tweet_id=newComment.tweet_id, token=gg.token))
+        return redirect(url_for('tweet.detail', tweet_id=newComment.tweet_id, token=gg.token[current_user().id]))
 
 
 @main.route('/like/<int:comment_id>', methods=['GET'])
@@ -76,7 +76,7 @@ def like(comment_id):
     if Comment.check_token():
         c.like(user.id)
         user.like_comment(comment_id)
-        return redirect(url_for('tweet.detail', tweet_id=c.tweet().id, token=gg.token))
+        return redirect(url_for('tweet.detail', tweet_id=c.tweet().id, token=gg.token[user.id]))
 
 
 @main.route('/delike/<int:comment_id>', methods=['GET'])
@@ -87,4 +87,4 @@ def delike(comment_id):
     if Comment.check_token():
         c.delike(user.id)
         user.delike_comment(comment_id)
-        return redirect(url_for('tweet.detail', tweet_id=c.tweet().id, token=gg.token))
+        return redirect(url_for('tweet.detail', tweet_id=c.tweet().id, token=gg.token[user.id]))

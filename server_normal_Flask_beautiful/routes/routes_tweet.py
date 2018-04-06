@@ -44,8 +44,10 @@ def index():
     tweets, bs, pages = tweets_and_boards(board_id, current_page)
     if user is not None:
         # 保证每次调用index函数时清空gg,保证每次调用index函数时都有新的token可用
+        print('from tweet  before', gg.csrf_tokens)
         gg.reset_value(user.id)
-        return render_template('tweet/tweet_index.html', current_page=current_page, pages = range(pages), tweets=tweets, bs=bs, bid=board_id, user=user, token=gg.token)
+        print('from tweet  after', gg.csrf_tokens)
+        return render_template('tweet/tweet_index.html', current_page=current_page, pages = range(pages), tweets=tweets, bs=bs, bid=board_id, user=user, token=gg.token[user.id])
     return render_template('tweet/tweet_index.html', pages = range(pages), tweets=tweets, bs=bs, bid=board_id, user=user)
 
 
@@ -66,7 +68,7 @@ def new():
     board_id = int(request.args.get('board_id', -1))
     if Tweet.check_token():
         bs = Board.find_all()
-        return render_template('tweet/tweet_new.html', token=gg.token, bs=bs, bid=board_id, user=user)
+        return render_template('tweet/tweet_new.html', token=gg.token[user.id], bs=bs, bid=board_id, user=user)
 
 
 @main.route('/add', methods=['POST'])
@@ -92,7 +94,7 @@ def edit(tweet_id):
     # tweet_id = int(request.args.get('id', -1))
         t = Tweet.find(tweet_id)
         Tweet.check_id(id=tweet_id)
-        return render_template('tweet/tweet_edit.html', t=t, token=gg.token, user=user)
+        return render_template('tweet/tweet_edit.html', t=t, token=gg.token[user.id], user=user)
 
 
 @main.route('/update', methods=['POST'])
@@ -102,7 +104,7 @@ def update():
         form = request.form
         Tweet.check_id(form)
         Tweet.update(form)
-        # redirect有必要加query吗
+        # todo Tweet update 完成之后 需要到 Tweet 的 index 页面 还是 detail 页面呢？
         return redirect(url_for('.index'))
 
 
@@ -117,7 +119,7 @@ def detail(tweet_id):
         #     t = Tweet.find(tweet_id)
         # 这里不需要验证是否是自己发的tweet
         # if u.id == t.user_id:
-        return render_template('tweet/tweet_detail.html', t=t, token=gg.token, user=user)
+        return render_template('tweet/tweet_detail.html', t=t, token=token, user=user)
     return render_template('tweet/tweet_detail.html', t=t, user=user)
 
 
@@ -129,7 +131,7 @@ def like(tweet_id):
     if Tweet.check_token():
         t.like(user.id)
         user.like_tweet(tweet_id)
-        return redirect(url_for('.detail', tweet_id=tweet_id, token=gg.token))
+        return redirect(url_for('.detail', tweet_id=tweet_id, token=gg.token[user.id]))
 
 
 @main.route('/delike/<int:tweet_id>', methods=['GET'])
@@ -140,4 +142,4 @@ def delike(tweet_id):
     if Tweet.check_token():
         t.delike(user.id)
         user.delike_tweet(tweet_id)
-        return redirect(url_for('.detail', tweet_id=tweet_id, token=gg.token))
+        return redirect(url_for('.detail', tweet_id=tweet_id, token=gg.token[user.id]))

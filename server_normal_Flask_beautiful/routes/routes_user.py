@@ -124,10 +124,12 @@ def admin():
     :return: 返回所有用户的信息
     """
     user = current_user()
-    if User.check_token():
-        User.check_admin()
-        body = render_template('user/new_admin.html', token=gg.token, mails=Mail.find_all(), user=user, users=User.find_all(), boards=Board.find_all())
-        return make_response(body)
+    User.check_admin()
+    print('from user  before', gg.csrf_tokens)
+    gg.reset_value(user.id)
+    print('from user  after', gg.csrf_tokens)
+    body = render_template('user/new_admin.html', token=gg.token[user.id], mails=Mail.find_all(), user=user, users=User.find_all(), boards=Board.find_all())
+    return make_response(body)
 
 
 @main.route('/admin/user/edit/<int:user_id>', methods=['GET'])
@@ -141,7 +143,7 @@ def admin_edit(user_id):
     if User.check_token():
         User.check_admin()
         u = User.find(user_id)
-        return render_template('user/new_admin_edit.html', token=gg.token, user=user, u=u)
+        return render_template('user/new_admin_edit.html', token=gg.token[user.id], user=user, u=u)
 
 
 @main.route('/admin/user/update', methods=['POST'])
@@ -155,7 +157,7 @@ def admin_update():
         User.check_admin()
         form = request.form
         User.update(form)
-        return redirect(url_for('.admin', token=gg.token))
+        return redirect(url_for('.admin'))
 
 
 # 增加一个register的路由函数
@@ -171,7 +173,7 @@ def admin_register():
         User.check_admin()
         form = request.form
         if User.validate_register(form):
-            return redirect(url_for('.admin', token=gg.token))
+            return redirect(url_for('.admin'))
 
 
 @main.route('/admin/user/delete/<int:user_id>')
@@ -180,18 +182,18 @@ def user_delete(user_id):
     if User.check_token():
         User.check_admin()
         User.remove(user_id)
-        return redirect(url_for('.admin', token=gg.token))
+        return redirect(url_for('.admin'))
 
 
 # 所有用户上传头像,先存在本地得到路径之后上传至七牛云，并删除本地图片
 @main.route('/add_image', methods=['POST'])
 @login_required
 def add_img():
-    u = current_user()
+    user = current_user()
     if User.check_token():
         file = request.files['avatar']
-        u.save_and_up(file)
-        return redirect(url_for('.user_setting', id=u.id, token=gg.token))
+        user.save_and_up(file)
+        return redirect(url_for('.user_setting', id=u.id, token=gg.token[user.id]))
 
 
 # web后端上传头像，后续可以改成Nginx+图床
@@ -222,7 +224,7 @@ def user_detail(id):
     user = current_user()
     u = User.find(id)
     if user is not None:
-        return render_template('user/profile.html', u=u, user=user, token=gg.token, bid=-1)
+        return render_template('user/profile.html', u=u, user=user, token=gg.token[user.id], bid=-1)
     return render_template('user/profile.html', u=u, user=user)
 
 
@@ -235,7 +237,7 @@ def user_update():
     if User.check_token():
         form = request.form
         user.password_update(form)
-        return redirect(url_for('user.user_setting', id=user.id, token=gg.token))
+        return redirect(url_for('user.user_setting', id=user.id, token=gg.token[user.id]))
 
 
 # 增加一个去setting页面的路由函数
@@ -244,7 +246,7 @@ def user_update():
 def user_setting():
     user = current_user()
     if User.check_token():
-        return render_template('user/setting.html', user=user, token=gg.token, bid=-1)
+        return render_template('user/setting.html', user=user, token=gg.token[user.id], bid=-1)
 
 
 # 增加一个去login页面的路由函数

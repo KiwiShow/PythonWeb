@@ -29,7 +29,7 @@ def add():
         User.check_admin()
         form = request.form
         b = Board.new(form)
-        return redirect(url_for('user.admin', token=gg.token))
+        return redirect(url_for('user.admin'))
 
 
 @main.route('/delete/<int:board_id>')
@@ -38,7 +38,7 @@ def delete(board_id):
     if Board.check_token():
         User.check_admin()
         Board.remove(board_id)
-        return redirect(url_for('user.admin', token=gg.token))
+        return redirect(url_for('user.admin'))
 
 
 @main.route('/edit/<int:board_id>', methods=['GET'])
@@ -52,7 +52,7 @@ def edit(board_id):
     if Board.check_token():
         User.check_admin()
         b = Board.find(board_id)
-        return render_template('board/board_edit.html', token=gg.token, user=user, b=b)
+        return render_template('board/board_edit.html', token=gg.token[user.id], user=user, b=b)
 
 
 @main.route('/update', methods=['POST'])
@@ -63,4 +63,4 @@ def update():
         form = request.form
         Board.update(form)
         # redirect有必要加query吗
-        return redirect(url_for('user.admin', token=gg.token))
+        return redirect(url_for('user.admin'))
