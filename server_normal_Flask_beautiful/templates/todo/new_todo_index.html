@@ -96,16 +96,17 @@
                     <span class="last_active_time time" data-type='创建于 ' id="{{ t.created_time }}"></span>
                 </a>
                 <div class="topic_title_wrapper">
-                    {% if t.status %}
-                        <span class="put_good">Done</span>
-                    {% else %}
-                        <span class="put_good">加油</span>
-                    {% endif %}
                     <a class="topic_title" title="{{ t.title }} " href="{{ url_for('todo.index', token=token) }}">
                         {{ t.title }}
                     </a>
-                    <a href="{{ url_for('todo.switch', todo_id=t.id, token=token) }}&status=True">设置为-完成</a>
-                    <a href="{{ url_for('todo.switch', todo_id=t.id, token=token) }}&status=False">设置为-未完成</a>
+                    {% if t.status %}
+                        <span class="put_good">Done</span>
+                        <a href="{{ url_for('todo.switch', todo_id=t.id, token=token) }}&status=False">设置为-未完成</a>
+                    {% else %}
+                        <span class="put_good">加油</span>
+                        <a href="{{ url_for('todo.switch', todo_id=t.id, token=token) }}&status=True">设置为-完成</a>
+                    {% endif %}
+
                     <a href="{{ url_for('todo.edit', todo_id=t.id, token=token) }}">编辑</a>
                     <a href="{{ url_for('todo.delete', todo_id=t.id, token=token) }}">删除</a>
                 </div>
