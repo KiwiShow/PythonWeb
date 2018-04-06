@@ -59,26 +59,47 @@ def check_image(file):
         user_image = domain + filename
         return user_image
 
+# token的位置
+# 1.header
+# 2.url
+# 3.body
+# token 应该是 每个 页面 都有 一个新的 token，这个页面上的所有操作都需要此token 验证
 import uuid
 class global_token(object):
     def __init__(self):
+        # 分别以 token  和  user_id  为 key
         self.csrf_tokens = dict()
-        self.token = ''
+        self.token = dict()
 
     def get_value(self):
         return self.csrf_tokens, self.token
 
     def set_value(self, user_id):
-        self.token = str(uuid.uuid4())
-        self.csrf_tokens[self.token] = user_id
+        uu = str(uuid.uuid4())
+        self.csrf_tokens[uu] = user_id
+        self.token[user_id] = uu
 
-    def delete_value(self):
+    def delete_value(self, user_id):
         # 空字典不能pop
-        if self.token != '':
-            self.csrf_tokens.pop(self.token)
+        # 出现的问题，一个用户登录之后，另一个用户登录会清空 gg.csrf_tokens
+        # from tweet  before
+        # {}
+        # from tweet  after
+        # {'06cf4caa-545a-47c3-be9f-f26b58662918': 1}
+        # 06cf4caa-545a-47c3-be9f-f26b58662918
+        # from tweet  before
+        # {'06cf4caa-545a-47c3-be9f-f26b58662918': 1}
+        # 06cf4caa-545a-47c3-be9f-f26b58662918
+        # from tweet  after
+        # {'3400079f-f74a-42db-ad61-9248bab54bef': 2}
+        # 3400079f-f74a-42db-ad61-9248bab54bef
+        t = self.token.get(user_id, '')
+        if t != '':
+            self.csrf_tokens.pop(t)
+            self.token.pop(user_id)
 
     def reset_value(self, user_id):
-        self.delete_value()
+        self.delete_value(user_id)
         self.set_value(user_id)
 
 
