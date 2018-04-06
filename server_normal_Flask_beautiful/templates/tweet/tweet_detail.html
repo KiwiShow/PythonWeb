@@ -74,32 +74,32 @@
                 <span class="time" data-type='最后一次编辑是 ' id="{{ t.updated_time }}"></span>
 
                 {% if user %}
-                    {% if user.id in t.who_likes %}
-                        <span>
-                            <a href="{{ url_for('tweet.delike', tweet_id=t.id, token=token) }}"
-                               class="span-common pull-right collect_btn">
-                                <span>取消收藏</span>
+                    {% if user.id != t.user_id %}
+                        {% if user.id in t.who_likes %}
+                            <span>
+                                <a href="{{ url_for('tweet.delike', tweet_id=t.id, token=token) }}"
+                                   class="span-common pull-right collect_btn">
+                                    <span>取消收藏</span>
+                                </a>
+                            </span>
+                        {% else %}
+                            <span>
+                                <a href="{{ url_for('tweet.like', tweet_id=t.id, token=token) }}"
+                                   class="span-common span-success pull-right collect_btn">
+                                <span class="span-success">收藏</span>
                             </a>
-                        </span>
+                            </span>
+                        {% endif %}
                     {% else %}
                         <span>
-                            <a href="{{ url_for('tweet.like', tweet_id=t.id, token=token) }}"
-                               class="span-common span-success pull-right collect_btn">
-                            <span class="span-success">收藏</span>
-                        </a>
+                          <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>
+                        </span>
+                        <span>
+                         <a href="{{ url_for('tweet.edit', tweet_id=t.id, token=token) }}">编辑</a>
                         </span>
                     {% endif %}
                 {% endif %}
 
-                {% if user.id == t.user_id %}
-
-                    <span>
-                          <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>
-                     </span>
-                    <span>
-                         <a href="{{ url_for('tweet.edit', tweet_id=t.id, token=token) }}">编辑</a>
-                    </span>
-                {% endif %}
             </div>
         </div>
 
