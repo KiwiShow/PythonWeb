@@ -27,13 +27,20 @@ def current_user():
 
 
 # 找到属于本board_id 的 tweets
-def tweets_and_boards(board_id):
+def tweets_and_boards(board_id, current_page):
+    import math
     if board_id == -1:
         tweets = Tweet.find_all()
     else:
         tweets = Tweet.find_all(board_id=board_id)
+    # 每页显示2个Tweet
+    pages = math.ceil(len(tweets) / 2)
+    if current_page < pages:
+        tweets = tweets[(current_page - 1) * 2 : current_page * 2]
+    else:
+        tweets = tweets[(current_page - 1) * 2 ::]
     bs = Board.find_all()
-    return tweets, bs
+    return tweets, bs, pages
 
 
 # 验证机制

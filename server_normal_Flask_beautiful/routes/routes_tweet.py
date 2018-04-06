@@ -40,12 +40,13 @@ def index():
     """
     user = current_user()
     board_id = int(request.args.get('board_id', -1))
-    tweets, bs = tweets_and_boards(board_id)
+    current_page = int(request.args.get('page', 1))
+    tweets, bs, pages = tweets_and_boards(board_id, current_page)
     if user is not None:
         # 保证每次调用index函数时清空gg,保证每次调用index函数时都有新的token可用
         gg.reset_value(user.id)
-        return render_template('tweet/tweet_index.html', tweets=tweets, bs=bs, bid=board_id, user=user, token=gg.token)
-    return render_template('tweet/tweet_index.html', tweets=tweets, bs=bs, bid=board_id, user=user)
+        return render_template('tweet/tweet_index.html', current_page=current_page, pages = range(pages), tweets=tweets, bs=bs, bid=board_id, user=user, token=gg.token)
+    return render_template('tweet/tweet_index.html', pages = range(pages), tweets=tweets, bs=bs, bid=board_id, user=user)
 
 
 @main.route('/delete/<int:tweet_id>', methods=['GET'])

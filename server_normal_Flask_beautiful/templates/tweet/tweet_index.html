@@ -79,11 +79,12 @@
                         {% if t.comments() %}
                             {% for c in t.comments() %}
                                 {% if loop.last %}
-                                <a class="last_time pull-right"
-                                   href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">
-                                    <img class="user_small_avatar" src="{{ c.user().user_image }}">
-                                    <span class="last_active_time time" data-type='最新评论 ' id="{{ c.created_time }}"></span>
-                                </a>
+                                    <a class="last_time pull-right"
+                                       href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">
+                                        <img class="user_small_avatar" src="{{ c.user().user_image }}">
+                                        <span class="last_active_time time" data-type='最新评论 '
+                                              id="{{ c.created_time }}"></span>
+                                    </a>
                                 {% endif %}
                             {% endfor %}
                         {% else %}
@@ -120,6 +121,21 @@
                     {#                            </div>#}
                     {#                        </div>#}
                 {% endfor %}
+            </div>
+            <div class="pagination">
+                <ul>
+                    {% for p in pages %}
+                        {% set i = loop.index %}
+
+                        {% if loop.index == current_page %}
+                            <li class="disabled active"><a>{{ i }}</a></li>
+                        {% elif loop.index == 1 %}
+                            <li><a href="{{ url_for('tweet.index') }}">1</a></li>
+                        {% else %}
+                            <li><a href="{{ url_for('tweet.index', board_id=bid, page=i) }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
