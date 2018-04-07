@@ -76,11 +76,6 @@
         <div class="header">
             <span class="col_fade">我的待办事项</span>
         </div>
-        {% if u.todos() == [] %}
-            <div class="inner">
-                <p>无待办事项</p>
-            </div>
-        {% endif %}
         {% for t in u.todos() %}
             <div class="cell">
                 {% if user %}
@@ -122,17 +117,16 @@
                     {% endif %}
                 </div>
             </div>
+        {% else %}
+            <div class="inner">
+                <p>无待办事项</p>
+            </div>
         {% endfor %}
     </div>
     <div class="panel">
         <div class="header">
             <span class="col_fade">最近创建的Tweet</span>
         </div>
-        {% if u.tweets() == [] %}
-            <div class="inner">
-                <p>无Tweet</p>
-            </div>
-        {% endif %}
         {% for t in u.tweets() %}
             <div class="cell">
                 {% if user %}
@@ -172,17 +166,16 @@
                     {% endif %}
                 </div>
             </div>
+        {% else %}
+            <div class="inner">
+                <p>无Tweet</p>
+            </div>
         {% endfor %}
     </div>
     <div class="panel">
         <div class="header">
             <span class="col_fade">最近参与的Tweet</span>
         </div>
-        {% if u.uni_tweets() == [] %}
-            <div class="inner">
-                <p>无Tweet</p>
-            </div>
-        {% endif %}
         {#            什么是参与，即有评论的tweet#}
         {% for t in u.uni_tweets() %}
             {#                如何解决重复对一个Tweet评论2次的问题#}
@@ -227,17 +220,16 @@
                     {% endif %}
                 </div>
             </div>
+        {% else %}
+            <div class="inner">
+                <p>无Tweet</p>
+            </div>
         {% endfor %}
     </div>
     <div class="panel">
         <div class="header">
             <span class="col_fade">我收藏的Tweet</span>
         </div>
-        {% if u.liked_tweets() == [] %}
-            <div class="inner">
-                <p>无Tweet</p>
-            </div>
-        {% endif %}
         {% for t in u.liked_tweets() %}
             <div class="cell">
                 {% if user %}
@@ -277,37 +269,36 @@
                     {% endif %}
                 </div>
             </div>
+        {% else %}
+            <div class="inner">
+                <p>无Tweet</p>
+            </div>
         {% endfor %}
     </div>
     <div class="panel">
         <div class="header">
             <span class="col_fade">我赞过的comment</span>
         </div>
-        {% if u.liked_comments() == [] %}
-            <div class="inner">
-                <p>无Comment</p>
-            </div>
-        {% endif %}
         {% for c in u.liked_comments() %}
             <div class="cell">
-{#                {% if user %}#}
-{#                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">#}
-{#                        <img src="{{ u.user_image }}" title="{{ u.username }}">#}
-{#                    </a>#}
-{#                {% else %}#}
-{#                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">#}
-{#                        <img src="{{ u.user_image }}" title="{{ u.username }}">#}
-{#                    </a>#}
-{#                {% endif %}#}
-{#                <span class="reply_count pull-left">#}
-{#                    <span class="count_of_replies" title="回复数">#}
-{#                      {{ t.comments() | count }}#}
-{#                    </span>#}
-{#                    <span class="count_seperator">/</span>#}
-{#                    <span class="count_of_visits" title="点击数">#}
-{#                      {{ t.views }}#}
-{#                    </span>#}
-{#                </span>#}
+                {#                {% if user %}#}
+                {#                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">#}
+                {#                        <img src="{{ u.user_image }}" title="{{ u.username }}">#}
+                {#                    </a>#}
+                {#                {% else %}#}
+                {#                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">#}
+                {#                        <img src="{{ u.user_image }}" title="{{ u.username }}">#}
+                {#                    </a>#}
+                {#                {% endif %}#}
+                {#                <span class="reply_count pull-left">#}
+                {#                    <span class="count_of_replies" title="回复数">#}
+                {#                      {{ t.comments() | count }}#}
+                {#                    </span>#}
+                {#                    <span class="count_seperator">/</span>#}
+                {#                    <span class="count_of_visits" title="点击数">#}
+                {#                      {{ t.views }}#}
+                {#                    </span>#}
+                {#                </span>#}
                 <a class="last_time pull-right">
                     <img class="user_small_avatar" src="{{ c.user().user_image }}">
                     <span class="last_active_time time" data-type='回复于 ' id="{{ c.created_time }}"></span>
@@ -327,6 +318,10 @@
                         </a>
                     {% endif %}
                 </div>
+            </div>
+        {% else %}
+            <div class="inner">
+                <p>无Comment</p>
             </div>
         {% endfor %}
     </div>
