@@ -1,37 +1,15 @@
 {% extends "base.html" %}
 
+{% import "macros.html" as macros %}
+
 {% block title %}
     mail detail
 {% endblock %}
 
 {% block sidebar_panel %}
-    <div class="panel">
-        {% set u = m.from_user() %}
-        <div class="header">
-            <span class="col_fade">发送人信息</span>
-        </div>
-        <div class="inner">
-            <div class="user_card">
-                {% if user %}
-                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
-                        <img src="{{ u.user_image }}" title="{{ u.username }}"/>
-                    </a>
-                    <span class="user_name"><a class="dark"
-                                               href="{{ url_for('user.user_detail', id=u.id, token=token) }}">{{ u.username }}</a></span>
-                {% else %}
-                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=u.id) }}">
-                        <img src="{{ u.user_image }}" title="{{ u.username }}"/>
-                    </a>
-                    <span class="user_name"><a class="dark"
-                                               href="{{ url_for('user.user_detail', id=u.id) }}">{{ u.username }}</a></span>
-                {% endif %}
-                <div class="space clearfix"></div>
-                <span class="signature">
-                        “ {{ u.note }} ”
-                </span>
-            </div>
-        </div>
-    </div>
+    {% set u = m.from_user() %}
+    {{ macros.user_info_sidebar(u, title='发送人信息') }}
+
 {% endblock %}
 
 {% block content %}
@@ -42,7 +20,7 @@
                 </span>
             <div class="changes">
                 {% set u = m.from_user() %}
-                <span class="time" data-type='发出于 'id="{{ m.created_time }}"></span>
+                <span class="time" data-type='发出于 ' id="{{ m.created_time }}"></span>
                 {% if user.id == m.from_user().id %}
                     <span>
                         <a href="{{ url_for('mail.edit', mail_id=m.id, token=token) }}">编辑</a>

@@ -1,38 +1,14 @@
 {% extends "base.html" %}
 
+{% import "macros.html" as macros %}
+
 {% block title %}
     Todo index
 {% endblock %}
 
 {% block sidebar_panel %}
-    <div class="panel">
-        <div class="header">
-            <span class="col_fade">个人信息</span>
-        </div>
-        <div class="inner">
-            <div class="user_card">
-                <a class="user_avatar" href="{{ url_for('user.user_detail', id=user.id) }}">
-                    <img src="{{ user.user_image }}" title="{{ user.username }}"/>
-                </a>
-                <span class="user_name"><a class="dark"
-                                           href="{{ url_for('user.user_detail', id=user.id) }}">{{ user.username }}</a></span>
-
-                <div class="space clearfix"></div>
-                <span class="signature">
-                        “ {{ user.note }} ”
-                    </span>
-            </div>
-        </div>
-    </div>
-    {% if user %}
-        <div class="panel">
-            <div class="inner">
-                <a href="{{ url_for('todo.new', token=token) }}" class="create_topic_btn">
-                    <span class="span-success">写新Todo</span>
-                </a>
-            </div>
-        </div>
-    {% endif %}
+    {{ macros.user_info_sidebar(user) }}
+    {{ macros.user_action_new_todo(user, token) }}
 {% endblock %}
 
 {% block content %}
