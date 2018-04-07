@@ -14,18 +14,6 @@
 {% endblock %}
 
 
-{#在 user_detail 页面再 进行 发送私信按钮#}
-{#    {% block sidebar_new_which %}#}
-{#        <a href="{{ url_for('mail.new', token=token, to_user_id=u.id) }}" class="create_topic_btn">#}
-{#            <span class="span-success">给上面的家伙发送私信</span>#}
-{#        </a>#}
-{#    {% endblock %}#}
-{##}
-{#    {% block sidebar_new %}#}
-{#        {{ super() }}#}
-{#    {% endblock %}#}
-
-
 {% block content %}
     {% set u = t.user() %}
     <div class='panel'>
