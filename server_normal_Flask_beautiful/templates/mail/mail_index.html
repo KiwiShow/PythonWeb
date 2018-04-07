@@ -103,11 +103,6 @@
         <div class="header">
             <span class="col_fade">我发出的mail</span>
         </div>
-        {% if sends == [] %}
-            <div class="inner">
-                <p>无mail</p>
-            </div>
-        {% endif %}
         {% for m in sends %}
             {% set to_user = m.to_user() %}
             <div class="cell">
@@ -135,6 +130,10 @@
                     <a href="{{ url_for('mail.delete', mail_id=m.id, token=token) }}">删除</a>
                 </div>
 
+            </div>
+        {% else %}
+            <div class="inner">
+                <p>无mail</p>
             </div>
         {% endfor %}
     </div>

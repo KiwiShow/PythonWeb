@@ -67,11 +67,6 @@
         <div class="header">
             <span class="col_fade">我的待办事项</span>
         </div>
-        {% if user.todos() == [] %}
-            <div class="inner">
-                <p>无待办事项</p>
-            </div>
-        {% endif %}
         {% for t in user.todos() %}
             <div class="cell">
                 {% if user %}
@@ -111,6 +106,10 @@
                     <a href="{{ url_for('todo.delete', todo_id=t.id, token=token) }}">删除</a>
                 </div>
 
+            </div>
+        {% else %}
+            <div class="inner">
+                <p>无待办事项</p>
             </div>
         {% endfor %}
     </div>
