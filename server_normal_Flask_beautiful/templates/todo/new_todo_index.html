@@ -67,7 +67,7 @@
                     <span class="last_active_time time" data-type='创建于 ' id="{{ t.created_time }}"></span>
                 </a>
                 <div class="topic_title_wrapper">
-                    <a class="topic_title" title="{{ t.title }} " href="{{ url_for('todo.index', token=token) }}">
+                    <a class="topic_title" title="{{ t.title }} " href="{{ url_for('todo.detail', todo_id=t.id, token=token) }}">
                         {{ t.title }}
                     </a>
                     {% if t.status %}

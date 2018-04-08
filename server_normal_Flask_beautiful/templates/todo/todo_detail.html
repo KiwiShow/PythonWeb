@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% import "macros.html" as macros %}
+
+{% block title %}
+    todo detail
+{% endblock %}
+
+{% block sidebar_panel %}
+    {{ macros.user_info_sidebar(user) }}
+
+{% endblock %}
+
+{% block content %}
+    <div class='panel'>
+        <div class='header topic_header'>
+                <span class="topic_full_title">
+                    {{ t.title }}
+                </span>
+            <div class="changes">
+                <span class="time" data-type='创建于 ' id="{{ t.created_time }}"></span>
+                    <span>
+                        <a href="{{ url_for('todo.edit', todo_id=t.id, token=token) }}">编辑</a>
+                    </span>
+                    <span>
+                        <a href="{{ url_for('todo.delete', todo_id=t.id, token=token) }}">删除</a>                     </span>
+                    </span>
+            </div>
+        </div>
+
+        <div class='inner topic'>
+            <div class='topic_content'>
+                <div class="markdown-text">{{ t.content }}</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

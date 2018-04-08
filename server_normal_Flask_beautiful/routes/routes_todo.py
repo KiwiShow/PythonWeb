@@ -92,7 +92,6 @@ def delete(todo_id):
         return redirect(url_for('.index'))
 
 
-# todo 修改
 @main.route('/status_switch/<int:todo_id>', methods=['GET'])
 @login_required
 def switch(todo_id):
@@ -101,3 +100,11 @@ def switch(todo_id):
         status = request.args.get('status')
         t = Todo.complete(todo_id, status)
         return redirect(url_for('.index'))
+
+
+@main.route('/detail/<int:todo_id>', methods=['GET'])
+@login_required
+def detail(todo_id):
+    user = current_user()
+    t = Todo.find(todo_id)
+    return render_template('todo/todo_detail.html', t=t, token=gg.token[user.id], user=user)

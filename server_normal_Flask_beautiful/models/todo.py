@@ -15,6 +15,7 @@ class Todo(MonModel):
     """
     __fields__ = MonModel.__fields__ + [
         ('title', str, ''),
+        ('content', str, ''),
         ('user_id', int, ''),
         ('status', bool, False),
     ]
@@ -34,7 +35,7 @@ class Todo(MonModel):
     @classmethod
     def update(cls, form):
         todo_id = int(form.get('id', -1))
-        whitelist = ['id', 'title', 'user_id', 'status']
+        whitelist = ['id', 'title', 'content', 'user_id', 'status']
         Todo.ori_update(whitelist, todo_id, form)
 
     # def change_time(self, t):
