@@ -200,7 +200,7 @@
 {% endmacro %}
 
 
-{% macro user_action_new_content(action, token, t='', user='', mail_id=false) %}
+{% macro user_action_edit_content(action, token, t='', user='', mail_id=false) %}
     <div class="panel">
         <div class="inner post">
             {% if mail_id %}
@@ -228,5 +228,4 @@
     </div>
 {% endmacro %}
 
-{#1. macro 化 new 和 edit 页面#}
-{#2. macro 化 其它的content#}
+{#1. macro 化 其它的content#}
