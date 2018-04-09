@@ -46,43 +46,16 @@
         </div>
         {% for t in u.todos() %}
             <div class="cell">
-                {% if user %}
-                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
-                        <img src="{{ u.user_image }}" title="{{ u.username }}">
-                    </a>
-                {% else %}
-                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
-                        <img src="{{ u.user_image }}" title="{{ u.username }}">
-                    </a>
-                {% endif %}
-                <span class="reply_count pull-left">
-                    <span class="count_of_replies" title="序号">
-                      {{ loop.index }}
-                    </span>
-                    <span class="count_seperator">/</span>
-                    <span class="count_of_visits" title="总数">
-                      {{ u.todos() | count }}
-                    </span>
-                </span>
-                <a class="last_time pull-right">
-                    <img class="user_small_avatar" src="{{ u.user_image }}">
-                    <span class="last_active_time time" data-type='创建于 ' id="{{ t.created_time }}"></span>
-                </a>
+                {{ macros.user_avatar_left(u) }}
+                {{ macros.counts(u.todos(), loop=loop, type='b', title_a="序号", title_b="总数") }}
+                {{ macros.last_time(t, type='b') }}
                 <div class="topic_title_wrapper">
                     {% if t.status %}
                         <span class="put_good">Done</span>
                     {% else %}
                         <span class="put_good">加油</span>
                     {% endif %}
-                    {% if user %}
-                        <a class="topic_title" title="{{ t.title }} ">
-                            {{ t.title }}
-                        </a>
-                    {% else %}
-                        <a class="topic_title" title="{{ t.title }} ">
-                            {{ t.title }}
-                        </a>
-                    {% endif %}
+                    {{ macros.topic_title('todo.detail', t, 'todo') }}
                 </div>
             </div>
         {% else %}
@@ -97,41 +70,13 @@
         </div>
         {% for t in u.tweets() %}
             <div class="cell">
-                {% if user %}
-                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
-                        <img src="{{ u.user_image }}" title="{{ u.username }}">
-                    </a>
-                {% else %}
-                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
-                        <img src="{{ u.user_image }}" title="{{ u.username }}">
-                    </a>
-                {% endif %}
-                <span class="reply_count pull-left">
-                    <span class="count_of_replies" title="回复数">
-                      {{ t.comments() | count }}
-                    </span>
-                    <span class="count_seperator">/</span>
-                    <span class="count_of_visits" title="点击数">
-                      {{ t.views }}
-                    </span>
-                </span>
-                <a class="last_time pull-right">
-                    <img class="user_small_avatar" src="{{ u.user_image }}">
-                    <span class="last_active_time time" data-type='发布于 ' id="{{ t.created_time }}"></span>
-                </a>
+                {{ macros.user_avatar_left(u) }}
+                {{ macros.counts(t) }}
+                {{ macros.last_time(t, u=u) }}
+
                 <div class="topic_title_wrapper">
                     <span class="put_good">{{ t.board().title }}</span>
-                    {% if user %}
-                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
-                           title="{{ t.title }}">
-                            {{ t.title }}
-                        </a>
-                    {% else %}
-                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id) }}"
-                           title="{{ t.title }}">
-                            {{ t.title }}
-                        </a>
-                    {% endif %}
+                    {{ macros.topic_title('tweet.detail', t, 'tweet') }}
                 </div>
             </div>
         {% else %}
@@ -151,41 +96,13 @@
             {#                方案2:在User类中构造一个特殊的方法，返回无重复的Tweet  Done#}
             {#                方案3:在这里进行过滤#}
             <div class="cell">
-                {% if user %}
-                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
-                        <img src="{{ u.user_image }}" title="{{ u.username }}">
-                    </a>
-                {% else %}
-                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
-                        <img src="{{ u.user_image }}" title="{{ u.username }}">
-                    </a>
-                {% endif %}
-                <span class="reply_count pull-left">
-                        <span class="count_of_replies" title="回复数">
-                          {{ t.comments() | count }}
-                        </span>
-                        <span class="count_seperator">/</span>
-                        <span class="count_of_visits" title="点击数">
-                          {{ t.views }}
-                        </span>
-                      </span>
-                <a class="last_time pull-right">
-                    <img class="user_small_avatar" src="{{ u.user_image }}">
-                    <span class="last_active_time time" data-type='回复于 ' id="{{ t.created_time }}"></span>
-                </a>
+                {{ macros.user_avatar_left(u) }}
+                {{ macros.counts(t) }}
+                {{ macros.last_time(t, u=u, data_type='回复于 ') }}
+
                 <div class="topic_title_wrapper">
                     <span class="put_good">{{ t.board().title }}</span>
-                    {% if user %}
-                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
-                           title="{{ t.title }}">
-                            {{ t.title }}
-                        </a>
-                    {% else %}
-                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id) }}"
-                           title="{{ t.title }}">
-                            {{ t.title }}
-                        </a>
-                    {% endif %}
+                    {{ macros.topic_title('tweet.detail', t, 'tweet') }}
                 </div>
             </div>
         {% else %}
@@ -200,41 +117,13 @@
         </div>
         {% for t in u.liked_tweets() %}
             <div class="cell">
-                {% if user %}
-                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
-                        <img src="{{ u.user_image }}" title="{{ u.username }}">
-                    </a>
-                {% else %}
-                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
-                        <img src="{{ u.user_image }}" title="{{ u.username }}">
-                    </a>
-                {% endif %}
-                <span class="reply_count pull-left">
-                    <span class="count_of_replies" title="回复数">
-                      {{ t.comments() | count }}
-                    </span>
-                    <span class="count_seperator">/</span>
-                    <span class="count_of_visits" title="点击数">
-                      {{ t.views }}
-                    </span>
-                </span>
-                <a class="last_time pull-right">
-                    <img class="user_small_avatar" src="{{ u.user_image }}">
-                    <span class="last_active_time time" data-type='发布于 ' id="{{ t.created_time }}"></span>
-                </a>
+                {{ macros.user_avatar_left(u) }}
+                {{ macros.counts(t) }}
+                {{ macros.last_time(t, u=t.user()) }}
+
                 <div class="topic_title_wrapper">
                     <span class="put_good">{{ t.board().title }}</span>
-                    {% if user %}
-                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
-                           title="{{ t.title }}">
-                            {{ t.title }}
-                        </a>
-                    {% else %}
-                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id) }}"
-                           title="{{ t.title }}">
-                            {{ t.title }}
-                        </a>
-                    {% endif %}
+                    {{ macros.topic_title('tweet.detail', t, 'tweet') }}
                 </div>
             </div>
         {% else %}
@@ -249,44 +138,20 @@
         </div>
         {% for c in u.liked_comments() %}
             <div class="cell">
-                {#                {% if user %}#}
-                {#                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">#}
-                {#                        <img src="{{ u.user_image }}" title="{{ u.username }}">#}
-                {#                    </a>#}
-                {#                {% else %}#}
-                {#                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">#}
-                {#                        <img src="{{ u.user_image }}" title="{{ u.username }}">#}
-                {#                    </a>#}
-                {#                {% endif %}#}
-                {#                <span class="reply_count pull-left">#}
-                {#                    <span class="count_of_replies" title="回复数">#}
-                {#                      {{ t.comments() | count }}#}
-                {#                    </span>#}
-                {#                    <span class="count_seperator">/</span>#}
-                {#                    <span class="count_of_visits" title="点击数">#}
-                {#                      {{ t.views }}#}
-                {#                    </span>#}
-                {#                </span>#}
-                <a class="last_time pull-right">
-                    <img class="user_small_avatar" src="{{ c.user().user_image }}">
-                    <span class="last_active_time time" data-type='回复于 ' id="{{ c.created_time }}"></span>
-                </a>
+                {{ macros.last_time(c.tweet(), c=c, last=true, data_type='回复于 ') }}
+
                 <div class="topic_title_wrapper">
                     <span class="put_good">{{ c.tweet().board().title }}</span>
-                    {% set t = c.tweet() %}
-                    {% if user %}
-                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
-                           title="{{ c.content }}">
-                            {{ c.content }}
-                        </a>
-                    {% else %}
-                        <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id) }}"
-                           title="{{ c.content }}">
-                            {{ c.content }}
-                        </a>
-                    {% endif %}
+                    {{ macros.topic_title('tweet.detail', c, 'comment') }}
                 </div>
             </div>
+
+{#            <a class="last_time pull-right">#}
+{#                <img class="user_small_avatar" src="{{ c.user().user_image }}">#}
+{#                <span class="last_active_time time" data-type='回复于 '#}
+{#                      id="{{ c.created_time }}"></span>#}
+{#            </a>#}
+
         {% else %}
             <div class="inner">
                 <p>无Comment</p>

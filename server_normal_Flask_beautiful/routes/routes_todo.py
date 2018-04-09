@@ -32,9 +32,9 @@ def index():
     :return: 显示todo页面
     """
     user = current_user()
-    print('from todo  before', gg.csrf_tokens)
+    print('from todo_index  before', gg.csrf_tokens)
     gg.reset_value(user.id)
-    print('from todo  after', gg.csrf_tokens)
+    print('from todo_index  after', gg.csrf_tokens)
 
     return render_template('todo/new_todo_index.html', token=gg.token[user.id], user=user)
 
@@ -107,4 +107,10 @@ def switch(todo_id):
 def detail(todo_id):
     user = current_user()
     t = Todo.find(todo_id)
-    return render_template('todo/todo_detail.html', t=t, token=gg.token[user.id], user=user)
+    if user is not None:
+        # 保证每次调用index函数时清空gg,保证每次调用index函数时都有新的token可用
+        print('from todo_datail  before', gg.csrf_tokens)
+        gg.reset_value(user.id)
+        print('from todo_datail  after', gg.csrf_tokens)
+        return render_template('todo/todo_detail.html', t=t, token=gg.token[user.id], user=user)
+    return render_template('todo/todo_detail.html', t=t, user=user)

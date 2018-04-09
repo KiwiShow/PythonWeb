@@ -17,7 +17,6 @@ from routes import (
 )
 from config import gg
 
-
 main = Blueprint('mail', __name__)
 
 
@@ -31,13 +30,14 @@ def index():
     """
     user = current_user()
     if user is not None:
-        print('from mail  before', gg.csrf_tokens)
+        print('from mail_index  before', gg.csrf_tokens)
         gg.reset_value(user.id)
-        print('from mail  after', gg.csrf_tokens)
+        print('from mail_index  after', gg.csrf_tokens)
 
         send_mail = Mail.find_all(sender_id=user.id, sender_deleted=False)
         received_mail = Mail.find_all(receiver_id=user.id, receiver_deleted=False)
-        return render_template('mail/mail_index.html', sends=send_mail, receives=received_mail, token=gg.token[user.id], user=user)
+        return render_template('mail/mail_index.html', sends=send_mail, receives=received_mail, token=gg.token[user.id],
+                               user=user)
 
 
 @main.route('/new/<int:to_user_id>', methods=['GET'])
@@ -87,7 +87,7 @@ def delete(mail_id):
 def edit(mail_id):
     user = current_user()
     if Mail.check_token():
-    # mail_id = int(request.args.get('id', -1))
+        # mail_id = int(request.args.get('id', -1))
         m = Mail.find(mail_id)
         if current_user().id in [m.receiver_id, m.sender_id]:
             return render_template('mail/mail_edit.html', m=m, token=gg.token[user.id], user=user)
@@ -110,5 +110,10 @@ def update(mail_id):
 def detail(mail_id):
     user = current_user()
     m = Mail.mark_read(mail_id)
-    token = request.args.get('token')
-    return render_template('mail/mail_detail.html', m=m, token=gg.token[user.id], user=user)
+    if user is not None:
+        # 保证每次调用index函数时清空gg,保证每次调用index函数时都有新的token可用
+        print('from mail_detail  before', gg.csrf_tokens)
+        gg.reset_value(user.id)
+        print('from mail_detail  after', gg.csrf_tokens)
+        return render_template('mail/mail_detail.html', m=m, token=gg.token[user.id], user=user)
+    return render_template('mail/mail_detail.html', m=m, user=user)

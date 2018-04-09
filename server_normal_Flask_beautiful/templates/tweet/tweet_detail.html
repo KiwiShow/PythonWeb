@@ -27,7 +27,7 @@
                 <span>
                         作者
                     {% if user %}
-                        <a href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
+                        <a href="{{ url_for('user.user_detail', id=u.id) }}">
                             {{ u.username }}
                         </a>
                     {% else %}
@@ -92,11 +92,11 @@
             <div class='cell reply_area reply_item'>
                 <div class='author_content'>
                     {% if user %}
-                        <a href="{{ url_for('user.user_detail', id=u.id, token=token) }}" class="user_avatar">
+                        <a href="{{ url_for('user.user_detail', id=u.id) }}" class="user_avatar">
                             <img src="{{ u.user_image }}" title="{{ u.username }}"/>
                         </a>
                         <div class='user_info'>
-                            <a class='dark reply_author' href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
+                            <a class='dark reply_author' href="{{ url_for('user.user_detail', id=u.id) }}">
                                 {{ u.username }}
                             </a>
                             <a class="reply_time">

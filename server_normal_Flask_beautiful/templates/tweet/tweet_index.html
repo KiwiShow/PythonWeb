@@ -26,13 +26,13 @@
         {% for t in tweets %}
             <div class="cell">
                 {% set u = t.user() %}
-                {{ macros.user_avatar_left(u, token) }}
+                {{ macros.user_avatar_left(u) }}
                 {{ macros.counts(t) }}
 
                 {% if t.comments() %}
                     {% for c in t.comments() %}
                         {% if loop.last %}
-                            {{ macros.last_time(t, c=c, last=true) }}
+                            {{ macros.last_time(t, c=c, last=true, data_type='最新评论 ') }}
                         {% endif %}
                     {% endfor %}
                 {% else %}
@@ -43,10 +43,10 @@
                     <span class="put_good">{{ t.board().title }}</span>
                     {# 使用这种办法导致了代码重复 #}
                     {% if user %}
-                        {{ macros.topic_title('tweet.detail', t, token, 'tweet') }}
+                        {{ macros.topic_title('tweet.detail', t, 'tweet') }}
 
                     {% else %}
-                        {{ macros.topic_title('tweet.detail', t, token, 'tweet') }}
+                        {{ macros.topic_title('tweet.detail', t, 'tweet') }}
 
                     {% endif %}
                 </div>

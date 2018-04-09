@@ -146,7 +146,7 @@
         {% endif %}
         {% for u in users %}
             <div class="cell">
-                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
+                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
                     <img src="{{ u.user_image }}" title="{{ u.username }}">
                 </a>
                 <span class="reply_count pull-left">
@@ -229,7 +229,7 @@
             {% set from_user = m.from_user() %}
             {% set to_user = m.to_user() %}
             <div class="cell">
-                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=from_user.id, token=token) }}">
+                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=from_user.id) }}">
                     <img src="{{ from_user.user_image }}" title="{{ from_user.username }}">
                 </a>
 
@@ -244,7 +244,7 @@
                 </span>
 
                 <a class="last_time pull-right">
-                    <img class="user_small_avatar" href="{{ url_for('user.user_detail', id=to_user.id, token=token) }}"
+                    <img class="user_small_avatar" href="{{ url_for('user.user_detail', id=to_user.id) }}"
                          src="{{ to_user.user_image }}" title="{{ to_user.username }}">
 
                     <span class="last_active_time time" data-type='创建于 ' id="{{ m.created_time }}"></span>
@@ -263,7 +263,7 @@
                     <span class="put_good">Title</span>
 
                     <a class="topic_title" title="{{ m.title }} "
-                       href="{{ url_for('mail.detail', mail_id=m.id, token=token) }}">
+                       href="{{ url_for('mail.detail', mail_id=m.id) }}">
                         {{ m.title }}
                     </a>
 

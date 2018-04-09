@@ -18,12 +18,12 @@
         </div>
         {% for t in user.todos() %}
             <div class="cell">
-                {{ macros.user_avatar_left(user, token) }}
+                {{ macros.user_avatar_left(user) }}
                 {{ macros.counts(user.todos(), loop=loop, type='b', title_a="序号", title_b="总数") }}
                 {{ macros.last_time(t, type='b') }}
 
                 <div class="topic_title_wrapper">
-                    {{ macros.topic_title('todo.detail', t, token, 'todo') }}
+                    {{ macros.topic_title('todo.detail', t, 'todo') }}
 
                     {% if t.status %}
                         <span class="put_good">Done</span>

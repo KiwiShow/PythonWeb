@@ -6,11 +6,11 @@
             </div>
             <div class="inner">
                 <div class="user_card">
-                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=user.id, token=token) }}">
+                    <a class="user_avatar" href="{{ url_for('user.user_detail', id=user.id) }}">
                         <img src="{{ user.user_image }}" title="{{ user.username }}"/>
                     </a>
                     <span class="user_name">
-                    <a class="dark" href="{{ url_for('user.user_detail', id=user.id, token=token) }}">
+                    <a class="dark" href="{{ url_for('user.user_detail', id=user.id) }}">
                                     {{ user.username }}
                                 </a>
                 </span>
@@ -248,7 +248,7 @@
     </div>
 {% endmacro %}
 
-{% macro user_avatar_left(u, token) %}
+{% macro user_avatar_left(u) %}
     <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
         <img src="{{ u.user_image }}" title="{{ u.username }}">
     </a>
@@ -277,16 +277,16 @@
 {% macro last_time(t, c='', u='', type='a', last=false, data_type='创建于 ' ) %}
     {% if type == 'a' %}
         <a class="last_time pull-right"
-           href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">
+           href="{{ url_for('tweet.detail', tweet_id=t.id) }}">
             {% if last %}
                 <img class="user_small_avatar" src="{{ c.user().user_image }}">
-                <span class="last_active_time time" data-type='最新评论 '
-                      id="{{ c.created_time }}"></span>
+                <span class="last_active_time time" data-type={{ data_type }}
+                        id="{{ c.created_time }}"></span>
 
             {% else %}
                 <img class="user_small_avatar" src="{{ u.user_image }}">
-                <span class="last_active_time time" data-type='创建于 '
-                      id="{{ t.created_time }}"></span>
+                <span class="last_active_time time" data-type={{ data_type }}
+                        id="{{ t.created_time }}"></span>
             {% endif %}
         </a>
     {% else %}
@@ -297,21 +297,26 @@
     {% endif %}
 {% endmacro %}
 
-{% macro topic_title(action, t, token, type) %}
+{% macro topic_title(action, t, type) %}
     {% if type == 'tweet' %}
-        <a class="topic_title" href="{{ url_for(action, tweet_id=t.id, token=token) }}"
+        <a class="topic_title" href="{{ url_for(action, tweet_id=t.id) }}"
            title="{{ t.title }}">
             {{ t.title }}
         </a>
     {% elif type == 'todo' %}
-        <a class="topic_title" href="{{ url_for(action, todo_id=t.id, token=token) }}"
+        <a class="topic_title" href="{{ url_for(action, todo_id=t.id) }}"
            title="{{ t.title }}">
             {{ t.title }}
         </a>
     {% elif type == 'mail' %}
-        <a class="topic_title" href="{{ url_for(action, mail_id=t.id, token=token) }}"
+        <a class="topic_title" href="{{ url_for(action, mail_id=t.id) }}"
            title="{{ t.title }}">
             {{ t.title }}
+        </a>
+    {% elif type == 'comment' %}
+        <a class="topic_title" href="{{ url_for(action, tweet_id=t.tweet().id) }}"
+           title="{{ t.content }}">
+            {{ t.content }}
         </a>
     {% endif %}
 {% endmacro %}

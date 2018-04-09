@@ -125,11 +125,10 @@ def admin():
     """
     user = current_user()
     User.check_admin()
-    print('from user  before', gg.csrf_tokens)
+    print('from admin  before', gg.csrf_tokens)
     gg.reset_value(user.id)
-    print('from user  after', gg.csrf_tokens)
-    body = render_template('user/new_admin.html', token=gg.token[user.id], mails=Mail.find_all(), user=user, users=User.find_all(), boards=Board.find_all())
-    return make_response(body)
+    print('from admin  after', gg.csrf_tokens)
+    return render_template('user/new_admin.html', token=gg.token[user.id], mails=Mail.find_all(), user=user, users=User.find_all(), boards=Board.find_all())
 
 
 @main.route('/admin/user/edit/<int:user_id>', methods=['GET'])
@@ -224,7 +223,11 @@ def user_detail(id):
     user = current_user()
     u = User.find(id)
     if user is not None:
-        return render_template('user/profile.html', u=u, user=user, token=gg.token[user.id], bid=-1)
+        # 保证每次调用index函数时清空gg,保证每次调用index函数时都有新的token可用
+        print('from profile  before', gg.csrf_tokens)
+        gg.reset_value(user.id)
+        print('from profile  after', gg.csrf_tokens)
+        return render_template('user/profile.html', u=u, token=gg.token[user.id], user=user)
     return render_template('user/profile.html', u=u, user=user)
 
 
@@ -245,7 +248,11 @@ def user_update():
 @login_required
 def user_setting():
     user = current_user()
-    if User.check_token():
+    if user is not None:
+        # 保证每次调用index函数时清空gg,保证每次调用index函数时都有新的token可用
+        print('from setting  before', gg.csrf_tokens)
+        gg.reset_value(user.id)
+        print('from setting  after', gg.csrf_tokens)
         return render_template('user/setting.html', user=user, token=gg.token[user.id], bid=-1)
 
 

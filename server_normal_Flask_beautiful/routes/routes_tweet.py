@@ -44,9 +44,9 @@ def index():
     tweets, bs, pages = tweets_and_boards(board_id, current_page)
     if user is not None:
         # 保证每次调用index函数时清空gg,保证每次调用index函数时都有新的token可用
-        print('from tweet  before', gg.csrf_tokens)
+        print('from tweet_index  before', gg.csrf_tokens)
         gg.reset_value(user.id)
-        print('from tweet  after', gg.csrf_tokens)
+        print('from tweet_index  after', gg.csrf_tokens)
         return render_template('tweet/tweet_index.html', current_page=current_page, pages = range(pages), tweets=tweets, bs=bs, board_id=board_id, user=user, token=gg.token[user.id])
     return render_template('tweet/tweet_index.html', pages = range(pages), tweets=tweets, bs=bs, board_id=board_id, user=user)
 
@@ -114,12 +114,15 @@ def detail(tweet_id):
     user = current_user()
     t = Tweet.get(tweet_id)
     if user is not None:
-        token = request.args.get('token')
+        # 保证每次调用index函数时清空gg,保证每次调用index函数时都有新的token可用
+        print('from tweet_datail  before', gg.csrf_tokens)
+        gg.reset_value(user.id)
+        print('from tweet_datail  after', gg.csrf_tokens)
         # tweet_id = int(request.args.get('id', -1))
         #     t = Tweet.find(tweet_id)
         # 这里不需要验证是否是自己发的tweet
         # if u.id == t.user_id:
-        return render_template('tweet/tweet_detail.html', t=t, token=token, user=user)
+        return render_template('tweet/tweet_detail.html', t=t, token=gg.token[user.id], user=user)
     return render_template('tweet/tweet_detail.html', t=t, user=user)
 
 
