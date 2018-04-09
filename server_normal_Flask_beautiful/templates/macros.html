@@ -211,8 +211,8 @@
             <fieldset>
                 <input name="id" value="{{ t.id }}" type="hidden">
                 {% if is_not_comment %}
-                <textarea autofocus class='span9' id='title' name='title' rows='1'
-                          placeholder="标题字数 10 字以上">{{ t.title }}</textarea>
+                    <textarea autofocus class='span9' id='title' name='title' rows='1'
+                              placeholder="标题字数 10 字以上">{{ t.title }}</textarea>
                 {% endif %}
                 <div class='markdown_editor in_editor'>
                     <div class='markdown_in_editor'>
@@ -247,6 +247,75 @@
         </ul>
     </div>
 {% endmacro %}
+
+{% macro user_avatar_left(u, token) %}
+    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
+        <img src="{{ u.user_image }}" title="{{ u.username }}">
+    </a>
+{% endmacro %}
+
+{% macro counts(t, loop='', type='a', title_a="回复数", title_b="点击数") %}
+    <span class="reply_count pull-left">
+        <span class="count_of_replies" title={{ title_a }}>
+            {% if type == 'a' %}
+                {{ t.comments() | count }}
+            {% else %}
+                {{ loop.index }}
+            {% endif %}
+        </span>
+        <span class="count_seperator">/</span>
+        <span class="count_of_visits" title={{ title_b }}>
+            {% if type == 'a' %}
+                {{ t.views }}
+            {% else %}
+                {{ t | count }}
+            {% endif %}
+        </span>
+    </span>
+{% endmacro %}
+
+{% macro last_time(t, c='', u='', type='a', last=false, data_type='创建于 ' ) %}
+    {% if type == 'a' %}
+        <a class="last_time pull-right"
+           href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">
+            {% if last %}
+                <img class="user_small_avatar" src="{{ c.user().user_image }}">
+                <span class="last_active_time time" data-type='最新评论 '
+                      id="{{ c.created_time }}"></span>
+
+            {% else %}
+                <img class="user_small_avatar" src="{{ u.user_image }}">
+                <span class="last_active_time time" data-type='创建于 '
+                      id="{{ t.created_time }}"></span>
+            {% endif %}
+        </a>
+    {% else %}
+        <a class="last_time pull-right">
+            <span class="last_active_time time" data-type={{ data_type }}
+                    id="{{ t.created_time }}"></span>
+        </a>
+    {% endif %}
+{% endmacro %}
+
+{% macro topic_title(action, t, token, type) %}
+    {% if type == 'tweet' %}
+        <a class="topic_title" href="{{ url_for(action, tweet_id=t.id, token=token) }}"
+           title="{{ t.title }}">
+            {{ t.title }}
+        </a>
+    {% elif type == 'todo' %}
+        <a class="topic_title" href="{{ url_for(action, todo_id=t.id, token=token) }}"
+           title="{{ t.title }}">
+            {{ t.title }}
+        </a>
+    {% elif type == 'mail' %}
+        <a class="topic_title" href="{{ url_for(action, mail_id=t.id, token=token) }}"
+           title="{{ t.title }}">
+            {{ t.title }}
+        </a>
+    {% endif %}
+{% endmacro %}
+
 
 
 {#1. macro 化 content 的 index 和 detail 页面#}

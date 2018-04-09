@@ -12,64 +12,19 @@
 {% endblock %}
 
 {% block content %}
-    <div class='panel'>
-        <div class='header'>
-            <ul class='breadcrumb'>
-                <li><a href="{{ url_for('tweet.index') }}">主页</a><span class='divider'>/</span></li>
-            </ul>
-        </div>
-        <div class='inner userinfo'>
-            <div class='user_big_avatar'>
-                <img src="{{ user.user_image }}" class="user_avatar"
-                     title="{{ user.username }}"/>
-            </div>
-            <a class='dark'>{{ user.username }}</a>
-
-            <div class='user_profile'>
-                <ul class='unstyled'>
-                    {#                        <span class='big'>0</span> 积分#}
-                    <li>
-                        <i class="fa fa-lg fa-fw fa-github"></i>
-                        <a class='dark' href="https://github.com/KiwiShow" target='_blank'>
-                            @{{ user.username }}
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <p class='col_fade time' data-type='注册时间 ' id="{{ user.created_time }}"></p>
-        </div>
-    </div>
     <div class="panel">
         <div class="header">
             <span class="col_fade">我的待办事项</span>
         </div>
         {% for t in user.todos() %}
             <div class="cell">
-                {% if user %}
-                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=user.id, token=token) }}">
-                        <img src="{{ user.user_image }}" title="{{ user.username }}">
-                    </a>
-                {% else %}
-                    <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=user.id) }}">
-                        <img src="{{ user.user_image }}" title="{{ user.username }}">
-                    </a>
-                {% endif %}
-                <span class="reply_count pull-left">
-                    <span class="count_of_replies" title="序号">
-                      {{ loop.index }}
-                    </span>
-                    <span class="count_seperator">/</span>
-                    <span class="count_of_visits" title="总数">
-                      {{ user.todos() | count }}
-                    </span>
-                </span>
-                <a class="last_time pull-right">
-                    <span class="last_active_time time" data-type='创建于 ' id="{{ t.created_time }}"></span>
-                </a>
+                {{ macros.user_avatar_left(user, token) }}
+                {{ macros.counts(user.todos(), loop=loop, type='b', title_a="序号", title_b="总数") }}
+                {{ macros.last_time(t, type='b') }}
+
                 <div class="topic_title_wrapper">
-                    <a class="topic_title" title="{{ t.title }} " href="{{ url_for('todo.detail', todo_id=t.id, token=token) }}">
-                        {{ t.title }}
-                    </a>
+                    {{ macros.topic_title('todo.detail', t, token, 'todo') }}
+
                     {% if t.status %}
                         <span class="put_good">Done</span>
                         <a href="{{ url_for('todo.switch', todo_id=t.id, token=token) }}&status=False">设置为-未完成</a>

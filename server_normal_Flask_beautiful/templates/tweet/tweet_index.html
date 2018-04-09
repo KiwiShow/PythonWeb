@@ -14,93 +14,45 @@
 
 {% block content %}
     <div class="panel">
-        <div class="header">
-            <a href="{{ url_for('tweet.index') }}" class="topic-tab current-tab">全部</a>
-            {% for b in bs %}
-                <a href="{{ url_for('tweet.index', board_id=b.id) }}"
-                   class="topic-tab current-tab">{{ b.title }}</a>
-            {% endfor %}
-        </div>
-        <div class="inner post">
-            <div class="topic_list">
-                {% for t in tweets %}
-                    <div class="cell">
-                        {% set u = t.user() %}
-                        <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id, token=token) }}">
-                            <img src="{{ u.user_image }}" title="{{ u.username }}">
-                        </a>
-                        <span class="reply_count pull-left">
-                                <span class="count_of_replies" title="回复数">
-                                  {{ t.comments() | count }}
-                                </span>
-                                <span class="count_seperator">/</span>
-                                <span class="count_of_visits" title="点击数">
-                                  {{ t.views }}
-                                </span>
-                              </span>
+    <div class="header">
+        <a href="{{ url_for('tweet.index') }}" class="topic-tab current-tab">全部</a>
+        {% for b in bs %}
+            <a href="{{ url_for('tweet.index', board_id=b.id) }}"
+               class="topic-tab current-tab">{{ b.title }}</a>
+        {% endfor %}
+    </div>
+    <div class="inner post">
+    <div class="topic_list">
+        {% for t in tweets %}
+            <div class="cell">
+                {% set u = t.user() %}
+                {{ macros.user_avatar_left(u, token) }}
+                {{ macros.counts(t) }}
 
-                        {% if t.comments() %}
-                            {% for c in t.comments() %}
-                                {% if loop.last %}
-                                    <a class="last_time pull-right"
-                                       href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">
-                                        <img class="user_small_avatar" src="{{ c.user().user_image }}">
-                                        <span class="last_active_time time" data-type='最新评论 '
-                                              id="{{ c.created_time }}"></span>
-                                    </a>
-                                {% endif %}
-                            {% endfor %}
-                        {% else %}
-                            <a class="last_time pull-right"
-                               href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">
-                                <img class="user_small_avatar" src="{{ u.user_image }}">
-                                <span class="last_active_time time" data-type='创建于 ' id="{{ t.created_time }}"></span>
-                            </a>
-                        {% endif %}
-                        <div class="topic_title_wrapper">
-                            <span class="put_good">{{ t.board().title }}</span>
-                            {#                            使用这种办法导致了代码重复 todo#}
-                            {% if user %}
-                                <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}"
-                                   title="{{ t.title }}">
-                                    {{ t.title }}
-                                </a>
-                            {% else %}
-                                <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id) }}"
-                                   title="{{ t.title }}">
-                                    {{ t.title }}
-                                </a>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {#                        <div class="cell">#}
-                    {#                            <div class="topic_title_wrapper">#}
-                    {#                                <a class="topic_title" href="{{ url_for('tweet.detail', tweet_id=t.id, token=token) }}">#}
-                    {#                                    {{ t.title }}#}
-                    {#                                </a>#}
-                    {#                                <span>from {{ t.user().username}}  {{ t.comments() | count }} comments/ {{ t.views }} views#}
-                    {#                                    <a href="{{ url_for('tweet.delete', tweet_id=t.id, token=token) }}">删除</a>#}
-                    {#                                    <a href="{{ url_for('tweet.edit', tweet_id=t.id, token=token) }}">编辑</a></span>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                {% endfor %}
-            </div>
-            <div class="pagination">
-                <ul>
-                    {% for p in pages %}
-                        {% set i = loop.index %}
-
-                        {% if loop.index == current_page %}
-                            <li class="disabled active"><a>{{ i }}</a></li>
-                        {% elif loop.index == 1 %}
-                            <li><a href="{{ url_for('tweet.index') }}">1</a></li>
-                        {% else %}
-                            <li><a href="{{ url_for('tweet.index', board_id=bid, page=i) }}">{{ i }}</a></li>
+                {% if t.comments() %}
+                    {% for c in t.comments() %}
+                        {% if loop.last %}
+                            {{ macros.last_time(t, c=c, last=true) }}
                         {% endif %}
                     {% endfor %}
-                </ul>
+                {% else %}
+                    {{ macros.last_time(t, u=u) }}
+                {% endif %}
+
+                <div class="topic_title_wrapper">
+                    <span class="put_good">{{ t.board().title }}</span>
+                    {# 使用这种办法导致了代码重复 #}
+                    {% if user %}
+                        {{ macros.topic_title('tweet.detail', t, token, 'tweet') }}
+
+                    {% else %}
+                        {{ macros.topic_title('tweet.detail', t, token, 'tweet') }}
+
+                    {% endif %}
+                </div>
             </div>
-        </div>
+        {% endfor %}
     </div>
+    {{ macros.pagination('tweet.index', pages, current_page, board_id) }}
 {% endblock %}
 

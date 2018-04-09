@@ -12,61 +12,17 @@
 {% endblock %}
 
 {% block content %}
-    <div class='panel'>
-        <div class='header'>
-            <ul class='breadcrumb'>
-                <li><a href="{{ url_for('tweet.index') }}">主页</a><span class='divider'>/</span></li>
-            </ul>
-        </div>
-        <div class='inner userinfo'>
-            <div class='user_big_avatar'>
-                <img src="{{ user.user_image }}" class="user_avatar"
-                     title="{{ user.username }}"/>
-            </div>
-            <a class='dark'>{{ user.username }}</a>
-
-            <div class='user_profile'>
-                <ul class='unstyled'>
-                    {#                        <span class='big'>0</span> 积分#}
-                    <li>
-                        <i class="fa fa-lg fa-fw fa-github"></i>
-                        <a class='dark' href="https://github.com/KiwiShow" target='_blank'>
-                            @{{ user.username }}
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <p class='col_fade time' data-type='注册时间 ' id="{{ user.created_time }}"></p>
-        </div>
-    </div>
     <div class="panel">
         <div class="header">
             <span class="col_fade">我收到的mail</span>
         </div>
-        {% if receives == [] %}
-            <div class="inner">
-                <p>无mail</p>
-            </div>
-        {% endif %}
         {% for m in receives %}
             {% set from_user = m.from_user() %}
             <div class="cell">
-                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=from_user.id, token=token) }}">
-                    <img src="{{ from_user.user_image }}" title="{{ from_user.username }}">
-                </a>
-                <span class="reply_count pull-left">
-                    <span class="count_of_replies" title="序号">
-                      {{ loop.index }}
-                    </span>
-                    <span class="count_seperator">/</span>
-                    <span class="count_of_visits" title="总数">
-                      {{ receives | count }}
-                    </span>
-                </span>
+                {{ macros.user_avatar_left(from_user, token) }}
+                {{ macros.counts(receives, loop=loop, type='b', title_a="序号", title_b="总数") }}
+                {{ macros.last_time(m, type='b', data_type='收到于 ') }}
 
-                <a class="last_time pull-right">
-                    <span class="last_active_time time" data-type='收到于 ' id="{{ m.created_time }}"></span>
-                </a>
                 <div class="topic_title_wrapper">
                     {% if m.read_or_not %}
                         <span class="put_good">已读</span>
@@ -74,13 +30,15 @@
                         <span class="put_good">未读</span>
                     {% endif %}
 
-                    <a class="topic_title" title="{{ m.title }} "
-                       href="{{ url_for('mail.detail', mail_id=m.id, token=token) }}">
-                        {{ m.title }}
-                    </a>
+                    {{ macros.topic_title('mail.detail', m, token, 'mail') }}
+
                     <a href="{{ url_for('mail.delete', mail_id=m.id, token=token) }}">删除</a>
                 </div>
 
+            </div>
+        {% else %}
+            <div class="inner">
+                <p>无mail</p>
             </div>
         {% endfor %}
     </div>
@@ -91,26 +49,13 @@
         {% for m in sends %}
             {% set to_user = m.to_user() %}
             <div class="cell">
-                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=to_user.id, token=token) }}">
-                    <img src="{{ to_user.user_image }}" title="{{ to_user.username }}">
-                </a>
-                <span class="reply_count pull-left">
-                    <span class="count_of_replies" title="序号">
-                      {{ loop.index }}
-                    </span>
-                    <span class="count_seperator">/</span>
-                    <span class="count_of_visits" title="总数">
-                      {{ sends | count }}
-                    </span>
-                </span>
-                <a class="last_time pull-right">
-                    <span class="last_active_time time" data-type='发出于 ' id="{{ m.created_time }}"></span>
-                </a>
+                {{ macros.user_avatar_left(to_user, token) }}
+                {{ macros.counts(receives, loop=loop, type='b', title_a="序号", title_b="总数") }}
+                {{ macros.last_time(m, type='b', data_type='发出于 ') }}
+
                 <div class="topic_title_wrapper">
-                    <a class="topic_title" title="{{ m.title }} "
-                       href="{{ url_for('mail.detail', mail_id=m.id, token=token) }}">
-                        {{ m.title }}
-                    </a>
+                    {{ macros.topic_title('mail.detail', m, token, 'mail') }}
+
                     <a href="{{ url_for('mail.edit', mail_id=m.id, token=token) }}">编辑</a>
                     <a href="{{ url_for('mail.delete', mail_id=m.id, token=token) }}">删除</a>
                 </div>
