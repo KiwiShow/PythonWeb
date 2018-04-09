@@ -68,7 +68,7 @@ def new():
     board_id = int(request.args.get('board_id', -1))
     if Tweet.check_token():
         bs = Board.find_all()
-        return render_template('tweet/tweet_new.html', token=gg.token[user.id], bs=bs, bid=board_id, user=user)
+        return render_template('tweet/tweet_new.html', token=gg.token[user.id], bs=bs, board_id=board_id, user=user)
 
 
 @main.route('/add', methods=['POST'])

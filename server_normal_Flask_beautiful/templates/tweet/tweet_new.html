@@ -11,46 +11,6 @@
 {% endblock %}
 
 {% block content %}
-    <div class="panel">
-        <div class="header">
-            <ol class="breadcrumb">
-                <li><a href="{{ url_for('tweet.index') }}">主页</a><span class="divider">/</span></li>
-                <li class="active">发布tweet</li>
-            </ol>
-        </div>
-        <div class="inner post">
-            <form id="create_topic_form" method="post"
-                  action="{{ url_for('tweet.add', token=token, board_id=bid) }}">
-                <fieldset>
-                    <span class="tab-selector">选择版块：</span>
-                    <select name="board_id" id="board" required>
-                        <option value="">请选择</option>
-                        {#                                默认选中从哪个board过来的，判断依据是bid，所以会复杂一些#}
-                        <!--此处有问题，set似乎不管用了，-->
-                        {% for b in bs %}
-                            {% set yes = '' %}
-                            {% if bid == b.id %}
-                                {% set yes = 'selected' %}
-                            {% endif %}
-                            <option value="{{ b.id }}"  {{ yes }} >{{ b.title }}</option>
-                            {#                                <option value="{{ b.id }}">{{ b.title }}</option>#}
-                        {% endfor %}
-                    </select>
-                    <textarea autofocus class='span9' id='title' name='title' rows='1'
-                              placeholder="标题字数 10 字以上"></textarea>
-                    <div class='markdown_editor in_editor'>
-                        <div class='markdown_in_editor'>
-                                <textarea class='editor' name='content' rows='20'
-                                          placeholder='文章支持 Markdown 语法, 请注意标记代码'></textarea>
-                            <div class='editor_buttons'>
-                                <input type="submit" class='span-primary submit_btn' data-loading-text="提交中"
-                                       value="发表新推特">
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-    </div>
+    {{ macros.user_action_new_content('tweet.index', 'tweet.add', token, bs=bs, board_id=board_id, header_a='主页', header_title='发布tweet', select=true) }}
 {% endblock %}
 

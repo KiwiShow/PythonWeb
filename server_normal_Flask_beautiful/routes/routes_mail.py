@@ -57,7 +57,7 @@ def add():
         m = Mail.new(form)
         # 管理员 回到管理员 界面
         if current_user().id == 1:
-            return redirect(url_for('user.admin', token=gg.token[current_user().id]))
+            return redirect(url_for('.index', token=gg.token[current_user().id]))
         return redirect(url_for('.index'))
 
 
