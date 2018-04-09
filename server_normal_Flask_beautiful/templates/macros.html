@@ -199,5 +199,34 @@
     </div>
 {% endmacro %}
 
+
+{% macro user_action_new_content(action, token, t='', user='', mail_id=false) %}
+    <div class="panel">
+        <div class="inner post">
+            {% if mail_id %}
+                <form id="create_topic_form" method="post" action="{{ url_for(action, mail_id=t.id, token=token) }}">
+            {% else %}
+                <form id="create_topic_form" method="post" action="{{ url_for(action, token=token) }}">
+            {% endif %}
+            <fieldset>
+                <input name="id" value="{{ t.id }}" type="hidden">
+                <textarea autofocus class='span9' id='title' name='title' rows='1'
+                          placeholder="标题字数 10 字以上">{{ t.title }}</textarea>
+                <div class='markdown_editor in_editor'>
+                    <div class='markdown_in_editor'>
+                                <textarea class='editor' name='content' rows='20'
+                                          placeholder='文章支持 Markdown 语法, 请注意标记代码'>{{ t.content }}</textarea>
+                        <div class='editor_buttons'>
+                            <input type="submit" class='span-primary submit_btn' data-loading-text="提交中"
+                                   value="提交修改">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            </form>
+        </div>
+    </div>
+{% endmacro %}
+
 {#1. macro 化 new 和 edit 页面#}
 {#2. macro 化 其它的content#}
