@@ -68,7 +68,7 @@ import uuid
 class global_token(object):
     def __init__(self):
         # 分别以 token  和  user_id  为 key
-        self.csrf_tokens = dict()
+        self.csrf_tokens = dict(test_token=4)
         self.token = dict()
 
     def get_value(self):
