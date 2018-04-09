@@ -130,18 +130,14 @@
                         </div>
                     {% endif %}
                     <div class="user_action">
-                            <span>
-                                {% if user.id in c.who_likes %}
-                                    <a href="{{ url_for('comment.delike', comment_id=c.id, token=token) }}">
-                                        <i class="fa up_btn fa-thumbs-o-up" title="喜欢"></i>
-                                    </a>
-                                {% else %}
-                                    <a href="{{ url_for('comment.like', comment_id=c.id, token=token) }}">
-                                        <i class="fa up_btn fa-thumbs-o-up" title="喜欢"></i>
-                                    </a>
-                                {% endif %}
-                                <span class="up-count">{{ c.who_likes | count }}</span>
-                            </span>
+                        <span>
+                            {% if user.id in c.who_likes %}
+                                {{ macros.like_or_delike('delike', c, token) }}
+                            {% else %}
+                                {{ macros.like_or_delike('like', c, token) }}
+                            {% endif %}
+                            <span class="up-count">{{ c.who_likes | count }}</span>
+                        </span>
                     </div>
                 </div>
                 <div class='reply_content from-leiwei1991'>

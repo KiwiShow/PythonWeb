@@ -316,6 +316,14 @@
     {% endif %}
 {% endmacro %}
 
+{% macro like_or_delike(type, c, token) %}
+    {% set types = {'like': 'comment.like', 'delike': 'comment.delike'} %}
+    <a href="{{ url_for(types[type], comment_id=c.id, token=token) }}">
+        <i class="fa up_btn fa-thumbs-o-up" title="喜欢"></i>
+    </a>
+{% endmacro %}
+
+
 
 
 {#1. macro 化 content 的 index 和 detail 页面#}
