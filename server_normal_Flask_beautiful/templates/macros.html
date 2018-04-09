@@ -200,7 +200,7 @@
 {% endmacro %}
 
 
-{% macro user_action_edit_content(action, token, t='', user='', mail_id=false) %}
+{% macro user_action_edit_content(action, token, t='', user='', mail_id=false, is_not_comment=true) %}
     <div class="panel">
         <div class="inner post">
             {% if mail_id %}
@@ -210,8 +210,10 @@
             {% endif %}
             <fieldset>
                 <input name="id" value="{{ t.id }}" type="hidden">
+                {% if is_not_comment %}
                 <textarea autofocus class='span9' id='title' name='title' rows='1'
                           placeholder="标题字数 10 字以上">{{ t.title }}</textarea>
+                {% endif %}
                 <div class='markdown_editor in_editor'>
                     <div class='markdown_in_editor'>
                                 <textarea class='editor' name='content' rows='20'
@@ -228,4 +230,23 @@
     </div>
 {% endmacro %}
 
-{#1. macro 化 其它的content#}
+{% macro pagination(action, pages, current_page, board_id) %}
+    <div class="pagination">
+        <ul>
+            {% for p in pages %}
+                {% set i = loop.index %}
+
+                {% if loop.index == current_page %}
+                    <li class="disabled active"><a>{{ i }}</a></li>
+                {% elif loop.index == 1 %}
+                    <li><a href="{{ url_for(action) }}">1</a></li>
+                {% else %}
+                    <li><a href="{{ url_for(action, board_id=board_id, page=i) }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endmacro %}
+
+
+{#1. macro 化 content 的 index 和 detail 页面#}

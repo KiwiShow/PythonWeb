@@ -47,8 +47,8 @@ def index():
         print('from tweet  before', gg.csrf_tokens)
         gg.reset_value(user.id)
         print('from tweet  after', gg.csrf_tokens)
-        return render_template('tweet/tweet_index.html', current_page=current_page, pages = range(pages), tweets=tweets, bs=bs, bid=board_id, user=user, token=gg.token[user.id])
-    return render_template('tweet/tweet_index.html', pages = range(pages), tweets=tweets, bs=bs, bid=board_id, user=user)
+        return render_template('tweet/tweet_index.html', current_page=current_page, pages = range(pages), tweets=tweets, bs=bs, board_id=board_id, user=user, token=gg.token[user.id])
+    return render_template('tweet/tweet_index.html', pages = range(pages), tweets=tweets, bs=bs, board_id=board_id, user=user)
 
 
 @main.route('/delete/<int:tweet_id>', methods=['GET'])
