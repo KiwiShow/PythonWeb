@@ -19,30 +19,9 @@
             <form id='change_pass_form' class='form-horizontal'
                   action='{{ url_for('user.admin_update', token=token) }}' method='post'>
                 <input name="id" value="{{ u.id }}" type="hidden">
-                <div class='control-group'>
-                    <label class='control-label'>username</label>
-
-                    <div class='controls'>
-                        <input class='input-xlarge' name='username' value="{{ u.username }}" size='30'/>
-                    </div>
-                </div>
-
-                <div class='control-group'>
-                    <label class='control-label'>password</label>
-
-                    <div class='controls'>
-                        <input class='input-xlarge' name='password' value="{{ u.password }}" size='30'/>
-                    </div>
-                </div>
-
-                <div class='control-group'>
-                    <label class='control-label'>note</label>
-
-                    <div class='controls'>
-                        <input class='input-xlarge' name='note' value="{{ u.note }}" size='30'/>
-                    </div>
-                </div>
-
+                {{ macros.control_group('text', 'username', '用户名', value=u.username) }}
+                {{ macros.control_group('text', 'password', '密码', value=u.password) }}
+                {{ macros.control_group('text', 'note', 'note', value=u.note) }}
                 <div class='form-actions'>
                     <input type='submit' class='span-primary submit_btn' data-loading-text="更改中.." value='更改信息'/>
                 </div>

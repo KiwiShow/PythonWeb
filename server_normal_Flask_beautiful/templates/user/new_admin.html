@@ -15,22 +15,9 @@
         </div>
         <div class="inner">
             <form id="signin_form" action="{{ url_for('user.admin_register', token=token) }}" method="post">
-                <div class="control-group">
-                    <label class="control-label" for="username">用户名</label>
+                {{ macros.control_group('text', 'username', '用户名') }}
+                {{ macros.control_group('text', 'password', '密码') }}
 
-                    <div class="controls">
-                        <input class="input-xlarge" id="name" name="username" size="30" type="text"
-                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="password">密码</label>
-
-                    <div class="controls">
-                        <input class="input-xlarge" id="pass" name="password" size="30" type="password"
-                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                    </div>
-                </div>
                 <div class="form-actions">
                     <input type="submit" class="span-primary" value="注册">
                 </div>
@@ -43,14 +30,7 @@
         </div>
         <div class="inner">
             <form id="signin_form" action="{{ url_for('board.add', token=token) }}" method="post">
-                <div class="control-group">
-                    <label class="control-label" for="password">title</label>
-
-                    <div class="controls">
-                        <input class="input-xlarge" id="pass" name="title" size="30" type="password"
-                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                    </div>
-                </div>
+                {{ macros.control_group('text', 'title', 'title') }}
                 <div class="form-actions">
                     <input type="submit" class="span-primary" value="添加">
                 </div>
@@ -64,33 +44,9 @@
         <div class="inner">
             <form id="signin_form" action="{{ url_for('mail.add', token=token) }}" method="post">
                 <input type="hidden" name="sender_id" value="1">
-
-                <div class="control-group">
-                    <label class="control-label" for="receiver_id">用户id</label>
-
-                    <div class="controls">
-                        <input class="input-xlarge" id="name" name="receiver_id" size="30" type="text"
-                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="title">title</label>
-
-                    <div class="controls">
-                        <input class="input-xlarge" id="pass" name="title" size="30" type="password"
-                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label" for="content">content</label>
-
-                    <div class="controls">
-                        <input class="input-xlarge" id="pass" name="content" size="30" type="password"
-                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                    </div>
-                </div>
-
+                {{ macros.control_group('text', 'receiver_id', '用户id') }}
+                {{ macros.control_group('text', 'title', 'title') }}
+                {{ macros.control_group('text', 'content', 'content') }}
 
                 <div class="form-actions">
                     <input type="submit" class="span-primary" value="发送">
@@ -105,25 +61,8 @@
         <div class="inner">
             <form id="signin_form" action="{{ url_for('mail.admin_add', token=token) }}" method="post">
                 <input type="hidden" name="sender_id" value="1">
-
-                <div class="control-group">
-                    <label class="control-label" for="title">title</label>
-
-                    <div class="controls">
-                        <input class="input-xlarge" id="pass" name="title" size="30" type="password"
-                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label" for="content">content</label>
-
-                    <div class="controls">
-                        <input class="input-xlarge" id="pass" name="content" size="30" type="password"
-                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                    </div>
-                </div>
-
+                {{ macros.control_group('text', 'title', 'title') }}
+                {{ macros.control_group('text', 'content', 'content') }}
 
                 <div class="form-actions">
                     <input type="submit" class="span-primary" value="发送">
@@ -139,33 +78,13 @@
         <div class="header">
             <span class="col_fade">所有用户</span>
         </div>
-        {% if users == [] %}
-            <div class="inner">
-                <p>无用户</p>
-            </div>
-        {% endif %}
         {% for u in users %}
             <div class="cell">
-                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=u.id) }}">
-                    <img src="{{ u.user_image }}" title="{{ u.username }}">
-                </a>
-                <span class="reply_count pull-left">
-                    <span class="count_of_replies" title="序号">
-                      {{ loop.index }}
-                    </span>
-                    <span class="count_seperator">/</span>
-                    <span class="count_of_visits" title="总数">
-                      {{ users | count }}
-                    </span>
-                </span>
-                <a class="last_time pull-right">
-                    <span class="last_active_time time" data-type='创建于 ' id="{{ u.created_time }}"></span>
-                </a>
+                {{ macros.user_avatar_left(u) }}
+                {{ macros.counts(users, loop=loop, type='b', title_a="序号", title_b="总数") }}
+                {{ macros.last_time(u, type='b') }}
                 <div class="topic_title_wrapper changes">
-
-                    <span class="topic_title">
-                        {{ u.username }}
-                    </span>
+                    {{ macros.topic_title('user.user_detail', u, 'user') }}
 
                     <span>
                         <a href="{{ url_for('user.user_delete', user_id=u.id, token=token) }}">删除</a>
@@ -175,36 +94,22 @@
                     </span>
                 </div>
             </div>
+        {% else %}
+            <div class="inner">
+                <p>无用户</p>
+            </div>
         {% endfor %}
     </div>
     <div class="panel">
         <div class="header">
             <span class="col_fade">所有Board</span>
         </div>
-        {% if boards == [] %}
-            <div class="inner">
-                <p>无Board</p>
-            </div>
-        {% endif %}
         {% for b in boards %}
             <div class="cell">
-                <span class="reply_count pull-left">
-                    <span class="count_of_replies" title="序号">
-                      {{ loop.index }}
-                    </span>
-                    <span class="count_seperator">/</span>
-                    <span class="count_of_visits" title="总数">
-                      {{ boards | count }}
-                    </span>
-                </span>
-                <a class="last_time pull-right">
-                    <span class="last_active_time time" data-type='创建于 ' id="{{ b.created_time }}"></span>
-                </a>
+                {{ macros.counts(boards, loop=loop, type='b', title_a="序号", title_b="总数") }}
+                {{ macros.last_time(b, type='b') }}
                 <div class="topic_title_wrapper changes">
-
-                    <span class="topic_title">
-                        {{ b.title }}
-                    </span>
+                    {{ macros.topic_title('tweet.index', b, 'board') }}
 
                     <span>
                         <a href="{{ url_for('board.delete', board_id=b.id, token=token) }}">删除</a>
@@ -214,41 +119,24 @@
                     </span>
                 </div>
             </div>
+        {% else %}
+            <div class="inner">
+                <p>无Board</p>
+            </div>
         {% endfor %}
     </div>
     <div class="panel">
         <div class="header">
             <span class="col_fade">所有私信</span>
         </div>
-        {% if mails == [] %}
-            <div class="inner">
-                <p>无私信</p>
-            </div>
-        {% endif %}
         {% for m in mails %}
             {% set from_user = m.from_user() %}
             {% set to_user = m.to_user() %}
             <div class="cell">
-                <a class="user_avatar pull-left" href="{{ url_for('user.user_detail', id=from_user.id) }}">
-                    <img src="{{ from_user.user_image }}" title="{{ from_user.username }}">
-                </a>
+                {{ macros.user_avatar_left(from_user) }}
+                {{ macros.counts(mails, loop=loop, type='b', title_a="序号", title_b="总数") }}
+                {{ macros.last_time(m, type='b', data_type='发送于 ') }}
 
-                <span class="reply_count pull-left">
-                    <span class="count_of_replies" title="序号">
-                      {{ loop.index }}
-                    </span>
-                    <span class="count_seperator">/</span>
-                    <span class="count_of_visits" title="总数">
-                      {{ mails | count }}
-                    </span>
-                </span>
-
-                <a class="last_time pull-right">
-                    <img class="user_small_avatar" href="{{ url_for('user.user_detail', id=to_user.id) }}"
-                         src="{{ to_user.user_image }}" title="{{ to_user.username }}">
-
-                    <span class="last_active_time time" data-type='创建于 ' id="{{ m.created_time }}"></span>
-                </a>
                 <div class="topic_title_wrapper changes">
                     <span class="topic_title">
                         {{ from_user.username }}
@@ -271,6 +159,10 @@
                         <a href="{{ url_for('mail.delete', mail_id=m.id, token=token) }}">删除</a>
                     </span>
                 </div>
+            </div>
+        {% else %}
+            <div class="inner">
+                <p>无私信</p>
             </div>
         {% endfor %}
     </div>

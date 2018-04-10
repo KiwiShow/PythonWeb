@@ -318,6 +318,16 @@
            title="{{ t.content }}">
             {{ t.content }}
         </a>
+    {% elif type == 'user' %}
+        <a class="topic_title" href="{{ url_for(action, id=t.id) }}"
+           title="{{ t.username }}">
+            {{ t.username }}
+        </a>
+    {% elif type == 'board' %}
+        <a class="topic_title" href="{{ url_for(action, board_id=t.id) }}"
+           title="{{ t.title }}">
+            {{ t.title }}
+        </a>
     {% endif %}
 {% endmacro %}
 
@@ -326,6 +336,19 @@
     <a href="{{ url_for(types[type], comment_id=c.id, token=token) }}">
         <i class="fa up_btn fa-thumbs-o-up" title="喜欢"></i>
     </a>
+{% endmacro %}
+
+{% macro control_group(type, name, label, value='') %}
+    <div class="control-group">
+        <label class="control-label" for="username">{{ label }}</label>
+
+        <div class="controls">
+            <input class="input-xlarge" id="name" name={{ name }}  size="30" type={{ type }} value='{{ value }}'
+                    style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;);
+            background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px;
+            background-position: 98% 50%;">
+        </div>
+    </div>
 {% endmacro %}
 
 
