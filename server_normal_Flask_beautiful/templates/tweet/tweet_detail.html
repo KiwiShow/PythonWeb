@@ -111,6 +111,16 @@
                             <a href="{{ url_for('comment.delete', comment_id=c.id, token=token) }}">删除</a>
                             <a href="{{ url_for('comment.edit', comment_id=c.id, token=token) }}">编辑</a>
                         {% endif %}
+                        <div class="user_action">
+                        <span>
+                            {% if user.id in c.who_likes %}
+                                {{ macros.like_or_delike('delike', c, token) }}
+                            {% else %}
+                                {{ macros.like_or_delike('like', c, token) }}
+                            {% endif %}
+                            <span class="up-count">{{ c.who_likes | count }}</span>
+                        </span>
+                        </div>
 
                     {% else %}
                         <a href="{{ url_for('user.user_detail', id=u.id) }}" class="user_avatar">
@@ -132,9 +142,9 @@
                     <div class="user_action">
                         <span>
                             {% if user.id in c.who_likes %}
-                                {{ macros.like_or_delike('delike', c, token) }}
+                                {{ macros.like_or_delike('delike', c) }}
                             {% else %}
-                                {{ macros.like_or_delike('like', c, token) }}
+                                {{ macros.like_or_delike('like', c) }}
                             {% endif %}
                             <span class="up-count">{{ c.who_likes | count }}</span>
                         </span>

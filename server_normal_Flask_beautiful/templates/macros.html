@@ -331,11 +331,17 @@
     {% endif %}
 {% endmacro %}
 
-{% macro like_or_delike(type, c, token) %}
+{% macro like_or_delike(type, c, token='') %}
     {% set types = {'like': 'comment.like', 'delike': 'comment.delike'} %}
-    <a href="{{ url_for(types[type], comment_id=c.id, token=token) }}">
-        <i class="fa up_btn fa-thumbs-o-up" title="喜欢"></i>
-    </a>
+    {% if token %}
+        <a href="{{ url_for(types[type], comment_id=c.id, token=token) }}">
+            <i class="fa up_btn fa-thumbs-o-up" title="喜欢"></i>
+        </a>
+    {% else %}
+        <a href="{{ url_for(types[type], comment_id=c.id) }}">
+            <i class="fa up_btn fa-thumbs-o-up" title="喜欢"></i>
+        </a>
+    {% endif %}
 {% endmacro %}
 
 {% macro control_group(type, name, label, value='') %}
