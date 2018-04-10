@@ -27,8 +27,6 @@ class Todo(MonModel):
             t.status = True
         else:
             t.status = False
-        print(type(t.status))
-        print(type(completed))
         t.save()
         return t
 
