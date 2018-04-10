@@ -99,8 +99,9 @@ class global_token(object):
             self.token.pop(user_id)
 
     def reset_value(self, user_id):
-        self.delete_value(user_id)
-        self.set_value(user_id)
+        if user_id != 4:
+            self.delete_value(user_id)
+            self.set_value(user_id)
 
 
 gg = global_token()
