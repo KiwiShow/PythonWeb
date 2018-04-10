@@ -4,6 +4,7 @@ from .tweet import Tweet
 from .comment import Comment
 from config import  check_image
 import hashlib
+from flask import abort
 import time
 
 
@@ -98,7 +99,9 @@ class User(MonModel):
         # return False
         # 更加简洁
         user = User.find_by(username=form.get('username'))
-        return user is not None and user.password == User.salted_password(form.get('password'))
+        if user is not None and user.password == User.salted_password(form.get('password')):
+            return True
+        abort(403)
 
     @classmethod
     def validate_register(cls, form):
@@ -108,9 +111,8 @@ class User(MonModel):
         if User.find_by(username=username) is None and len(username) > 2 and len(password) > 2:
             u = User.new(form, password=User.salted_password(password))
             # u.password = u.salted_password(password)  # 加盐
-
             return True
-        return False
+        abort(403)
 
     # 增加一个获取该user全部todo的函数 todo
     def todos(self):
@@ -140,7 +142,8 @@ class User(MonModel):
         )
         user = current_user()
         if user.id != 1:
-            return redirect(url_for('.user_login'))
+            abort(401)
+            # return redirect(url_for('.user_login'))
 
     # 增加图片上传和验证和图床功能
     def save_and_up(self, file):

@@ -233,7 +233,7 @@ class MonModel(object):
         from flask import redirect, url_for
         u = current_user()
         if u.id != m.user_id:
-            return redirect(url_for('.login'))
+            abort(401)
 
     @classmethod
     def check_token(cls):
@@ -243,7 +243,7 @@ class MonModel(object):
         if gg.csrf_tokens[token] == user.id:
             return True
         else:
-            abort(403)
+            abort(401)
 
 
 

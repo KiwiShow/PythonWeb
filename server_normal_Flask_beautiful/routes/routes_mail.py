@@ -38,6 +38,8 @@ def index():
         received_mail = Mail.find_all(receiver_id=user.id, receiver_deleted=False)
         return render_template('mail/mail_index.html', sends=send_mail, receives=received_mail, token=gg.token[user.id],
                                user=user)
+    else:
+        abort(401)
 
 
 @main.route('/new/<int:to_user_id>', methods=['GET'])
@@ -57,7 +59,7 @@ def add():
         m = Mail.new(form)
         # 管理员 回到管理员 界面
         if current_user().id == 1:
-            return redirect(url_for('.index', token=gg.token[current_user().id]))
+            return redirect(url_for('user.admin'))
         return redirect(url_for('.index'))
 
 
@@ -91,7 +93,8 @@ def edit(mail_id):
         m = Mail.find(mail_id)
         if current_user().id in [m.receiver_id, m.sender_id]:
             return render_template('mail/mail_edit.html', m=m, token=gg.token[user.id], user=user)
-
+        else:
+            abort(401)
 
 @main.route('/update/<int:mail_id>', methods=['POST'])
 @login_required
@@ -103,6 +106,8 @@ def update(mail_id):
             Mail.update(form)
             # redirect有必要加query吗
             return redirect(url_for('.index'))
+        else:
+            abort(401)
 
 
 @main.route('/detail/<int:mail_id>', methods=['GET'])

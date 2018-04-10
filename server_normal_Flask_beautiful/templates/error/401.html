@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% import "macros.html" as macros %}
+
+{% block title %}
+    Unauthorized
+{% endblock %}
+
+{% block sidebar_panel %}
+    {{ macros.user_info_sidebar(user) }}
+{% endblock %}
+
+{% block content %}
+    <h1>您没有此操作权限，请<a href="{{ url_for('tweet.index') }}">登录</a>或更换账号登录</h1>
+{% endblock %}

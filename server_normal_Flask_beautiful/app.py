@@ -7,6 +7,7 @@ from routes.routes_tweet import main as tweet_routes
 from routes.routes_comment import main as comment_routes
 from routes.routes_board import main as board_routes
 from routes.routes_mail import main as mail_routes
+from routes.routes_error import main as error_routes
 
 
 from utils import log
@@ -34,6 +35,7 @@ def register_routes(app):
     app.register_blueprint(comment_routes, url_prefix='/comment')
     app.register_blueprint(board_routes, url_prefix='/board')
     app.register_blueprint(mail_routes, url_prefix='/mail')
+    app.register_blueprint(error_routes, url_prefix='/error')
 
 
 # 运行

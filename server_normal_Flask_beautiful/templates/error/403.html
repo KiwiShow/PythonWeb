@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% import "macros.html" as macros %}
+
+{% block title %}
+    Forbidden
+{% endblock %}
+
+{% block sidebar_panel %}
+    {{ macros.user_info_sidebar(user) }}
+{% endblock %}
+
+{% block content %}
+    <h1>输入不符合要求，请核对后再输入</h1>
+{% endblock %}

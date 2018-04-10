@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% import "macros.html" as macros %}
+
+{% block title %}
+    Page Not Found
+{% endblock %}
+
+{% block sidebar_panel %}
+    {{ macros.user_info_sidebar(user) }}
+{% endblock %}
+
+{% block content %}
+    <h1>页面去火星了</h1>
+{% endblock %}
