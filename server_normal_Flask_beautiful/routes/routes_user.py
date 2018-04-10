@@ -192,7 +192,7 @@ def add_img():
     if User.check_token():
         file = request.files['avatar']
         user.save_and_up(file)
-        return redirect(url_for('.user_setting', id=u.id, token=gg.token[user.id]))
+        return redirect(url_for('.user_setting', id=user.id, token=gg.token[user.id]))
 
 
 # web后端上传头像，后续可以改成Nginx+图床
@@ -272,7 +272,9 @@ def user_signin():
     if form.get('username', None):
         if User.validate_login(form):
             u = User.find_by(username=form.get('username'))
+            print('from signin  before', session)
             session['user_id'] = u.id
+            print('from signin  after', session)
             return redirect(url_for('tweet.index'))
 
 
@@ -303,5 +305,8 @@ def user_signout():
     在session中删除当前登录的user_id
     :return: 返回login页面
     """
-    session.pop('user_id')
-    return redirect(url_for('tweet.index'))
+    if User.check_token():
+        print('from signout  before', session)
+        session.pop('user_id')
+        print('from signout  after', session)
+        return redirect(url_for('tweet.index'))
