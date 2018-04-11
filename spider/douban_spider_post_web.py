@@ -7,6 +7,8 @@ from pyquery import PyQuery as pq
 2.html页面 -> 结构化的页面 HtmlParser  pyquery(lxml)
 3.DataModel
 '''
+
+
 class Model(object):
     def __repr__(self):
         name = self.__class__.__name__
@@ -96,12 +98,12 @@ def up_to_web(title, movies):
     content = ''
     for m in movies:
         content += template.format(m.ranking, m.name, m.score, m.quote)
-    url_2 = 'http://localhost:5000/tweet/add?token=test_token&board_id=4'
-    data_2 = {'title': title, 'content': content, 'board_id':4}
+    url_2 = 'http://localhost:5000/tweet/add?token=test_token&board_id=6'
+    data_2 = {'title': title, 'content': content, 'board_id': 6}
     s.post(url_2, data_2)
 
 
-def main():
+def up():
     # for i in range(0, 250, 25):
     url = 'https://movie.douban.com/top250?start={}'.format(0)
     movies = movie_from_url(url)
@@ -109,6 +111,13 @@ def main():
     print('top250 movies', movies)
     [download_image(m.cover_url) for m in movies]
 
+def main():
+    import schedule
+    import time
+    schedule.every(1).minutes.do(up)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
 if __name__ == '__main__':
     main()
