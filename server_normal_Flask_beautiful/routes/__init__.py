@@ -33,12 +33,12 @@ def tweets_and_boards(board_id, current_page):
         tweets = Tweet.find_all()
     else:
         tweets = Tweet.find_all(board_id=board_id)
-    # 每页显示2个Tweet
-    pages = math.ceil(len(tweets) / 2)
+    # 每页显示4个Tweet
+    pages = math.ceil(len(tweets) / 4)
     if current_page < pages:
-        tweets = tweets[(current_page - 1) * 2 : current_page * 2]
+        tweets = tweets[(current_page - 1) * 4 : current_page * 4]
     else:
-        tweets = tweets[(current_page - 1) * 2 ::]
+        tweets = tweets[(current_page - 1) * 4 ::]
     bs = Board.find_all()
     return tweets, bs, pages
 
