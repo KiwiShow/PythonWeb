@@ -75,6 +75,7 @@ def new():
 @login_required
 def add():
     user = current_user()
+    # 这个board_id 是为了跳转index页面而存在，而不是为title和content服务，form里面还应有board_id
     board_id = int(request.args.get('board_id', -1))
     if Tweet.check_token():
         form = request.form
