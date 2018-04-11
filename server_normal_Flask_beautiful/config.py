@@ -69,7 +69,7 @@ class global_token(object):
     def __init__(self):
         # 分别以 token  和  user_id  为 key
         self.csrf_tokens = dict(test_token=4)
-        self.token = dict()
+        self.token = {4:'test_token'}
 
     def get_value(self):
         return self.csrf_tokens, self.token
@@ -102,6 +102,8 @@ class global_token(object):
         if user_id != 4:
             self.delete_value(user_id)
             self.set_value(user_id)
+        else:
+            pass
 
 
 gg = global_token()
