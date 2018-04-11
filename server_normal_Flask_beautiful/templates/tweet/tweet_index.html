@@ -51,6 +51,10 @@
                     {% endif %}
                 </div>
             </div>
+        {% else %}
+            <div class="inner">
+                <p>无tweet</p>
+            </div>
         {% endfor %}
     </div>
     {{ macros.pagination('tweet.index', pages, current_page, board_id) }}

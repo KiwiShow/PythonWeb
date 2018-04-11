@@ -138,8 +138,7 @@
                                 {% endif %}
                             </a>
                         </div>
-                    {% endif %}
-                    <div class="user_action">
+                        <div class="user_action">
                         <span>
                             {% if user.id in c.who_likes %}
                                 {{ macros.like_or_delike('delike', c) }}
@@ -148,7 +147,8 @@
                             {% endif %}
                             <span class="up-count">{{ c.who_likes | count }}</span>
                         </span>
-                    </div>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class='reply_content from-leiwei1991'>
                     <div class="markdown-text">{{ c.content }}</div>
