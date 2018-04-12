@@ -15,6 +15,7 @@ from flask import (
     make_response,
     send_from_directory,
     abort,
+    flash,
 )
 from models.user import User
 from models.board import Board
@@ -267,7 +268,7 @@ def user_login():
 
 
 # 增加一个signin的路由函数
-@main.route('/signin', methods=['POST'])
+@main.route('/signin', methods=['GET', 'POST'])
 def user_signin():
     form = request.form
     log('from route_login --> cookies: ', request.cookies)
@@ -279,6 +280,9 @@ def user_signin():
             session['user_id'] = u.id
             print('from signin  after', session)
             return redirect(url_for('tweet.index'))
+        else:
+            flash('账号密码输入错误，请核对后再输入')
+            return redirect(url_for('.user_login'))
 
 
 # 增加一个去register页面的路由函数
@@ -300,6 +304,9 @@ def user_register():
     form = request.form
     if User.validate_register(form):
         return redirect(url_for('user.user_login'))
+    else:
+        flash('用户名和密码长度必须大于2，请核对后再输入')
+        return redirect(url_for('.user_reg'))
 
 
 @main.route('/signout')

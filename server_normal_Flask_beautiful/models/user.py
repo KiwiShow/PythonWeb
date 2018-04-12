@@ -101,7 +101,6 @@ class User(MonModel):
         user = User.find_by(username=form.get('username'))
         if user is not None and user.password == User.salted_password(form.get('password')):
             return True
-        abort(403)
 
     @classmethod
     def validate_register(cls, form):
@@ -112,7 +111,6 @@ class User(MonModel):
             u = User.new(form, password=User.salted_password(password))
             # u.password = u.salted_password(password)  # 加盐
             return True
-        abort(403)
 
     # 增加一个获取该user全部todo的函数 todo
     def todos(self):
