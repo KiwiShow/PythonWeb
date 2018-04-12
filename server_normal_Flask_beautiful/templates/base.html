@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %} - My Webpage</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="//o4j806krb.qnssl.com/public/stylesheets/index.min.23a5b1ca.min.css" media="all">
     <script src="//cdn.bootcss.com/marked/0.3.19/marked.min.js"></script>
     <script src="//o4j806krb.qnssl.com/public/index.min.f7c13f64.min.js"></script>
@@ -110,7 +112,7 @@
                     {#let s = delta + ' 秒前'#}
                     {#let ss = day + ' 天前' + hour + ' 小时前' + minute + ' 分前'#}
                     ss = moment(time).fromNow()
-                    t.innerHTML = t.dataset.type +  ss
+                    t.innerHTML = t.dataset.type + ss
                 }
             }, 1000)
 
