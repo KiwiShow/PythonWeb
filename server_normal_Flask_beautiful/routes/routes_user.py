@@ -14,6 +14,7 @@ from flask import (
     session,
     make_response,
     send_from_directory,
+    abort,
 )
 from models.user import User
 from models.board import Board
@@ -222,6 +223,8 @@ def hack():
 def user_detail(id):
     user = current_user()
     u = User.find(id)
+    if u is None:
+        abort(404)
     if user is not None:
         # 保证每次调用index函数时清空gg,保证每次调用index函数时都有新的token可用
         print('from profile  before', gg.csrf_tokens)
