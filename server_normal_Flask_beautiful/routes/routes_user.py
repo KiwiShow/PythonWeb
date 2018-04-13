@@ -260,16 +260,9 @@ def user_setting():
         return render_template('user/setting.html', user=user, token=gg.token[user.id], bid=-1)
 
 
-# 增加一个去login页面的路由函数
-@main.route('/login', methods=['GET'])
+# GET 去 登陆 页面， POST 提交表单
+@main.route('/login', methods=['GET', 'POST'])
 def user_login():
-    user = current_user()
-    return render_template('user/new_login.html', u=user)
-
-
-# 增加一个signin的路由函数
-@main.route('/signin', methods=['GET', 'POST'])
-def user_signin():
     form = request.form
     log('from route_login --> cookies: ', request.cookies)
     # ImmutableMultiDict([])是什么鬼？
@@ -283,17 +276,12 @@ def user_signin():
         else:
             flash('账号密码输入错误，请核对后再输入')
             return redirect(url_for('.user_login'))
+    else:
+        return render_template('user/new_login.html')
 
 
-# 增加一个去register页面的路由函数
-@main.route('/register_page', methods=['GET'])
-def user_reg():
-    user = current_user()
-    return render_template('user/new_register.html', u=user)
-
-
-# 增加一个register的路由函数
-@main.route('/register', methods=['POST'])
+# GET 去  注册 页面， POST 提交表单
+@main.route('/register', methods=['GET', 'POST'])
 def user_register():
     """
     允许GET是因为在地址栏输入地址转到register页面需要
@@ -302,11 +290,14 @@ def user_register():
     :return: 返回register页面，并显示所有用户信息
     """
     form = request.form
-    if User.validate_register(form):
-        return redirect(url_for('user.user_login'))
+    if form.get('username', None):
+        if User.validate_register(form):
+            return redirect(url_for('user.user_login'))
+        else:
+            flash('用户名和密码长度必须大于2，请核对后再输入')
+            return redirect(url_for('.user_register'))
     else:
-        flash('用户名和密码长度必须大于2，请核对后再输入')
-        return redirect(url_for('.user_reg'))
+        return render_template('user/new_register.html')
 
 
 @main.route('/signout')
