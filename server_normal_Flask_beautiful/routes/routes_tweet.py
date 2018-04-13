@@ -61,17 +61,17 @@ def delete(tweet_id):
         return redirect(url_for('.index'))
 
 
-@main.route('/new', methods=['GET'])
-@login_required
-def new():
-    user = current_user()
-    board_id = int(request.args.get('board_id', -1))
-    if Tweet.check_token():
-        bs = Board.find_all()
-        return render_template('tweet/tweet_new.html', token=gg.token[user.id], bs=bs, board_id=board_id, user=user)
+# @main.route('/new', methods=['GET'])
+# @login_required
+# def new():
+#     user = current_user()
+#     board_id = int(request.args.get('board_id', -1))
+#     if Tweet.check_token():
+#         bs = Board.find_all()
+#         return render_template('tweet/tweet_new.html', token=gg.token[user.id], bs=bs, board_id=board_id, user=user)
 
 
-@main.route('/add', methods=['POST'])
+@main.route('/add', methods=['GET', 'POST'])
 @login_required
 def add():
     user = current_user()
@@ -79,12 +79,16 @@ def add():
     board_id = int(request.args.get('board_id', -1))
     if Tweet.check_token():
         form = request.form
-        t = Tweet.new(form, user_id=user.id, user_name=user.username)
-        # t.user_id = u.id
-        # t.save()
-        # redirect有必要加query吗
-        # return redirect('/tweet/index?user_id={}'.format(user.id))
-        return redirect(url_for('.index', board_id=board_id))
+        if form.get('title'):
+            t = Tweet.new(form, user_id=user.id, user_name=user.username)
+            # t.user_id = u.id
+            # t.save()
+            # redirect有必要加query吗
+            # return redirect('/tweet/index?user_id={}'.format(user.id))
+            return redirect(url_for('.index', board_id=board_id))
+        else:
+            bs = Board.find_all()
+            return render_template('tweet/tweet_new.html', token=gg.token[user.id], bs=bs, board_id=board_id, user=user)
 
 
 @main.route('/edit/<int:tweet_id>', methods=['GET'])

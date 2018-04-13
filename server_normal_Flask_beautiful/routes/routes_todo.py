@@ -40,15 +40,15 @@ def index():
 
 
 # 增加new路由函数去增加的页面
-@main.route('/new', methods=['GET'])
-@login_required
-def new():
-    user = current_user()
-    if Todo.check_token():
-        return render_template('todo/todo_new.html', token=gg.token[user.id], user=user)
+# @main.route('/new', methods=['GET'])
+# @login_required
+# def new():
+#     user = current_user()
+#     if Todo.check_token():
+#         return render_template('todo/todo_new.html', token=gg.token[user.id], user=user)
 
 
-@main.route('/add', methods=['POST'])
+@main.route('/add', methods=['GET', 'POST'])
 @login_required
 def add():
     """
@@ -58,8 +58,11 @@ def add():
     user = current_user()
     if Todo.check_token():
         form = request.form
-        t = Todo.new(form, user_id=user.id)
-        return redirect(url_for('.index'))
+        if form.get('title'):
+            t = Todo.new(form, user_id=user.id)
+            return redirect(url_for('.index'))
+        else:
+            return render_template('todo/todo_new.html', token=gg.token[user.id], user=user)
 
 
 @main.route('/edit/<int:todo_id>', methods=['GET'])
