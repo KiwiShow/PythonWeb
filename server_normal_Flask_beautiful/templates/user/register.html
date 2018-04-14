@@ -1,70 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>注册页面</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-</head>
-<body>
+{% extends "base.html" %}
 
-    <blockquote>
-      <p>每个人都会经过这个阶段，见到一座山，就想知道山后面是什么。我很想告诉他，可能翻过山后面，你会发现没什么特别。回望之下，可能会觉得这一边更好。</p>
-        <br>
-        <footer>王家卫<cite title="Source Title">《东邪西毒》</cite></footer>
-    </blockquote>
+{% import "macros.html" as macros %}
 
-    <br>
-    <br>
-    <form class="form-horizontal" method="post" action="{{ url_for('.test_register') }}">
-        <div class="control-group">
-            <label class="control-label">用户名</label>
-            <div class="controls">
-                <input type="text" class="input-xlarge" name="username">
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">密码</label>
-            <div class="controls">
-                <input type="text" class="input-xlarge" name="password">
-            </div>
-        </div>
-        <div class="form-actions">
-            <input type="submit" class="span-primary" value="注册">
-        </div>
-    </form>
+{% block title %}
+    Register
+{% endblock %}
 
-<!--
-假设你输入的  gwgw  123
-那么浏览器生成的请求是如下的样式
+{% block sidebar_panel %}
+    {{ macros.About_info_sidebar() }}
+{% endblock %}
 
-POST /register HTTP/1.1
-Content-Type: x-www-form-urlencoded
-Host: localhost:3000r
-
-username=gwgw&password=123
--->
-    <div class="lead">{{ result }}</div>
-    <br>
-    <table class="table table-hover">
-        <tr>
-            <th>ID</th>
-            <th>name</th>
-            <th>password(sha256)</th>
-            <th>created_time</th>
-        </tr>
-        {% for u in users %}
-        <tr>
-            <td>{{ u.id }}</td>
-            <td>{{ u.username }}</td>
-            <td>{{ u.password }}</td>
-            <td>{{ u.created_time }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-
-    <br>
-    <img src="http://p5shjfo1t.bkt.clouddn.com/user5.jpg" alt="..." class="img-rounded">
-    <a class="btn btn-primary btn-lg active" href="{{ url_for('.test_login') }}">去登录页面</a>
-
-</body>
-</html>
+{% block content %}
+    {{ macros.user_action_login_or_register('user.user_register', which='注册') }}
+{% endblock %}

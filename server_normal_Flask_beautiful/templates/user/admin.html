@@ -1,133 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>admin</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-</head>
-<body>
-    <blockquote>
-      <p>每个人都会经过这个阶段，见到一座山，就想知道山后面是什么。我很想告诉他，可能翻过山后面，你会发现没什么特别。回望之下，可能会觉得这一边更好。</p>
-        <br>
-        <footer>王家卫<cite title="Source Title">《东邪西毒》</cite></footer>
-    </blockquote>
+{% extends "base.html" %}
 
-    <br>
-    <div class="lead">admin list</div>
-    <br>
-    <form class="form-horizontal" method="post" action="{{ url_for('.admin_update') }}">
-        <div class="control-group">
-            <label class="control-label">ID</label>
-            <div class="controls">
-                <input type="text" class="input-xlarge" name="id">
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">USERNAME</label>
-            <div class="controls">
-                <input type="text" class="input-xlarge" name="username">
-            </div>
-        </div>
+{% import "macros.html" as macros %}
 
-        <div class="control-group">
-            <label class="control-label">PASSWORD</label>
-            <div class="controls">
-                <input type="text" class="input-xlarge" name="password">
-            </div>
-        </div>
-        <div class="form-actions">
-            <input type="submit" class="span-primary" value="更新">
-        </div>
-    </form>
+{% block title %}
+    管理员界面
+{% endblock %}
 
-    <form class="form-horizontal" method="post" action="{{ url_for('user.user_register') }}">
-        <div class="control-group">
-            <label class="control-label">用户名</label>
-            <div class="controls">
-                <input type="text" class="input-xlarge" name="username">
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">密码</label>
-            <div class="controls">
-                <input type="text" class="input-xlarge" name="password">
-            </div>
-        </div>
-        <div class="form-actions">
-            <input type="submit" class="span-primary" value="注册">
-        </div>
-    </form>
+{% block sidebar_panel %}
+    {{ macros.user_info_sidebar(user, title='管理员信息') }}
 
-        <table class="table table-hover">
-        <tr>
-            <th>ID</th>
-            <th>name</th>
-            <th>password(sha256)</th>
-            <th>created_time</th>
-            <th>想干啥?</th>
-        </tr>
+    <div class="panel">
+        <div class="header">
+            <span class='col_fade'>注册新用户</span>
+        </div>
+        <div class="inner">
+            <form id="signin_form" action="{{ url_for('user.admin_register', token=token) }}" method="post">
+                {{ macros.control_group('text', 'username', '用户名') }}
+                {{ macros.control_group('text', 'password', '密码') }}
+
+                <div class="form-actions">
+                    <input type="submit" class="span-primary" value="注册">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="header">
+            <span class='col_fade'>添加新Board</span>
+        </div>
+        <div class="inner">
+            <form id="signin_form" action="{{ url_for('board.add', token=token) }}" method="post">
+                {{ macros.control_group('text', 'title', 'title') }}
+                <div class="form-actions">
+                    <input type="submit" class="span-primary" value="添加">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="header">
+            <span class='col_fade'>发送私信(单人)</span>
+        </div>
+        <div class="inner">
+            <form id="signin_form" action="{{ url_for('mail.add', token=token) }}" method="post">
+                <input type="hidden" name="sender_id" value="1">
+                {{ macros.control_group('text', 'receiver_id', '用户id') }}
+                {{ macros.control_group('text', 'title', 'title') }}
+                {{ macros.control_group('text', 'content', 'content') }}
+
+                <div class="form-actions">
+                    <input type="submit" class="span-primary" value="发送">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="header">
+            <span class='col_fade'>发送私信(全体)</span>
+        </div>
+        <div class="inner">
+            <form id="signin_form" action="{{ url_for('mail.admin_add', token=token) }}" method="post">
+                <input type="hidden" name="sender_id" value="1">
+                {{ macros.control_group('text', 'title', 'title') }}
+                {{ macros.control_group('text', 'content', 'content') }}
+
+                <div class="form-actions">
+                    <input type="submit" class="span-primary" value="发送">
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">所有用户</span>
+        </div>
         {% for u in users %}
-        <tr>
-            <td>{{ u.id }}</td>
-            <td>{{ u.username }}</td>
-            <td>{{ u.password }}</td>
-            <td>{{ u.created_time }}</td>
-            <td><a href="{{ url_for('.user_delete', user_id=u.id) }}">删除</a></td>
+            <div class="cell">
+                {{ macros.user_avatar_left(u) }}
+                {{ macros.counts(users, loop=loop, type='b', title_a="序号", title_b="总数") }}
+                {{ macros.last_time(u, type='b') }}
+                <div class="topic_title_wrapper changes">
+                    {{ macros.topic_title('user.user_detail', u, 'user') }}
 
-        </tr>
+                    <span>
+                        <a href="{{ url_for('user.user_delete', user_id=u.id, token=token) }}">删除</a>
+                    </span>
+                    <span>
+                          <a href="{{ url_for('user.admin_edit', user_id=u.id, token=token) }}">编辑</a>
+                    </span>
+                </div>
+            </div>
+        {% else %}
+            <div class="inner">
+                <p>无用户</p>
+            </div>
         {% endfor %}
-    </table>
-
-
-    <br>
-    <div class="lead">board list</div>
-    <br>
-
-    <form class="form-horizontal" method="post" action="{{ url_for('board.add') }}">
-        <div class="control-group">
-            <label class="control-label">title</label>
-            <div class="controls">
-                <input type="text" class="input-xlarge" name="title">
-            </div>
+    </div>
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">所有Board</span>
         </div>
-        <div class="form-actions">
-            <input type="submit" class="span-primary" value="add">
-        </div>
-    </form>
-
-    <form class="form-horizontal" method="post" action="{{ url_for('board.update') }}">
-        <div class="control-group">
-            <label class="control-label">id</label>
-            <div class="controls">
-                <input type="text" class="input-xlarge" name="id">
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">title</label>
-            <div class="controls">
-                <input type="text" class="input-xlarge" name="title">
-            </div>
-        </div>
-        <div class="form-actions">
-            <input type="submit" class="span-primary" value="update">
-        </div>
-    </form>
-
-
-        <table class="table table-hover">
-        <tr>
-            <th>ID</th>
-            <th>title</th>
-            <th>想干啥?</th>
-        </tr>
         {% for b in boards %}
-        <tr>
-            <td>{{ b.id }}</td>
-            <td>{{ b.title }}</td>
-            <td><a href="{{ url_for('board.delete', board_id=b.id) }}">删除</a></td>
+            <div class="cell">
+                {{ macros.counts(boards, loop=loop, type='b', title_a="序号", title_b="总数") }}
+                {{ macros.last_time(b, type='b') }}
+                <div class="topic_title_wrapper changes">
+                    {{ macros.topic_title('tweet.index', b, 'board') }}
 
-        </tr>
+                    <span>
+                        <a href="{{ url_for('board.delete', board_id=b.id, token=token) }}">删除</a>
+                    </span>
+                    <span>
+                          <a href="{{ url_for('board.edit', board_id=b.id, token=token) }}">编辑</a>
+                    </span>
+                </div>
+            </div>
+        {% else %}
+            <div class="inner">
+                <p>无Board</p>
+            </div>
         {% endfor %}
-    </table>
-</body>
-</html>
+    </div>
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">所有私信</span>
+        </div>
+        {% for m in mails %}
+            {% set from_user = m.from_user() %}
+            {% set to_user = m.to_user() %}
+            <div class="cell">
+                {{ macros.user_avatar_left(from_user) }}
+                {{ macros.counts(mails, loop=loop, type='b', title_a="序号", title_b="总数") }}
+                {{ macros.last_time(m, type='b', data_type='发送于 ') }}
+
+                <div class="topic_title_wrapper changes">
+                    <span class="topic_title">
+                        {{ from_user.username }}
+                    </span>
+
+                    <span class="put_good">发送给</span>
+
+                    <span class="topic_title">
+                        {{ to_user.username }}
+                    </span>
+
+                    <span class="put_good">Title</span>
+
+                    <a class="topic_title" title="{{ m.title }} "
+                       href="{{ url_for('mail.detail', mail_id=m.id) }}">
+                        {{ m.title }}
+                    </a>
+
+                    <span>
+                        <a href="{{ url_for('mail.delete', mail_id=m.id, token=token) }}">删除</a>
+                    </span>
+                </div>
+            </div>
+        {% else %}
+            <div class="inner">
+                <p>无私信</p>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,25 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>edit todo </title>
-    <link rel="stylesheet" href="//o4j806krb.qnssl.com/public/stylesheets/index.min.23a5b1ca.min.css" media="all">
-</head>
-<body>
+{% extends "base.html" %}
 
-    <div id="main">
-        <div class="panel">
-            <div class="inner">
-                <form action="{{ url_for('todo.update', token=token) }}" method="post">
-                    <input type="hidden" name="id" placeholder="id" value="{{ t.id }}">
-                    <br>
-                    <input name="title" placeholder="title" value="{{ t.title }}">
-                    <br>
-                    <button type="submit" class="span-success">提交修改</button>
-                </form>
-            </div>
-        </div>
-    </div>
+{% import "macros.html" as macros %}
 
-</body>
-</html>
+{% block title %}
+    todo new
+{% endblock %}
+
+{% block sidebar_panel %}
+    {{ macros.Markdown_info_sidebar() }}
+{% endblock %}
+
+{% block content %}
+    {{ macros.user_action_edit_content('todo.update', token=token, t=t) }}
+{% endblock %}

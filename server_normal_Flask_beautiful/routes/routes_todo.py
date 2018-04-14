@@ -35,19 +35,10 @@ def index():
     print('from todo_index  before', gg.csrf_tokens)
     gg.reset_value(user.id)
     print('from todo_index  after', gg.csrf_tokens)
-
-    return render_template('todo/new_todo_index.html', token=gg.token[user.id], user=user)
-
-
-# 增加new路由函数去增加的页面
-# @main.route('/new', methods=['GET'])
-# @login_required
-# def new():
-#     user = current_user()
-#     if Todo.check_token():
-#         return render_template('todo/todo_new.html', token=gg.token[user.id], user=user)
+    return render_template('todo/todo_index.html', token=gg.token[user.id], user=user)
 
 
+# GET 去 new 页面， POST tweet_index 页面
 @main.route('/add', methods=['GET', 'POST'])
 @login_required
 def add():
@@ -73,7 +64,7 @@ def edit(todo_id):
         # todo_id = int(request.args.get('id'))
         t = Todo.find_by(id=todo_id)
         Todo.check_id(id=todo_id)
-        return render_template('todo/new_todo_edit.html', t=t, token=gg.token[user.id], user=user)
+        return render_template('todo/todo_edit.html', t=t, token=gg.token[user.id], user=user)
 
 
 @main.route('/update', methods=['POST'])
