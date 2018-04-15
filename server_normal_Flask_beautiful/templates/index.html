@@ -1,0 +1,66 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+{% endblock %}
+
+{% block navbar %}
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar">jgcgc</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('tweet.index') }}">Tweet</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('tweet.index') }}">Tweet</a></li>
+                    <li><a>Profile</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            {#                                <img src="http://p5shjfo1t.bkt.clouddn.com/user4.jpg">#}
+                            Action <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a>Change Password</a></li>
+                            <li><a>Change Email</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ url_for('user.user_login') }}">Log In</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+            <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+
+            <!-- Add the extra clearfix for only the required viewport -->
+            <div class="clearfix visible-xs-block"></div>
+
+            <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+            <div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+        </div>
+
+        <div class="embed-responsive embed-responsive-16by9">
+{#            <iframe class="embed-responsive-item" src=""></iframe>#}
+            <iframe class="embed-responsive-item" src="//www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen=""></iframe>
+        </div>
+
+    </div>
+{% endblock %}
+

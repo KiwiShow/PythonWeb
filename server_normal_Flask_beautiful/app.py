@@ -9,9 +9,13 @@ from routes.routes_board import main as board_routes
 from routes.routes_mail import main as mail_routes
 from routes.routes_error import main as error_routes
 
-
 from utils import log
 from config import  secret_key
+
+from flask_bootstrap import Bootstrap
+
+
+bootstrap = Bootstrap()
 
 
 def configured_app():
@@ -22,6 +26,7 @@ def configured_app():
     # 好处是不同的人用不同的secret_key，隔离开发和服务器环境，保证安全
     app.secret_key = secret_key
     # app.secret_key = 'Be the greatest，or nothing'
+    bootstrap.init_app(app)
     register_routes(app)
     return app
 

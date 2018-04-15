@@ -27,11 +27,7 @@ main = Blueprint('user', __name__)
 
 @main.route('/', methods=['GET'])
 def index():
-    """
-    主页
-    :return: 主页
-    """
-    pass
+    return render_template('index.html')
 
 
 @main.route('/admin', methods=['GET'])
