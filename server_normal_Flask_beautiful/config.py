@@ -1,9 +1,29 @@
-secret_key = 'Be the greatest，or nothing'
 import os
 import os.path
 image_file_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static/image')
 accept_image_file_type = ['jpg', 'gif', 'png']
 
+
+class Config(object):
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'Be the greatest，or nothing'
+
+    # SERVER_NAME 的用处见 笔记
+    # SERVER_NAME = 'example.com'
+    @staticmethod
+    def init_app(app):
+        pass
+
+
+class DevelopmentConfig(Config):
+    DEBUG = True
+
+config = {
+    'development': DevelopmentConfig,
+    # 'testing': TestingConfig,
+    # 'production': ProductionConfig,
+
+    'default': DevelopmentConfig,
+}
 # print(image_file_dir)
 # /Users/caiwei/PycharmProjects/PythonWeb/server_normal_Flask/image
 

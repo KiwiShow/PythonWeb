@@ -10,7 +10,7 @@ from routes.routes_mail import main as mail_routes
 from routes.routes_error import main as error_routes
 
 from utils import log
-from config import  secret_key
+from config import  config
 
 from flask_bootstrap import Bootstrap
 
@@ -18,13 +18,15 @@ from flask_bootstrap import Bootstrap
 bootstrap = Bootstrap()
 
 
-def configured_app():
+def configured_app(config_name):
     # 为了符合WSGI，将应用包装成一个app，可以被WSGI服务端通过application(env, response)调用
     app = Flask(__name__)
+    app.config.from_object(config[config_name])
+    config[config_name].init_app(app)
 
     # 设置secret_key用来对称加密session
     # 好处是不同的人用不同的secret_key，隔离开发和服务器环境，保证安全
-    app.secret_key = secret_key
+    # app.secret_key = secret_key
     # app.secret_key = 'Be the greatest，or nothing'
     bootstrap.init_app(app)
     register_routes(app)
@@ -44,13 +46,13 @@ def register_routes(app):
 
 
 # 运行
-if __name__ == '__main__':
-    app = configured_app()
-    config = dict(
-        debug=True,
-        host='0.0.0.0',
-        port=5000,
-    )
-    log('from run --> start at', '{}:{}'.format(config['host'], config['port']))
-    print('from run --> start at', '{}:{}'.format(config['host'], config['port']))
-    app.run(**config)
+# if __name__ == '__main__':
+#     app = configured_app()
+#     config = dict(
+        # debug=True,
+        # host='0.0.0.0',
+        # port=5000,
+    # )
+    # log('from run --> start at', '{}:{}'.format(config['host'], config['port']))
+    # print('from run --> start at', '{}:{}'.format(config['host'], config['port']))
+    # app.run(**config)
