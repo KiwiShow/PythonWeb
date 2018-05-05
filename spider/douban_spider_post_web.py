@@ -114,7 +114,7 @@ def up():
 def main():
     import schedule
     import time
-    schedule.every(1).minutes.do(up)
+    schedule.every(12).hours.do(up)
     while True:
         schedule.run_pending()
         time.sleep(1)
