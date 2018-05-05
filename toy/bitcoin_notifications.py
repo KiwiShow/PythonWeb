@@ -63,13 +63,14 @@ def main():
             post_ifttt_webhook('bitcoin_price_emergency', price)
 
         # Send a Telegram notification
-        if len(bitcoin_history) == 1:
+        if len(bitcoin_history) == 6:
             post_ifttt_webhook('bitcoin_price_update', 
                                format_bitcoin_history(bitcoin_history))
             # print(format_bitcoin_history(bitcoin_history))
             bitcoin_history = []
 
-        time.sleep(60)
+        # 每4小时 获取一个 比特价格，一天获得6个值，然后统一发送给 telegram
+        time.sleep(4 * 60 * 60)
     
 
 if __name__ == "__main__":
