@@ -63,15 +63,22 @@ def main():
             post_ifttt_webhook('bitcoin_price_emergency', price)
 
         # Send a Telegram notification
-        if len(bitcoin_history) == 6:
+        if len(bitcoin_history) == 1:
             post_ifttt_webhook('bitcoin_price_update', 
                                format_bitcoin_history(bitcoin_history))
-            # print(format_bitcoin_history(bitcoin_history))
+            print(format_bitcoin_history(bitcoin_history))
             bitcoin_history = []
 
         # 每4小时 获取一个 比特价格，一天获得6个值，然后统一发送给 telegram
-        time.sleep(4 * 60 * 60)
+        # 但是这样的话服务器 supervisorctl reload 又清空了。
+        # 所以使用 schedule 定时
+        # time.sleep(6)
     
 
 if __name__ == "__main__":
-    main()
+    import schedule
+    # 每天 10:30 发送一个
+    schedule.every().day.at("10:30").do(main)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
