@@ -90,7 +90,7 @@ def download_image(url):
 
 
 def up_to_web(title, movies):
-    url = 'http://localhost:5000/signin'
+    url = 'http://localhost:5000/login'
     data = {'username': 'ddd', 'password': '444'}
     s = requests.Session()
     s.post(url, data)
