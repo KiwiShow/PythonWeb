@@ -49,25 +49,25 @@ def main():
     # 获取到 一定数量的 比特币价格 之后 用 dict 保存 在 list 中
     # 统一发送之后 再 清空列表
     bitcoin_history = []
-    while True:
-        price = get_latest_bitcoin_price()
-        date = datetime.now()
-        bitcoin_history.append({'date': date, 'price': price})
+    # while True:
+    price = get_latest_bitcoin_price()
+    date = datetime.now()
+    bitcoin_history.append({'date': date, 'price': price})
 
-        # 两种事件
-        # bitcoin_price_emergency（IFTTT 发通知）
-        # bitcoin_price_update （telegram 发信息）
+    # 两种事件
+    # bitcoin_price_emergency（IFTTT 发通知）
+    # bitcoin_price_update （telegram 发信息）
 
-        # Send an emergency notification
-        if price < BITCOIN_PRICE_THRESHOLD:
-            post_ifttt_webhook('bitcoin_price_emergency', price)
+    # Send an emergency notification
+    if price < BITCOIN_PRICE_THRESHOLD:
+        post_ifttt_webhook('bitcoin_price_emergency', price)
 
-        # Send a Telegram notification
-        if len(bitcoin_history) == 1:
-            post_ifttt_webhook('bitcoin_price_update', 
-                               format_bitcoin_history(bitcoin_history))
-            print(format_bitcoin_history(bitcoin_history))
-            bitcoin_history = []
+    # Send a Telegram notification
+    if len(bitcoin_history) == 1:
+        post_ifttt_webhook('bitcoin_price_update',
+                           format_bitcoin_history(bitcoin_history))
+        print(format_bitcoin_history(bitcoin_history))
+        # bitcoin_history = []
 
         # 每4小时 获取一个 比特价格，一天获得6个值，然后统一发送给 telegram
         # 但是这样的话服务器 supervisorctl reload 又清空了。
@@ -78,7 +78,10 @@ def main():
 if __name__ == "__main__":
     import schedule
     # 每天 10:30 发送一个
-    schedule.every().day.at("10:30").do(main)
+    schedule.every().day.at("12:30").do(main)
     while True:
         schedule.run_pending()
         time.sleep(1)
+
+
+# 貌似 ip 被 ban le
