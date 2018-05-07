@@ -77,11 +77,13 @@ def main():
 
 if __name__ == "__main__":
     import schedule
-    # 每天 10:30 发送一个
+    # 每天 12:30 发送一个
     schedule.every().day.at("12:30").do(main)
     while True:
         schedule.run_pending()
         time.sleep(1)
 
 
-# 貌似 ip 被 ban le
+# 服务器 的 时区 不一样. 修改服务器的时区
+# 时区的配置文件是/etc/sysconfig/clock。用tzselect命令就可以修改, 但是需要重启 服务器
+
