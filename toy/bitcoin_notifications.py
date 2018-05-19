@@ -87,3 +87,24 @@ if __name__ == "__main__":
 # 服务器 的 时区 不一样. 修改服务器的时区
 # 时区的配置文件是/etc/sysconfig/clock。用tzselect命令就可以修改, 但是需要重启 服务器
 
+# 出现的问题，没有/etc/sysconfig/clock
+
+# tzselect 结束之后出现
+# You can make this change permanent for yourself by appending the line
+#         TZ='Asia/Shanghai'; export TZ
+# to the file '.profile' in your home directory; then log out and log in again.
+#
+# Here is that TZ value again, this time on standard output so that you
+# can use the /usr/bin/tzselect command in shell scripts:
+# Asia/Shanghai
+
+# .profile 没有 去找 .bashrc 修改完成之后 schedule的时间用的还是纽约时间，相差12小时。
+#
+# 所以设置环境变量是不行的
+# 还得设置  系统时间
+#
+# lrwxrwxrwx   1 root root     33 May 19 19:47 localtime -> /usr/share/zoneinfo/Asia/Shanghai
+# -rw-r--r--   1 root root     14 May 19 20:14 timezone
+
+# 另外还得同步一下 硬件时间
+
