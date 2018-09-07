@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+pymongo = "*"
+qiniu = "*"
+sqlalchemy = "*"
+schedule = "*"
+flask-bootstrap = "*"
+pymysql = "*"
+flask-script = "*"
+pyquery = "*"
+selenium = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
