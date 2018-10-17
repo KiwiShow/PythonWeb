@@ -40,10 +40,7 @@ def format_bitcoin_history(bitcoin_history):
     # Use a <br> (break) tag to create a new line
     # Join the rows delimited by <br> tag: row1<br>row2<br>row3
     return '<br>'.join(rows)
-    
 
-# 比特币价格 10000刀以下 触发 IFTTT 通知，注意，不是在 telegram 里面发通知
-BITCOIN_PRICE_THRESHOLD = 5000
 
 def main():
     # 获取到 一定数量的 比特币价格 之后 用 dict 保存 在 list 中
@@ -78,7 +75,18 @@ def main():
 if __name__ == "__main__":
     import schedule
     # 每天 12:30 发送一个
-    schedule.every().day.at("12:30").do(main)
+    # 使用Argparse库进行命令行配置
+    import argparse
+    parser = argparse.ArgumentParser(description='设定推送时间和价格阈值')
+    parser.add_argument('-t', '--time', default='12:30', help='推送时间 (default 12:30)')
+    parser.add_argument('-p', '--price', metavar='PRICE', type=int, default=5000,
+                        help='触发紧急事件的价格阈值 (default 5000)')
+    args = parser.parse_args()
+
+    # 比特币价格 10000刀以下 触发 IFTTT 通知，注意，不是在 telegram 里面发通知
+    BITCOIN_PRICE_THRESHOLD = args.price
+
+    schedule.every().day.at(args.time).do(main)
     while True:
         schedule.run_pending()
         time.sleep(1)
