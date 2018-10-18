@@ -14,6 +14,8 @@ pymysql = "*"
 flask-script = "*"
 pyquery = "*"
 selenium = "*"
+jupyter = "*"
+notebook = "*"
 
 [dev-packages]
 
