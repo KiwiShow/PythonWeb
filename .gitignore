@@ -37,3 +37,4 @@ spider/img_mtime/
 spider/mtime/
 /data_structure_and_algorithm/.ipynb_checkpoints/
 *.qiniu_pythonsdk_hostscache.json
+/Python_语言魅力/.ipynb_checkpoints/
